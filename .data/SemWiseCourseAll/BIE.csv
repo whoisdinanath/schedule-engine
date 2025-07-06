@@ -1,0 +1,50 @@
+Semester, CourseCode, CourseTitle, Credits, L, T, P
+1, ENSH 101, Engineering Mathematics I, 3, 3, 2, 0
+1, ENSH 102, Engineering Physics, 4, 4, 1, 2
+1, ENCT 101, Computer Programming, 3, 3, 1, 3
+1, ENEX 101, Fundamental of Electrical and Electronics Engineering, 3, 3, 1, 3
+1, ENME 101, Engineering Drawing, 2, 2, 0, 4
+1, ENME 103, Engineering Mechanics I, 3, 3, 1, 0
+2, ENSH 151, Engineering Mathematics II, 3, 3, 2, 0
+2, ENSH 153, Engineering Chemistry, 3, 3, 1, 3
+2, ENME 152, Machine Drawing, 2, 2, 4, 0
+2, ENME 153, Engineering Mechanics II, 3, 3, 1, 0
+2, ENME 151, Engineering Thermodynamics I, 3, 3, 1, 1.5
+2, ENME 155, Workshop Technology, 3, 3, 1, 3
+3, ENSH 201, Engineering Mathematics III, 3, 3, 2, 0
+3, ENME 202, Manufacturing and Production Processes, 3, 3, 1, 3
+3, ENIE 202, Industrial Management, 3, 3, 1, 0
+3, ENME 201, Material Science, 3, 3, 1, 1.5
+3, ENME 205, Strength of Materials, 3, 3, 1, 1.5
+3, ENME 206, Applied Thermodynamics and Heat Transfer, 3, 3, 1, 1.5
+3, ENIE 203, Group Work and Presentation I, 1, 0, 0, 0
+4, ENSH 252, Numerical Methods, 3, 3, 1, 3
+4, ENEE 254, Electrical Machines, 4, 4, 1, 1.5
+4, ENME 255, Fluid Mechanics and Machines, 3, 3, 1, 1.5
+4, ENIE 252, Industrial Economics, 3, 3, 1, 0
+4, ENIE 251, Metrology and Instrumentation, 3, 3, 1, 1.5
+4, ENIE 253, Work Study and Human Factor Engineering, 3, 3, 1, 1.5
+4, ENIE 254, Group Work and Presentation II, 1, 0, 0, 0
+5, ENSH 304, Probability and Statistics, 3, 3, 1, 0
+5, ENME 303, Theory of Machines and Mechanism, 3, 3, 2, 0
+5, ENIE 301, Supply Chain Management, 3, 3, 1, 0
+5, ENIE 302, Concurrent and Value Engineering, 3, 3, 1, 0
+5, ENME 309, Energy Resources and Technology, 3, 3, 1, 1.5
+5, ENIE 325-334, Elective I, 3, 3, 2, 1
+5, ENIE 305, Group Work and Presentation III, 1, 0, 0, 0
+6, ENIE 351, Enterpreneurship and New Venture, 2, 2, 0, 3
+6, ENIE 352, Operation Research, 3, 3, 1, 1.5
+6, ENIE 353, Machine Design, 3, 3, 2, 0
+6, ENIE 354, Industrial Layout and Design, 3, 3, 0, 3
+6, ENAM 353, Hydraulic and Pneumatic Systems, 3, 3, 1, 1.5
+6, ENIE 356, Project I, 2, 0, 0, 0
+6, ENIE 385-394, Elective II, 3, 3, 2, 1
+7, ENIE 411, Industrial Law and Engineering Professional Practice, 3, 3, 0, 0
+7, ENIE 412, Project Management, 3, 3, 1, 0
+7, ENIE 413, Quality Control and Management, 3, 3, 1, 0
+7, ENIE 414, Maintenance and Reliability Engineering, 3, 3, 1, 1.5
+7, ENIE 435-444, Elective III, 3, 3, 2, 1
+7, ENIE 445-449, Elective IV, 3, 3, 2, 1
+7, ENIE 415, Project II, 1, 0, 0, 0
+8, ENIE 461, Seminar Paper, 2, 0, 0, 0
+8, ENIE 462, Internship, 6, 0, 0, 0

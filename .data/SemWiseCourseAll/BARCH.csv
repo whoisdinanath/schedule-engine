@@ -1,0 +1,55 @@
+Semester, CourseCode, CourseTitle, Credits, L, T, P
+1, ENSH 104, Mathematics for Architecture I, 3, 3, 2, 0
+1, ENAR 101, Design Studio I, 8, 2, 0, 8
+1, ENAR 102, Introduction to Architecture, 2, 2, 0, 0
+1, ENAR 103, Building Material I, 3, 3, 1, 0
+1, ENAR 104, Architectural Graphics I, 2, 2, 0, 4
+1, ENAR 105, Free Hand Sketching I, 2, 2, 0, 3
+2, ENSH 155, Mathematics for Architecture II, 3, 3, 2, 0
+2, ENAR 151, Architectural Graphics II, 2, 2, 0, 3
+2, ENAR 152, Design Studio II, 8, 2, 0, 8
+2, ENAR 153, Building Construction I, 2, 2, 0, 3
+2, ENAR 154, History of Nepalese Architecture, 3, 3, 0, 1
+2, ENAR 155, Free Hand Sketching II, 2, 2, 0, 3
+2, ENCE 156, Applied Mechanics, 3, 3, 2, 0
+3, ENAR 201, Design Studio III, 8, 0, 0, 10
+3, ENAR 202, History of Eastern Architecture, 3, 3, 0, 1
+3, ENAR 203, Building Materials II, 3, 3, 1, 0
+3, ENAR 204, Design Theory I, 3, 3, 1, 0
+3, ENAR 205, Building Science I, 3, 3, 1, 0
+3, ENAR 206, Building Construction II, 2, 2, 0, 3
+3, ENCE 208, Structure I, 3, 3, 1, 0
+4, ENAR 251, Design Studio IV, 8, 0, 0, 10
+4, ENAR 252, Building Science II, 3, 3, 1, 0
+4, ENAR 253, History of Western Architecture, 3, 3, 0, 1
+4, ENAR 254, Design Theory II, 3, 3, 1, 0
+4, ENAR 255, Computer Aided Design and Drafting, 2, 2, 0, 2
+4, ENCE 260, Structure II, 3, 3, 1, 0
+4, ENCE 261, Surveying, 2, 2, 0, 4
+5, ENAR 301, Design Studio V, 8, 0, 0, 10
+5, ENAR 302, Contemporary Architecture, 3, 3, 0, 1
+5, ENAR 303, Building Construction III, 2, 2, 0, 3
+5, ENAR 304, Working Drawing, 2, 2, 0, 4
+5, ENAR 305, Sociology and Culture, 2, 2, 0, 0
+5, ENSH 302, Communication English, 3, 3, 0, 1
+6, ENAR 351, Design Studio VI, 8, 0, 0, 10
+6, ENAR 352, Building Construction IV, 2, 2, 0, 3
+6, ENAR 353, Human Settlement Planning, 3, 3, 0, 0
+6, ENAR 365-384, Elective I, 3, 3, 0, 0
+6, ENCE 359, Estimation and Specification, 3, 3, 1, 0
+6, ENCE 358, Building Services I, 2, 2, 0, 1.5
+6, ENEE 356, Building Services II, 2, 2, 0, 1.5
+7, ENAR 411, Practicum, 8, 0, 0, 0
+8, ENAR 461, Architectural Conservation, 2, 2, 0, 1
+8, ENAR 462, Design Studio VII, 10, 0, 0, 12
+8, ENAR 463, Sustainable Architecture, 2, 2, 0, 1
+8, ENAR 464, Construction Management, 2, 2, 0, 1
+8, ENAR 465-484, Elective II, 3, 3, 0, 0
+8, ENME 464, Building Services III, 2, 2, 0, 1.5
+8, ENAR 467, Building Economics, 2, 2, 0, 0
+9, ENAR 501, Seminar & Directed Studies, 1, 0, 0, 3
+9, ENAR 502, Design Studio VIII, 10, 0, 0, 12
+9, ENAR 503, Professional Practice, 2, 2, 0, 1
+9, ENAR 504, Architectural Research for Thesis, 2, 0, 0, 5
+9, ENAR 525-534, Elective III, 3, 3, 0, 0
+10, ENAR 561, Thesis, 16, 0, 0, 0
