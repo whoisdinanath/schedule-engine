@@ -1,0 +1,327 @@
+[
+    {
+        "name": "Shanta Maharjan",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "2",
+        "pr": "15",
+        "pro": "",
+        "avail": {
+            "Monday": [
+                "14:25-17:00"
+            ],
+            "Tuesday": [
+                "14:25-17:00"
+            ],
+            "Wednesday": [
+                "12:45-17:00"
+            ],
+            "Thursday": [
+                "14:25-17:00"
+            ],
+            "Friday": [
+                "10:00-12:45"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Janardan Bhatta",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "3",
+        "pr": "12",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "12:45-17:00"
+            ],
+            "Monday": [
+                "10:15-12:45"
+            ],
+            "Tuesday": [
+                "10:00-12:45"
+            ],
+            "Thursday": [
+                "10:15-12:55"
+            ],
+            "Friday": [
+                "10:15-12:55"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Kiran Chandra Dahal",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "12",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "10:15-14:25"
+            ],
+            "Monday": [
+                "10:15-17:00"
+            ],
+            "Wednesday": [
+                "14:25-17:00"
+            ],
+            "Friday": [
+                "10:15-12:45"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Umesh Kanta Ghimire",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "24",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "14:25-17:00"
+            ],
+            "Monday": [
+                "14:25-17:00"
+            ],
+            "Tuesday": [
+                "14:25-17:00"
+            ],
+            "Wednesday": [
+                "10:17:00"
+            ],
+            "Thursday": [
+                "12:45-15:15"
+            ],
+            "Friday": [
+                "11:05-15:15"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Binod Sapkota",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "8",
+        "pr": "15",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "10:15-14:25"
+            ],
+            "Tuesday": [
+                "11:55-13:35"
+            ],
+            "Wednesday": [
+                "10:15-17:00"
+            ],
+            "Thursday": [
+                "12:45-17:00"
+            ],
+            "Friday": [
+                "10:15-17:00"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Pradeep Prasad Sah",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "13",
+        "pr": "22",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "10:00-17:00"
+            ],
+            "Monday": [
+                "14:20-17:00"
+            ],
+            "Tuesday": [
+                "10:00-17:00"
+            ],
+            "Wednesday": [
+                "12:30-16:55"
+            ],
+            "Thursday": [
+                "10:00-17:00"
+            ],
+            "Friday": [
+                "10:00-17:00"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Ganesh Kumal",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "21",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "10:15-17:00"
+            ],
+            "Monday": [
+                "10:15-12:45",
+                "14:25-17:00"
+            ],
+            "Wednesday": [
+                "10:15-17:00"
+            ],
+            "Thursday": [
+                "14:25-17:00"
+            ],
+            "Friday": [
+                "10:15-11:55"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Praches Acharya",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "12",
+        "pr": "15",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "14:25-17:00"
+            ],
+            "Monday": [
+                "10:15-17:00"
+            ],
+            "Tuesday": [
+                "10:15-17:00"
+            ],
+            "Wednesday": [
+                "10:15-17:00"
+            ],
+            "Thursday": [
+                "14:25-17:00"
+            ],
+            "Friday": [
+                "10:15-17:00"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Anup Shrestha",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "12",
+        "pr": "18",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "10:00-17:00"
+            ],
+            "Monday": [
+                "10:00-12:00"
+            ],
+            "Tuesday": [
+                "12:00-16:00"
+            ],
+            "Wednesday": [
+                "10:00-17:00"
+            ],
+            "Thursday": [
+                "10:00-14:00"
+            ],
+            "Friday": [
+                "10:00-17:00"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Kobid Karkee",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "12",
+        "pr": "12",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "10:00-17:00"
+            ],
+            "Monday": [
+                "10:00-13:00"
+            ],
+            "Tuesday": [
+                "10:00-13:00"
+            ],
+            "Wednesday": [
+                "14:25-17:00"
+            ],
+            "Thursday": [
+                "10:00-17:00"
+            ],
+            "Friday": [
+                "10:15-17:00"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Suwarna Lingden",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "14",
+        "pr": "9",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "10:00-17:00"
+            ],
+            "Monday": [
+                "10:00-14:30"
+            ],
+            "Wednesday": [
+                "12:30-17:00"
+            ],
+            "Thursday": [
+                "14:15-17:00"
+            ],
+            "Friday": [
+                "14:15-17:00"
+            ]
+        },
+        "fulltime": true
+    },
+    {
+        "name": "Subodh Kumar Ravi",
+        "email": "mail@gmail.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "15",
+        "pro": "",
+        "avail": {
+            "Sunday": [
+                "14:00-17:00"
+            ],
+            "Monday": [
+                "14:00-17:00"
+            ],
+            "Tuesday": [
+                "14:00-17:00"
+            ],
+            "Wednesday": [
+                "10:00-13:00"
+            ],
+            "Friday": [
+                "14:25-17:00"
+            ]
+        },
+        "fulltime": true
+    }
+]

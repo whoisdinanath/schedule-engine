@@ -1,0 +1,64 @@
+Block,Room_No,Name,Room_Type,Capacity,Access_Department,IsActive,Features
+A,101,Mechanics of Machinery Lab,Laboratory,24,DAME,TRUE,mechanicsmachinery
+A,102,Fluid Engineering Lab,Laboratory,24,DAME,TRUE,fluidengineering
+A,103,Material Science,Laboratory,24,DAME,TRUE,materialscience
+A,104,Thermal Science,Laboratory,24,DAME,TRUE,thermalscience
+A,201,Classroom A-201,Classroom,48,DAR,TRUE,
+A,202,Classroom A-202,Classroom,48,DAR,TRUE,
+A,301,Classroom A-301,Classroom,48,DAR,TRUE,
+A,302,Classroom A-302,Classroom,48,DAR,TRUE,
+A,303,Classroom A-303,Classroom,48,DAR,TRUE,
+B,101,Seminar B-101,Classroom,48,DAR,TRUE,seminar
+B,102,Classroom B-102,Classroom,48,DAR,TRUE,
+B,103,Classroom B-103,Classroom,48,DCE,TRUE,
+B,104,Classroom B-104,Classroom,48,DCE,TRUE,
+B,202,Classroom B-202,Classroom,48,DCE,TRUE,
+B,203,Physics Lab,Laboratory,24,DAS,TRUE,physicslab
+B,204,Chem Lab,Laboratory,24,DAS,TRUE,chemistrylab
+B,205,Classroom B-205,Classroom,48,DCE,TRUE,
+B,206,Classroom B-206,Classroom,48,DCE,TRUE,
+B,207,Classroom B-207,Classroom,48,DCE,TRUE,
+B,303,Seminar B-303,Classroom,48,DIE,TRUE,seminar
+B,304,Classroom B-304,Classroom,48,DIE,TRUE,
+B,308,Classroom B-308,Classroom,48,DIE,TRUE,
+B,309,Classroom B-309,Classroom,48,DIE,TRUE,
+B,310,Classroom B-310,Classroom,48,DCE,TRUE,
+B,311,Classroom B-311,Classroom,48,DCE,TRUE,
+B,312,Classroom B-312,Classroom,48,DCE,TRUE,
+B,402,Classroom B-402,Classroom,48,DCE,TRUE,
+B,403,Classroom B-403,Classroom,48,DCE,TRUE,
+B,407,Classroom B-407,Classroom,48,DCE,TRUE,
+D,101,Computer Lab 1,Laboratory,24,DECE,TRUE,"computer, advancedcomputer"
+D,102,Computer Lab 2,Laboratory,24,DECE,TRUE,"computer, advancedcomputer"
+D,104,Computer Lab 3,Laboratory,24,DECE,TRUE,"computer, advancedcomputer"
+D,105,Computer Lab 4,Laboratory,24,DECE,TRUE,"computer, advancedcomputer"
+D,106,Computer Lab 5,Laboratory,24,DECE,TRUE,"computer, advancedcomputer"
+D,107,Electrical Lab,Laboratory,24,DECE,TRUE,electrical
+D,108,Electronics Lab 1,Laboratory,24,DECE,TRUE,electronics
+D,110,Electronics Lab 2,Laboratory,24,DECE,TRUE,"electronics, electronicsadvanced"
+D,111,Drawing Lab 1,Laboratory,24,DAME,TRUE,drawing
+D,112,Drawing Lab 2,Laboratory,24,DAME,TRUE,drawing
+E,201,Electronics Lab 3,Laboratory,24,DECE,TRUE,communicationelectronics
+E,004,Structure Geology Lab,Laboratory,24,DCE,TRUE,structure_geology_lab
+E,002,Classroom E-002,Classroom,48,DAME,TRUE,
+E,003,Classroom E-003,Classroom,48,DAME,TRUE,
+E,101,Classroom E-101,Classroom,48,DAME,TRUE,
+E,102,Classroom E-102,Classroom,48,DAME,TRUE,
+E,104,Seminar E-104,Classroom,48,DAME,TRUE,seminar
+E,203,Classroom E-203,Classroom,48,DAME,TRUE,
+E,204,Classroom E-204,Classroom,48,DAME,TRUE,
+E,205,Classroom E-205,Classroom,48,DAME,TRUE,
+E,302,Classroom E-302,Classroom,48,DECE,TRUE,
+E,303,Classroom E-303,Classroom,48,DECE,TRUE,
+E,304,Classroom E-304,Classroom,48,DECE,TRUE,
+E,305,Classroom E-305,Classroom,48,DECE,TRUE,
+E,402,Classroom E-402,Classroom,48,DECE,TRUE,
+E,403,Classroom E-403,Classroom,48,DECE,TRUE,
+E,404,Classroom E-404,Classroom,48,DECE,TRUE,
+E,405,Seminar E-405,Classroom,48,DECE,TRUE,seminar
+F,101,Classroom F-101,Classroom,48,DAR,TRUE,
+F,102,Classroom F-102,Classroom,48,DAR,TRUE,
+W,101,Mechanical Workshop,Laboratory,24,DAME,TRUE,mechanicalworkshop
+W,102,Material Testing Lab,Laboratory,24,DCE,TRUE,materialtesting
+W,103,Survey Lab,Laboratory,24,DCE,TRUE,survey
+W,104,Automobile Workshop,Laboratory,24,DAME,TRUE,automobileworkshop
