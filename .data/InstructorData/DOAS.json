@@ -1,0 +1,197 @@
+[
+    {
+        "name": "Tek Bahadur Budathoki",
+        "email": "tek.budathoki@email.com",
+        "phone": "9851210282",
+        "th": "4",
+        "pr": "4",
+        "pro": "TBB",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Numerical Method",
+                "type": "theory"
+            },
+            {
+                "name": "Numerical Method",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Hare Ram Limbu",
+        "email": "hare.limbu@email.com",
+        "phone": "9800000000",
+        "th": "2",
+        "pr": "6",
+        "pro": "HRL",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Numerical Method",
+                "type": "theory"
+            },
+            {
+                "name": "Numerical Method",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Prajwal Singh Thapa",
+        "email": "prajwal.thapa@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "2",
+        "pro": "PST",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Communication English",
+                "type": "theory"
+            },
+            {
+                "name": "Communication English",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Merina Sthapit",
+        "email": "merina.sthapit@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "MS",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Probability & Statistics",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Hari Ram Limbu",
+        "email": "hari.limbu@email.com",
+        "phone": "9851234567",
+        "th": "8",
+        "pr": "10",
+        "pro": "HRL",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "11:55-12:45",
+                "2:25-3:15"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Engineering Mathematics",
+                "type": "theory"
+            },
+            {
+                "name": "Engineering Mathematics",
+                "type": "practical"
+            }
+        ]
+    }
+]
