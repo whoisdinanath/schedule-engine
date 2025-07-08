@@ -190,6 +190,16 @@ class DataIngestion:
             if 'preferred_slots' in data and data['preferred_slots']:
                 preferred_slots = self._parse_list_field(data['preferred_slots'])
             
+            # Skip courses with no qualified instructors
+            if not qualified_instructors:
+                self.logger.warning(f"Skipping course {data.get('course_id', 'unknown')}: no qualified instructors specified")
+                return None
+            
+            # Skip courses with no groups
+            if not group_ids:
+                self.logger.warning(f"Skipping course {data.get('course_id', 'unknown')}: no groups specified")
+                return None
+            
             course = Course(
                 course_id=str(data['course_id']),
                 name=str(data['name']),
@@ -293,8 +303,14 @@ class DataIngestion:
     
     def _parse_list_field(self, field_value: Any) -> List[str]:
         """Parse a field that should be a list."""
+        import pandas as pd
+        
+        # Handle pandas NaN values
+        if pd.isna(field_value):
+            return []
+        
         if isinstance(field_value, list):
-            return [str(item) for item in field_value]
+            return [str(item) for item in field_value if not pd.isna(item)]
         elif isinstance(field_value, str):
             if field_value.strip():
                 # Handle comma-separated values
@@ -329,29 +345,62 @@ class DataIngestion:
         try:
             self.logger.info("Validating data integrity...")
             
+            courses_to_remove = []
+            
             # Check course-instructor qualifications
             for course_id, course in self.courses.items():
+                valid_instructors = []
                 for instructor_id in course.qualified_instructor_ids:
                     if instructor_id not in self.instructors:
-                        self.logger.error(f"Course {course_id} references unknown instructor {instructor_id}")
-                        return False
-                    
-                    if course_id not in self.instructors[instructor_id].qualified_courses:
-                        self.logger.warning(f"Instructor {instructor_id} not qualified for course {course_id} "
-                                          f"according to instructor data")
+                        self.logger.warning(f"Course {course_id} references unknown instructor {instructor_id}, removing reference")
+                    else:
+                        valid_instructors.append(instructor_id)
+                        if course_id not in self.instructors[instructor_id].qualified_courses:
+                            self.logger.warning(f"Instructor {instructor_id} not qualified for course {course_id} "
+                                              f"according to instructor data")
+                
+                # Update the course with valid instructors only
+                course.qualified_instructor_ids = valid_instructors
+                
+                # Mark course for removal if no valid instructors remain
+                if not valid_instructors:
+                    self.logger.warning(f"Course {course_id} has no valid instructors, removing course")
+                    courses_to_remove.append(course_id)
             
             # Check course-group enrollments
             for course_id, course in self.courses.items():
+                if course_id in courses_to_remove:
+                    continue
+                    
+                valid_groups = []
                 for group_id in course.group_ids:
                     if group_id not in self.groups:
-                        self.logger.error(f"Course {course_id} references unknown group {group_id}")
-                        return False
-                    
-                    if course_id not in self.groups[group_id].enrolled_courses:
-                        self.logger.warning(f"Group {group_id} not enrolled in course {course_id} "
-                                          f"according to group data")
+                        self.logger.warning(f"Course {course_id} references unknown group {group_id}, removing reference")
+                    else:
+                        valid_groups.append(group_id)
+                        if course_id not in self.groups[group_id].enrolled_courses:
+                            self.logger.warning(f"Group {group_id} not enrolled in course {course_id} "
+                                              f"according to group data")
+                
+                # Update the course with valid groups only
+                course.group_ids = valid_groups
+                
+                # Mark course for removal if no valid groups remain
+                if not valid_groups:
+                    self.logger.warning(f"Course {course_id} has no valid groups, removing course")
+                    courses_to_remove.append(course_id)
             
-            self.logger.info("Data integrity validation completed successfully")
+            # Remove invalid courses
+            for course_id in courses_to_remove:
+                if course_id in self.courses:
+                    del self.courses[course_id]
+                    self.logger.info(f"Removed invalid course: {course_id}")
+            
+            if courses_to_remove:
+                self.logger.info(f"Data integrity validation completed with {len(courses_to_remove)} courses removed")
+            else:
+                self.logger.info("Data integrity validation completed successfully")
+            
             return True
             
         except Exception as e:
