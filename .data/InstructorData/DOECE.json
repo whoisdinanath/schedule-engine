@@ -23,7 +23,33 @@
                 "10:00-12:45"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Control System Lab BAM",
+                "type": "lab"
+            },
+            {
+                "name": "Control System Lab BME",
+                "type": "lab"
+            },
+            {
+                "name": "Control System Lab BIE",
+                "type": "lab"
+            },
+            {
+                "name": "Energy Environment & Society",
+                "type": "theory"
+            },
+            {
+                "name": "Electromagnetics Lab BEI II",
+                "type": "lab"
+            },
+            {
+                "name": "Filter Design Lab BEI",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Janardan Bhatta",
@@ -49,7 +75,33 @@
                 "10:15-12:55"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Industrial Law BIE",
+                "type": "theory"
+            },
+            {
+                "name": "Ethics BIE",
+                "type": "theory"
+            },
+            {
+                "name": "Operating System Lab BEI III",
+                "type": "lab"
+            },
+            {
+                "name": "Operating System Lab BCT II",
+                "type": "lab"
+            },
+            {
+                "name": "Software Engineering Lab BCT III",
+                "type": "lab"
+            },
+            {
+                "name": "Distributed System Lab BCT IV",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Kiran Chandra Dahal",
@@ -72,7 +124,25 @@
                 "10:15-12:45"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Digital Logic BEI I",
+                "type": "theory"
+            },
+            {
+                "name": "Digital Logic BCT I",
+                "type": "theory"
+            },
+            {
+                "name": "Digital Logic Lab BEI I",
+                "type": "lab"
+            },
+            {
+                "name": "Digital Logic Lab BCT I",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Umesh Kanta Ghimire",
@@ -101,7 +171,45 @@
                 "11:05-15:15"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Control System BIE",
+                "type": "theory"
+            },
+            {
+                "name": "Control System Lab BIE",
+                "type": "lab"
+            },
+            {
+                "name": "Digital Signal Analysis & Processing Lab BCT",
+                "type": "lab"
+            },
+            {
+                "name": "Artificial Intelligence Lab BEI",
+                "type": "lab"
+            },
+            {
+                "name": "RF & Microwave Lab",
+                "type": "lab"
+            },
+            {
+                "name": "Data Communication BCT III Lab",
+                "type": "lab"
+            },
+            {
+                "name": "Elective Lab (Image Processing)",
+                "type": "lab"
+            },
+            {
+                "name": "Elective Lab (Web Technology)",
+                "type": "lab"
+            },
+            {
+                "name": "Instrumentation Lab BCT II",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Binod Sapkota",
@@ -127,7 +235,29 @@
                 "10:15-17:00"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Computer Networks BEI III",
+                "type": "theory"
+            },
+            {
+                "name": "Computer Networks BCT IV",
+                "type": "theory"
+            },
+            {
+                "name": "Computer Networks Lab BEI III",
+                "type": "lab"
+            },
+            {
+                "name": "Computer Networks Lab BCT IV",
+                "type": "lab"
+            },
+            {
+                "name": "Data Communication Lab BCT II",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Pradeep Prasad Sah",
@@ -156,7 +286,49 @@
                 "10:00-17:00"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Control System BME III/I",
+                "type": "theory"
+            },
+            {
+                "name": "Control System BAM III/I",
+                "type": "theory"
+            },
+            {
+                "name": "Electric Machines BIE III/I",
+                "type": "theory"
+            },
+            {
+                "name": "Control System Lab BME III/I",
+                "type": "lab"
+            },
+            {
+                "name": "Control System Lab BAM III/I",
+                "type": "lab"
+            },
+            {
+                "name": "Electric Circuit & Machines Lab BCT I",
+                "type": "lab"
+            },
+            {
+                "name": "Electric Circuit & Machines Lab BEI I",
+                "type": "lab"
+            },
+            {
+                "name": "Electric Machines BIE III/I Lab",
+                "type": "lab"
+            },
+            {
+                "name": "Electric Machines BAM II Lab",
+                "type": "lab"
+            },
+            {
+                "name": "Building Services Lab B.Arch",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Ganesh Kumal",
@@ -183,7 +355,29 @@
                 "10:15-11:55"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Digital Logic BCT I",
+                "type": "theory"
+            },
+            {
+                "name": "Digital Logic Lab BCT I",
+                "type": "lab"
+            },
+            {
+                "name": "Digital Logic Lab BEI I",
+                "type": "lab"
+            },
+            {
+                "name": "COA Lab BCT III",
+                "type": "lab"
+            },
+            {
+                "name": "COA Lab BEI III",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Praches Acharya",
@@ -212,7 +406,41 @@
                 "10:15-17:00"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Computer Organization & Architecture BCT III",
+                "type": "theory"
+            },
+            {
+                "name": "Computer Organization & Architecture BEI II",
+                "type": "theory"
+            },
+            {
+                "name": "Computer Organization & Architecture BEI III",
+                "type": "theory"
+            },
+            {
+                "name": "COA Lab BCT III",
+                "type": "lab"
+            },
+            {
+                "name": "COA Lab BEI II",
+                "type": "lab"
+            },
+            {
+                "name": "COA Lab BEI III",
+                "type": "lab"
+            },
+            {
+                "name": "Instrumentation Lab BEI II",
+                "type": "lab"
+            },
+            {
+                "name": "DSAP Lab BEI IV",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Anup Shrestha",
@@ -241,7 +469,45 @@
                 "10:00-17:00"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Operating System BEI III",
+                "type": "theory"
+            },
+            {
+                "name": "Object Oriented Programming (P) Group A BCT",
+                "type": "practical"
+            },
+            {
+                "name": "Object Oriented Programming (P) Group A BEI",
+                "type": "practical"
+            },
+            {
+                "name": "Object Oriented Programming (P) Group B BCT",
+                "type": "practical"
+            },
+            {
+                "name": "Object Oriented Programming (P) Group B BEI",
+                "type": "practical"
+            },
+            {
+                "name": "Object Oriented Programming (L) BCT",
+                "type": "lab"
+            },
+            {
+                "name": "Object Oriented Programming (L) BEI",
+                "type": "lab"
+            },
+            {
+                "name": "Operating System lab BEI III",
+                "type": "lab"
+            },
+            {
+                "name": "Operating System lab BCT II",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Kobid Karkee",
@@ -270,7 +536,37 @@
                 "10:15-17:00"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Electromagnetics BEI II",
+                "type": "theory"
+            },
+            {
+                "name": "Electromagnetics BCT II",
+                "type": "theory"
+            },
+            {
+                "name": "RF and Microwave Engineering BEI IV",
+                "type": "theory"
+            },
+            {
+                "name": "Signal & System Lab BEI II",
+                "type": "lab"
+            },
+            {
+                "name": "Electromagnetics Lab BCT II",
+                "type": "lab"
+            },
+            {
+                "name": "Electromagnetics Lab BEI II",
+                "type": "lab"
+            },
+            {
+                "name": "RF and Microwave Engineering Lab",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Suwarna Lingden",
@@ -296,7 +592,33 @@
                 "14:15-17:00"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Instrumentation BEI II",
+                "type": "theory"
+            },
+            {
+                "name": "Instrumentation BCT II",
+                "type": "theory"
+            },
+            {
+                "name": "Instrumentation II BCT III",
+                "type": "theory"
+            },
+            {
+                "name": "Instrumentation Lab BEI II",
+                "type": "lab"
+            },
+            {
+                "name": "Instrumentation Lab BCT II",
+                "type": "lab"
+            },
+            {
+                "name": "Instrumentation Lab BCT III",
+                "type": "lab"
+            }
+        ]
     },
     {
         "name": "Subodh Kumar Ravi",
@@ -322,6 +644,28 @@
                 "14:25-17:00"
             ]
         },
-        "fulltime": true
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Electronic devices & Circuit Lab BEI I A",
+                "type": "lab"
+            },
+            {
+                "name": "Electronic devices & Circuit Lab BEI I B",
+                "type": "lab"
+            },
+            {
+                "name": "Electronic devices & Circuit Lab BCT I A",
+                "type": "lab"
+            },
+            {
+                "name": "Electronic devices & Circuit Lab BCT I B",
+                "type": "lab"
+            },
+            {
+                "name": "Electromagnetics Lab BCT II",
+                "type": "lab"
+            }
+        ]
     }
 ]

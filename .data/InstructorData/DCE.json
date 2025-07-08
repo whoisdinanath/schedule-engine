@@ -1,0 +1,3315 @@
+[
+    {
+        "name": "Bimal Ojha",
+        "email": "bimal.ojha@email.com",
+        "phone": "9855018620",
+        "th": "8",
+        "pr": "10",
+        "pro": "BO",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "2:25-3:15",
+                "3:15-4:05",
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Theory of Structure-II",
+                "type": "theory"
+            },
+            {
+                "name": "Theory of Structure-II",
+                "type": "practical"
+            },
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Sanjima Bajracharya",
+        "email": "sanjima.bajracharya@email.com",
+        "phone": "9861830067",
+        "th": "6",
+        "pr": "0",
+        "pro": "SB",
+        "avail": {
+            "Sunday": [
+                "4:05-4:55"
+            ],
+            "Monday": [
+                "4:05-4:55"
+            ],
+            "Tuesday": [
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Concrete Technology & Masonry",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Abhinesh Khatri",
+        "email": "abhinesh.khatri@email.com",
+        "phone": "9847075545",
+        "th": "4",
+        "pr": "2",
+        "pro": "AK",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "4:05-4:55"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Theory of Structure-II",
+                "type": "theory"
+            },
+            {
+                "name": "Theory of Structure-II",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Kiran Lal Maharjan",
+        "email": "kiran.maharjan@email.com",
+        "phone": "9861391439",
+        "th": "0",
+        "pr": "6",
+        "pro": "KLM",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "3:15-4:05",
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Foundation Engineering",
+                "type": "practical"
+            },
+            {
+                "name": "Transportation Engineering II",
+                "type": "practical"
+            },
+            {
+                "name": "Soil Mechanics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Shambu Kumar Thakur",
+        "email": "shambu.thakur@email.com",
+        "phone": "9869999767",
+        "th": "0",
+        "pr": "2",
+        "pro": "SKT",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "2:25-3:15"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45",
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Soil Mechanics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Tek Bahadur Budathoki",
+        "email": "tek.budathoki@email.com",
+        "phone": "9851210282",
+        "th": "4",
+        "pr": "4",
+        "pro": "TBB",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Numerical Method",
+                "type": "theory"
+            },
+            {
+                "name": "Numerical Method",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Shes Raj Kafle",
+        "email": "shes.kafle@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "2",
+        "pro": "ShRK",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Foundation Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Foundation Engineering",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Bal Dev Adhikari",
+        "email": "bal.adhikari@email.com",
+        "phone": "9851274633",
+        "th": "0",
+        "pr": "0",
+        "pro": "BA",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Biraj Pandey",
+        "email": "biraj.pandey@email.com",
+        "phone": "9744348795",
+        "th": "0",
+        "pr": "4",
+        "pro": "BP",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "2:25-3:15"
+            ],
+            "Wednesday": [
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Concrete Technology & Masonry",
+                "type": "practical"
+            },
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Subha Laxmi Ranjitkar",
+        "email": "subha.ranjitkar@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "2",
+        "pro": "SLR",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Water Supply Engineering",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Atul Bhandari",
+        "email": "atul.bhandari@email.com",
+        "phone": "9845670796",
+        "th": "4",
+        "pr": "2",
+        "pro": "AB",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45",
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "11:55-12:45",
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "11:55-12:45",
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "11:55-12:45",
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "11:55-12:45",
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "11:55-12:45",
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Water Supply Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Water Supply Engineering",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Gobinda Prasad Paudel",
+        "email": "gobinda.paudel@email.com",
+        "phone": "9841574512",
+        "th": "6",
+        "pr": "2",
+        "pro": "GPP",
+        "avail": {
+            "Sunday": [
+                "4:05-4:55"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Engineering Hydrology",
+                "type": "theory"
+            },
+            {
+                "name": "Engineering Hydrology",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Pramod Shrestha",
+        "email": "pramod.shrestha@email.com",
+        "phone": "9851074047",
+        "th": "0",
+        "pr": "2",
+        "pro": "PS",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Engineering Hydrology",
+                "type": "practical"
+            },
+            {
+                "name": "Hydropower Engineering",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Hare Ram Limbu",
+        "email": "hare.limbu@email.com",
+        "phone": "9800000000",
+        "th": "2",
+        "pr": "6",
+        "pro": "HRL",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Numerical Method",
+                "type": "theory"
+            },
+            {
+                "name": "Numerical Method",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "KB",
+        "email": "kb@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "4",
+        "pro": "KB",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "2:25-3:15"
+            ],
+            "Wednesday": [
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Concrete Technology & Masonry",
+                "type": "practical"
+            },
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "BKK",
+        "email": "bkk@email.com",
+        "phone": "9800000000",
+        "th": "2",
+        "pr": "0",
+        "pro": "BKK",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Water Supply Engineering",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Indra Narayan Yadav",
+        "email": "indra.yadav@email.com",
+        "phone": "9851005795",
+        "th": "0",
+        "pr": "0",
+        "pro": "INY",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Om Shant Maharjan",
+        "email": "om.maharjan@email.com",
+        "phone": "9851225460",
+        "th": "0",
+        "pr": "0",
+        "pro": "OSM",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Piyush Pradhan",
+        "email": "piyush.pradhan@email.com",
+        "phone": "9851009460",
+        "th": "6",
+        "pr": "4",
+        "pro": "PP",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "11:55-12:45",
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Concrete Technology & Masonry",
+                "type": "theory"
+            },
+            {
+                "name": "Concrete Technology & Masonry",
+                "type": "practical"
+            },
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Krishna Bhattarai",
+        "email": "krishna.bhattarai@email.com",
+        "phone": "9800000000",
+        "th": "6",
+        "pr": "6",
+        "pro": "KB",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "12:45-1:35"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Transportation Engineering II",
+                "type": "theory"
+            },
+            {
+                "name": "Transportation Engineering II",
+                "type": "practical"
+            },
+            {
+                "name": "Transportation planning",
+                "type": "elective"
+            }
+        ]
+    },
+    {
+        "name": "Shailendra Raj Khanal",
+        "email": "shailendra.khanal@email.com",
+        "phone": "9849780270",
+        "th": "6",
+        "pr": "0",
+        "pro": "SRK",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Project Engineering",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Rajesh Khadka",
+        "email": "rajesh.khadka@email.com",
+        "phone": "9851312925",
+        "th": "6",
+        "pr": "0",
+        "pro": "RKd",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Project Engineering",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Rajendra Bd. Chhetri",
+        "email": "rajendra.chhetri@email.com",
+        "phone": "9851003236",
+        "th": "8",
+        "pr": "2",
+        "pro": "RBC",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "3:15-4:05",
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "3:15-4:05",
+                "4:05-4:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Hydropower Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "theory"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Khem Raj Regmi",
+        "email": "khem.regmi@email.com",
+        "phone": "9849620671",
+        "th": "6",
+        "pr": "0",
+        "pro": "KRR",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Sujan Tripathi",
+        "email": "sujan.tripathi@email.com",
+        "phone": "9851302087",
+        "th": "0",
+        "pr": "2",
+        "pro": "ST",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Structure Dynamics",
+                "type": "elective"
+            },
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "RPN",
+        "email": "rpn@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "RPN",
+        "avail": {
+            "Sunday": [
+                "4:05-4:55"
+            ],
+            "Monday": [
+                "4:05-4:55"
+            ],
+            "Tuesday": [
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "4:05-4:55"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Estimating & Costing",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Pradeep Pr. Bhatta",
+        "email": "pradeep.bhatta@email.com",
+        "phone": "9841586778",
+        "th": "4",
+        "pr": "0",
+        "pro": "PPB",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "2:25-3:15"
+            ],
+            "Wednesday": [
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Estimating & Costing",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Surakshya Kafle",
+        "email": "surakshya.kafle@email.com",
+        "phone": "9851249025",
+        "th": "0",
+        "pr": "0",
+        "pro": "SK",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Transportation planning",
+                "type": "elective"
+            }
+        ]
+    },
+    {
+        "name": "Nirajan Devkota",
+        "email": "nirajan.devkota@email.com",
+        "phone": "9800000000",
+        "th": "10",
+        "pr": "6",
+        "pro": "ND",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55",
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Hydropower Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Hydropower Engineering",
+                "type": "practical"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "theory"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Ram Chandra Tiwari",
+        "email": "ram.tiwari@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "0",
+        "pro": "RCT",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Dr. Gokarna Ba. Mohatra",
+        "email": "gokarna.mohatra@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "0",
+        "pro": "GBM",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Dr. Rajan Suwal",
+        "email": "rajan.suwal@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "0",
+        "pro": "RS",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Sukriti Suvedi",
+        "email": "sukriti.suvedi@email.com",
+        "phone": "9841235206",
+        "th": "6",
+        "pr": "2",
+        "pro": "SuS",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Water Supply Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Water Supply Engineering",
+                "type": "practical"
+            },
+            {
+                "name": "Estimating & Costing",
+                "type": "theory"
+            },
+            {
+                "name": "Solid Waste Management",
+                "type": "elective"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Alin Chandra Shakya",
+        "email": "alin.shakya@email.com",
+        "phone": "9800000000",
+        "th": "6",
+        "pr": "2",
+        "pro": "ACS",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Theory of Structure-II",
+                "type": "theory"
+            },
+            {
+                "name": "Theory of Structure-II",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Bibek Babu Lamichhanie",
+        "email": "bibek.lamichhanie@email.com",
+        "phone": "9800000000",
+        "th": "6",
+        "pr": "4",
+        "pro": "BBL",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55",
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Soil Mechanics",
+                "type": "theory"
+            },
+            {
+                "name": "Soil Mechanics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Prajwal Singh Thapa",
+        "email": "prajwal.thapa@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "2",
+        "pro": "PST",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Communication English",
+                "type": "theory"
+            },
+            {
+                "name": "Communication English",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Merina Sthapit",
+        "email": "merina.sthapit@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "MS",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Probability & Statistics",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Bijaya Kumar Tuladhar",
+        "email": "bijaya.tuladhar@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "BKT",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Building Technology",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Gopal Bhattarai",
+        "email": "gopal.bhattarai@email.com",
+        "phone": "9843011242",
+        "th": "2",
+        "pr": "0",
+        "pro": "GB",
+        "avail": {
+            "Sunday": [
+                "4:05-4:55"
+            ],
+            "Monday": [
+                "4:05-4:55"
+            ],
+            "Tuesday": [
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "4:05-4:55"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Hydraulics",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Shankar Ghimire",
+        "email": "shankar.ghimire@email.com",
+        "phone": "9800000000",
+        "th": "2",
+        "pr": "0",
+        "pro": "SG",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Dr. Gokarna Ba. Mohatra",
+        "email": "gokarna.mohatra@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "0",
+        "pro": "GBM",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Dr. Rajan Suwal",
+        "email": "rajan.suwal@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "0",
+        "pro": "RS",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Sukriti Suvedi",
+        "email": "sukriti.suvedi@email.com",
+        "phone": "9841235206",
+        "th": "6",
+        "pr": "2",
+        "pro": "SuS",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Water Supply Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Water Supply Engineering",
+                "type": "practical"
+            },
+            {
+                "name": "Estimating & Costing",
+                "type": "theory"
+            },
+            {
+                "name": "Solid Waste Management",
+                "type": "elective"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Alin Chandra Shakya",
+        "email": "alin.shakya@email.com",
+        "phone": "9800000000",
+        "th": "6",
+        "pr": "2",
+        "pro": "ACS",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Theory of Structure-II",
+                "type": "theory"
+            },
+            {
+                "name": "Theory of Structure-II",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Bibek Babu Lamichhanie",
+        "email": "bibek.lamichhanie@email.com",
+        "phone": "9800000000",
+        "th": "6",
+        "pr": "4",
+        "pro": "BBL",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55",
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Soil Mechanics",
+                "type": "theory"
+            },
+            {
+                "name": "Soil Mechanics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Prajwal Singh Thapa",
+        "email": "prajwal.thapa@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "2",
+        "pro": "PST",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Communication English",
+                "type": "theory"
+            },
+            {
+                "name": "Communication English",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Merina Sthapit",
+        "email": "merina.sthapit@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "MS",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Probability & Statistics",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Bijaya Kumar Tuladhar",
+        "email": "bijaya.tuladhar@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "BKT",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Building Technology",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Gopal Bhattarai",
+        "email": "gopal.bhattarai@email.com",
+        "phone": "9843011242",
+        "th": "2",
+        "pr": "0",
+        "pro": "GB",
+        "avail": {
+            "Sunday": [
+                "4:05-4:55"
+            ],
+            "Monday": [
+                "4:05-4:55"
+            ],
+            "Tuesday": [
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "4:05-4:55"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Hydraulics",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Shankar Ghimire",
+        "email": "shankar.ghimire@email.com",
+        "phone": "9800000000",
+        "th": "2",
+        "pr": "0",
+        "pro": "SG",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Dr. Indra Narayan Yadav",
+        "email": "indra.yadav@email.com",
+        "phone": "9851005795",
+        "th": "0",
+        "pr": "0",
+        "pro": "INY",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Om Shant Maharjan",
+        "email": "om.maharjan@email.com",
+        "phone": "9851225460",
+        "th": "0",
+        "pr": "0",
+        "pro": "OSM",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Piyush Pradhan",
+        "email": "piyush.pradhan@email.com",
+        "phone": "9851009460",
+        "th": "6",
+        "pr": "4",
+        "pro": "PP",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "11:55-12:45",
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Concrete Technology & Masonry",
+                "type": "theory"
+            },
+            {
+                "name": "Concrete Technology & Masonry",
+                "type": "practical"
+            },
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Krishna Bhattarai",
+        "email": "krishna.bhattarai@email.com",
+        "phone": "9800000000",
+        "th": "6",
+        "pr": "6",
+        "pro": "KB",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "12:45-1:35"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Transportation Engineering II",
+                "type": "theory"
+            },
+            {
+                "name": "Transportation Engineering II",
+                "type": "practical"
+            },
+            {
+                "name": "Transportation planning",
+                "type": "elective"
+            }
+        ]
+    },
+    {
+        "name": "Shailendra Raj Khanal",
+        "email": "shailendra.khanal@email.com",
+        "phone": "9849780270",
+        "th": "6",
+        "pr": "0",
+        "pro": "SRK",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Project Engineering",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Rajesh Khadka",
+        "email": "rajesh.khadka@email.com",
+        "phone": "9851312925",
+        "th": "6",
+        "pr": "0",
+        "pro": "RKd",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Project Engineering",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Rajendra Bd. Chhetri",
+        "email": "rajendra.chhetri@email.com",
+        "phone": "9851003236",
+        "th": "8",
+        "pr": "2",
+        "pro": "RBC",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "3:15-4:05",
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "3:15-4:05",
+                "4:05-4:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Hydropower Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "theory"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Khem Raj Regmi",
+        "email": "khem.regmi@email.com",
+        "phone": "9849620671",
+        "th": "6",
+        "pr": "0",
+        "pro": "KRR",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Sujan Tripathi",
+        "email": "sujan.tripathi@email.com",
+        "phone": "9851302087",
+        "th": "0",
+        "pr": "2",
+        "pro": "ST",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Structure Dynamics",
+                "type": "elective"
+            },
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "RPN",
+        "email": "rpn@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "RPN",
+        "avail": {
+            "Sunday": [
+                "4:05-4:55"
+            ],
+            "Monday": [
+                "4:05-4:55"
+            ],
+            "Tuesday": [
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "4:05-4:55"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Estimating & Costing",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Pradeep Pr. Bhatta",
+        "email": "pradeep.bhatta@email.com",
+        "phone": "9841586778",
+        "th": "4",
+        "pr": "0",
+        "pro": "PPB",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "2:25-3:15"
+            ],
+            "Wednesday": [
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Estimating & Costing",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Surakshya Kafle",
+        "email": "surakshya.kafle@email.com",
+        "phone": "9851249025",
+        "th": "0",
+        "pr": "0",
+        "pro": "SK",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Transportation planning",
+                "type": "elective"
+            }
+        ]
+    },
+    {
+        "name": "Nirajan Devkota",
+        "email": "nirajan.devkota@email.com",
+        "phone": "9800000000",
+        "th": "10",
+        "pr": "6",
+        "pro": "ND",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55",
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Hydropower Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Hydropower Engineering",
+                "type": "practical"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "theory"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Ram Chandra Tiwari",
+        "email": "ram.tiwari@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "0",
+        "pro": "RCT",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Dr. Gokarna Ba. Mohatra",
+        "email": "gokarna.mohatra@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "0",
+        "pro": "GBM",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Dr. Rajan Suwal",
+        "email": "rajan.suwal@email.com",
+        "phone": "9800000000",
+        "th": "0",
+        "pr": "0",
+        "pro": "RS",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Sukriti Suvedi",
+        "email": "sukriti.suvedi@email.com",
+        "phone": "9841235206",
+        "th": "6",
+        "pr": "2",
+        "pro": "SuS",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Water Supply Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Water Supply Engineering",
+                "type": "practical"
+            },
+            {
+                "name": "Estimating & Costing",
+                "type": "theory"
+            },
+            {
+                "name": "Solid Waste Management",
+                "type": "elective"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Alin Chandra Shakya",
+        "email": "alin.shakya@email.com",
+        "phone": "9800000000",
+        "th": "6",
+        "pr": "2",
+        "pro": "ACS",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Theory of Structure-II",
+                "type": "theory"
+            },
+            {
+                "name": "Theory of Structure-II",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Bibek Babu Lamichhanie",
+        "email": "bibek.lamichhanie@email.com",
+        "phone": "9800000000",
+        "th": "6",
+        "pr": "4",
+        "pro": "BBL",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55",
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Soil Mechanics",
+                "type": "theory"
+            },
+            {
+                "name": "Soil Mechanics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Prajwal Singh Thapa",
+        "email": "prajwal.thapa@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "2",
+        "pro": "PST",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Communication English",
+                "type": "theory"
+            },
+            {
+                "name": "Communication English",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Merina Sthapit",
+        "email": "merina.sthapit@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "MS",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:05-11:55"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Probability & Statistics",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Bijaya Kumar Tuladhar",
+        "email": "bijaya.tuladhar@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "BKT",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Building Technology",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Gopal Bhattarai",
+        "email": "gopal.bhattarai@email.com",
+        "phone": "9843011242",
+        "th": "2",
+        "pr": "0",
+        "pro": "GB",
+        "avail": {
+            "Sunday": [
+                "4:05-4:55"
+            ],
+            "Monday": [
+                "4:05-4:55"
+            ],
+            "Tuesday": [
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "4:05-4:55"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Hydraulics",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Shankar Ghimire",
+        "email": "shankar.ghimire@email.com",
+        "phone": "9800000000",
+        "th": "2",
+        "pr": "0",
+        "pro": "SG",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05"
+            ],
+            "Monday": [
+                "10:15-11:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "10:15-11:05"
+            ],
+            "Friday": [
+                "10:15-11:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Dr. Indra Narayan Yadav",
+        "email": "indra.yadav@email.com",
+        "phone": "9851005795",
+        "th": "0",
+        "pr": "0",
+        "pro": "INY",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Om Shant Maharjan",
+        "email": "om.maharjan@email.com",
+        "phone": "9851225460",
+        "th": "0",
+        "pr": "0",
+        "pro": "OSM",
+        "avail": {
+            "Sunday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": []
+    },
+    {
+        "name": "Piyush Pradhan",
+        "email": "piyush.pradhan@email.com",
+        "phone": "9851009460",
+        "th": "6",
+        "pr": "4",
+        "pro": "PP",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Wednesday": [
+                "10:15-11:05",
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "11:55-12:45",
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Concrete Technology & Masonry",
+                "type": "theory"
+            },
+            {
+                "name": "Concrete Technology & Masonry",
+                "type": "practical"
+            },
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Krishna Bhattarai",
+        "email": "krishna.bhattarai@email.com",
+        "phone": "9800000000",
+        "th": "6",
+        "pr": "6",
+        "pro": "KB",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "12:45-1:35"
+            ],
+            "Tuesday": [
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "10:15-11:05"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "10:15-11:05",
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Transportation Engineering II",
+                "type": "theory"
+            },
+            {
+                "name": "Transportation Engineering II",
+                "type": "practical"
+            },
+            {
+                "name": "Transportation planning",
+                "type": "elective"
+            }
+        ]
+    },
+    {
+        "name": "Shailendra Raj Khanal",
+        "email": "shailendra.khanal@email.com",
+        "phone": "9849780270",
+        "th": "6",
+        "pr": "0",
+        "pro": "SRK",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "11:05-11:55"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Project Engineering",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Rajesh Khadka",
+        "email": "rajesh.khadka@email.com",
+        "phone": "9851312925",
+        "th": "6",
+        "pr": "0",
+        "pro": "RKd",
+        "avail": {
+            "Sunday": [
+                "11:05-11:55"
+            ],
+            "Monday": [
+                "11:05-11:55"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "11:05-11:55"
+            ],
+            "Friday": [
+                "11:05-11:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Project Engineering",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Rajendra Bd. Chhetri",
+        "email": "rajendra.chhetri@email.com",
+        "phone": "9851003236",
+        "th": "8",
+        "pr": "2",
+        "pro": "RBC",
+        "avail": {
+            "Sunday": [
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "10:15-11:05",
+                "11:05-11:55",
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "3:15-4:05",
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "3:15-4:05",
+                "4:05-4:55",
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Hydropower Engineering",
+                "type": "theory"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "theory"
+            },
+            {
+                "name": "Hydraulics",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "Khem Raj Regmi",
+        "email": "khem.regmi@email.com",
+        "phone": "9849620671",
+        "th": "6",
+        "pr": "0",
+        "pro": "KRR",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Monday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Tuesday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Wednesday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Thursday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ],
+            "Friday": [
+                "2:25-3:15",
+                "3:15-4:05"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Dr. Sujan Tripathi",
+        "email": "sujan.tripathi@email.com",
+        "phone": "9851302087",
+        "th": "0",
+        "pr": "2",
+        "pro": "ST",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Structure Dynamics",
+                "type": "elective"
+            },
+            {
+                "name": "Design of R.C.C Structure",
+                "type": "practical"
+            }
+        ]
+    },
+    {
+        "name": "RPN",
+        "email": "rpn@email.com",
+        "phone": "9800000000",
+        "th": "4",
+        "pr": "0",
+        "pro": "RPN",
+        "avail": {
+            "Sunday": [
+                "4:05-4:55"
+            ],
+            "Monday": [
+                "4:05-4:55"
+            ],
+            "Tuesday": [
+                "4:05-4:55"
+            ],
+            "Wednesday": [
+                "4:05-4:55"
+            ],
+            "Thursday": [
+                "4:05-4:55"
+            ],
+            "Friday": [
+                "4:05-4:55"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Estimating & Costing",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Pradeep Pr. Bhatta",
+        "email": "pradeep.bhatta@email.com",
+        "phone": "9841586778",
+        "th": "4",
+        "pr": "0",
+        "pro": "PPB",
+        "avail": {
+            "Sunday": [
+                "2:25-3:15"
+            ],
+            "Monday": [
+                "2:25-3:15"
+            ],
+            "Tuesday": [
+                "2:25-3:15"
+            ],
+            "Wednesday": [
+                "2:25-3:15"
+            ],
+            "Thursday": [
+                "2:25-3:15"
+            ],
+            "Friday": [
+                "2:25-3:15"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Estimating & Costing",
+                "type": "theory"
+            }
+        ]
+    },
+    {
+        "name": "Surakshya Kafle",
+        "email": "surakshya.kafle@email.com",
+        "phone": "9851249025",
+        "th": "0",
+        "pr": "0",
+        "pro": "SK",
+        "avail": {
+            "Sunday": [
+                "11:55-12:45"
+            ],
+            "Monday": [
+                "11:55-12:45"
+            ],
+            "Tuesday": [
+                "11:55-12:45"
+            ],
+            "Wednesday": [
+                "11:55-12:45"
+            ],
+            "Thursday": [
+                "11:55-12:45"
+            ],
+            "Friday": [
+                "11:55-12:45"
+            ]
+        },
+        "fulltime": true,
+        "courses": [
+            {
+                "name": "Transportation planning",
+                "type": "elective"
+            }
+        ]
+    }
+]
