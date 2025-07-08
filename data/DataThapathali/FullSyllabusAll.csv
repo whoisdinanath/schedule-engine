@@ -1,0 +1,257 @@
+Semester,Dept,CourseCode,CourseTitle,Credits,L,T,P,PracticalRoomFeatures
+1,"BAE, BCE, BCT, BEI, BIE, BME", ENSH 101, Engineering Mathematics I,3,3,2,0,
+1,"BAE, BIE, BME", ENME 103, Engineering Mechanics I,3,3,1,0,
+1,BARCH, ENAR 101, Design Studio I,8,2,0,8,
+1,BARCH, ENAR 104, Architectural Graphics I,2,2,0,4,
+1,BARCH, ENAR 105, Free Hand Sketching I,2,2,0,3,
+1,BARCH, ENSH 104, Mathematics for Architecture I,3,3,2,0,
+1,BARCH, ENAR 102, Introduction to Architecture,2,2,0,0,
+1,BARCH, ENAR 103, Building Material I,3,3,1,0,
+1,"BAE, BCE, BCT, BEI, BIE, BME", ENCT 101, Computer Programming,3,3,1,3,computer
+1,BCE, ENCE 101, Engineering Mechanics,4,4,2,0,
+1,BCE, ENCE 102, Engineering Geology I,2,2,0,1,
+1,BCE, ENCE 103, Civil Engineering Materials,2,2,0,1,
+1,BCE, ENEE 103, Basic Electrical and Electronics Engineering,3,3,1,1.5,electrical
+1,"BAE, BCT, BEI, BIE, BME", ENEX 101, Fundamental of Electrical and Electronics Engineering,3,3,1,3,electrical
+1,"BAE, BCT, BEI, BIE, BME", ENME 101, Engineering Drawing,2,2,0,4,drawing
+1,"BCT, BEI", ENME 106, Engineering Workshop,1,1,0,3,workshop
+1,"BAE, BCT, BEI, BIE", ENSH 102, Engineering Physics,4,4,1,2,physics
+1,"BCE, BME", ENSH 103, Engineering Chemistry,3,3,0,3,chemistry
+2,"BAE, BCE, BCT, BEI, BIE, BME", ENSH 151, Engineering Mathematics II,3,3,2,0,
+2,"BAE, BIE, BME", ENME 152, Machine Drawing,2,2,4,0,
+2,"BAE, BIE, BME", ENME 153, Engineering Mechanics II,3,3,1,0,
+2,BARCH, ENAR 151, Architectural Graphics II,2,2,0,3,
+2,BARCH, ENAR 152, Design Studio II,8,2,0,8,
+2,BARCH, ENAR 153, Building Construction I,2,2,0,3,
+2,BARCH, ENAR 155, Free Hand Sketching II,2,2,0,3,
+2,BCE, ENCE 153, Engineering Survey I,3,3,1,4,survey
+2,BARCH, ENSH 155, Mathematics for Architecture II,3,3,2,0,
+2,BARCH, ENAR 154, History of Nepalese Architecture,3,3,0,1,
+2,BARCH, ENCE 156, Applied Mechanics,3,3,2,0,
+2,"BCT, BEI", ENCT 151, Object Oriented Programming,3,3,1,3,advancedcomputer
+2,BCE, ENCE 151, Strength of Materials,3,3,1,1,
+2,BCE, ENCE 152, Engineering Geology II,2,2,0,1,
+2,"BCT, BEI", ENEE 154, Electrical Circuits and Machines,4,4,1,1.5,electrical
+2,"BCT, BEI", ENEX 151, Electronic Device and Circuits,3,3,1,3,advancedelectronics
+2,"BCT, BEI", ENEX 152, Digital Logic,3,3,1,3,electronics
+2,"BAE, BIE, BME", ENME 151, Engineering Thermodynamics I,3,3,1,1.5,thermalscience
+2,"BAE, BIE, BME", ENME 155, Workshop Technology,3,3,1,3,workshop
+2,BCE, ENME 158, Engineering Drawing,2,2,0,4,drawing
+2,"BCE, BME", ENSH 152, Engineering Physics,4,4,1,2,physics
+2,"BAE, BCT, BEI, BIE", ENSH 153, Engineering Chemistry,3,3,1,3,chemistry
+3,BAE, ENAM 201, Mechanics of Materials,3,3,2,1.5,materialscience
+3,"BAE, BCE, BCT, BEI, BIE, BME", ENSH 201, Engineering Mathematics III,3,3,2,0,
+3,BARCH, ENAR 201, Design Studio III,8,0,0,10,
+3,BARCH, ENAR 206, Building Construction II,2,2,0,3,
+3,BCE, ENCE 201, Fluid Mechanics,4,4,2,1.5,fluidengineering
+3,BCE, ENCE 203, Engineering Survey II,3,3,1,4,survey
+3,BCE, ENCE 204, Computer Aided Civil Drawing,2,2,0,3,computer
+3,BCE, ENCE 205, Concrete Technology,2,2,0,1.5,materialscience
+3,BARCH, ENAR 202, History of Eastern Architecture,3,3,0,1,
+3,BARCH, ENAR 203, Building Materials II,3,3,1,0,
+3,BARCH, ENAR 204, Design Theory I,3,3,1,0,
+3,BARCH, ENAR 205, Building Science I,3,3,1,0,
+3,BARCH, ENCE 208, Structure I,3,3,1,0,
+3,"BCT, BEI", ENCT 201, Computer Graphics and Visualization,3,3,1,3,advancedcomputer
+3,BCT, ENCT 202, Foundation of Data Science,3,3,1,3,advancedcomputer
+3,BCE, ENCE 202, Theory of Structures I,3,3,2,1,
+3,BEI, ENEE 204, Control System,3,3,1,1.5,advancedelectronics
+3,"BCT, BEI", ENEX 201, Microprocessors,3,3,1,3,advancedelectronics
+3,BEI, ENEX 202, Advanced Electronics,3,3,1,1.5,advancedelectronics
+3,"BCT, BEI", ENSH 204, Communication English,3,3,0,1,
+3,BCT, ENCT 203, Theory of Computation,3,3,1,0,
+3,"BAE, BIE, BME", ENME 201, Material Science,3,3,1,1.5,materialscience
+3,"BAE, BIE, BME", ENME 202, Manufacturing and Production Processes,3,3,1,3,mechcad
+3,"BAE, BME", ENME 203, Engineering Thermodynamics II,3,3,1,1.5,thermalscience
+3,"BAE, BME", ENME 204, Metrology,3,3,0,1.5,structuregeology
+3,"BIE, BME", ENME 205, Strength of Materials,3,3,1,1.5,materialscience
+3,BIE, ENME 206, Applied Thermodynamics and Heat Transfer,3,3,1,1.5,thermalscience
+3,BIE, ENIE 202, Industrial Management,3,3,1,0,
+3,BIE, ENIE 203, Group Work and Presentation I,1,0,0,0,
+3,BCE, ENSH 202, Numerical Methods,3,3,1,3,computer
+4,BAE, ENME 256, Theory of Machines and Mechanisms,3,3,2,0,
+4,BARCH, ENAR 251, Design Studio IV,8,0,0,10,
+4,BARCH, ENAR 255, Computer Aided Design and Drafting,2,2,0,2,computer
+4,BCE, ENCE 253, Soil Mechanics,4,4,2,2,materialscience
+4,BARCH, ENCE 261, Surveying,2,2,0,4,survey
+4,BARCH, ENAR 252, Building Science II,3,3,1,0,
+4,BARCH, ENAR 253, History of Western Architecture,3,3,0,1,
+4,BARCH, ENAR 254, Design Theory II,3,3,1,0,
+4,BARCH, ENCE 260, Structure II,3,3,1,0,
+4,BCT, ENCT 252, Data Structure and Algorithm,3,3,1,3,advancedcomputer
+4,BCT, ENCT 253, Data Communication,3,3,1,1.5,advancedcomputer
+4,BCT, ENCT 254, Operating System,3,3,1,1.5,advancedcomputer
+4,"BAE, BIE, BME", ENEE 254, Electrical Machines,4,4,1,1.5,electrical
+4,BCE, ENSH 251, Communication English,3,3,0,1,
+4,"BCE, BME", ENSH 253, Probability and Statistics,3,3,1,0,
+4,BCE, ENCE 251, Hydraulics,4,4,2,1,
+4,BCE, ENCE 252, Theory of Structures II,4,4,2,1,
+4,BCE, ENCE 254, Water Supply Engineering,3,3,2,1,
+4,BCE, ENCE 255, Building Technology,2,2,2,0,
+4,BCE, ENCE 256, Survey Camp,2,0,0,0,
+4,"BCT, BEI", ENEX 252, Instrumentation,4,4,1,1.5,advancedelectronics
+4,BEI, ENEX 253, Computer Organization & Architecture,3,3,1,1.5,advancedcomputer
+4,"BCT, BEI", ENEX 254, Electromagnetics,3,3,1,1.5,advancedelectronics
+4,BEI, ENEX 255, Signals and Systems,3,3,1,1.5,advancedcomputer
+4,BIE, ENIE 251, Metrology and Instrumentation,3,3,1,1.5,automobileworkshop
+4,BIE, ENIE 253, Work Study and Human Factor Engineering,3,3,1,1.5,
+4,BEI, ENCT 251, Discrete Structure,3,3,1,0,
+4,BME, ENME 251, Mechanics of Solids,3,3,1,1.5,mechanicsmachinery
+4,"BAE, BME", ENME 252, Instrumentation and Sensors,3,3,1,1.5,automobileworkshop
+4,"BAE, BME", ENME 253, Computer Aided Design,3,3,1,1.5,computer
+4,BME, ENME 254, Fluid Mechanics with Engineering Applications,3,3,1,1.5,fluidengineering
+4,"BAE, BIE", ENME 255, Fluid Mechanics and Machines,3,3,1,1.5,fluidengineering
+4,BIE, ENIE 252, Industrial Economics,3,3,1,0,
+4,BIE, ENIE 254, Group Work and Presentation II,1,0,0,0,
+4,"BAE, BCT, BEI, BIE", ENSH 252, Numerical Methods,3,3,1,3,computer
+5,BAE, ENAM 301, Electric and Hybrid Vehicles,3,3,1,1.5,automobileworkshop
+5,BAE, ENAM 302, Automobile Engines,3,3,0,1.5,automobileworkshop
+5,"BAE, BCT, BEI, BIE", ENSH 304, Probability and Statistics,3,3,1,0,
+5,"BAE, BME", ENME 304, Organization and Management,3,3,1,0,
+5,"BAE, BME", ENSH 303, Technical English,1,1,0,0,
+5,BARCH, ENAR 301, Design Studio V,8,0,0,10,computer
+5,BARCH, ENAR 303, Building Construction III,2,2,0,3,drawing
+5,BARCH, ENAR 304, Working Drawing,2,2,0,4,drawing
+5,"BAE, BCE, BME", ENCE 307, Control System and Automation,3,3,1,1.5,advancedelectronics
+5,BARCH, ENAR 302, Contemporary Architecture,3,3,0,1,
+5,BARCH, ENAR 305, Sociology and Culture,2,2,0,0,
+5,BARCH, ENSH 302, Communication English,3,3,0,1,
+5,BCT, ENCT 301, Database Management System,3,3,1,3,advancedcomputer
+5,BCT, ENCT 302, Web Application Programming,3,3,1,3,advancedcomputer
+5,BCT, ENCT 303, Computer Organization and Architecture,3,3,1,1.5,advancedcomputer
+5,BCT, ENCT 304, Computer Networks,3,3,1,3,advancedcomputer
+5,BEI, ENCT 305, Artificial Intelligence,3,3,1,1.5,advancedcomputer
+5,BCE, ENCE 301, Design of Timber and Masonry Structures,3,3,1,0,
+5,BCE, ENCE 302, Foundation Engineering,3,3,2,1,
+5,BCE, ENCE 303, Design of Steel Structures,3,3,1,0,
+5,BCE, ENCE 304, Transportation Engineering I,3,3,2,1,
+5,BCE, ENCE 305, Sanitary Engineering,3,3,2,1,
+5,BCE, ENCE 306, Engineering Hydrology,3,3,2,1,
+5,BEI, ENEX 301, Filter Design,3,3,1,1.5,advancedelectronics
+5,BEI, ENEX 302, Embedded Systems,3,3,1,1.5,advancedelectronics
+5,BEI, ENEX 303, Propagation and Antennna,3,3,1,1.5,communicationelectronics
+5,BCT, ENCT 325-344, Elective I,3,3,2,1,
+5,BEI, ENEX 325-344, Elective I,3,3,2,1,
+5,BME, ENME 301, Automotive Technology,3,3,1,1.5,automobileworkshop
+5,BME, ENME 302, Fluid Machines,3,3,1,1.5,automobileworkshop
+5,BAE, ENME 308, Heat and Mass Transfer,3,3,1,1.5,automobileworkshop
+5,BIE, ENME 309, Energy Resources and Technology,3,3,1,1.5,automobileworkshop
+5,"BIE, BME", ENME 303, Theory of Machines and Mechanism,3,3,2,0,
+5,BIE, ENIE 301, Supply Chain Management,3,3,1,0,
+5,BIE, ENIE 302, Concurrent and Value Engineering,3,3,1,0,
+5,BIE, ENIE 325-334, Elective I,3,3,2,1,
+5,BIE, ENIE 305, Group Work and Presentation III,1,0,0,0,
+5,BME, ENSH 301, Numerical Methods,3,3,1,3,computer
+6,BAE, ENAM 351, Automobile Chassis,3,3,1,1.5,automobileworkshop
+6,BAE, ENAM 352, Automobile Component Design I,3,3,1,1.5,automobileworkshop
+6,"BAE, BIE", ENAM 353, Hydraulic and Pneumatic Systems,3,3,1,1.5,automobileworkshop
+6,"BAE, BME", ENME 356, Professional Engineering Economics,3,3,1,0,
+6,"BAE, BME", ENME 351, Industrial Engineering and Management,3,3,1,0,
+6,BAE, ENAM 354, Mini Project,1,0,0,0,
+6,BAE, ENAM 365-374, Elective I,3,3,2,1,
+6,BARCH, ENAR 351, Design Studio VI,8,0,0,10,
+6,BARCH, ENAR 352, Building Construction IV,2,2,0,3,
+6,BCE, ENCE 352, Design of RCC Structures,4,4,2,2,materialscience
+6,BARCH, ENCE 358, Building Services I,2,2,0,1.5,electrical
+6,BARCH, ENAR 353, Human Settlement Planning,3,3,0,0,
+6,BARCH, ENAR 365-384, Elective I,3,3,0,0,
+6,BARCH, ENCE 359, Estimation and Specification,3,3,1,0,
+6,BCT, ENCT 351, Artificial Intelligence,3,3,1,3,advancedcomputer
+6,BCT, ENCT 352, Software Engineering,3,3,1,1.5,advancedcomputer
+6,BCT, ENCT 353, Simulation and Modeling,3,3,1,1.5,advancedcomputer
+6,BARCH, ENEE 356, Building Services II,2,2,0,1.5,electrical
+6,BCE, ENCE 351, Estimating and Costing,3,3,1,0,
+6,BCE, ENCE 353, Transportation Engineering II,3,3,2,1,
+6,BCE, ENCE 354, Irrigation and Drainage Engineering,4,4,2,0,
+6,BCE, ENCE 355, Professional and Social Engineering,3,3,1,0,
+6,BCE, ENCE 365-389, Elective I,3,3,2,1,
+6,BEI, ENEX 351, Communication Systems,4,4,1,3,communicationelectronics
+6,BEI, ENEX 352, Telecommunication and Computer Networks,3,3,1,3,advancedcomputer
+6,"BCT, BEI", ENCE 356, Engineering Economics,3,3,1,0,
+6,BIE, ENIE 351, Enterpreneurship and New Venture,2,2,0,3,
+6,BCT, ENCT 354, Minor Project,1,0,0,0,
+6,BCT, ENCT 385-399, Elective II,3,3,2,1,
+6,BIE, ENIE 352, Operation Research,3,3,1,1.5,
+6,BIE, ENIE 354, Industrial Layout and Design,3,3,0,3,
+6,BEI, ENCT 355, ICT Project Management,3,3,1,0,
+6,BEI, ENEX 353, Minor Project,1,0,0,0,
+6,BEI, ENEX 385-399, Elective II,3,3,2,1,
+6,BME, ENME 352, Heat and Mass Transfer,3,3,1,1.5,thermalscience
+6,BME, ENME 353, Machine Design I,3,3,1,1.5,automobileworkshop
+6,BME, ENME 354, Machine Dynamics,3,3,1,1.5,automobileworkshop
+6,BME, ENME 355, Minor Project,1,0,0,0,
+6,BME, ENME 365-384, Elective I,3,3,2,1,
+6,BIE, ENIE 353, Machine Design,3,3,2,0,
+6,BIE, ENIE 356, Project I,2,0,0,0,
+6,BIE, ENIE 385-394, Elective II,3,3,2,1,
+7,BAE, ENAM 411, Automobile Repair and Service Management,3,3,0,1.5,automobileworkshop
+7,BAE, ENAM 412, Vehicle Dynamics,3,3,0,1.5,automobileworkshop
+7,BAE, ENAM 413, Automobile Component Design II,3,3,1,1.5,automobileworkshop
+7,BAE, ENAM 414, Engine Combustion & Pollution Control,3,3,1,1.5,automobileworkshop
+7,"BAE, BME", ENME 411, Enterpreneurship Development,2,2,0,0,
+7,BAE, ENAM 425-434, Elective II,3,3,2,1,
+7,BAE, ENAM 415, Project I,2,0,0,0,
+7,BARCH, ENAR 411, Practicum,8,0,0,0,
+7,BCT, ENCT 411, Distributed and Cloud Computing,3,3,1,1.5,advancedcomputer
+7,BCE, ENCE 401, Operations Research,2,2,1,1,
+7,BCE, ENCE 402, Project and Construction Engineering,4,4,2,0,
+7,BCE, ENCE 403, Hydropower Engineering,4,4,2,1,
+7,BCE, ENCE 411-434, Elective II,3,3,2,1,
+7,BCE, ENCE 435-449, Elective III,3,3,2,1,
+7,BCE, ENCE 404, Project I,2,0,0,0,
+7,BEI, ENEX 411, RF and Microwave Engineering,3,3,1,1.5,communicationelectronics
+7,BEI, ENEX 412, Robotics,3,3,1,1.5,advancedelectronics
+7,BEI, ENEX 413, Digital Signal Processing,3,3,1,1.5,communicationelectronics
+7,BEI, ENEX 415, Wireless Communication,3,3,1,1.5,communicationelectronics
+7,BCT, ENEX 416, Digital Signal Analysis and Processing,4,4,1,1.5,communicationelectronics
+7,BCT, ENCT 412, ICT Project Management,3,3,1,0,
+7,BCT, ENEX 417, Energy Environment and Social Engineering,3,3,0,0,
+7,BCT, ENCT 435-444, Elective III,3,3,2,1,
+7,BCT, ENCT 413, Project I,2,0,0,0,
+7,BIE, ENIE 414, Maintenance and Reliability Engineering,3,3,1,1.5,
+7,BEI, ENEX 435-444, Elective III,3,3,2,1,
+7,BEI, ENEX 414, Project I,2,0,0,0,
+7,BME, ENME 412, Finite Element Method,3,3,1,1.5,computer
+7,BME, ENME 413, Applied Computational Fluid Dynamics,3,3,1,1.5,computer
+7,BME, ENME 414, Energy Resources and Technology,3,3,1,1.5,automobileworkshop
+7,BME, ENME 415, Machine Design II,3,3,1,1.5,automobileworkshop
+7,BME, ENME 425-444, Elective II,3,3,2,1,
+7,BME, ENME 416, Project I,2,0,0,0,
+7,BIE, ENIE 411, Industrial Law and Engineering Professional Practice,3,3,0,0,
+7,BIE, ENIE 412, Project Management,3,3,1,0,
+7,BIE, ENIE 413, Quality Control and Management,3,3,1,0,
+7,BIE, ENIE 435-444, Elective III,3,3,2,1,
+7,BIE, ENIE 445-449, Elective IV,3,3,2,1,
+7,BIE, ENIE 415, Project II,1,0,0,0,
+8,BARCH, ENAR 462, Design Studio VII,10,0,0,12,
+8,"BAE, BME", ENME 463, Project Management and Professional Practice,3,3,1,0,
+8,BAE, ENAM 465-474, Elective III,3,3,2,1,
+8,BAE, ENAM 462, Industrial Attachment,4,0,0,0,
+8,BAE, ENAM 461, Project II,4,0,0,0,
+8,BARCH, ENAR 461, Architectural Conservation,2,2,0,1,
+8,BARCH, ENAR 463, Sustainable Architecture,2,2,0,1,
+8,BARCH, ENAR 464, Construction Management,2,2,0,1,
+8,BARCH, ENAR 465-484, Elective II,3,3,0,0,
+8,BARCH, ENAR 467, Building Economics,2,2,0,0,
+8,BCT, ENCT 463, Network and Cyber Security,3,3,1,1.5,advancedcomputer
+8,BCE, CE 461, Project II,4,0,0,0,
+8,BCE, CE 462, Internship,6,0,0,0,
+8,BCT, ENCT 465-474, Elective IV,3,3,2,1,
+8,BCT, ENCT 462, Internship,4,0,0,0,
+8,BCT, ENCT 461, Project II,4,0,0,0,
+8,BEI, ENEX 463,Energy Environment and Social Engineering,3,3,0,0,
+8,BEI, ENEX 462, Internship,4,0,0,0,
+8,BEI, ENEX 465-484, Elective IV,3,3,2,1,
+8,BEI, ENEX 461, Project II,4,0,0,0,
+8,BME, ENME 465-474, Elective III,3,3,2,1,
+8,BME, ENME 461, Project II,4,0,0,0,
+8,BME, ENME 462, Industrial Attachment,4,0,0,0,
+8,BARCH, ENME 464, Building Services III,2,2,0,1.5,automobileworkshop
+8,BIE, ENIE 461, Seminar Paper,2,0,0,0,
+8,BIE, ENIE 462, Internship,6,0,0,0,
+9,BARCH, ENAR 501, Seminar & Directed Studies,1,0,0,3,
+9,BARCH, ENAR 502, Design Studio VIII,10,0,0,12,
+9,BARCH, ENAR 504, Architectural Research for Thesis,2,0,0,5,
+9,BARCH, ENAR 503, Professional Practice,2,2,0,1,
+9,BARCH, ENAR 525-534, Elective III,3,3,0,0,
+10,BARCH, ENAR 561, Thesis,16,0,0,0,

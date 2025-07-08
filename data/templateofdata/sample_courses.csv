@@ -1,0 +1,11 @@
+course_id,name,sessions_per_week,duration,required_room_type,group_ids,qualified_instructor_ids
+CS101,Introduction to Programming,2,90,lab,"1,2","1,2"
+CS102,Data Structures,2,90,lab,"1,2","1,3"
+MATH101,Calculus I,3,90,lecture,"1,2,3","4,5"
+MATH102,Linear Algebra,2,90,lecture,"1,2","4,5"
+PHYS101,Physics I,3,90,lecture,"2,3","6,7"
+PHYS102,Physics Lab,1,120,lab,"2,3","6,7"
+ENG101,Technical Writing,2,90,seminar,"1,2,3","8,9"
+CS201,Algorithms,2,90,lecture,"1","1,3"
+CS202,Database Systems,2,90,lab,"1","2,3"
+MATH201,Calculus II,3,90,lecture,"1","4,5"
