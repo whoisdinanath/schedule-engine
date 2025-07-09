@@ -156,7 +156,7 @@ group_id,name,student_count,enrolled_courses
 ### Hard Constraints
 
 - No instructor/room conflicts
-- Room capacity constraints  
+- Room capacity constraints
 - Instructor qualification requirements
 - Student group availability
 - **Note**: Rooms are always available (no room availability constraints)

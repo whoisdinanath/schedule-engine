@@ -42,8 +42,8 @@ class Config:
 # Genetic Algorithm Configuration - PURE GA (No Local Search)
 GA_CONFIG = {
     # Population parameters
-    'population_size': 50,
-    'generations': 100,
+    'population_size': 80,
+    'generations': 200,
     'elite_size': 5,
     
     # Genetic operators - PURE GA only
@@ -57,7 +57,7 @@ GA_CONFIG = {
     'mutation_method': 'random',       # 'random', 'swap'
     
     # Termination criteria
-    'max_generations': 100,
+    'max_generations': 500,
     'target_fitness': 0.0,
     'stagnation_limit': 20,
     'time_limit_minutes': 10,
