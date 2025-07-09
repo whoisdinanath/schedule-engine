@@ -1,6 +1,9 @@
 """
 Main Genetic Algorithm Engine for the timetabling system.
 Coordinates the entire GA process from initialization to solution generation.
+
+This is a PURE GENETIC ALGORITHM implementation without any local search components.
+Uses only genetic operators: selection, crossover, mutation, and elitism.
 """
 
 from typing import Dict, List, Optional, Tuple, Any, Callable
@@ -22,6 +25,12 @@ from ..utils.config import GA_CONFIG
 class GAEngine:
     """
     Main Genetic Algorithm engine that orchestrates the optimization process.
+    
+    This is a PURE GENETIC ALGORITHM implementation:
+    - Uses only genetic operators: selection, crossover, mutation, elitism
+    - No local search, hill climbing, or other hybrid optimization techniques
+    - Rooms are always available (no room availability constraints)
+    - Evolution based purely on fitness-driven selection and genetic variation
     """
     
     def __init__(self, config: Optional[Dict[str, Any]] = None):
@@ -140,7 +149,7 @@ class GAEngine:
                 break
             
             # Create new generation
-            new_population = self._create_new_generation()
+            new_population = self._create_new_generation(stagnation_counter)
             
             # Replace population
             self.population.chromosomes = new_population
@@ -210,7 +219,7 @@ class GAEngine:
         
         return self.best_chromosome
     
-    def _create_new_generation(self) -> List[Chromosome]:
+    def _create_new_generation(self, stagnation_counter: int) -> List[Chromosome]:
         """
         Create a new generation using genetic operators.
         
@@ -223,6 +232,9 @@ class GAEngine:
         elite_chromosomes = self.operators.apply_elitism(self.population, self.current_fitness)
         new_population.extend(elite_chromosomes)
         
+        # Calculate current diversity
+        current_diversity = self.diversity_history[-1] if self.diversity_history else 0.5
+        
         # Generate rest of population through crossover and mutation
         while len(new_population) < self.population.size:
             # Select parents
@@ -231,15 +243,19 @@ class GAEngine:
             
             # Apply crossover
             if random.random() < self.operators.crossover_rate:
-                offspring1, offspring2 = self.operators.crossover(parent1, parent2)
+                offspring1, offspring2 = self.operators.crossover(parent1, parent2, current_diversity)
             else:
                 offspring1, offspring2 = parent1.copy(), parent2.copy()
             
             # Apply mutation
-            offspring1 = self.operators.mutate(offspring1, self.courses, 
-                                              self.instructors, self.rooms, self.groups)
-            offspring2 = self.operators.mutate(offspring2, self.courses, 
-                                              self.instructors, self.rooms, self.groups)
+            if random.random() < self.operators.mutation_rate:
+                offspring1 = self.operators.mutate(offspring1, self.courses, 
+                                                  self.instructors, self.rooms, self.groups,
+                                                  stagnation_counter, current_diversity)
+            if random.random() < self.operators.mutation_rate:
+                offspring2 = self.operators.mutate(offspring2, self.courses, 
+                                                  self.instructors, self.rooms, self.groups,
+                                                  stagnation_counter, current_diversity)
             
             # Add to new population
             new_population.extend([offspring1, offspring2])
@@ -270,20 +286,30 @@ class GAEngine:
         Returns:
             Dictionary with violation counts
         """
-        hard_violations, soft_violations = self.constraint_checker.check_all_constraints(
-            chromosome, self.courses, self.instructors, self.rooms, self.groups
-        )
-        
-        total_hard = sum(hard_violations.values())
-        total_soft = sum(soft_violations.values())
-        
-        return {
-            'hard': hard_violations,
-            'soft': soft_violations,
-            'total_hard': total_hard,
-            'total_soft': total_soft,
-            'total': total_hard + total_soft
-        }
+        try:
+            hard_violations, soft_violations = self.constraint_checker.check_all_constraints(
+                chromosome, self.courses, self.instructors, self.rooms, self.groups
+            )
+            
+            # Debug: check the structure of returned violations
+            self.logger.debug(f"Hard violations: {hard_violations}")
+            self.logger.debug(f"Soft violations: {soft_violations}")
+            
+            total_hard = sum(hard_violations.values())
+            total_soft = sum(soft_violations.values())
+            
+            return {
+                'hard': hard_violations,
+                'soft': soft_violations,
+                'total_hard': total_hard,
+                'total_soft': total_soft,
+                'total': total_hard + total_soft
+            }
+        except Exception as e:
+            self.logger.error(f"Error counting violations: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            raise
     
     def _log_final_statistics(self) -> None:
         """

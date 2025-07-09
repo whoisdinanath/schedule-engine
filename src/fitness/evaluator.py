@@ -41,6 +41,9 @@ class FitnessEvaluator:
         self.beta = CONSTRAINT_WEIGHTS['fitness_weights']['soft_constraint_weight']
         self.diversity_bonus = CONSTRAINT_WEIGHTS['fitness_weights']['diversity_bonus']
         
+        # Adaptive constraint weights (will be updated dynamically)
+        self.adaptive_weights = None
+        
         # Statistics
         self.evaluation_count = 0
         self.total_evaluation_time = 0.0
@@ -202,12 +205,26 @@ class FitnessEvaluator:
         Returns:
             Fitness score (higher is better)
         """
-        # Calculate total violation penalties
-        total_hard_violations = sum(hard_violations.values())
-        total_soft_penalty = sum(soft_penalties.values())
-        
-        # Apply fitness function: F = -α * H - β * S
-        fitness = -(self.alpha * total_hard_violations + self.beta * total_soft_penalty)
+        if self.adaptive_weights:
+            # Use adaptive weights for individual constraints
+            total_hard_penalty = 0
+            total_soft_penalty = 0
+            
+            # Apply specific weights to each constraint type
+            for constraint_type, violations in hard_violations.items():
+                weight = self.adaptive_weights.get(constraint_type, self.alpha)
+                total_hard_penalty += weight * violations
+            
+            for constraint_type, penalty in soft_penalties.items():
+                weight = self.adaptive_weights.get(constraint_type, self.beta)
+                total_soft_penalty += weight * penalty
+            
+            fitness = -(total_hard_penalty + total_soft_penalty)
+        else:
+            # Use default weights
+            total_hard_violations = sum(hard_violations.values())
+            total_soft_penalty = sum(soft_penalties.values())
+            fitness = -(self.alpha * total_hard_violations + self.beta * total_soft_penalty)
         
         return fitness
     
@@ -403,6 +420,19 @@ class FitnessEvaluator:
         self.fitness_cache.clear()
         
         self.logger.info(f"Fitness weights updated: α={alpha}, β={beta}")
+    
+    def update_constraint_weights(self, weights: Dict[str, float]) -> None:
+        """
+        Update constraint weights for adaptive constraint weight system.
+        
+        Args:
+            weights: Dictionary of constraint weights
+        """
+        self.adaptive_weights = weights
+        self.logger.info(f"Updated constraint weights: {weights}")
+        
+        # Clear cache when weights change
+        self.fitness_cache.clear()
     
     def clear_cache(self) -> None:
         """Clear the fitness cache."""

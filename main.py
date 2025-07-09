@@ -1,6 +1,9 @@
 """
-Main entry point for the Genetic Algorithm-based University Course Timetabling System.
+Main entry point for the PURE Genetic Algorithm-based University Course Timetabling System.
 Provides a high-level interface for running the timetabling optimization.
+
+This system uses a pure GA approach without any local search components.
+Rooms are always available (no room availability constraints).
 """
 
 from typing import Dict, List, Optional, Any, Callable

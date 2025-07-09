@@ -335,29 +335,45 @@ class DataValidator:
         self.logger.debug("Validating capacity constraints...")
         
         for course_id, course in courses.items():
-            # Calculate total students for this course
-            total_students = 0
-            for group_id in course.group_ids:
-                if group_id in groups:
-                    total_students += groups[group_id].student_count
+            # Check each group individually (groups are scheduled separately)
+            course_has_suitable_rooms = True
+            max_group_size = 0
             
-            if total_students == 0:
+            for group_id in course.group_ids:
+                if group_id not in groups:
+                    continue
+                    
+                group = groups[group_id]
+                max_group_size = max(max_group_size, group.student_count)
+                
+                # Check if any room can accommodate this specific group
+                group_suitable_rooms = []
+                for room_id, room in rooms.items():
+                    if (room.is_suitable_for_course_type(course.required_room_type) and
+                        room.can_accommodate_group_size(group.student_count)):
+                        group_suitable_rooms.append(room_id)
+                
+                if not group_suitable_rooms:
+                    self.errors.append(f"Course {course_id} group {group_id} ({group.student_count} students, "
+                                     f"type: {course.required_room_type}) has no suitable rooms")
+                    course_has_suitable_rooms = False
+            
+            if max_group_size == 0:
                 self.warnings.append(f"Course {course_id} has no students")
                 continue
             
-            # Check if any room can accommodate this course
-            suitable_rooms = []
-            for room_id, room in rooms.items():
-                if (room.is_suitable_for_course_type(course.required_room_type) and
-                    room.can_accommodate_group_size(total_students)):
-                    suitable_rooms.append(room_id)
-            
-            if not suitable_rooms:
-                self.errors.append(f"Course {course_id} ({total_students} students, "
-                                 f"type: {course.required_room_type}) has no suitable rooms")
-            elif len(suitable_rooms) < course.sessions_per_week:
-                self.warnings.append(f"Course {course_id} has limited room options for "
-                                   f"{course.sessions_per_week} sessions")
+            # Check if there are enough suitable rooms for all sessions
+            if course_has_suitable_rooms:
+                suitable_rooms = []
+                for room_id, room in rooms.items():
+                    if (room.is_suitable_for_course_type(course.required_room_type) and
+                        room.can_accommodate_group_size(max_group_size)):
+                        suitable_rooms.append(room_id)
+                
+                total_sessions_needed = sum(course.sessions_per_week for _ in course.group_ids)
+                if len(suitable_rooms) < total_sessions_needed:
+                    self.warnings.append(f"Course {course_id} may have limited room options for "
+                                       f"{total_sessions_needed} total sessions across all groups")
     
     def _validate_availability_constraints(self,
                                          instructors: Dict[str, Instructor],

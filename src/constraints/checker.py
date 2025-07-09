@@ -184,20 +184,15 @@ class ConstraintChecker:
         
         for gene in chromosome.genes:
             if (gene.course_id in courses and 
-                gene.room_id in rooms):
+                gene.room_id in rooms and
+                gene.group_id in groups):
                 
                 course = courses[gene.course_id]
                 room = rooms[gene.room_id]
+                group = groups[gene.group_id]
                 
-                # Calculate students for this course
-                total_students = sum(
-                    groups[group_id].student_count
-                    for group_id in course.group_ids
-                    if group_id in groups
-                )
-                
-                # Get utilization score
-                utilization = room.calculate_utilization_score(total_students)
+                # Get utilization score for the specific group
+                utilization = room.calculate_utilization_score(group.student_count)
                 total_efficiency += utilization
                 session_count += 1
         
