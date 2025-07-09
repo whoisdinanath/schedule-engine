@@ -25,7 +25,7 @@ ENCE 260,Structure II,4.0,50,lecture,14,730
 ENCT 252,Data Structure and Algorithm,4.0,50,lecture,4,21
 ENCT 253,Data Communication,4.0,50,lecture,4,26
 ENCT 254,Operating System,4.0,50,lecture,4,27
-ENSH 253,Probability and Statistics,4.0,50,lecture,"8, 12","4,5,6,7,8,9"
+ENSH 253,Probability and Statistics,4.0,50,lecture,"8, 12","4, 5, 5, 5, 6, 7, 8, 9"
 ENCE 255,Building Technology,4.0,50,lecture,8,"126, 138"
 ENEX 253,Computer Organization & Architecture,4.0,50,lecture,2,40
 ENEX 254,Electromagnetics,4.0,50,lecture,"4, 2","23, 38"
@@ -35,8 +35,8 @@ ENIE 253,Work Study and Human Factor Engineering,4.0,50,lecture,10,"53, 56"
 ENCT 251,Discrete Structure,4.0,50,lecture,2,22
 ENME 251,Mechanics of Solids,4.0,50,lecture,12,97
 ENME 252,Instrumentation and Sensors,4.0,50,lecture,"6, 12","86, 106"
-ENME 253,Computer Aided Design,4.0,50,lecture,"6, 12","47,87,99,105"
-ENME 254,Fluid Mechanics with Engineering Applications,4.0,50,lecture,12,"48,98"
+ENME 253,Computer Aided Design,4.0,50,lecture,"6, 12","47, 47, 87, 99, 105"
+ENME 254,Fluid Mechanics with Engineering Applications,4.0,50,lecture,12,"48, 48, 98"
 ENME 255,Fluid Mechanics and Machines,4.0,50,lecture,"6, 10","51, 59, 102"
 ENIE 252,Industrial Economics,4.0,50,lecture,10,"48, 50, 60"
 ENSH 252,Numerical Methods,4.0,50,lecture,"6, 4, 2, 10","4, 5, 6, 7, 8, 9, 19, 52, 101"
@@ -74,12 +74,12 @@ ENAR 251-PR,Design Studio IV-PR,10.0,50,lab,14,"72, 75"
 ENAR 255-PR,Computer Aided Design and Drafting-PR,2.0,50,lab,14,"72, 75"
 ENCE 253-PR,Soil Mechanics-PR,2.0,50,lab,8,"112, 134, 136"
 ENCE 261-PR,Surveying-PR,4.0,50,lab,14,"74, 76"
-ENAR 253-PR,History of Western Architecture-PR,1.0,50,lab,14,140
+ENAR 253-PR,History of Western Architecture-PR,1.0,50,lab,14,
 ENCT 252-PR,Data Structure and Algorithm-PR,3.0,50,lab,4,"21, 22"
 ENCT 253-PR,Data Communication-PR,1.5,50,lab,4,"26, 29"
 ENCT 254-PR,Operating System-PR,1.5,50,lab,4,"25, 27, 28"
 ENEE 254-PR,Electrical Machines-PR,1.5,50,lab,"6, 10, 12","36, 43, 104"
-ENSH 251-PR,Communication English-PR,1.0,50,lab,8,142
+ENSH 251-PR,Communication English-PR,1.0,50,lab,8,
 ENCE 251-PR,Hydraulics-PR,1.0,50,lab,8,"100, 127, 133, 137, 139"
 ENCE 252-PR,Theory of Structures II-PR,1.0,50,lab,8,"125, 128, 131"
 ENCE 254-PR,Water Supply Engineering-PR,1.0,50,lab,8,"129, 130, 135"
@@ -107,11 +107,11 @@ ENEE 253-PR,Control Systems Lab,1.0,90,lab,"2,4",54
 ENEE 251,Power Systems,4.0,50,lecture,"2,4",55
 ENCE 260,Structural Analysis,4.0,50,lecture,14,73
 ENAR 254-PR,Design Studio Practical,2.0,90,lab,14,79
-ENAR 251,Architectural Design,4.0,50,lecture,14,"80,140"
-ENAR 253-PR,Construction Practical,1.0,90,lab,14,140
-ENCE 256,Concrete Technology,3.0,50,lecture,8,"82,141"
-ENSH 251-PR,English Practical,1.0,90,lab,8,142
-ENIE 254,Industrial Management,3.0,50,lecture,10,"84,143"
+ENAR 251,Architectural Design,4.0,50,lecture,14,80
+ENAR 253-PR,Construction Practical,1.0,90,lab,14,81
+ENCE 256,Concrete Technology,3.0,50,lecture,8,82
+ENSH 251-PR,English Practical,1.0,90,lab,8,83
+ENIE 254,Industrial Management,3.0,50,lecture,10,84
 ENSH 152,Communication English II,3.0,50,lecture,"7,11","1,2,3,94,110"
 ENSH 154,Technical Writing,3.0,50,lecture,"7,8","7,11,12,13,15"
 ENSH 154-PR,Technical Writing Practical,1.0,90,lab,"7,8","11,12,13"
@@ -124,8 +124,8 @@ ENEE 253-PR,Control Systems Lab,1.0,90,lab,"2,4",54
 ENEE 251,Power Systems,4.0,50,lecture,"2,4",55
 ENCE 260,Structural Analysis,4.0,50,lecture,14,73
 ENAR 254-PR,Design Studio Practical,2.0,90,lab,14,79
-ENAR 251,Architectural Design,4.0,50,lecture,14,"80,140"
-ENAR 253-PR,Construction Practical,1.0,90,lab,14,140
-ENCE 256,Concrete Technology,3.0,50,lecture,8,"82,141"
-ENSH 251-PR,English Practical,1.0,90,lab,8,142
-ENIE 254,Industrial Management,3.0,50,lecture,10,"84,143"
+ENAR 251,Architectural Design,4.0,50,lecture,14,80
+ENAR 253-PR,Construction Practical,1.0,90,lab,14,81
+ENCE 256,Concrete Technology,3.0,50,lecture,8,82
+ENSH 251-PR,English Practical,1.0,90,lab,8,83
+ENIE 254,Industrial Management,3.0,50,lecture,10,84

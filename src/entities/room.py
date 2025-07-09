@@ -61,12 +61,10 @@ class Room:
             time_slot: Time slot in format 'HH:MM-HH:MM'
         
         Returns:
-            True if available, False otherwise
+            True (rooms are always available - no availability constraints)
         """
-        if day not in self.available_slots:
-            return False
-        
-        return time_slot in self.available_slots[day]
+        # Rooms are always available in this simplified scheduler
+        return True
     
     def can_accommodate_group_size(self, group_size: int) -> bool:
         """

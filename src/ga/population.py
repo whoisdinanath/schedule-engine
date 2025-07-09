@@ -82,14 +82,17 @@ class Population:
         try:
             genes = []
             
-            # Create genes for each required course session
+            # Create genes for each required course session for each group
             for course_id, course in courses.items():
-                for session_index in range(course.sessions_per_week):
-                    gene = self._create_random_gene(
-                        course, instructors, rooms, groups, session_index
-                    )
-                    if gene:
-                        genes.append(gene)
+                for group_id in course.group_ids:
+                    # Only create genes for groups that exist in the groups dictionary
+                    if group_id in groups:
+                        for session_index in range(course.sessions_per_week):
+                            gene = self._create_random_gene(
+                                course, instructors, rooms, groups, session_index, group_id
+                            )
+                            if gene:
+                                genes.append(gene)
             
             return Chromosome(genes)
             
@@ -102,9 +105,10 @@ class Population:
                           instructors: Dict[str, Instructor],
                           rooms: Dict[str, Room],
                           groups: Dict[str, Group],
-                          session_index: int) -> Optional[Gene]:
+                          session_index: int,
+                          group_id: str) -> Optional[Gene]:
         """
-        Create a random gene for a course session.
+        Create a random gene for a course session for a specific group.
         
         Args:
             course: Course entity
@@ -112,6 +116,7 @@ class Population:
             rooms: Dictionary of room entities
             groups: Dictionary of group entities
             session_index: Index of the session within the course
+            group_id: ID of the specific group attending this session
         
         Returns:
             Random gene or None if creation failed
@@ -159,11 +164,12 @@ class Population:
                 room_id=room_id,
                 day=day,
                 time_slot=time_slot,
-                session_index=session_index
+                session_index=session_index,
+                group_id=group_id
             )
             
         except Exception as e:
-            self.logger.error(f"Error creating random gene for course {course.course_id}: {str(e)}")
+            self.logger.error(f"Error creating random gene for course {course.course_id}, group {group_id}: {str(e)}")
             return None
     
     def add_chromosome(self, chromosome: Chromosome) -> None:

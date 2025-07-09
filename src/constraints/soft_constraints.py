@@ -109,20 +109,16 @@ class SoftConstraintChecker:
         
         for gene in chromosome.genes:
             if (gene.course_id in courses and 
-                gene.room_id in rooms):
+                gene.room_id in rooms and
+                gene.group_id in groups):
                 
                 course = courses[gene.course_id]
                 room = rooms[gene.room_id]
+                group = groups[gene.group_id]
                 total_sessions += 1
                 
-                # Calculate total students for this course
-                total_students = 0
-                for group_id in course.group_ids:
-                    if group_id in groups:
-                        total_students += groups[group_id].student_count
-                
-                # Get utilization score (1.0 = optimal, 0.0 = poor)
-                utilization_score = room.calculate_utilization_score(total_students)
+                # Get utilization score for the specific group
+                utilization_score = room.calculate_utilization_score(group.student_count)
                 
                 # Penalty is inverse of utilization
                 penalty += (1.0 - utilization_score)

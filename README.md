@@ -1,14 +1,17 @@
-# Genetic Algorithm-Based University Course Timetabling System
+# Pure Genetic Algorithm-Based University Course Timetabling System
 
 ## Overview
 
-This system implements a Genetic Algorithm (GA) approach to solve the University Course Timetabling Problem (UCTP). It generates optimized course schedules by satisfying hard constraints and minimizing soft constraint violations.
+This system implements a **PURE Genetic Algorithm (GA)** approach to solve the University Course Timetabling Problem (UCTP). It generates optimized course schedules by satisfying hard constraints and minimizing soft constraint violations using only genetic operators - no local search or hybrid optimization techniques.
 
-## Features
+## Key Features
 
+- **Pure GA Implementation**: Uses only selection, crossover, mutation, and elitism
+- **No Local Search**: No hill climbing, simulated annealing, or other local optimization
+- **Simplified Room Model**: Rooms are always available (no room availability constraints)
 - **Data Ingestion**: Supports CSV and JSON input formats
 - **Entity Modeling**: Comprehensive modeling of courses, instructors, rooms, and student groups
-- **Genetic Algorithm Engine**: Customizable GA with selection, crossover, mutation, and elitism
+- **Genetic Algorithm Engine**: Customizable GA with multiple genetic operators
 - **Constraint Handling**: Strict enforcement of hard constraints and optimization of soft constraints
 - **Fitness Evaluation**: Multi-objective fitness function with configurable weights
 - **Output Generation**: Export to CSV, Excel, and tabular formats
@@ -153,9 +156,10 @@ group_id,name,student_count,enrolled_courses
 ### Hard Constraints
 
 - No instructor/room conflicts
-- Room capacity constraints
+- Room capacity constraints  
 - Instructor qualification requirements
 - Student group availability
+- **Note**: Rooms are always available (no room availability constraints)
 
 ### Soft Constraints
 

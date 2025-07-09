@@ -46,6 +46,7 @@ class HardConstraintChecker:
         violations['instructor_conflict'] = self.check_instructor_conflicts(chromosome)
         violations['room_conflict'] = self.check_room_conflicts(chromosome)
         violations['group_conflict'] = self.check_group_conflicts(chromosome, courses, groups)
+        violations['course_group_isolation'] = self.check_course_group_isolation(chromosome, courses, groups)
         violations['room_capacity'] = self.check_room_capacity_violations(chromosome, courses, rooms, groups)
         violations['instructor_qualification'] = self.check_instructor_qualifications(chromosome, courses, instructors)
         violations['room_type_mismatch'] = self.check_room_type_mismatches(chromosome, courses, rooms)
@@ -122,22 +123,59 @@ class HardConstraintChecker:
         conflicts = 0
         group_schedule = defaultdict(lambda: defaultdict(list))
         
-        # Group genes by student groups and time slot
+        # Group genes by student group ID and time slot
         for gene in chromosome.genes:
-            if gene.course_id in courses:
-                course = courses[gene.course_id]
+            if gene.group_id and gene.group_id in groups:
                 time_key = f"{gene.day}_{gene.time_slot}"
-                
-                for group_id in course.group_ids:
-                    group_schedule[group_id][time_key].append(gene)
+                group_schedule[gene.group_id][time_key].append(gene)
         
         # Count conflicts for each group
         for group_id, schedule in group_schedule.items():
             for time_key, genes in schedule.items():
                 if len(genes) > 1:
                     conflicts += len(genes) - 1  # All but one are violations
+                    self.logger.debug(f"Group conflict detected: Group {group_id} at {time_key} has {len(genes)} sessions")
         
         return conflicts
+
+    def check_course_group_isolation(self,
+                                   chromosome: Chromosome,
+                                   courses: Dict[str, Course],
+                                   groups: Dict[str, Group]) -> int:
+        """
+        Check for course group isolation violations (multiple groups from same course at same time).
+        
+        This ensures that only one group per course is scheduled at any given time slot,
+        which is required for proper group-wise isolation.
+        
+        Args:
+            chromosome: Chromosome to check
+            courses: Dictionary of course entities
+            groups: Dictionary of group entities
+        
+        Returns:
+            Number of course group isolation violations
+        """
+        violations = 0
+        course_schedule = defaultdict(lambda: defaultdict(list))
+        
+        # Group genes by course ID and time slot
+        for gene in chromosome.genes:
+            if gene.course_id in courses and gene.group_id and gene.group_id in groups:
+                time_key = f"{gene.day}_{gene.time_slot}"
+                course_schedule[gene.course_id][time_key].append(gene)
+        
+        # Count violations for each course
+        for course_id, schedule in course_schedule.items():
+            for time_key, genes in schedule.items():
+                if len(genes) > 1:
+                    # Multiple groups from the same course at the same time
+                    violations += len(genes) - 1  # All but one are violations
+                    group_ids = [gene.group_id for gene in genes]
+                    self.logger.debug(f"Course group isolation violation: Course {course_id} at {time_key} "
+                                    f"has {len(genes)} groups scheduled: {group_ids}")
+        
+        return violations
     
     def check_room_capacity_violations(self,
                                      chromosome: Chromosome,
@@ -145,7 +183,11 @@ class HardConstraintChecker:
                                      rooms: Dict[str, Room],
                                      groups: Dict[str, Group]) -> int:
         """
-        Check for room capacity violations (room too small for enrolled students).
+        Check for room capacity violations (room too small for individual groups).
+        
+        This method correctly checks if any individual group exceeds the room capacity.
+        Note: Multiple groups in the same room at the same time are handled by the
+        room conflict checker, not the capacity checker.
         
         Args:
             chromosome: Chromosome to check
@@ -158,22 +200,20 @@ class HardConstraintChecker:
         """
         violations = 0
         
+        # Check each gene individually for capacity violations
         for gene in chromosome.genes:
             if (gene.course_id in courses and 
-                gene.room_id in rooms):
+                gene.room_id in rooms and
+                gene.group_id in groups):
                 
-                course = courses[gene.course_id]
                 room = rooms[gene.room_id]
+                group = groups[gene.group_id]
                 
-                # Calculate total students for this course
-                total_students = 0
-                for group_id in course.group_ids:
-                    if group_id in groups:
-                        total_students += groups[group_id].student_count
-                
-                # Check if room capacity is insufficient
-                if total_students > room.capacity:
+                # Check if this individual group exceeds room capacity
+                if group.student_count > room.capacity:
                     violations += 1
+                    self.logger.debug(f"Room capacity violation: Room {gene.room_id} (capacity: {room.capacity}) "
+                                    f"cannot accommodate group {gene.group_id} ({group.student_count} students)")
         
         return violations
     
@@ -244,6 +284,8 @@ class HardConstraintChecker:
         """
         Check for availability violations (scheduling when instructor/room not available).
         
+        Note: Rooms are always available, so only instructor availability is checked.
+        
         Args:
             chromosome: Chromosome to check
             instructors: Dictionary of instructor entities
@@ -255,17 +297,13 @@ class HardConstraintChecker:
         violations = 0
         
         for gene in chromosome.genes:
-            # Check instructor availability
+            # Check instructor availability only (rooms are always available)
             if gene.instructor_id in instructors:
                 instructor = instructors[gene.instructor_id]
                 if not instructor.is_available_at_slot(gene.day, gene.time_slot):
                     violations += 1
             
-            # Check room availability
-            if gene.room_id in rooms:
-                room = rooms[gene.room_id]
-                if not room.is_available_at_slot(gene.day, gene.time_slot):
-                    violations += 1
+            # Rooms are always available - no need to check
         
         return violations
     
@@ -283,15 +321,26 @@ class HardConstraintChecker:
             Number of completeness violations
         """
         violations = 0
-        course_sessions = chromosome.get_course_sessions()
         
+        # Count sessions per course per group
+        course_group_sessions = defaultdict(lambda: defaultdict(int))
+        
+        for gene in chromosome.genes:
+            if gene.course_id in courses:
+                course_group_sessions[gene.course_id][gene.group_id] += 1
+        
+        # Check if each course has correct number of sessions for each enrolled group
         for course_id, course in courses.items():
-            scheduled_sessions = course_sessions.get(course_id, 0)
             required_sessions = course.sessions_per_week
             
-            # Count missing or extra sessions as violations
-            if scheduled_sessions != required_sessions:
-                violations += abs(scheduled_sessions - required_sessions)
+            for group_id in course.group_ids:
+                scheduled_sessions = course_group_sessions[course_id][group_id]
+                
+                # Count missing or extra sessions as violations
+                if scheduled_sessions != required_sessions:
+                    violations += abs(scheduled_sessions - required_sessions)
+                    self.logger.debug(f"Completeness violation: Course {course_id} group {group_id} "
+                                    f"has {scheduled_sessions} sessions, needs {required_sessions}")
         
         return violations
     
@@ -341,6 +390,21 @@ class HardConstraintChecker:
                 details['room_conflict'].append(
                     f"Room {room_id} at {time_key}: {courses_list}"
                 )
+        
+        # Course group isolation conflicts
+        course_schedule = defaultdict(lambda: defaultdict(list))
+        for gene in chromosome.genes:
+            if gene.course_id in courses and gene.group_id and gene.group_id in groups:
+                time_key = f"{gene.day}_{gene.time_slot}"
+                course_schedule[gene.course_id][time_key].append(gene)
+        
+        for course_id, schedule in course_schedule.items():
+            for time_key, genes in schedule.items():
+                if len(genes) > 1:
+                    group_ids = [gene.group_id for gene in genes]
+                    details['course_group_isolation'].append(
+                        f"Course {course_id} at {time_key}: groups {group_ids}"
+                    )
         
         # Add other detailed checks as needed...
         

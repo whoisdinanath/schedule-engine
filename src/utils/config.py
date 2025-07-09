@@ -39,48 +39,32 @@ class Config:
             os.makedirs(directory, exist_ok=True)
 
 
-# Genetic Algorithm Configuration
+# Genetic Algorithm Configuration - PURE GA (No Local Search)
 GA_CONFIG = {
     # Population parameters
     'population_size': 50,
     'generations': 100,
-    'elite_size': 5,  # Number of elite individuals to preserve
+    'elite_size': 5,
     
-    # Genetic operators
+    # Genetic operators - PURE GA only
     'crossover_rate': 0.8,
     'mutation_rate': 0.1,
     'tournament_size': 5,
     
-    # Selection methods
+    # Selection methods - genetic selection only
     'selection_method': 'tournament',  # 'tournament', 'roulette', 'rank'
     'crossover_method': 'uniform',     # 'uniform', 'single_point', 'two_point'
-    'mutation_method': 'random',       # 'random', 'swap', 'adaptive'
+    'mutation_method': 'random',       # 'random', 'swap'
     
     # Termination criteria
     'max_generations': 100,
-    'max_stagnation': 20,  # Stop if no improvement for N generations
-    'target_fitness': 0.0,  # Stop if fitness reaches this value
-    'max_runtime_seconds': 600,  # 10 minutes
+    'target_fitness': 0.0,
+    'stagnation_limit': 20,
+    'time_limit_minutes': 10,
     
-    # Diversity control
-    'diversity_threshold': 0.1,
-    'diversity_penalty': 0.05,
-    
-    # Adaptive parameters
-    'adaptive_mutation': True,
-    'mutation_decay': 0.99,  # Decrease mutation rate over time
-    'adaptive_crossover': False,
-    
-    # Parallelization
-    'use_multiprocessing': False,
-    'num_processes': 4,
-    
-    # Random seed for reproducibility
-    'random_seed': None,  # Set to integer for reproducible results
-    
-    # Debug and logging
+    # Display and logging
     'verbose': True,
-    'log_frequency': 10,  # Log every N generations
+    'log_frequency': 10,
     'save_best_individual': True,
     'save_population_history': False
 }
@@ -92,6 +76,7 @@ CONSTRAINT_WEIGHTS = {
         'instructor_conflict': 1000,      # Instructor teaching multiple courses at same time
         'room_conflict': 1000,            # Room double-booked
         'group_conflict': 1000,           # Student group in multiple classes
+        'course_group_isolation': 1000,   # Multiple groups from same course at same time
         'room_capacity': 1000,            # Room too small for group
         'instructor_qualification': 1000,  # Unqualified instructor assigned
         'room_type_mismatch': 1000,       # Wrong room type for course

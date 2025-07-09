@@ -62,8 +62,3 @@ W101,Mechanical Workshop,48,lab,"monday_08:00-18:00,tuesday_08:00-18:00,wednesda
 W102,Material Testing Lab,48,lab,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
 W103,Survey Lab,48,lab,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
 W104,Automobile Workshop,48,lab,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-HALL1,Main Auditorium,200,lecture,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-HALL2,Large Lecture Hall,150,lecture,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-HALL3,Conference Hall,100,lecture,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-HALL4,Assembly Hall,250,lecture,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-HALL5,Seminar Hall,120,lecture,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"

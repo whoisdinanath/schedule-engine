@@ -25,6 +25,7 @@ class Gene:
         day: Day of the week (e.g., 'monday')
         time_slot: Time slot (e.g., '09:00-10:30')
         session_index: Index of this session within the course's weekly sessions
+        group_id: ID of the specific group attending this session
     """
     
     course_id: str
@@ -33,11 +34,12 @@ class Gene:
     day: str
     time_slot: str
     session_index: int = 0
+    group_id: str = ""
     
     def __hash__(self) -> int:
         """Make Gene hashable for use in sets and as dict keys."""
         return hash((self.course_id, self.instructor_id, self.room_id, 
-                    self.day, self.time_slot, self.session_index))
+                    self.day, self.time_slot, self.session_index, self.group_id))
     
     def __eq__(self, other) -> bool:
         """Check equality of two genes."""
@@ -48,7 +50,8 @@ class Gene:
                 self.room_id == other.room_id and
                 self.day == other.day and
                 self.time_slot == other.time_slot and
-                self.session_index == other.session_index)
+                self.session_index == other.session_index and
+                self.group_id == other.group_id)
     
     def get_time_key(self) -> str:
         """Get a unique key for the time slot."""
@@ -78,7 +81,7 @@ class Gene:
         return False
     
     def __str__(self) -> str:
-        return f"Gene({self.course_id}, {self.instructor_id}, {self.room_id}, {self.day} {self.time_slot})"
+        return f"Gene({self.course_id}, {self.instructor_id}, {self.room_id}, {self.day} {self.time_slot}, Group: {self.group_id})"
     
     def __repr__(self) -> str:
         return self.__str__()
@@ -153,6 +156,10 @@ class Chromosome:
     def get_genes_by_day(self, day: str) -> List[Gene]:
         """Get all genes scheduled on a specific day."""
         return [gene for gene in self.genes if gene.day == day]
+    
+    def get_genes_by_group(self, group_id: str) -> List[Gene]:
+        """Get all genes for a specific group."""
+        return [gene for gene in self.genes if gene.group_id == group_id]
     
     def get_genes_by_time_slot(self, day: str, time_slot: str) -> List[Gene]:
         """Get all genes scheduled at a specific time slot."""
@@ -279,14 +286,23 @@ class Chromosome:
             courses: Dictionary of course entities
         
         Returns:
-            True if all required sessions are scheduled
+            True if all required sessions are scheduled for all groups
         """
-        course_sessions = self.get_course_sessions()
+        # Count sessions per course per group
+        course_group_sessions = defaultdict(lambda: defaultdict(int))
         
+        for gene in self.genes:
+            if gene.course_id in courses:
+                course_group_sessions[gene.course_id][gene.group_id] += 1
+        
+        # Check if each course has correct number of sessions for each enrolled group
         for course_id, course in courses.items():
-            scheduled_sessions = course_sessions.get(course_id, 0)
-            if scheduled_sessions != course.sessions_per_week:
-                return False
+            required_sessions = course.sessions_per_week
+            
+            for group_id in course.group_ids:
+                scheduled_sessions = course_group_sessions[course_id][group_id]
+                if scheduled_sessions != required_sessions:
+                    return False
         
         return True
     

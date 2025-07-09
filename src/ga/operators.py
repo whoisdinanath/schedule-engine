@@ -1,6 +1,7 @@
 """
-Genetic operators for the GA-based timetabling system.
+Genetic operators for the PURE GA-based timetabling system.
 Implements selection, crossover, mutation, and other genetic operations.
+No local search or hybrid optimization components.
 """
 
 from typing import List, Tuple, Dict, Any, Optional
@@ -324,13 +325,150 @@ class GeneticOperators:
         
         return mutated
     
-    def crossover(self, parent1: Chromosome, parent2: Chromosome) -> Tuple[Chromosome, Chromosome]:
+    def adaptive_mutation(self, chromosome: Chromosome,
+                         courses: Dict[str, Course],
+                         instructors: Dict[str, Instructor],
+                         rooms: Dict[str, Room],
+                         groups: Dict[str, Group],
+                         stagnation_counter: int = 0,
+                         diversity: float = 0.5) -> Chromosome:
+        """
+        Perform adaptive mutation that increases intensity based on stagnation and diversity.
+        
+        Args:
+            chromosome: Chromosome to mutate
+            courses: Dictionary of course entities
+            instructors: Dictionary of instructor entities
+            rooms: Dictionary of room entities
+            groups: Dictionary of group entities
+            stagnation_counter: Number of generations without improvement
+            diversity: Population diversity (0-1)
+        
+        Returns:
+            Mutated chromosome
+        """
+        # Calculate adaptive mutation intensity
+        base_intensity = self.mutation_rate
+        
+        # Increase intensity based on stagnation
+        stagnation_factor = 1.0 + (stagnation_counter / 50.0) * 2.0
+        
+        # Increase intensity when diversity is low
+        diversity_factor = 1.0 + (1.0 - diversity) * 1.5
+        
+        # Combined adaptive intensity
+        adaptive_intensity = min(base_intensity * stagnation_factor * diversity_factor, 0.8)
+        
+        mutated = chromosome.copy()
+        
+        # Apply more aggressive mutations when intensity is high
+        if adaptive_intensity > 0.3:
+            # Multi-gene mutation for high intensity
+            num_mutations = min(int(len(mutated.genes) * adaptive_intensity), len(mutated.genes))
+            mutation_indices = random.sample(range(len(mutated.genes)), num_mutations)
+        else:
+            # Single gene mutation for low intensity
+            mutation_indices = [random.randint(0, len(mutated.genes) - 1)]
+        
+        for gene_idx in mutation_indices:
+            gene = mutated.genes[gene_idx]
+            
+            # Get course info
+            if gene.course_id not in courses:
+                continue
+                
+            course = courses[gene.course_id]
+            
+            # Choose mutation type based on intensity
+            if adaptive_intensity > 0.5:
+                # High intensity: mutate multiple aspects
+                mutation_types = ['instructor', 'room', 'time']
+                for mut_type in random.sample(mutation_types, random.randint(1, len(mutation_types))):
+                    self._apply_single_mutation(gene, mut_type, course, courses, instructors, rooms, groups)
+            else:
+                # Low intensity: mutate single aspect
+                mutation_type = random.choice(['instructor', 'room', 'time'])
+                self._apply_single_mutation(gene, mutation_type, course, courses, instructors, rooms, groups)
+        
+        return mutated
+    
+    def _apply_single_mutation(self, gene: Gene, mutation_type: str, course: Course,
+                              courses: Dict[str, Course],
+                              instructors: Dict[str, Instructor],
+                              rooms: Dict[str, Room],
+                              groups: Dict[str, Group]) -> None:
+        """
+        Apply a single mutation operation to a gene.
+        
+        Args:
+            gene: Gene to mutate
+            mutation_type: Type of mutation ('instructor', 'room', 'time')
+            course: Course entity for the gene
+            courses: Dictionary of course entities
+            instructors: Dictionary of instructor entities
+            rooms: Dictionary of room entities
+            groups: Dictionary of group entities
+        """
+        if mutation_type == 'instructor':
+            qualified_instructors = [
+                inst_id for inst_id in course.qualified_instructor_ids
+                if inst_id in instructors
+            ]
+            if qualified_instructors:
+                gene.instructor_id = random.choice(qualified_instructors)
+        
+        elif mutation_type == 'room':
+            suitable_rooms = [
+                room_id for room_id, room in rooms.items()
+                if room.is_suitable_for_course_type(course.required_room_type)
+            ]
+            if suitable_rooms:
+                gene.room_id = random.choice(suitable_rooms)
+        
+        elif mutation_type == 'time':
+            available_slots = []
+            for day in TIME_SLOTS['days']:
+                for time_slot in TIME_SLOTS['slots']:
+                    available_slots.append((day, time_slot))
+            
+            if available_slots:
+                new_day, new_time = random.choice(available_slots)
+                gene.day = new_day
+                gene.time_slot = new_time
+
+    def adaptive_crossover(self, parent1: Chromosome, parent2: Chromosome,
+                          diversity: float = 0.5) -> Tuple[Chromosome, Chromosome]:
+        """
+        Perform adaptive crossover that adjusts strategy based on diversity.
+        
+        Args:
+            parent1: First parent chromosome
+            parent2: Second parent chromosome
+            diversity: Population diversity (0-1)
+        
+        Returns:
+            Tuple of two offspring chromosomes
+        """
+        # Choose crossover method based on diversity
+        if diversity < 0.3:
+            # Low diversity: use two-point crossover for more exploration
+            return self.two_point_crossover(parent1, parent2)
+        elif diversity > 0.7:
+            # High diversity: use uniform crossover for more exploitation
+            return self.uniform_crossover(parent1, parent2)
+        else:
+            # Medium diversity: use single-point crossover
+            return self.single_point_crossover(parent1, parent2)
+
+    def crossover(self, parent1: Chromosome, parent2: Chromosome,
+                  diversity: float = 0.5) -> Tuple[Chromosome, Chromosome]:
         """
         Perform crossover based on configured method.
         
         Args:
             parent1: First parent chromosome
             parent2: Second parent chromosome
+            diversity: Population diversity (0-1)
         
         Returns:
             Tuple of two offspring chromosomes
@@ -343,6 +481,8 @@ class GeneticOperators:
             return self.single_point_crossover(parent1, parent2)
         elif method == 'two_point':
             return self.two_point_crossover(parent1, parent2)
+        elif method == 'adaptive':
+            return self.adaptive_crossover(parent1, parent2, diversity)
         else:
             self.logger.warning(f"Unknown crossover method: {method}, using uniform")
             return self.uniform_crossover(parent1, parent2)
@@ -351,7 +491,9 @@ class GeneticOperators:
                courses: Dict[str, Course],
                instructors: Dict[str, Instructor],
                rooms: Dict[str, Room],
-               groups: Dict[str, Group]) -> Chromosome:
+               groups: Dict[str, Group],
+               stagnation_counter: int = 0,
+               diversity: float = 0.5) -> Chromosome:
         """
         Perform mutation based on configured method.
         
@@ -371,6 +513,8 @@ class GeneticOperators:
             return self.random_mutation(chromosome, courses, instructors, rooms, groups)
         elif method == 'swap':
             return self.swap_mutation(chromosome)
+        elif method == 'adaptive':
+            return self.adaptive_mutation(chromosome, courses, instructors, rooms, groups, stagnation_counter, diversity)
         else:
             self.logger.warning(f"Unknown mutation method: {method}, using random")
             return self.random_mutation(chromosome, courses, instructors, rooms, groups)
