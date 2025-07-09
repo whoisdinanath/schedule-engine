@@ -318,21 +318,21 @@ class TimetablingSystem:
                 # Fitness evolution
                 self.visualizer.plot_fitness_evolution(
                     self.ga_engine.fitness_history,
-                    save_path=f"{viz_dir}/fitness_evolution.png",
+                    save_path=f"{viz_dir}/fitness_evolution.pdf",
                     show_plot=show_plots
                 )
                 
                 # Constraint violations
                 self.visualizer.plot_constraint_violations(
                     self.ga_engine.violation_history,
-                    save_path=f"{viz_dir}/constraint_violations.png",
+                    save_path=f"{viz_dir}/constraint_violations.pdf",
                     show_plot=show_plots
                 )
                 
                 # Diversity evolution
                 self.visualizer.plot_diversity_evolution(
                     self.ga_engine.diversity_history,
-                    save_path=f"{viz_dir}/diversity_evolution.png",
+                    save_path=f"{viz_dir}/diversity_evolution.pdf",
                     show_plot=show_plots
                 )
                 
@@ -345,7 +345,7 @@ class TimetablingSystem:
                         self.rooms,
                         self.groups,
                         view_type=view_type,
-                        save_path=f"{viz_dir}/schedule_heatmap_{view_type}.png",
+                        save_path=f"{viz_dir}/schedule_heatmap_{view_type}.pdf",
                         show_plot=show_plots
                     )
                 
@@ -354,7 +354,7 @@ class TimetablingSystem:
                     self.best_solution,
                     self.instructors,
                     self.courses,
-                    save_path=f"{viz_dir}/workload_distribution.png",
+                    save_path=f"{viz_dir}/workload_distribution.pdf",
                     show_plot=show_plots
                 )
             
