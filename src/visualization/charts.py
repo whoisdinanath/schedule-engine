@@ -24,10 +24,63 @@ class EvolutionVisualizer:
         """Initialize the visualizer."""
         self.logger = get_logger(self.__class__.__name__)
         
-        # Set up matplotlib style
+        # Set up matplotlib style first
         plt.style.use('default')
         sns.set_palette("husl")
         
+        # Configure matplotlib to use Times New Roman font ONLY (no fallbacks)
+        plt.rcParams['font.family'] = 'Times New Roman'
+        plt.rcParams['font.size'] = 12
+        plt.rcParams['axes.titlesize'] = 14
+        plt.rcParams['axes.labelsize'] = 12
+        plt.rcParams['xtick.labelsize'] = 10
+        plt.rcParams['ytick.labelsize'] = 10
+        plt.rcParams['legend.fontsize'] = 10
+        plt.rcParams['figure.titlesize'] = 16
+        
+        # Force Times New Roman for all font categories (no fallbacks)
+        plt.rcParams['font.serif'] = ['Times New Roman']
+        plt.rcParams['font.sans-serif'] = ['Times New Roman']
+        plt.rcParams['font.monospace'] = ['Times New Roman']
+        plt.rcParams['font.cursive'] = ['Times New Roman']
+        plt.rcParams['font.fantasy'] = ['Times New Roman']
+        
+        # Mathematical text configuration (Times New Roman only)
+        plt.rcParams['mathtext.fontset'] = 'custom'
+        plt.rcParams['mathtext.rm'] = 'Times New Roman'
+        plt.rcParams['mathtext.it'] = 'Times New Roman:italic'
+        plt.rcParams['mathtext.bf'] = 'Times New Roman:bold'
+        plt.rcParams['mathtext.cal'] = 'Times New Roman'
+        plt.rcParams['mathtext.sf'] = 'Times New Roman'
+        plt.rcParams['mathtext.tt'] = 'Times New Roman'
+        
+    def _ensure_pdf_format(self, save_path: str) -> str:
+        """
+        Ensure the save path uses PDF format.
+        
+        Args:
+            save_path: Original save path
+            
+        Returns:
+            Modified save path with .pdf extension
+        """
+        if not save_path.endswith('.pdf'):
+            # Remove existing extension and add .pdf
+            save_path = save_path.rsplit('.', 1)[0] + '.pdf'
+        return save_path
+    
+    def _save_chart(self, save_path: str, chart_type: str = "chart") -> None:
+        """
+        Save chart with consistent PDF format and logging.
+        
+        Args:
+            save_path: Path to save the chart
+            chart_type: Type of chart for logging
+        """
+        pdf_path = self._ensure_pdf_format(save_path)
+        plt.savefig(pdf_path, format='pdf', dpi=300, bbox_inches='tight')
+        self.logger.info(f"{chart_type} saved to: {pdf_path}")
+    
     def plot_fitness_evolution(self, 
                               fitness_history: List[Dict[str, Any]], 
                               save_path: Optional[str] = None,
@@ -79,8 +132,7 @@ class EvolutionVisualizer:
         plt.tight_layout()
         
         if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-            self.logger.info(f"Fitness evolution plot saved to: {save_path}")
+            self._save_chart(save_path, "Fitness evolution plot")
         
         if show_plot:
             plt.show()
@@ -134,8 +186,7 @@ class EvolutionVisualizer:
         plt.tight_layout()
         
         if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-            self.logger.info(f"Constraint violations plot saved to: {save_path}")
+            self._save_chart(save_path, "Constraint violations plot")
         
         if show_plot:
             plt.show()
@@ -179,8 +230,7 @@ class EvolutionVisualizer:
         plt.tight_layout()
         
         if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-            self.logger.info(f"Diversity evolution plot saved to: {save_path}")
+            self._save_chart(save_path, "Diversity evolution plot")
         
         if show_plot:
             plt.show()
@@ -270,8 +320,7 @@ class EvolutionVisualizer:
         plt.tight_layout()
         
         if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-            self.logger.info(f"Schedule heatmap saved to: {save_path}")
+            self._save_chart(save_path, f"Schedule heatmap ({view_type})")
         
         if show_plot:
             plt.show()
@@ -332,8 +381,7 @@ class EvolutionVisualizer:
         plt.tight_layout()
         
         if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-            self.logger.info(f"Workload distribution plot saved to: {save_path}")
+            self._save_chart(save_path, "Workload distribution plot")
         
         if show_plot:
             plt.show()
@@ -370,7 +418,7 @@ class EvolutionVisualizer:
         if fitness_history:
             self.plot_fitness_evolution(
                 fitness_history, 
-                save_path=str(output_path / 'fitness_evolution.png'),
+                save_path=str(output_path / 'fitness_evolution.pdf'),
                 show_plot=False
             )
         
@@ -379,7 +427,7 @@ class EvolutionVisualizer:
         if violation_history:
             self.plot_constraint_violations(
                 violation_history,
-                save_path=str(output_path / 'constraint_violations.png'),
+                save_path=str(output_path / 'constraint_violations.pdf'),
                 show_plot=False
             )
         
@@ -388,7 +436,7 @@ class EvolutionVisualizer:
         if diversity_history:
             self.plot_diversity_evolution(
                 diversity_history,
-                save_path=str(output_path / 'diversity_evolution.png'),
+                save_path=str(output_path / 'diversity_evolution.pdf'),
                 show_plot=False
             )
         
@@ -397,14 +445,14 @@ class EvolutionVisualizer:
             self.plot_schedule_heatmap(
                 chromosome, courses, instructors, rooms, groups,
                 view_type=view_type,
-                save_path=str(output_path / f'schedule_heatmap_{view_type}.png'),
+                save_path=str(output_path / f'schedule_heatmap_{view_type}.pdf'),
                 show_plot=False
             )
         
         # Plot workload distribution
         self.plot_workload_distribution(
             chromosome, instructors, courses,
-            save_path=str(output_path / 'workload_distribution.png'),
+            save_path=str(output_path / 'workload_distribution.pdf'),
             show_plot=False
         )
         
