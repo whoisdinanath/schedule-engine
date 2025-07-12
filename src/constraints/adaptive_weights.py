@@ -1,6 +1,6 @@
 """
-Adaptive constraint weights system for dynamic constraint prioritization.
-Adjusts constraint weights based on violation patterns during evolution.
+Adaptive constraint weights system -  for dynamic constraint prioritization.
+Adjusts constraint weights based on - violation patterns during evolution.
 """
 
 from typing import Dict, List, Any

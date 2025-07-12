@@ -42,24 +42,24 @@ class Config:
 # Genetic Algorithm Configuration - PURE GA (No Local Search)
 GA_CONFIG = {
     # Population parameters
-    'population_size': 80,
+    'population_size': 200,
     'generations': 200,
-    'elite_size': 5,
+    'elite_size': 3,
     
     # Genetic operators - PURE GA only
     'crossover_rate': 0.8,
-    'mutation_rate': 0.1,
-    'tournament_size': 5,
+    'mutation_rate': 0.2,
+    'tournament_size': 20,
     
     # Selection methods - genetic selection only
     'selection_method': 'tournament',  # 'tournament', 'roulette', 'rank'
-    'crossover_method': 'uniform',     # 'uniform', 'single_point', 'two_point'
-    'mutation_method': 'random',       # 'random', 'swap'
+    'crossover_method': 'two_point',     # 'uniform', 'single_point', 'two_point'
+    'mutation_method': 'swap',       # 'random', 'swap'
     
     # Termination criteria
     'max_generations': 500,
     'target_fitness': 0.0,
-    'stagnation_limit': 20,
+    'stagnation_limit': 200,
     'time_limit_minutes': 10,
     
     # Display and logging
@@ -73,14 +73,14 @@ GA_CONFIG = {
 CONSTRAINT_WEIGHTS = {
     # Hard constraints (violations should be heavily penalized)
     'hard_constraints': {
-        'instructor_conflict': 1000,      # Instructor teaching multiple courses at same time
-        'room_conflict': 1000,            # Room double-booked
-        'group_conflict': 1000,           # Student group in multiple classes
-        'course_group_isolation': 1000,   # Multiple groups from same course at same time
-        'room_capacity': 1000,            # Room too small for group
-        'instructor_qualification': 1000,  # Unqualified instructor assigned
-        'room_type_mismatch': 1000,       # Wrong room type for course
-        'availability_violation': 1000,   # Scheduling when not available
+        'instructor_conflict': 100,      # Instructor teaching multiple courses at same time
+        'room_conflict': 100,            # Room double-booked
+        'group_conflict': 100,           # Student group in multiple classes
+        'course_group_isolation': 100,   # Multiple groups from same course at same time
+        'room_capacity': 100,            # Room too small for group
+        'instructor_qualification': 100,  # Unqualified instructor assigned
+        'room_type_mismatch': 100,       # Wrong room type for course
+        'availability_violation': 100,   # Scheduling when not available
     },
     
     # Soft constraints (preferences and quality measures)

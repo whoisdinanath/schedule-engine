@@ -2,7 +2,6 @@
 Main Genetic Algorithm Engine for the timetabling system.
 Coordinates the entire GA process from initialization to solution generation.
 
-This is a PURE GENETIC ALGORITHM implementation without any local search components.
 Uses only genetic operators: selection, crossover, mutation, and elitism.
 """
 
@@ -28,8 +27,6 @@ class GAEngine:
     
     This is a PURE GENETIC ALGORITHM implementation:
     - Uses only genetic operators: selection, crossover, mutation, elitism
-    - No local search, hill climbing, or other hybrid optimization techniques
-    - Rooms are always available (no room availability constraints)
     - Evolution based purely on fitness-driven selection and genetic variation
     """
     
