@@ -16,43 +16,32 @@ class Course:
         course_id: Unique identifier for the course
         name: Display name of the course
         quanta_per_week: Number of sessions required per week
-        required_room_type: Type of room required (e.g., 'lecture', 'lab', 'seminar')
-        group_ids: List of student group IDs enrolled in this course
+        required_room_features: Type of room required (e.g., 'lecture', 'lab', 'seminar')
+        enrolled_group_ids: List of student group IDs enrolled in this course
         qualified_instructor_ids: List of instructor IDs qualified to teach this course
-        room_consistency_required: Whether all sessions need the same room
-        max_gap_hours: Maximum gap allowed between sessions (in hours)
     """
 
     course_id: str
     name: str
-    sessions_per_week: int
-    type: str  # e.g. lecture, lab, seminar
+    quanta_per_week: int
     required_room_features: str
-    group_ids: List[str]
+    enrolled_group_ids: List[str]
     qualified_instructor_ids: List[str]
-    room_consistency_required: bool = False
 
     def __post_init__(self):
         """Validate course data after initialization."""
-        if self.sessions_per_week <= 0:
+        if self.quanta_per_week <= 0:
             raise ValueError(
-                f"Course {self.course_id}: sessions_per_week must be positive"
+                f"Course {self.course_id}: quanta_per_week must be positive"
             )
-
-        if self.duration <= 0:
-            raise ValueError(f"Course {self.course_id}: duration must be positive")
-
-        if not self.group_ids:
-            raise ValueError(f"Course {self.course_id}: must have at least one group")
-
+        if not self.enrolled_group_ids:
+            raise ValueError(
+                f"Course {self.course_id}: must have at least one enrolled group"
+            )
         if not self.qualified_instructor_ids:
             raise ValueError(
                 f"Course {self.course_id}: must have at least one qualified instructor"
             )
-
-    def get_total_weekly_hours(self) -> float:
-        """Calculate total weekly hours for this course."""
-        return (self.sessions_per_week * self.duration) / 60.0
 
     def is_instructor_qualified(self, instructor_id: str) -> bool:
         """Check if an instructor is qualified to teach this course."""
@@ -60,14 +49,8 @@ class Course:
 
     def has_group(self, group_id: str) -> bool:
         """Check if a group is enrolled in this course."""
-        return group_id in self.group_ids
+        return group_id in self.enrolled_group_ids
 
     def get_enrolled_groups(self) -> Set[str]:
         """Get set of enrolled group IDs."""
-        return set(self.group_ids)
-
-    def __str__(self) -> str:
-        return f"Course({self.course_id}: {self.name}, {self.sessions_per_week} sessions/week)"
-
-    def __repr__(self) -> str:
-        return self.__str__()
+        return set(self.enrolled_group_ids)
