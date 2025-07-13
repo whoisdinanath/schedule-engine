@@ -1,0 +1,33 @@
+[
+    {
+        "cid": "CSE101",
+        "name": "Intro to Programming",
+        "weekly_sessions": 3,
+        "type": "Lab",
+        "required_features": [
+            "ComputerLab"
+        ],
+        "group_id": "G1",
+        "instructor_id": "I1"
+    },
+    {
+        "cid": "ECE202",
+        "name": "Digital Circuits",
+        "weekly_sessions": 2,
+        "type": "Lab",
+        "required_features": [
+            "ElectronicsLab"
+        ],
+        "group_id": "G2",
+        "instructor_id": "I2"
+    },
+    {
+        "cid": "ENG105",
+        "name": "English Communication",
+        "weekly_sessions": 2,
+        "type": "Lecture",
+        "required_features": [],
+        "group_id": "G1",
+        "instructor_id": "I3"
+    }
+]

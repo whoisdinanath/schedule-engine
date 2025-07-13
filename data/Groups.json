@@ -1,0 +1,37 @@
+[
+    {
+        "group_id": "G1",
+        "name": "CS 1st Year A",
+        "student_count": 40,
+        "courses": [
+            "CSE101",
+            "ENG105",
+            "MTH102"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "G1A",
+            "G1B"
+        ]
+    },
+    {
+        "group_id": "G1A",
+        "name": "CS 1st Year A - Subgroup 1",
+        "student_count": 20,
+        "courses": [
+            "CSE101"
+        ],
+        "prefers_break": true,
+        "subgroups": []
+    },
+    {
+        "group_id": "G1B",
+        "name": "CS 1st Year A - Subgroup 2",
+        "student_count": 20,
+        "courses": [
+            "CSE101"
+        ],
+        "prefers_break": true,
+        "subgroups": []
+    }
+]
