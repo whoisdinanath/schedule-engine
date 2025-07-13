@@ -1,13 +1,25 @@
 import json
-from src.entities.instructor import Instructor
-from src.entities.course import Course
-from src.entities.group import Group
-from src.entities.room import Room
+from src.entities import Course, Instructor, Room, Group
 from typing import Dict, List
-from src.encoders.quantum_time_system import QuantumTimeSystem
+from src.encoders import QuantumTimeSystem
 
 
 def encode_availability(availability_dict: Dict, qts: QuantumTimeSystem) -> set:
+    """
+    Converts human-readable availability into a set of quantum indices.
+
+    Args:
+        availability_dict (Dict): Dictionary of availability per day, each with a list of {"start", "end"} time pairs.
+        qts (QuantumTimeSystem): Instance of QuantumTimeSystem for time conversion.
+
+    Returns:
+        set: A set of quantum indices representing available times.
+
+    Example:
+        {
+            "Monday": [{"start": "08:00", "end": "10:00"}]
+        } → {32, 33, 34, 35, 36, 37, 38, 39}
+    """
     quanta = set()
     for day, periods in availability_dict.items():
         for period in periods:
@@ -18,6 +30,16 @@ def encode_availability(availability_dict: Dict, qts: QuantumTimeSystem) -> set:
 
 
 def load_instructors(path: str, qts: QuantumTimeSystem) -> Dict[str, Instructor]:
+    """
+    Loads instructor data from a JSON file and encodes availability.
+
+    Args:
+        path (str): Path to the instructor JSON file.
+        qts (QuantumTimeSystem): QuantumTimeSystem instance for time conversion.
+
+    Returns:
+        Dict[str, Instructor]: Dictionary of Instructor objects indexed by instructor ID.
+    """
     data = json.load(open(path))
     instructors = {}
     for item in data:
@@ -32,6 +54,15 @@ def load_instructors(path: str, qts: QuantumTimeSystem) -> Dict[str, Instructor]
 
 
 def load_courses(path: str) -> Dict[str, Course]:
+    """
+    Loads course data from a JSON file.
+
+    Args:
+        path (str): Path to the course JSON file.
+
+    Returns:
+        Dict[str, Course]: Dictionary of Course objects indexed by course ID.
+    """
     data = json.load(open(path))
     courses = {}
     for item in data:
@@ -47,6 +78,16 @@ def load_courses(path: str) -> Dict[str, Course]:
 
 
 def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
+    """
+    Loads group data from a JSON file. Handles both parent and subgroup structures.
+
+    Args:
+        path (str): Path to the group JSON file.
+        qts (QuantumTimeSystem): QuantumTimeSystem instance for time conversion.
+
+    Returns:
+        Dict[str, Group]: Dictionary of Group objects indexed by group/subgroup ID.
+    """
     data = json.load(open(path))
     groups = {}
     for item in data:
@@ -59,6 +100,7 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
             if group_availability
             else set()
         )
+
         if subgroups:
             per_subgroup = student_count // len(subgroups)
             for sub_id in subgroups:
@@ -69,6 +111,7 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
                     enrolled_courses=item["courses"],
                     available_quanta=available_quanta,
                 )
+
         groups[parent_id] = Group(
             group_id=parent_id,
             name=item["name"],
@@ -80,6 +123,16 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
 
 
 def load_rooms(path: str, qts: QuantumTimeSystem) -> Dict[str, Room]:
+    """
+    Loads room data from a JSON file and encodes availability.
+
+    Args:
+        path (str): Path to the room JSON file.
+        qts (QuantumTimeSystem): QuantumTimeSystem instance for time conversion.
+
+    Returns:
+        Dict[str, Room]: Dictionary of Room objects indexed by room ID.
+    """
     data = json.load(open(path))
     rooms = {}
     for item in data:

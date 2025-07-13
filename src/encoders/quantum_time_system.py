@@ -1,3 +1,17 @@
+"""
+CONSTANTS:
+QUANTUM_MINUTES: Duration of a Single Quantum in Minutes
+UNIT_COURSE_DURATION: Standard Course Duration in Minutes
+QUANTA_PER_HOUR: Number of Quanta in One Hour
+QUANTA_PER_DAY: Number of Quanta in One Day
+TOTAL_WEEKLY_QUANTA: Total Quanta in a Week
+UNIT_SESSION_DURATION_QUANTA: Duration of a Single Session in Quanta
+DAY_NAMES: List of Days in a Week
+DEFAULT_OPERATING_HOURS: Default Operating Hours for Each Day
+
+
+"""
+
 from dataclasses import dataclass, field
 from typing import Dict, List, Set, Tuple, Optional, ClassVar
 from collections import defaultdict
@@ -6,11 +20,21 @@ from collections import defaultdict
 @dataclass
 class QuantumTimeSystem:
     """
-    Complete quantum-based time management system with:
-    - Global operating hours configuration
-    - Group-specific scheduling overrides
-    - Holiday management
-    - Pure quantum-based internal operations
+    A quantum-based time system for scheduling.
+    - Time is represented in 15-minute units (quanta).
+    - Operating hours are configured per day.
+    - Supports schedule encoding/decoding into quantum sets.
+    - Enables efficient time range calculation, day-wise quanta grouping and merging
+
+    Methods:
+    For use from outside the class:
+
+
+
+    Example:
+        qts = QuantumTimeSystem()
+        q = qts.time_to_quanta("Monday", "10:30")
+        day, time = qts.quanta_to_time(q)
     """
 
     # Constants
@@ -47,12 +71,23 @@ class QuantumTimeSystem:
     }
 
     def __init__(self):
-        """Initialize with default operating hours and build quanta map"""
+        """
+        Initializes the QuantumTimeSystem with default operating hours.
+        Precomputes quantum bounds for each day
+
+        Example:
+            qts = QuantumTimeSystem()
+        """
         self.operating_hours = self.DEFAULT_OPERATING_HOURS.copy()
         self._build_quanta_map()
 
     def _build_quanta_map(self) -> None:
-        """Convert all time strings to quanta indices for faster processing"""
+        """
+        Builds a mapping of days to their quantum operating ranges.
+
+        Example:
+            self.quanta_hours['Monday'] = (32,80)
+        """
         self.quanta_hours = {}
         for day, hours in self.operating_hours.items():
             self.quanta_hours[day] = (
@@ -62,14 +97,40 @@ class QuantumTimeSystem:
     def _convert_hours_to_quanta(
         self, day: str, hours: Tuple[str, str]
     ) -> Tuple[int, int]:
-        """Convert operating hours tuple to quanta indices"""
+        """
+        Converts start and end times for a day into a tuple of quantum indices.
+
+        Args:
+            day: Day of the week
+            hours: Tuple of (start_time, end_time) in "HH:MM" format
+
+        Returns:
+            Tuple[int, int]: Start and end quantum indices
+
+        Example:
+            (32, 80) for ("08:00", "20:00") on Monday
+
+
+        """
         start = self.time_to_quanta(day, hours[0]) % self.QUANTA_PER_DAY
         end = self.time_to_quanta(day, hours[1]) % self.QUANTA_PER_DAY
         return (start, end)
 
     @classmethod
     def time_to_quanta(cls, day: str, time_str: str) -> int:
-        """Convert (day, time) to global quantum index"""
+        """
+        Convert (day, time) to global quantum index (GQI)
+
+        Args:
+            day: Day of the week
+            time_str: Time string in HH:MM format
+
+        Returns:
+            int: Global Quantum Index (GQI)
+
+        Example:
+            Monday 09:15 -> 129
+        """
         day_idx = cls._validate_and_get_day_index(day)
         hours, minutes = map(int, time_str.split(":"))
         return (
@@ -80,7 +141,18 @@ class QuantumTimeSystem:
 
     @classmethod
     def _validate_and_get_day_index(cls, day: str) -> int:
-        """Validate day name and return its index"""
+        """
+        Validates and returns the index of the day name.
+
+        Args:
+            day: Day name
+
+        Returns:
+            Index: (0-6)
+
+        Raises:
+            ValueError: If the day name is invalid
+        """
         try:
             return cls.DAY_NAMES.index(day.capitalize())
         except ValueError as e:
@@ -88,7 +160,16 @@ class QuantumTimeSystem:
 
     @classmethod
     def quanta_to_time(cls, quantum: int) -> Tuple[str, str]:
-        """Convert global quantum back to (day, time)"""
+        """
+        Convert global quantum back to (day, HH:MM) format
+
+        Args:
+            quantum: Global Quantum Index in the range (0, TOTAL_WEEKLY_QUANTA)
+
+        Returns:
+            Tuple of the day name and time string in HH:MM format
+
+        """
         cls._validate_quantum(quantum)
 
         day_idx, quanta_in_day = divmod(quantum, cls.QUANTA_PER_DAY)
@@ -108,7 +189,19 @@ class QuantumTimeSystem:
     def set_operating_hours(
         self, day: str, start_time: Optional[str], end_time: Optional[str]
     ) -> None:
-        """Update operating hours for a specific day"""
+        """
+
+        Set or Override the operating hours for a specific day.
+
+        Args:
+            day: Day name
+            start_time: Start time string (HH:MM) format
+            end_time: End time string (HH:MM) format
+
+        Example:
+            qts.set_operating_hours("Monday", "08:00", "20:00")
+
+        """
         day = day.capitalize()
         self._validate_day(day)
 
@@ -127,7 +220,15 @@ class QuantumTimeSystem:
         return self.operating_hours.get(day.capitalize()) is not None
 
     def encode_schedule(self, schedule_json: Dict) -> Set[int]:
-        """Convert JSON schedule to quantum set"""
+        """
+        Convert JSON schedule to quantum set
+
+        Args:
+            schedule_json: { day: [{"start": "HH:MM", "end": "HH:MM"}] }
+
+        Returns:
+            Set of quantum indices
+        """
         occupied_quanta = set()
 
         for day, periods in schedule_json.items():
@@ -139,13 +240,30 @@ class QuantumTimeSystem:
         return occupied_quanta
 
     def _get_period_quanta(self, day: str, period: Dict) -> range:
-        """Get quantum range for a single period"""
+        """
+        Get quantum index range for a single period
+
+        Args:
+            day: Day of the week
+            period: {"start": "HH:MM", "end": "HH:MM"}
+
+        Returns:
+            range(start, end) of quantum indices
+        """
         start = self.time_to_quanta(day, period["start"])
         end = self.time_to_quanta(day, period["end"])  # Exclusive
         return range(start, end)
 
     def decode_schedule(self, quanta_set: Set[int]) -> Dict[str, List[Dict]]:
-        """Convert quantum set back to JSON schedule"""
+        """
+        Converts a set of quantum indices back to readable JSON schedule.
+
+        Args:
+            quanta_set: Set of quantum indices
+
+        Returns:
+            { day: [ {"start": "HH:MM", "end": "HH:MM"}, ... ] }
+        """
         schedule = {day: [] for day in self.DAY_NAMES}
         day_groups = self._group_quanta_by_day(quanta_set)
 
@@ -186,76 +304,18 @@ class QuantumTimeSystem:
         return periods
 
     def _create_period(self, start: int, end: int) -> Dict:
-        """Create a period dictionary from quanta values"""
+        """
+        Converts start and end quanta into a period dictionary
+        """
         return {
             "start": self._quanta_to_time_str(start),
             "end": self._quanta_to_time_str(end),
         }
 
     def _quanta_to_time_str(self, quanta: int) -> str:
-        """Convert within-day quanta to time string"""
+        """
+        Converts a within-day quantum index to HH:MM string.
+        """
         hour, minute_quanta = divmod(quanta, self.QUANTA_PER_HOUR)
         minute = minute_quanta * self.QUANTUM_MINUTES
         return f"{hour:02d}:{minute:02d}"
-
-
-@dataclass
-class StudentGroup:
-    """Student group with customizable scheduling constraints"""
-
-    id: str
-    name: str
-    size: int
-    course_ids: List[str]
-    custom_hours: Dict[str, Optional[Tuple[str, str]]] = field(default_factory=dict)
-
-    def get_effective_hours(
-        self, day: str, time_system: QuantumTimeSystem
-    ) -> Tuple[int, int]:
-        """Get operating hours in quanta for specific day"""
-        day = day.capitalize()
-        hours = self._get_hours_for_day(day, time_system)
-        return self._convert_to_quanta(day, hours, time_system)
-
-    def _get_hours_for_day(
-        self, day: str, time_system: QuantumTimeSystem
-    ) -> Tuple[str, str]:
-        """Get operating hours for a specific day"""
-        if day in self.custom_hours and self.custom_hours[day] is not None:
-            return self.custom_hours[day]
-        if time_system.is_operational(day):
-            return time_system.operating_hours[day]
-        raise ValueError(f"{day} is non-operational for this group")
-
-    def _convert_to_quanta(
-        self, day: str, hours: Tuple[str, str], time_system: QuantumTimeSystem
-    ) -> Tuple[int, int]:
-        """Convert time strings to quanta values"""
-        start = time_system.time_to_quanta(day, hours[0]) % time_system.QUANTA_PER_DAY
-        end = time_system.time_to_quanta(day, hours[1]) % time_system.QUANTA_PER_DAY
-        return start, end
-
-
-# Example usage
-if __name__ == "__main__":
-    qts = QuantumTimeSystem()
-    print("Unit session duration (quanta):", qts.UNIT_SESSION_DURATION_QUANTA)
-
-    # Find quanta for Sunday 00:00 to 04:35
-    start_quanta = qts.time_to_quanta("Sunday", "00:00")
-    end_quanta = qts.time_to_quanta("Sunday", "04:46")
-    print(f"Sunday 00:00 quanta: {start_quanta}")
-    print(f"Sunday 04:35 quanta: {end_quanta}")
-    print(
-        f"Quanta indices for Sunday 00:00-04:35: {list(range(start_quanta, end_quanta))}"
-    )
-
-    # Example: encode a time period into quanta
-    day = "Monday"
-    start_time = "09:00"
-    end_time = "11:30"
-    start_q = qts.time_to_quanta(day, start_time)
-    end_q = qts.time_to_quanta(day, end_time)
-    print(
-        f"{day} {start_time}-{end_time} encoded as quanta: {list(range(start_q, end_q))}"
-    )
