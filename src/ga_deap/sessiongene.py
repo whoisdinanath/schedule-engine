@@ -12,5 +12,4 @@ class SessionGene:
     instructor_id: str
     group_id: str
     room_id: str
-    start_quanta: int
-    duration: int
+    quanta: List[int]
