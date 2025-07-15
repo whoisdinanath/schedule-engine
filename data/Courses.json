@@ -1,6 +1,6 @@
 [
     {
-        "cid": "CSE101",
+        "cid": "C101",
         "name": "Intro to Programming",
         "weekly_sessions": 3,
         "type": "Lab",
@@ -11,7 +11,7 @@
         "instructor_id": "I1"
     },
     {
-        "cid": "ECE202",
+        "cid": "C102",
         "name": "Digital Circuits",
         "weekly_sessions": 2,
         "type": "Lab",
@@ -22,7 +22,7 @@
         "instructor_id": "I2"
     },
     {
-        "cid": "ENG105",
+        "cid": "C103",
         "name": "English Communication",
         "weekly_sessions": 2,
         "type": "Lecture",

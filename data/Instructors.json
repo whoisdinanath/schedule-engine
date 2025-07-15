@@ -2,6 +2,10 @@
     {
         "id": "I1",
         "name": "Instructor One",
+        "courses": [
+            "C101",
+            "C102"
+        ],
         "availability": {
             "Monday": [
                 {
@@ -24,6 +28,10 @@
     {
         "id": "I2",
         "name": "Instructor Two",
+        "courses": [
+            "C103",
+            "C104"
+        ],
         "availability": {
             "Wednesday": [
                 {
