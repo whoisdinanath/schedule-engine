@@ -1,8 +1,4 @@
-from .individual import *
-from .operators import *
-from .population import *
-from .runner import *
-from .sessiongene import *
+from .individual import generate_individual
+from .operators import custom_mutation, custom_crossover
 from .system import TimetablingSystem
-
-__all__ = ["TimetablingSystem"]
+from .runner import run_ga, evaluate_fitness

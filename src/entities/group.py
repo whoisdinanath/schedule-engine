@@ -24,7 +24,7 @@ class Group:
     name: str
     student_count: int
     enrolled_courses: List[str]
-    available_quanta: Set[int]
+    # available_quanta: Set[int]
 
     def __post_init__(self):
         """Validate group data after initialization."""

@@ -29,7 +29,7 @@ class TimetablingSystem:
     """
     Main coordinator for the DEAP-based university timetabling optimization system.
 
-    This class encapsulates data loading, preprocessing, validation, 
+    This class encapsulates data loading, preprocessing, validation,
     and optimization via genetic algorithms. It also provides output formatting utilities.
     """
 
@@ -55,7 +55,7 @@ class TimetablingSystem:
         """
         Load all required input files and initialize internal entity dictionaries.
 
-        Loads courses, instructors, student groups, and rooms from JSON files and 
+        Loads courses, instructors, student groups, and rooms from JSON files and
         encodes availability into quantum time slots.
 
         Returns:
@@ -64,7 +64,9 @@ class TimetablingSystem:
         try:
             self.logger.info("Loading data files...")
             self.courses = load_courses(f"{self.data_path}/Courses.json")
-            self.instructors = load_instructors(f"{self.data_path}/Instructors.json", self.qts)
+            self.instructors = load_instructors(
+                f"{self.data_path}/Instructors.json", self.qts
+            )
             self.groups = load_groups(f"{self.data_path}/Groups.json", self.qts)
             self.rooms = load_rooms(f"{self.data_path}/Rooms.json", self.qts)
 
@@ -103,7 +105,9 @@ class TimetablingSystem:
 
         return len(issues) == 0, issues
 
-    def run_optimization(self, generations: int = 50, population_size: int = 100) -> Any:
+    def run_optimization(
+        self, generations: int = 50, population_size: int = 100
+    ) -> Any:
         """
         Run the DEAP-based genetic algorithm to generate a valid schedule.
 
@@ -113,7 +117,7 @@ class TimetablingSystem:
 
         Returns:
             Any: The best individual (schedule) found by the GA.
-        
+
         Raises:
             ValueError: If data has not been loaded before calling this method.
         """
@@ -184,38 +188,41 @@ class TimetablingSystem:
             raise ValueError("Unsupported format: choose 'readable' or 'json'.")
 
     def _format_readable_schedule(self) -> str:
-        """
-        Return a human-readable formatted string of the schedule.
+        if not self.best_solution:
+            return "No schedule available"
 
-        Returns:
-            str: Schedule in plain text format.
-        """
         schedule_text = "=== TIMETABLE SCHEDULE ===\n"
 
-        for i, (time_slot, room_id, instructor_id) in enumerate(self.best_solution):
-            day, time = self.qts.quanta_to_time(time_slot)
-            schedule_text += f"Session {i+1}: {day} {time}, Room {room_id}, Instructor {instructor_id}\n"
+        for i, session in enumerate(self.best_solution):
+            for q in session.quanta:
+                day, time = self.qts.quanta_to_time(q)
+                schedule_text += (
+                    f"Session {i+1}: {day} {time}, "
+                    f"Course: {session.course_id}, Room: {session.room_id}, "
+                    f"Instructor: {session.instructor_id}, Group: {session.group_id}\n"
+                )
 
         return schedule_text
 
-    def _format_json_schedule(self) -> List[Dict[str, Any]]:
-        """
-        Return a JSON-serializable version of the schedule.
+    def _format_json_schedule(self):
+        if not self.best_solution:
+            return []
 
-        Returns:
-            List[Dict[str, Any]]: List of session dictionaries.
-        """
         schedule = []
-        for i, (time_slot, room_id, instructor_id) in enumerate(self.best_solution):
-            day, time = self.qts.quanta_to_time(time_slot)
-            schedule.append(
-                {
-                    "session_id": i,
-                    "time_slot": time_slot,
-                    "day": day,
-                    "time": time,
-                    "room_id": room_id,
-                    "instructor_id": instructor_id,
-                }
-            )
+        for i, session in enumerate(self.best_solution):
+            for q in session.quanta:
+                day, time = self.qts.quanta_to_time(q)
+                schedule.append(
+                    {
+                        "session_id": i,
+                        "quantum": q,
+                        "day": day,
+                        "time": time,
+                        "course_id": session.course_id,
+                        "room_id": session.room_id,
+                        "instructor_id": session.instructor_id,
+                        "group_id": session.group_id,
+                    }
+                )
+
         return schedule
