@@ -12,17 +12,17 @@ and DEAP-based optimization for the University Course Timetabling Problem (UCTP)
 import logging
 from typing import Dict, List, Tuple, Any
 
-from encoders.quantum_time_system import QuantumTimeSystem
-from encoders.input_encoder import (
+from src.encoders.quantum_time_system import QuantumTimeSystem
+from src.encoders.input_encoder import (
     load_courses,
     load_instructors,
     load_groups,
     load_rooms,
     link_courses_and_instructors,
 )
-from entities import Course, Instructor, Group, Room
-from .runner import run_ga
-from .population import register_individual_classes
+from src.entities import Course, Instructor, Group, Room
+from src.ga_deap.runner import run_ga
+from src.ga_deap.population import register_individual_classes
 
 
 class TimetablingSystem:

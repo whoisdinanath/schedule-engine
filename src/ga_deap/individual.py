@@ -12,7 +12,7 @@ import random
 from typing import Dict, List, Tuple
 from src.encoders import QuantumTimeSystem
 from src.entities import Course, Instructor, Group, Room
-from src.ga_deap import SessionGene
+from src.ga_deap.sessiongene import SessionGene
 
 
 def generate_individual(
