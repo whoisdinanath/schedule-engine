@@ -4,9 +4,9 @@
         "name": "CS 1st Year A",
         "student_count": 40,
         "courses": [
-            "CSE101",
-            "ENG105",
-            "MTH102"
+            "C101",
+            "C102",
+            "C103"
         ],
         "prefers_break": true,
         "subgroups": [
@@ -19,7 +19,7 @@
         "name": "CS 1st Year A - Subgroup 1",
         "student_count": 20,
         "courses": [
-            "CSE101"
+            "C101"
         ],
         "prefers_break": true,
         "subgroups": []
@@ -29,7 +29,7 @@
         "name": "CS 1st Year A - Subgroup 2",
         "student_count": 20,
         "courses": [
-            "CSE101"
+            "C101"
         ],
         "prefers_break": true,
         "subgroups": []

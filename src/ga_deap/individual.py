@@ -24,12 +24,18 @@ def generate_individual(
         List[Tuple[time_quanta, room_id, instructor_id]]
         where each element represents assignment for a course session.
     """
-    individual = [] # Initialize an empty individual as a list
+    individual = []  # Initialize an empty individual as a list
     for course in courses.values():
+        # Skip courses without qualified instructors
+        if not course.qualified_instructor_ids:
+            print(
+                f"Warning: Course {course.course_id} has no qualified instructors, skipping"
+            )
+            continue
+
         for _ in range(course.quanta_per_week):
-            time=random.randint(0, qts.TOTAL_WEEKLY_QUANTA-1)
+            time = random.randint(0, qts.TOTAL_WEEKLY_QUANTA - 1)
             room = random.choice(list(rooms.keys()))
             instructor = random.choice(course.qualified_instructor_ids)
             individual.append((time, room, instructor))
     return individual
-    

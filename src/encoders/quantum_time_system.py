@@ -303,6 +303,22 @@ class QuantumTimeSystem:
         periods.append(self._create_period(current_start, current_end))
         return periods
 
+    def get_all_operating_quanta(self) -> Set[int]:
+        """
+        Get all quantum time slots during operating hours across all days.
+
+        Returns:
+            Set[int]: Set of all operating quantum indices
+        """
+        all_quanta = set()
+        for day_idx, day_name in enumerate(self.DAY_NAMES):
+            hours = self.operating_hours.get(day_name)
+            if hours:
+                start_q = self.time_to_quanta(day_name, hours[0])
+                end_q = self.time_to_quanta(day_name, hours[1])
+                all_quanta.update(range(start_q, end_q))
+        return all_quanta
+
     def _create_period(self, start: int, end: int) -> Dict:
         """
         Converts start and end quanta into a period dictionary

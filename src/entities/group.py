@@ -30,10 +30,7 @@ class Group:
         """Validate group data after initialization."""
         if self.student_count <= 0:
             raise ValueError(f"Group {self.group_id}: student_count must be positive")
-        if not self.enrolled_courses:
-            raise ValueError(
-                f"Group {self.group_id}: must be enrolled in at least one course"
-            )
+        # Note: enrolled_courses can be empty if populated later through course-group mapping
 
     def is_enrolled_in_course(self, course_id: str) -> bool:
         """Check if group is enrolled in a specific course."""

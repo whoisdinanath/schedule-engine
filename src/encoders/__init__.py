@@ -5,6 +5,7 @@ from .input_encoder import (
     load_courses,
     load_groups,
     load_rooms,
+    link_courses_and_instructors,
 )
 
 __all__ = [
@@ -14,4 +15,5 @@ __all__ = [
     "load_courses",
     "load_groups",
     "load_rooms",
+    "link_courses_and_instructors",
 ]

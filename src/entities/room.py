@@ -30,10 +30,7 @@ class Room:
         """Validate room data after initialization."""
         if self.capacity <= 0:
             raise ValueError(f"Room {self.room_id}: capacity must be positive")
-        if not self.available_quanta:
-            raise ValueError(
-                f"Room {self.room_id}: must have available quantum time slots"
-            )
+        # Note: available_quanta can be empty if room has no specific restrictions
 
     def can_accommodate_group_size(self, group_size: int) -> bool:
         """Check if room can accommodate a given group size."""

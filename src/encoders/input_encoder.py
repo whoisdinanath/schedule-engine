@@ -43,12 +43,24 @@ def load_instructors(path: str, qts: QuantumTimeSystem) -> Dict[str, Instructor]
     data = json.load(open(path))
     instructors = {}
     for item in data:
+        # Handle availability - if not provided, assume full-time
+        availability = item.get("availability", {})
+        is_full_time = not bool(
+            availability
+        )  # If no availability specified, assume full-time
+        available_quanta = (
+            encode_availability(availability, qts) if availability else set()
+        )
+
+        # Extract qualified courses from JSON data
+        qualified_courses = item.get("courses", [])
+
         instructors[item["id"]] = Instructor(
             instructor_id=item["id"],
             name=item["name"],
-            qualified_courses=[],  # To be backfilled
-            is_full_time=False,
-            available_quanta=encode_availability(item["availability"], qts),
+            qualified_courses=qualified_courses,
+            is_full_time=is_full_time,
+            available_quanta=available_quanta,
         )
     return instructors
 
@@ -66,7 +78,7 @@ def load_courses(path: str) -> Dict[str, Course]:
     data = json.load(open(path))
     courses = {}
     for item in data:
-        courses[item["cid"]] = Course(
+        course = Course(
             course_id=item["cid"],
             name=item["name"],
             quanta_per_week=item["weekly_sessions"],
@@ -74,6 +86,9 @@ def load_courses(path: str) -> Dict[str, Course]:
             enrolled_group_ids=[item["group_id"]],
             qualified_instructor_ids=[item["instructor_id"]],
         )
+        # Store instructor_id for linking
+        course.instructor_id = item["instructor_id"]
+        courses[item["cid"]] = course
     return courses
 
 
@@ -98,8 +113,14 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
         available_quanta = (
             encode_availability(group_availability, qts)
             if group_availability
-            else set()
+            else qts.get_all_operating_quanta()  # Default to all operating hours
         )
+
+        # Get enrolled courses - handle different data formats
+        enrolled_courses = item.get("courses", [])
+        if not enrolled_courses:
+            # If no courses specified, this might be handled later through course-group mapping
+            enrolled_courses = []
 
         if subgroups:
             per_subgroup = student_count // len(subgroups)
@@ -108,7 +129,7 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
                     group_id=sub_id,
                     name=f"{item['name']} Sub {sub_id[-1]}",
                     student_count=per_subgroup,
-                    enrolled_courses=item["courses"],
+                    enrolled_courses=enrolled_courses,
                     available_quanta=available_quanta,
                 )
 
@@ -116,7 +137,7 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
             group_id=parent_id,
             name=item["name"],
             student_count=student_count,
-            enrolled_courses=item["courses"],
+            enrolled_courses=enrolled_courses,
             available_quanta=available_quanta,
         )
     return groups
@@ -138,13 +159,50 @@ def load_rooms(path: str, qts: QuantumTimeSystem) -> Dict[str, Room]:
     for item in data:
         room_availability = item.get("availability", {})
         available_quanta = (
-            encode_availability(room_availability, qts) if room_availability else set()
+            encode_availability(room_availability, qts)
+            if room_availability
+            else qts.get_all_operating_quanta()
         )
         rooms[item["room_id"]] = Room(
             room_id=item["room_id"],
             name=item.get("name", item["room_id"]),
             capacity=item["capacity"],
-            room_features=item["type"].lower(),
+            room_features=item.get("type", "general").lower(),
             available_quanta=available_quanta,
         )
     return rooms
+
+
+def link_courses_and_instructors(
+    courses: Dict[str, Course], instructors: Dict[str, Instructor]
+) -> None:
+    """
+    Links courses and instructors based on the loaded data.
+    Updates instructor qualified_courses and course qualified_instructor_ids.
+
+    Args:
+        courses: Dictionary of Course objects
+        instructors: Dictionary of Instructor objects
+    """
+    # Clear existing links
+    for instructor in instructors.values():
+        instructor.qualified_courses = []
+
+    for course in courses.values():
+        course.qualified_instructor_ids = []
+
+    # Re-establish links based on course data
+    for course in courses.values():
+        # Each course should have an instructor_id in the JSON
+        if hasattr(course, "instructor_id"):
+            instructor_id = course.instructor_id
+            if instructor_id in instructors:
+                # Add course to instructor's qualified courses
+                if course.course_id not in instructors[instructor_id].qualified_courses:
+                    instructors[instructor_id].qualified_courses.append(
+                        course.course_id
+                    )
+
+                # Add instructor to course's qualified instructors
+                if instructor_id not in course.qualified_instructor_ids:
+                    course.qualified_instructor_ids.append(instructor_id)
