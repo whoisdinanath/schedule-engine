@@ -117,7 +117,6 @@ class TimetablingSystem:
 
         Returns:
             Any: The best individual (schedule) found by the GA.
-
         Raises:
             ValueError: If data has not been loaded before calling this method.
         """
