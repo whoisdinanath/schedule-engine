@@ -1,7 +1,7 @@
 import json
 from src.entities import Course, Instructor, Room, Group
 from typing import Dict, List
-from src.encoders import QuantumTimeSystem
+from .quantum_time_system import QuantumTimeSystem
 
 
 def encode_availability(availability_dict: Dict, qts: QuantumTimeSystem) -> set:

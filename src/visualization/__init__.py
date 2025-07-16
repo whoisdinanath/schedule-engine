@@ -2,6 +2,6 @@
 Visualization modules for the timetabling system
 """
 
-from .charts import EvolutionVisualizer
+# from .charts import EvolutionVisualizer
 
-__all__ = ['EvolutionVisualizer']
+# __all__ = ['EvolutionVisualizer']

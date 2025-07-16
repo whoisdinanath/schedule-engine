@@ -105,9 +105,7 @@ class TimetablingSystem:
 
         return len(issues) == 0, issues
 
-    def run_optimization(
-        self, generations: int = 50, population_size: int = 100
-    ) -> Any:
+    def run_optimization(self, generations: int = 50, population_size: int = 100):
         """
         Run the DEAP-based genetic algorithm to generate a valid schedule.
 

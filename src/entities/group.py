@@ -22,7 +22,6 @@ class Group:
         available_quanta: Set of available quantum time slots
     """
 
-
     group_id: str
     name: str
     student_count: int
@@ -33,7 +32,6 @@ class Group:
         """Validate group data after initialization."""
         if self.student_count <= 0:
             raise ValueError(f"Group {self.group_id}: student_count must be positive")
-        # Note: enrolled_courses can be empty if populated later through course-group mapping
 
         # Note: enrolled_courses can be empty if populated later through course-group mapping
 
@@ -42,11 +40,9 @@ class Group:
         """Check if group is enrolled in a specific course."""
         return course_id in self.enrolled_courses
 
-
     def get_enrolled_courses_set(self) -> Set[str]:
         """Get set of enrolled course IDs."""
         return set(self.enrolled_courses)
-
 
     def get_course_count(self) -> int:
         """Get number of courses the group is enrolled in."""
