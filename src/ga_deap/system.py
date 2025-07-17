@@ -157,7 +157,9 @@ class TimetablingSystem:
             "total_sessions": len(self.best_solution),
             "unique_time_slots": len(all_quanta),
             "rooms_used": len(set(session.room_id for session in self.best_solution)),
-            "instructors_used": len(set(session.instructor_id for session in self.best_solution)),
+            "instructors_used": len(
+                set(session.instructor_id for session in self.best_solution)
+            ),
             "fitness_score": (
                 self.best_solution.fitness.values[0]
                 if hasattr(self.best_solution, "fitness")
@@ -202,12 +204,12 @@ class TimetablingSystem:
             schedule_text += f"  Group: {session.group_id}\n"
             schedule_text += f"  Room: {session.room_id}\n"
             schedule_text += f"  Time slots: "
-            
+
             times = []
             for q in session.quanta:
                 day, time = self.qts.quanta_to_time(q)
                 times.append(f"{day} {time}")
-            
+
             schedule_text += ", ".join(times) + "\n\n"
 
         return schedule_text
