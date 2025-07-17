@@ -2,8 +2,6 @@
 Constraint checking modules for the timetabling system
 """
 
-from .hard_constraints import HardConstraintChecker
-from .soft_constraints import SoftConstraintChecker
-from .checker import ConstraintChecker
+from .enhanced_checker import EnhancedConstraintChecker
 
-__all__ = ['HardConstraintChecker', 'SoftConstraintChecker', 'ConstraintChecker']
+__all__ = ["EnhancedConstraintChecker"]

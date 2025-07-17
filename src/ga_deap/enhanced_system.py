@@ -380,6 +380,8 @@ class EnhancedTimetablingSystem:
 
             df = pd.DataFrame(schedule_data)
             df.to_csv(filename, index=False)
+        elif format_type == "readable":
+            return self._format_readable_schedule()
         elif format_type == "json":
             import json
 
@@ -390,6 +392,36 @@ class EnhancedTimetablingSystem:
 
         self.logger.info(f"Schedule exported to: {filename}")
         return filename
+
+    def _format_readable_schedule(self) -> str:
+        """Format the schedule in a human-readable text format."""
+        if not self.best_solution:
+            return "No solution available"
+
+        schedule_text = "=== COMPREHENSIVE TIMETABLE SCHEDULE ===\n\n"
+
+        for i, session in enumerate(self.best_solution):
+            course = self.courses[session.course_id]
+            instructor = self.instructors[session.instructor_id]
+            group = self.groups[session.group_id]
+            room = self.rooms[session.room_id]
+
+            schedule_text += f"Session {i+1:03d}:\n"
+            schedule_text += f"  Course: {course.name} ({course.course_id})\n"
+            schedule_text += (
+                f"  Instructor: {instructor.name} ({instructor.instructor_id})\n"
+            )
+            schedule_text += f"  Group: {group.name} ({group.group_id})\n"
+            schedule_text += f"  Room: {room.name} ({room.room_id})\n"
+            schedule_text += f"  Time Slots:\n"
+
+            for q in session.quanta:
+                day, time = self.qts.quanta_to_time(q)
+                schedule_text += f"    - {day} at {time}\n"
+
+            schedule_text += "\n"
+
+        return schedule_text
 
     def create_visualization_data(self) -> Dict[str, Any]:
         """
