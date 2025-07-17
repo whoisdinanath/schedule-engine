@@ -148,11 +148,16 @@ class TimetablingSystem:
         if not self.best_solution:
             return {"error": "No solution available. Run optimization first."}
 
+        # Extract unique time slots from all sessions
+        all_quanta = set()
+        for session in self.best_solution:
+            all_quanta.update(session.quanta)
+
         summary = {
             "total_sessions": len(self.best_solution),
-            "unique_time_slots": len(set(session[0] for session in self.best_solution)),
-            "rooms_used": len(set(session[1] for session in self.best_solution)),
-            "instructors_used": len(set(session[2] for session in self.best_solution)),
+            "unique_time_slots": len(all_quanta),
+            "rooms_used": len(set(session.room_id for session in self.best_solution)),
+            "instructors_used": len(set(session.instructor_id for session in self.best_solution)),
             "fitness_score": (
                 self.best_solution.fitness.values[0]
                 if hasattr(self.best_solution, "fitness")
@@ -188,16 +193,22 @@ class TimetablingSystem:
         if not self.best_solution:
             return "No schedule available"
 
-        schedule_text = "=== TIMETABLE SCHEDULE ===\n"
+        schedule_text = "=== TIMETABLE SCHEDULE ===\n\n"
 
         for i, session in enumerate(self.best_solution):
+            schedule_text += f"Session {i+1}:\n"
+            schedule_text += f"  Course: {session.course_id}\n"
+            schedule_text += f"  Instructor: {session.instructor_id}\n"
+            schedule_text += f"  Group: {session.group_id}\n"
+            schedule_text += f"  Room: {session.room_id}\n"
+            schedule_text += f"  Time slots: "
+            
+            times = []
             for q in session.quanta:
                 day, time = self.qts.quanta_to_time(q)
-                schedule_text += (
-                    f"Session {i+1}: {day} {time}, "
-                    f"Course: {session.course_id}, Room: {session.room_id}, "
-                    f"Instructor: {session.instructor_id}, Group: {session.group_id}\n"
-                )
+                times.append(f"{day} {time}")
+            
+            schedule_text += ", ".join(times) + "\n\n"
 
         return schedule_text
 

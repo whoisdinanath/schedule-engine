@@ -18,7 +18,7 @@
         "required_features": [
             "ElectronicsLab"
         ],
-        "group_id": "G2",
+        "group_id": "G1",
         "instructor_id": "I2"
     },
     {
@@ -28,6 +28,6 @@
         "type": "Lecture",
         "required_features": [],
         "group_id": "G1",
-        "instructor_id": "I3"
+        "instructor_id": "I1"
     }
 ]
