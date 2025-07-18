@@ -1,0 +1,73 @@
+[
+    {
+        "group_id": "G1",
+        "name": "CS 1st Year A",
+        "student_count": 40,
+        "courses": [
+            "C101",
+            "C102"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "G1A",
+            "G1B"
+        ]
+    },
+    {
+        "group_id": "G1A",
+        "name": "CS 1st Year A - Subgroup A",
+        "student_count": 20,
+        "courses": [
+            "C101"
+        ],
+        "prefers_break": true,
+        "subgroups": []
+    },
+    {
+        "group_id": "G1B",
+        "name": "CS 1st Year A - Subgroup B",
+        "student_count": 20,
+        "courses": [
+            "C102"
+        ],
+        "prefers_break": true,
+        "subgroups": []
+    },
+    {
+        "group_id": "G2",
+        "name": "Engineering 1st Year",
+        "student_count": 35,
+        "courses": [
+            "C103",
+            "C104",
+            "C105"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "G2A",
+            "G2B"
+        ]
+    },
+    {
+        "group_id": "G2A",
+        "name": "Engineering 1st Year - Subgroup A",
+        "student_count": 18,
+        "courses": [
+            "C103",
+            "C104"
+        ],
+        "prefers_break": true,
+        "subgroups": []
+    },
+    {
+        "group_id": "G2B",
+        "name": "Engineering 1st Year - Subgroup B",
+        "student_count": 17,
+        "courses": [
+            "C103",
+            "C105"
+        ],
+        "prefers_break": true,
+        "subgroups": []
+    }
+]

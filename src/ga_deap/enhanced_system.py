@@ -72,13 +72,17 @@ class EnhancedTimetablingSystem:
         issues = []
 
         try:
-            # Load data files
-            self.courses = load_courses(str(self.data_path / "Courses.json"))
+            # Load enhanced data files for better parallel scheduling
+            self.courses = load_courses(str(self.data_path / "Courses_Enhanced.json"))
             self.instructors = load_instructors(
-                str(self.data_path / "Instructors.json"), self.qts
+                str(self.data_path / "Instructors_Enhanced.json"), self.qts
             )
-            self.groups = load_groups(str(self.data_path / "Groups.json"), self.qts)
-            self.rooms = load_rooms(str(self.data_path / "Rooms.json"), self.qts)
+            self.groups = load_groups(
+                str(self.data_path / "Groups_Enhanced.json"), self.qts
+            )
+            self.rooms = load_rooms(
+                str(self.data_path / "Rooms_Enhanced.json"), self.qts
+            )
 
             # Link courses and instructors
             link_courses_and_instructors(self.courses, self.instructors)

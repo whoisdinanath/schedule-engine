@@ -1,0 +1,53 @@
+[
+    {
+        "cid": "C101",
+        "name": "Intro to Programming",
+        "weekly_sessions": 3,
+        "type": "Lab",
+        "required_features": [
+            "ComputerLab"
+        ],
+        "group_id": "G1A",
+        "instructor_id": "I1"
+    },
+    {
+        "cid": "C102",
+        "name": "Digital Circuits",
+        "weekly_sessions": 2,
+        "type": "Lab",
+        "required_features": [
+            "ElectronicsLab"
+        ],
+        "group_id": "G1B",
+        "instructor_id": "I2"
+    },
+    {
+        "cid": "C103",
+        "name": "English Communication",
+        "weekly_sessions": 2,
+        "type": "Lecture",
+        "required_features": [],
+        "group_id": "G2",
+        "instructor_id": "I1"
+    },
+    {
+        "cid": "C104",
+        "name": "Mathematics",
+        "weekly_sessions": 3,
+        "type": "Lecture",
+        "required_features": [],
+        "group_id": "G2A",
+        "instructor_id": "I3"
+    },
+    {
+        "cid": "C105",
+        "name": "Physics",
+        "weekly_sessions": 2,
+        "type": "Lab",
+        "required_features": [
+            "PhysicsLab"
+        ],
+        "group_id": "G2B",
+        "instructor_id": "I2"
+    }
+]
