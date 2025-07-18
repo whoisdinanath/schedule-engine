@@ -6,6 +6,9 @@ from .input_encoder import (
     load_groups,
     load_rooms,
     link_courses_and_instructors,
+    generate_instructors_from_courses,
+    generate_groups_from_courses,
+    generate_rooms_from_courses,
 )
 
 __all__ = [
@@ -16,4 +19,7 @@ __all__ = [
     "load_groups",
     "load_rooms",
     "link_courses_and_instructors",
+    "generate_instructors_from_courses",
+    "generate_groups_from_courses",
+    "generate_rooms_from_courses",
 ]

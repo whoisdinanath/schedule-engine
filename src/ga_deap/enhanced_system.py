@@ -24,6 +24,9 @@ from src.encoders.input_encoder import (
     load_groups,
     load_rooms,
     link_courses_and_instructors,
+    generate_instructors_from_courses,
+    generate_groups_from_courses,
+    generate_rooms_from_courses,
 )
 from src.entities import Course, Instructor, Group, Room
 from src.ga_deap.individual import generate_individual
@@ -65,6 +68,7 @@ class EnhancedTimetablingSystem:
     def load_data(self) -> Tuple[bool, List[str]]:
         """
         Load all data files and perform validation.
+        Supports both Enhanced format and FullSyllabusAll format.
 
         Returns:
             Tuple of (success_flag, list_of_issues)
@@ -72,17 +76,41 @@ class EnhancedTimetablingSystem:
         issues = []
 
         try:
-            # Load enhanced data files for better parallel scheduling
-            self.courses = load_courses(str(self.data_path / "Courses_Enhanced.json"))
-            self.instructors = load_instructors(
-                str(self.data_path / "Instructors_Enhanced.json"), self.qts
-            )
-            self.groups = load_groups(
-                str(self.data_path / "Groups_Enhanced.json"), self.qts
-            )
-            self.rooms = load_rooms(
-                str(self.data_path / "Rooms_Enhanced.json"), self.qts
-            )
+            # Check if FullSyllabusAll.json exists
+            fullsyllabus_path = self.data_path / "FullSyllabusAll.json"
+
+            if fullsyllabus_path.exists():
+                # Load FullSyllabusAll format
+                self.logger.info("Loading FullSyllabusAll format...")
+
+                # Load courses from FullSyllabusAll
+                self.courses = load_courses(str(fullsyllabus_path))
+
+                # Generate other entities automatically
+                self.instructors = generate_instructors_from_courses(
+                    self.courses, self.qts
+                )
+                self.groups = generate_groups_from_courses(self.courses, self.qts)
+                self.rooms = generate_rooms_from_courses(self.courses, self.qts)
+
+                self.logger.info(
+                    "Auto-generated instructors, groups, and rooms from FullSyllabusAll"
+                )
+
+            else:
+                # Load enhanced data files for better parallel scheduling
+                self.courses = load_courses(
+                    str(self.data_path / "Courses_Enhanced.json")
+                )
+                self.instructors = load_instructors(
+                    str(self.data_path / "Instructors_Enhanced.json"), self.qts
+                )
+                self.groups = load_groups(
+                    str(self.data_path / "Groups_Enhanced.json"), self.qts
+                )
+                self.rooms = load_rooms(
+                    str(self.data_path / "Rooms_Enhanced.json"), self.qts
+                )
 
             # Link courses and instructors
             link_courses_and_instructors(self.courses, self.instructors)

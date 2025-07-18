@@ -5,7 +5,7 @@ This module provides dynamic parameter adjustment based on evolution progress,
 population diversity, and convergence analysis.
 """
 
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, List, Tuple
 import numpy as np
 from src.utils.config import GA_CONFIG
 

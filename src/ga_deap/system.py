@@ -63,12 +63,14 @@ class TimetablingSystem:
         """
         try:
             self.logger.info("Loading data files...")
-            self.courses = load_courses(f"{self.data_path}/Courses.json")
+            self.courses = load_courses(f"{self.data_path}/Courses_Enhanced.json")
             self.instructors = load_instructors(
-                f"{self.data_path}/Instructors.json", self.qts
+                f"{self.data_path}/Instructors_Enhanced.json", self.qts
             )
-            self.groups = load_groups(f"{self.data_path}/Groups.json", self.qts)
-            self.rooms = load_rooms(f"{self.data_path}/Rooms.json", self.qts)
+            self.groups = load_groups(
+                f"{self.data_path}/Groups_Enhanced.json", self.qts
+            )
+            self.rooms = load_rooms(f"{self.data_path}/Rooms_Enhanced.json", self.qts)
 
             link_courses_and_instructors(self.courses, self.instructors)
 
