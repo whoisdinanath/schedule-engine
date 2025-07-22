@@ -92,7 +92,12 @@ toolbox.register(
 
 # Fitness Function
 toolbox.register(
-    "evaluate", evaluate, courses=courses, instructors=instructors, groups=groups, rooms=rooms
+    "evaluate",
+    evaluate,
+    courses=courses,
+    instructors=instructors,
+    groups=groups,
+    rooms=rooms,
 )
 
 # Genetic Operators

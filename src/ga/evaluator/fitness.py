@@ -46,7 +46,7 @@ def evaluate(
     if rooms is None:
         # For backward compatibility, create empty rooms dict
         rooms = {}
-    
+
     sessions = decode_individual(individual, courses, instructors, groups, rooms)
 
     # Hard constraint penalty
