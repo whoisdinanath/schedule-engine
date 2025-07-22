@@ -1,224 +1,144 @@
-"""
-Unified Timetabling System - Best of all versions with working visualizations
-This combines features from clean_main.py, improved_main.py, and enhanced_main.py
-"""
-
-import sys
-import logging
-from pathlib import Path
+import random
+import os
 from datetime import datetime
+from deap import base, tools, algorithms
+from nbconvert import export
+
+# Entities Import
+from src.entities.course import Course
+from src.entities.group import Group
+from src.entities.instructor import Instructor
+from src.entities.room import Room
+
+# Import GA Components and Modules
+from src.ga.sessiongene import SessionGene
+from src.ga.individual import create_individual
+from src.ga.population import generate_population
+from src.ga.operators.crossover import crossover_uniform
+from src.ga.operators.mutation import mutate_individual
+from src.ga.evaluator.fitness import evaluate  # Fitness Function
+
+# Import GA Parameters from config/ga_params.py
+from config.ga_params import *
+
+# Import Decoder and Encoder
+from src.encoder.quantum_time_system import QuantumTimeSystem
+from src.encoder.input_encoder import (
+    load_courses,
+    load_groups,
+    load_instructors,
+    load_rooms,
+    link_courses_and_groups,
+    link_courses_and_instructors,
+)
 import json
 
-# Add src to path
-sys.path.append(str(Path(__file__).parent / "src"))
+# Import Exporter
+from src.exporter.exporter import export_everything
 
-from src.config.clean_config import CleanConfig
-from src.ga_deap.enhanced_system import StreamlinedTimetablingSystem
-from src.visualization.charts import EvolutionVisualizer
+# Import Decoder
+from src.decoder.individual_decoder import decode_individual
 
+# Step 0: Create unique output folder per evaluation run
+tstamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+output_dir = os.path.join("output", f"evaluation_{tstamp}")
+os.makedirs(output_dir, exist_ok=True)
 
-def main():
-    """Unified main function with working visualizations"""
-    print("🧬 Unified Genetic Algorithm Timetabling System")
-    print("=" * 60)
-    print("✨ Best features from all versions with working visualizations")
-    print("=" * 60)
+# 1. Initialite RNG  # Set a seed for reproducibility
+random.seed(69)
 
-    # Create configuration
-    config = CleanConfig()
+# 2. init the quantum Time system
+qts = QuantumTimeSystem()
 
-    # Ask user for quick or full optimization
-    print("\nChoose optimization mode:")
-    print("1. Quick Test (50 population, 30 generations) - ~2 minutes")
-    print("2. Standard (100 population, 50 generations) - ~5 minutes")
-    print("3. Full (200 population, 200 generations) - ~15 minutes")
+# 3. Load Input Data
+courses = load_courses("data/Course.json")
+groups = load_groups("data/Groups.json", qts)
+instructors = load_instructors("data/Instructors.json", qts)
+rooms = load_rooms("data/Rooms.json", qts)
 
-    choice = input("Enter choice (1/2/3) [default: 1]: ").strip() or "1"
+link_courses_and_groups(courses, groups)
+link_courses_and_instructors(courses, instructors)
 
-    if choice == "1":
-        config.ga_config.population_size = 50
-        config.ga_config.generations = 30
-        mode = "Quick Test"
-    elif choice == "2":
-        config.ga_config.population_size = 100
-        config.ga_config.generations = 50
-        mode = "Standard"
-    else:
-        config.ga_config.population_size = 200
-        config.ga_config.generations = 200
-        mode = "Full"
+# 4. Prepare Context for GA Populaiton Generation and evaluation
+context = {
+    "courses": courses,
+    "instructors": instructors,
+    "groups": groups,
+    "rooms": rooms,
+    "available_quanta": qts.get_all_operating_quanta(),
+}
 
-    # Display configuration
-    print(f"\n📋 {mode} Configuration:")
-    print(f"   Population Size: {config.ga_config.population_size}")
-    print(f"   Generations: {config.ga_config.generations}")
-    print(f"   Crossover Rate: {config.ga_config.crossover_rate}")
-    print(f"   Mutation Rate: {config.ga_config.mutation_rate}")
+SESSION_COUNT = len(courses)  # Assuming one session per course
 
-    try:
-        # Initialize system
-        system = StreamlinedTimetablingSystem(config=config)
-        print("\n✅ System initialized successfully")
+# 5. DEAP Setup
+toolbox = base.Toolbox()
+toolbox.register(
+    "individual", generate_population, n=1, session_count=SESSION_COUNT, context=context
+)
+toolbox.register(
+    "population", generate_population, session_count=SESSION_COUNT, context=context
+)
 
-        # Load data
-        print("\n📊 Loading data...")
-        success, issues = system.load_data()
+# Fitness Function
+toolbox.register(
+    "evaluate", evaluate, courses=courses, instructors=instructors, groups=groups
+)
 
-        if not success:
-            print("❌ Data loading failed!")
-            for issue in issues:
-                print(f"   - {issue}")
-            return 1
+# Genetic Operators
+toolbox.register("mate", crossover_uniform, cx_prob=0.5)
+toolbox.register("mutate", mutate_individual, context=context, mut_prob=0.2)
+toolbox.register("select", tools.selTournament, tournsize=3)
 
-        print(f"✅ Data loaded successfully:")
-        print(f"   📚 Courses: {len(system.courses)}")
-        print(f"   👥 Instructors: {len(system.instructors)}")
-        print(f"   🎓 Groups: {len(system.groups)}")
-        print(f"   🏢 Rooms: {len(system.rooms)}")
+# 6. Create Population
+# These parameters are defined in config/ga_params.py
+# POP_SIZE = 500
+# NGEN = 30
+# CXPB, MUTPB = 0.7, 0.2
 
-        # Run optimization
-        print(f"\n🚀 Starting {mode} optimization...")
-        print("⏱️  Please wait...")
+population = toolbox.population(n=POP_SIZE)
 
-        start_time = datetime.now()
-        result = system.run_optimization()
-        end_time = datetime.now()
+# 7.  Evaluate the Initial Population
+fitness = list(map(toolbox.evaluate, population))
+for ind, fit in zip(population, fitness):
+    ind.fitness.values = fit
 
-        duration = end_time - start_time
+# 8. Run GenAlgo
+for gin in range(NGEN):
+    print(f"Generation {gin + 1}/{NGEN}")
+    # Select next generation
+    offspring = toolbox.select(population, len(population))
+    offspring = list(map(toolbox.clone, offspring))
 
-        if result and "best_individual" in result:
-            best_solution = result["best_individual"]
-            best_fitness = result["best_fitness"]
-            generations = result["generations"]
+    # Apply Crossover and Mutaiton
+    for i in range(1, len(offspring), 2):
+        if random.random() < CXPB:
+            toolbox.mate(offspring[i - 1], offspring[i])
+            del offspring[i - 1].fitness.values
+            del offspring[i].fitness.values
 
-            print(
-                f"\n✅ Optimization completed in {duration.total_seconds():.2f} seconds"
-            )
-            print(f"🏆 Best Fitness: {best_fitness:.4f}")
-            print(f"📈 Generations: {generations}")
+    for mutant in offspring:
+        if random.random() < MUTPB:
+            toolbox.mutate(mutant)
+            del mutant.fitness.values
 
-            # Analyze solution
-            print("\n📊 Analyzing solution...")
-            analysis = system.analyze_solution(best_solution)
+    # ReEval the invalidated individuals
+    invalid = [ind for ind in offspring if not ind.fitness.valid]
+    fitness = list(map(toolbox.evaluate, invalid))
+    for ind, fit in zip(invalid, fitness):
+        ind.fitness.values = fit
 
-            print(f"   ❌ Hard Violations: {analysis.get('hard_violations', 0)}")
-            print(f"   ⚠️  Soft Violations: {analysis.get('soft_violations', 0)}")
-            print(f"   📊 Total Violations: {analysis.get('total_violations', 0)}")
-            print(f"   🎯 Fitness Score: {analysis.get('fitness_score', 0):.4f}")
+    # Replace the population
+    population[:] = offspring
 
-            # Resource utilization
-            if "resource_utilization" in analysis:
-                util = analysis["resource_utilization"]
-                print(f"\n🏭 Resource Utilization:")
-                print(
-                    f"   👥 Instructors: {util.get('instructor_utilization', 0):.1f}%"
-                )
-                print(f"   🏢 Rooms: {util.get('room_utilization', 0):.1f}%")
-                print(f"   ⏰ Time Slots: {util.get('time_utilization', 0):.1f}%")
+    # Log best Fitness
+    best = tools.selBest(population, 1)[0]  # Get the best individual : 0 means first
+    print(f"Best Fitness : {best.fitness.values[0]}")
 
-            # Create visualizations
-            print("\n🎨 Creating visualizations...")
-            visualizer = EvolutionVisualizer()
+# 9 . Final best solution
+final_best = tools.selBest(population, 1)[0]
+print("Final Best Individual:")
 
-            # Create output directory
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_dir = Path("output") / f"unified_{timestamp}"
-            output_dir.mkdir(parents=True, exist_ok=True)
-
-            try:
-                # 1. Fitness evolution
-                if system.evolution_stats:
-                    fitness_history = []
-                    for i, stats in enumerate(system.evolution_stats):
-                        fitness_history.append(
-                            {
-                                "generation": i,
-                                "best": stats.get("best_fitness", stats.get("best", 0)),
-                                "average": stats.get(
-                                    "avg_fitness", stats.get("average", 0)
-                                ),
-                                "worst": stats.get(
-                                    "min_fitness", stats.get("worst", 0)
-                                ),
-                            }
-                        )
-
-                    fitness_file = output_dir / "fitness_evolution.pdf"
-                    visualizer.plot_fitness_evolution(
-                        fitness_history, save_path=str(fitness_file), show_plot=True
-                    )
-                    print(f"   📈 Fitness evolution: {fitness_file}")
-
-                # 2. Schedule heatmap
-                heatmap_file = output_dir / "schedule_heatmap.pdf"
-                visualizer.plot_schedule_heatmap(
-                    best_solution,
-                    system.courses,
-                    system.instructors,
-                    system.rooms,
-                    system.groups,
-                    view_type="room",
-                    save_path=str(heatmap_file),
-                    show_plot=False,
-                )
-                print(f"   🗓️  Schedule heatmap: {heatmap_file}")
-
-                # 3. Workload distribution
-                workload_file = output_dir / "workload_distribution.pdf"
-                visualizer.plot_workload_distribution(
-                    best_solution,
-                    system.instructors,
-                    system.courses,
-                    save_path=str(workload_file),
-                    show_plot=False,
-                )
-                print(f"   👥 Workload distribution: {workload_file}")
-
-            except Exception as e:
-                print(f"   ⚠️  Visualization error: {e}")
-                print("   📊 Continuing with export...")
-
-            # Export results
-            print("\n💾 Exporting results...")
-            try:
-                full_output_dir = system.export_all_results(str(output_dir))
-                print(f"   📁 All results saved to: {full_output_dir}")
-            except Exception as e:
-                print(f"   ⚠️  Export error: {e}")
-
-            # Final summary
-            print(f"\n🎯 {mode.upper()} OPTIMIZATION COMPLETE!")
-            print(f"   📊 Best Fitness: {best_fitness:.2f}")
-            print(f"   ⏱️  Duration: {duration.total_seconds():.2f} seconds")
-            print(f"   ❌ Hard Violations: {analysis.get('hard_violations', 0)}")
-            print(f"   ⚠️  Soft Violations: {analysis.get('soft_violations', 0)}")
-            print(f"   📁 Results: {output_dir}")
-
-        else:
-            print("❌ No solution found")
-            return 1
-
-    except Exception as e:
-        print(f"❌ Error: {str(e)}")
-        logging.exception("Detailed error:")
-        return 1
-
-    print("\n🎉 Process completed successfully!")
-    print("\n📝 Why do you have 3 main files?")
-    print("   • clean_main.py - Basic version (streamlined)")
-    print("   • improved_main.py - Enhanced version (more features)")
-    print("   • enhanced_main.py - Advanced version (full optimization)")
-    print("   • unified_main.py - This file (best of all with working viz)")
-
-    return 0
-
-
-if __name__ == "__main__":
-    try:
-        sys.exit(main())
-    except KeyboardInterrupt:
-        print("\n⚠️  Process interrupted by user")
-        sys.exit(1)
-    except Exception as e:
-        print(f"\n❌ Unexpected error: {e}")
-        sys.exit(1)
+# Decode the individual before saving
+decoded_schedule = decode_individual(final_best, courses, instructors, groups)
+export_everything(decoded_schedule, output_dir, qts)
+print("Fitness: ", final_best.fitness.values[0])

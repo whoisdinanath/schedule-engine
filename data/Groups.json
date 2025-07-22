@@ -1,0 +1,38 @@
+[
+    {
+        "group_id": "G1",
+        "name": "BAE Automobile 1st Year",
+        "student_count": 40,
+        "courses": [
+            "ENSH 101",
+            "ENSH 102",
+            "ENCT 101",
+            "ENEX 101",
+            "ENME 101",
+            "ENME 103"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "G1A",
+            "G1B"
+        ]
+    },
+    {
+        "group_id": "G2",
+        "name": "Architeture 1st Year",
+        "student_count": 35,
+        "courses": [
+            "ENSH 104",
+            "ENAR 101",
+            "ENAR 102",
+            "ENAR 103",
+            "ENAR 104",
+            "ENAR 105"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "G2A",
+            "G2B"
+        ]
+    }
+]
