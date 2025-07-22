@@ -92,7 +92,7 @@ toolbox.register(
 
 # Fitness Function
 toolbox.register(
-    "evaluate", evaluate, courses=courses, instructors=instructors, groups=groups
+    "evaluate", evaluate, courses=courses, instructors=instructors, groups=groups, rooms=rooms
 )
 
 # Genetic Operators
@@ -158,6 +158,6 @@ final_best = (
 
 
 # Decode the individual before saving
-decoded_schedule = decode_individual(final_best, courses, instructors, groups)
+decoded_schedule = decode_individual(final_best, courses, instructors, groups, rooms)
 export_everything(decoded_schedule, output_dir, qts)
 print("Fitness: ", final_best.fitness.values[0])

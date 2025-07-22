@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import List
 from src.entities.instructor import Instructor
 from src.entities.group import Group
+from src.entities.room import Room
 
 
 @dataclass
@@ -22,6 +23,7 @@ class CourseSession:
         required_room_features (str): Room feature type required (e.g., "lab", "lecture").
         instructor (Instructor, optional): Reference to the assigned Instructor object.
         group (Group, optional): Reference to the primary Group object (if applicable).
+        room (Room, optional): Reference to the assigned Room object.
     """
 
     course_id: str
@@ -32,3 +34,4 @@ class CourseSession:
     required_room_features: str
     instructor: Instructor = None
     group: Group = None
+    room: Room = None

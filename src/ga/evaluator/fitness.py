@@ -4,6 +4,7 @@ from src.ga.sessiongene import SessionGene
 from src.entities.course import Course
 from src.entities.instructor import Instructor
 from src.entities.group import Group
+from src.entities.room import Room
 
 # Hard Constraints (only those confirmed to exist)
 from src.constraints.hard import (
@@ -30,6 +31,7 @@ def evaluate(
     courses: Dict[str, Course],
     instructors: Dict[str, Instructor],
     groups: Dict[str, Group],
+    rooms: Dict[str, Room] = None,
 ) -> Tuple[int, int]:
     """
     Evaluates a timetable individual using both hard and soft constraints.
@@ -40,7 +42,12 @@ def evaluate(
     Returns:
         Tuple[int, int]: (hard_penalty_score, soft_penalty_score)
     """
-    sessions = decode_individual(individual, courses, instructors, groups)
+    # Get rooms from context if not provided
+    if rooms is None:
+        # For backward compatibility, create empty rooms dict
+        rooms = {}
+    
+    sessions = decode_individual(individual, courses, instructors, groups, rooms)
 
     # Hard constraint penalty
     hard_penalty = 0

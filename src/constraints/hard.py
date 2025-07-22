@@ -1,5 +1,5 @@
 from typing import Dict, List
-from entities.course import Course
+from src.entities.course import Course
 from src.entities.decoded_session import CourseSession
 from collections import defaultdict
 

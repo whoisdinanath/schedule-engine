@@ -15,6 +15,7 @@ from src.entities.decoded_session import CourseSession
 from src.entities.course import Course
 from src.entities.instructor import Instructor
 from src.entities.group import Group
+from src.entities.room import Room
 
 
 def decode_individual(
@@ -22,6 +23,7 @@ def decode_individual(
     courses: Dict[str, Course],
     instructors: Dict[str, Instructor],
     groups: Dict[str, Group],
+    rooms: Dict[str, Room],
 ) -> List[CourseSession]:
     """Decodes a GA individual (chromosome) into a list of CourseSession objects.
 
@@ -38,6 +40,8 @@ def decode_individual(
         instructors (Dict[str, Instructor]): Mapping from instructor ID to Instructor objects.
         groups (Dict[str, Group]): Mapping from group ID to Group objects, including
             availability and enrollment data.
+        rooms (Dict[str, Room]): Mapping from room ID to Room objects, including
+            capacity and features data.
 
     Returns:
         List[CourseSession]: A list of fully populated CourseSession objects derived
@@ -49,6 +53,7 @@ def decode_individual(
         course = courses[gene.course_id]
         instructor = instructors[gene.instructor_id]
         group = groups[gene.group_id]
+        room = rooms[gene.room_id]
 
         session = CourseSession(
             course_id=gene.course_id,
@@ -59,6 +64,7 @@ def decode_individual(
             required_room_features=course.required_room_features,
             instructor=instructor,
             group=group,
+            room=room,
         )
 
         decoded_sessions.append(session)
