@@ -5,8 +5,24 @@ from src.entities.course import Course
 from src.entities.instructor import Instructor
 from src.entities.group import Group
 
-from src.constraints.hard import no_group_overlap, no_instructor_conflict
-from src.constraints.soft import group_gap_penalty
+# Hard Constraints (only those confirmed to exist)
+from src.constraints.hard import (
+    no_group_overlap,
+    no_instructor_conflict,
+    instructor_not_qualified,
+    room_type_mismatch,
+    availability_violations,
+    incomplete_or_extra_sessions,
+)
+
+# Soft Constraints
+from src.constraints.soft import (
+    group_gaps_penalty,
+    instructor_gaps_penalty,
+    group_midday_break_violation,
+    course_split_penalty,
+    early_or_late_session_penalty,
+)
 
 
 def evaluate(
@@ -14,25 +30,33 @@ def evaluate(
     courses: Dict[str, Course],
     instructors: Dict[str, Instructor],
     groups: Dict[str, Group],
-) -> Tuple[float]:
+) -> Tuple[int, int]:
     """
-    Evaluates the fitness of an individual based on hard constraint violations.
+    Evaluates a timetable individual using both hard and soft constraints.
+
+    Hard constraints affect feasibility and must ideally reach zero.
+    Soft constraints reflect schedule quality and should be minimized.
 
     Returns:
-        Tuple[float]: A single-element tuple representing the penalty score
-                      (lower is better).
+        Tuple[int, int]: (hard_penalty_score, soft_penalty_score)
     """
     sessions = decode_individual(individual, courses, instructors, groups)
 
-    hard = 0
-    hard += no_group_overlap(sessions)
-    hard += no_instructor_conflict(sessions)
+    # Hard constraint penalty
+    hard_penalty = 0
+    hard_penalty += no_group_overlap(sessions)
+    hard_penalty += no_instructor_conflict(sessions)
+    hard_penalty += instructor_not_qualified(sessions, courses)
+    hard_penalty += room_type_mismatch(sessions)
+    hard_penalty += availability_violations(sessions)
+    hard_penalty += incomplete_or_extra_sessions(sessions, courses)
 
-    soft = 0
-    soft += group_gap_penalty(sessions)
-    # If you want single objective optimization: you can reutrn only hard, or hard+soft
-    # If you want multi-objective optimization: return (hard, soft) for NSGA-II or simiolar appraoch algos.
-    #  DEAP expects a tuple if only single value is to be reurned then
-    # return (hard,) or (hard + soft,)
+    # Soft constraint penalty
+    soft_penalty = 0
+    soft_penalty += group_gaps_penalty(sessions)
+    soft_penalty += instructor_gaps_penalty(sessions)
+    soft_penalty += group_midday_break_violation(sessions)
+    soft_penalty += course_split_penalty(sessions)
+    soft_penalty += early_or_late_session_penalty(sessions)
 
-    return (hard, soft)  # Must be a tuple for DEAP compatibility
+    return (hard_penalty, soft_penalty)
