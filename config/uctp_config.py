@@ -1,1 +1,0 @@
-# This File Contains UCTP Configuration Parameters

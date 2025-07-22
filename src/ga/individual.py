@@ -6,9 +6,19 @@ from src.ga.sessiongene import SessionGene
 # Will implement multiobjective in next version :
 # eaa muji kina chaldaina? ekchhin comment hanxu, pachchi kholxu
 
+
+# In Future
+# DEAP initializtion logic:
+# yo creator.create bhanne logic lai; centralized garera: eutai
+# creator_registry.py file ma rakhna parxa.
+
 # Fitness: Single Objective, Minimizing Problem for PenaltyScoring
-creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
-creator.create("Individual", list, fitness=creator.FitnessMin)
+# creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
+
+#  MultiObjective Fitness: (Hard, Soft) Constraints;
+# In Future Implement hasattr here.
+creator.create("FitnessMulti", base.Fitness, weights=(-1.0, -1.0))
+creator.create("Individual", list, fitness=creator.FitnessMulti)
 
 
 def create_individual(gene_list: List[SessionGene]) -> creator.Individual:

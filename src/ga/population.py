@@ -5,6 +5,7 @@ from src.ga.sessiongene import SessionGene
 from src.ga.individual import create_individual
 
 # from src
+# Or Separately I need to write population initialization logic. for population generation with min constraint vilation
 
 
 def generate_random_gene(

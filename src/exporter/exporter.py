@@ -111,13 +111,13 @@ def _save_json_schedule_as_pdf(
     """
 
     DAYS = [
+        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
         "Saturday",
-        "Sunday",
     ]
     DAY_IDX = {day: i for i, day in enumerate(DAYS)}
     TIME_FORMAT = "%H:%M"

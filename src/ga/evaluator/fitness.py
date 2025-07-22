@@ -1,10 +1,12 @@
 from typing import List, Dict, Tuple
 from src.decoder.individual_decoder import decode_individual
-from src.constraints.hard import no_group_overlap, no_instructor_conflict
 from src.ga.sessiongene import SessionGene
 from src.entities.course import Course
 from src.entities.instructor import Instructor
 from src.entities.group import Group
+
+from src.constraints.hard import no_group_overlap, no_instructor_conflict
+from src.constraints.soft import group_gap_penalty
 
 
 def evaluate(
@@ -22,8 +24,15 @@ def evaluate(
     """
     sessions = decode_individual(individual, courses, instructors, groups)
 
-    penalty = 0
-    penalty += no_group_overlap(sessions)
-    penalty += no_instructor_conflict(sessions)
+    hard = 0
+    hard += no_group_overlap(sessions)
+    hard += no_instructor_conflict(sessions)
 
-    return (penalty,)  # Must be a tuple for DEAP compatibility
+    soft = 0
+    soft += group_gap_penalty(sessions)
+    # If you want single objective optimization: you can reutrn only hard, or hard+soft
+    # If you want multi-objective optimization: return (hard, soft) for NSGA-II or simiolar appraoch algos.
+    #  DEAP expects a tuple if only single value is to be reurned then
+    # return (hard,) or (hard + soft,)
+
+    return (hard, soft)  # Must be a tuple for DEAP compatibility

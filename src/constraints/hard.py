@@ -1,5 +1,7 @@
-from typing import List
+from typing import Dict, List
+from entities.course import Course
 from src.entities.decoded_session import CourseSession
+from collections import defaultdict
 
 
 def no_group_overlap(sessions: List[CourseSession]) -> int:
@@ -47,3 +49,73 @@ def no_instructor_conflict(sessions: List[CourseSession]) -> int:
                 instructor_time_map[key] = session.course_id
 
     return conflicts
+
+
+def instructor_not_qualified(
+    sessions: List[CourseSession], course_map: Dict[str, Course]
+) -> int:
+    """
+    Checks how many sessions are assigned to unqualified instructors.
+    """
+    violations = 0
+
+    for session in sessions:
+        qualified = course_map[session.course_id].qualified_instructor_ids
+        if session.instructor_id not in qualified:
+            violations += 1
+
+    return violations
+
+
+def room_type_mismatch(sessions: List[CourseSession]) -> int:
+    """
+    Counts how many sessions are scheduled in rooms that don't match required features.
+    """
+    violations = 0
+
+    for session in sessions:
+        if session.room.room_features != session.required_room_features:
+            violations += 1
+
+    return violations
+
+
+def availability_violations(sessions: List[CourseSession]) -> int:
+    """
+    Counts how many sessions are scheduled during unavailable time slots for
+    the group, instructor, or room.
+    """
+    violations = 0
+
+    for session in sessions:
+        for q in session.session_quanta:
+            if (
+                q not in session.instructor.available_quanta
+                or q not in session.group.available_quanta
+                or q not in session.room.available_quanta
+            ):
+                violations += 1
+                break  # Only count one violation per session
+
+    return violations
+
+
+def incomplete_or_extra_sessions(
+    sessions: List[CourseSession], course_map: Dict[str, Course]
+) -> int:
+    """
+    Verifies that each course is scheduled for exactly the required number of quanta.
+
+    Returns the number of courses that are under- or over-scheduled.
+    """
+    quanta_counter = defaultdict(int)
+
+    for session in sessions:
+        quanta_counter[session.course_id] += len(session.session_quanta)
+
+    violations = 0
+    for cid, course in course_map.items():
+        if quanta_counter[cid] != course.quanta_per_week:
+            violations += 1
+
+    return violations

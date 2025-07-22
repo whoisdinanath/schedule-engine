@@ -4,6 +4,7 @@ from datetime import datetime
 from deap import base, tools, algorithms
 from nbconvert import export
 
+
 # Entities Import
 from src.entities.course import Course
 from src.entities.group import Group
@@ -19,7 +20,7 @@ from src.ga.operators.mutation import mutate_individual
 from src.ga.evaluator.fitness import evaluate  # Fitness Function
 
 # Import GA Parameters from config/ga_params.py
-from config.ga_params import *
+from config.ga_params import POP_SIZE, NGEN, CXPB, MUTPB
 
 # Import Decoder and Encoder
 from src.encoder.quantum_time_system import QuantumTimeSystem
@@ -33,12 +34,14 @@ from src.encoder.input_encoder import (
 )
 import json
 
-# Import Exporter
+# Import Exporter : this module containts func to export to json and pdf of generated Schedule
 from src.exporter.exporter import export_everything
 
 # Import Decoder
 from src.decoder.individual_decoder import decode_individual
+import matplotlib.pyplot as plt
 
+###############################################################################
 # Step 0: Create unique output folder per evaluation run
 tstamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 output_dir = os.path.join("output", f"evaluation_{tstamp}")
@@ -56,10 +59,13 @@ groups = load_groups("data/Groups.json", qts)
 instructors = load_instructors("data/Instructors.json", qts)
 rooms = load_rooms("data/Rooms.json", qts)
 
-link_courses_and_groups(courses, groups)
+link_courses_and_groups(
+    courses, groups
+)  # Yo muz function alik primitive xa: sudhar garnaparne xa
 link_courses_and_instructors(courses, instructors)
 
-# 4. Prepare Context for GA Populaiton Generation and evaluation
+# 4. Prepare Context for GA Population Generation and evaluation
+# Yo Muji ma ajhai dherai kura thpana baaki nai xa
 context = {
     "courses": courses,
     "instructors": instructors,
@@ -68,10 +74,15 @@ context = {
     "available_quanta": qts.get_all_operating_quanta(),
 }
 
-SESSION_COUNT = len(courses)  # Assuming one session per course
+# Assuming one session per course: Yeslai pani quantatimeclass class bata lyauda ramro hunxa
+SESSION_COUNT = len(courses)
 
 # 5. DEAP Setup
 toolbox = base.Toolbox()
+toolbox.register(
+    "select", tools.selNSGA2
+)  # Selector for NSGA-II Multi-objective optimization
+
 toolbox.register(
     "individual", generate_population, n=1, session_count=SESSION_COUNT, context=context
 )
@@ -85,15 +96,11 @@ toolbox.register(
 )
 
 # Genetic Operators
-toolbox.register("mate", crossover_uniform, cx_prob=0.5)
-toolbox.register("mutate", mutate_individual, context=context, mut_prob=0.2)
-toolbox.register("select", tools.selTournament, tournsize=3)
+toolbox.register("mate", crossover_uniform, cx_prob=CXPB)
+toolbox.register("mutate", mutate_individual, context=context, mut_prob=MUTPB)
+# toolbox.register("select", tools.selTournament, tournsize=3) # Not needed for NSGA-II, dont konw why not needed?
 
 # 6. Create Population
-# These parameters are defined in config/ga_params.py
-# POP_SIZE = 500
-# NGEN = 30
-# CXPB, MUTPB = 0.7, 0.2
 
 population = toolbox.population(n=POP_SIZE)
 
@@ -134,9 +141,21 @@ for gin in range(NGEN):
     best = tools.selBest(population, 1)[0]  # Get the best individual : 0 means first
     print(f"Best Fitness : {best.fitness.values[0]}")
 
-# 9 . Final best solution
-final_best = tools.selBest(population, 1)[0]
-print("Final Best Individual:")
+# 9 . Final best solution (Single Objective Optimization)
+# final_best = tools.selBest(population, 1)[0]
+# print("Final Best Individual:")
+
+# 9 (Aliter): For MOO Multi Objective Optimization: We implement code slot #9 . below
+pareto_front = tools.sortNondominated(
+    population, len(population), first_front_only=True
+)[0]
+feasible = [ind for ind in pareto_front if ind.fitness.values[0] == 0]
+final_best = (
+    min(feasible, key=lambda ind: ind.fitness.values[1])
+    if feasible
+    else pareto_front[0]
+)
+
 
 # Decode the individual before saving
 decoded_schedule = decode_individual(final_best, courses, instructors, groups)
