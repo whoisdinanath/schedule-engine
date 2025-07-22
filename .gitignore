@@ -6,4 +6,5 @@ __pycache__/
 !README.md
 output/
 TEMPFILESWORKING/
-# logs/
+logs/
+test*.py
