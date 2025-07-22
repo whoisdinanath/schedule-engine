@@ -1,72 +1,569 @@
 [
     {
-        "room_id": "R101",
-        "name": "Lecture Hall A",
-        "capacity": 50,
-        "type": "Lecture",
+        "room_id": "A101",
+        "name": "Mechanics of Machinery Lab",
+        "capacity": 24,
+        "type": "Laboratory",
         "features": [
-            "Projector",
-            "Whiteboard"
+            "DAME"
         ]
     },
     {
-        "room_id": "R102",
-        "name": "Computer Lab 1",
-        "capacity": 30,
-        "type": "Lab",
+        "room_id": "A102",
+        "name": "Fluid Engineering Lab",
+        "capacity": 24,
+        "type": "Laboratory",
         "features": [
-            "ComputerLab",
-            "Projector"
+            "DAME"
         ]
     },
     {
-        "room_id": "R103",
-        "name": "Computer Lab 2",
-        "capacity": 25,
-        "type": "Lab",
+        "room_id": "A103",
+        "name": "Material Science",
+        "capacity": 24,
+        "type": "Laboratory",
         "features": [
-            "ComputerLab",
-            "Projector"
+            "DAME"
         ]
     },
     {
-        "room_id": "R104",
-        "name": "Electronics Lab",
-        "capacity": 20,
-        "type": "Lab",
+        "room_id": "A104",
+        "name": "Thermal Science",
+        "capacity": 24,
+        "type": "Laboratory",
         "features": [
-            "ElectronicsLab",
-            "Oscilloscope"
+            "DAME"
         ]
     },
     {
-        "room_id": "R105",
+        "room_id": "A201",
+        "name": "Classroom A-201",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
+        "room_id": "A202",
+        "name": "Classroom A-202",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
+        "room_id": "A301",
+        "name": "Classroom A-301",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
+        "room_id": "A302",
+        "name": "Classroom A-302",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
+        "room_id": "A303",
+        "name": "Classroom A-303",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
+        "room_id": "B101",
+        "name": "Seminar Room B-101",
+        "capacity": 48,
+        "type": "Seminar Room",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
+        "room_id": "B102",
+        "name": "Classroom B-102",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
+        "room_id": "B103",
+        "name": "Classroom B-103",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B104",
+        "name": "Classroom B-104",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B202",
+        "name": "Classroom B-202",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B203",
         "name": "Physics Lab",
-        "capacity": 25,
-        "type": "Lab",
+        "capacity": 24,
+        "type": "Laboratory",
         "features": [
-            "PhysicsLab",
-            "Experiment Equipment"
+            "DAS"
         ]
     },
     {
-        "room_id": "R106",
-        "name": "Lecture Hall B",
-        "capacity": 40,
-        "type": "Lecture",
+        "room_id": "B204",
+        "name": "Chem Lab",
+        "capacity": 24,
+        "type": "Laboratory",
         "features": [
-            "Projector",
-            "Whiteboard"
+            "DAS"
         ]
     },
     {
-        "room_id": "R107",
-        "name": "Seminar Room",
-        "capacity": 30,
-        "type": "Lecture",
+        "room_id": "B205",
+        "name": "Classroom B-205",
+        "capacity": 48,
+        "type": "Classroom",
         "features": [
-            "Projector",
-            "Whiteboard"
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B206",
+        "name": "Classroom B-206",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B207",
+        "name": "Classroom B-207",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B303",
+        "name": "Seminar Room B-303",
+        "capacity": 48,
+        "type": "Seminar Room",
+        "features": [
+            "DIE"
+        ]
+    },
+    {
+        "room_id": "B304",
+        "name": "Classroom B-304",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DIE"
+        ]
+    },
+    {
+        "room_id": "B308",
+        "name": "Classroom B-308",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DIE"
+        ]
+    },
+    {
+        "room_id": "B309",
+        "name": "Classroom B-309",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DIE"
+        ]
+    },
+    {
+        "room_id": "B310",
+        "name": "Classroom B-310",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B311",
+        "name": "Classroom B-311",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B312",
+        "name": "Classroom B-312",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B402",
+        "name": "Classroom B-402",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B403",
+        "name": "Classroom B-403",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "B407",
+        "name": "Classroom B-407",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "D101",
+        "name": "Computer Lab 1",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "D102",
+        "name": "Computer Lab 2",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "D104",
+        "name": "Computer Lab 3",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "D105",
+        "name": "Computer Lab 4",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "D106",
+        "name": "Computer Lab 5",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "D107",
+        "name": "Electrical Lab",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "D108",
+        "name": "Electronics Lab 1",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "D110",
+        "name": "Electronics Lab 2",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "D111",
+        "name": "Drawing Lab 1",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "D112",
+        "name": "Drawing Lab 2",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "E201",
+        "name": "Electronics Lab 3",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "E004",
+        "name": "Structure Geology Lab",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "E002",
+        "name": "Classroom E-002",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "E003",
+        "name": "Classroom E-003",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "E101",
+        "name": "Classroom E-101",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "E102",
+        "name": "Classroom E-102",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "E104",
+        "name": "Seminar Room E-104",
+        "capacity": 48,
+        "type": "Seminar Room",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "E203",
+        "name": "Classroom E-203",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "E204",
+        "name": "Classroom E-204",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "E205",
+        "name": "Classroom E-205",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "E302",
+        "name": "Classroom E-302",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "E303",
+        "name": "Classroom E-303",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "E304",
+        "name": "Classroom E-304",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "E305",
+        "name": "Classroom E-305",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "E402",
+        "name": "Classroom E-402",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "E403",
+        "name": "Classroom E-403",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "E404",
+        "name": "Classroom E-404",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "E405",
+        "name": "Seminar Room E-405",
+        "capacity": 48,
+        "type": "Seminar Room",
+        "features": [
+            "DECE"
+        ]
+    },
+    {
+        "room_id": "F101",
+        "name": "Classroom F-101",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
+        "room_id": "F102",
+        "name": "Classroom F-102",
+        "capacity": 48,
+        "type": "Classroom",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
+        "room_id": "W101",
+        "name": "Mechanical Workshop",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "W102",
+        "name": "Material Testing Lab",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "W103",
+        "name": "Survey Lab",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DCE"
+        ]
+    },
+    {
+        "room_id": "W104",
+        "name": "Automobile Workshop",
+        "capacity": 24,
+        "type": "Laboratory",
+        "features": [
+            "DAME"
         ]
     }
 ]
