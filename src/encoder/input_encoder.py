@@ -200,16 +200,16 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
             # If no courses specified, this might be handled later through course-group mapping
             enrolled_courses = []
 
-        if subgroups:
-            per_subgroup = student_count // len(subgroups)
-            for sub_id in subgroups:
-                groups[sub_id] = Group(
-                    group_id=sub_id,
-                    name=f"{item['name']} Sub {sub_id[-1]}",
-                    student_count=per_subgroup,
-                    enrolled_courses=enrolled_courses,
-                    available_quanta=available_quanta,
-                )
+        # if subgroups:
+        #     per_subgroup = student_count // len(subgroups)
+        #     for sub_id in subgroups:
+        #         groups[sub_id] = Group(
+        #             group_id=sub_id,
+        #             name=f"{item['name']} Sub {sub_id[-1]}",
+        #             student_count=per_subgroup,
+        #             enrolled_courses=enrolled_courses,
+        #             available_quanta=available_quanta,
+        #         )
 
         groups[parent_id] = Group(
             group_id=parent_id,

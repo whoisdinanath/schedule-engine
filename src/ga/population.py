@@ -16,11 +16,32 @@ def generate_random_gene(
     available_quanta,
 ) -> SessionGene:
     course = random.choice(possible_courses)
-    instructor = random.choice(possible_instructors)
-    group = random.choice(possible_groups)
+
+    # Try to find a qualified instructor (constraint-aware)
+    qualified_instructors = [
+        inst
+        for inst in possible_instructors
+        if course.course_id in getattr(inst, "qualified_courses", [course.course_id])
+    ]
+    instructor = random.choice(
+        qualified_instructors if qualified_instructors else possible_instructors
+    )
+
+    # Try to find a compatible group (constraint-aware)
+    compatible_groups = [
+        grp
+        for grp in possible_groups
+        if course.course_id in getattr(grp, "enrolled_courses", [course.course_id])
+    ]
+    group = random.choice(compatible_groups if compatible_groups else possible_groups)
+
     room = random.choice(possible_rooms)
 
-    num_quanta = random.randint(1, 4)
+    # Use course's required quanta count if available
+    num_quanta = getattr(course, "quanta_per_week", random.randint(1, 4))
+    num_quanta = min(
+        num_quanta, len(available_quanta)
+    )  # Ensure we don't exceed available
 
     # You may want to base this on course.quanta_per_week
     quanta = random.sample(list(available_quanta), num_quanta)

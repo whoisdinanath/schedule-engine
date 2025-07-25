@@ -40,6 +40,12 @@ import json
 # Import Exporter : this module containts func to export to json and pdf of generated Schedule
 from src.exporter.exporter import export_everything
 
+# Plotting modules
+from src.exporter.plotdiversity import plot_diversity_trend
+from src.exporter.plothard import plot_hard_constraint_violation_over_generation
+from src.exporter.plotpareto import plot_pareto_front
+from src.exporter.plotsoft import plot_soft_constraint_violation_over_generation
+
 # Import Decoder
 from src.decoder.individual_decoder import decode_individual
 import matplotlib.pyplot as plt
@@ -125,11 +131,12 @@ diversity_trend = []
 # 8. Run GenAlgo
 for gin in range(NGEN):
     print(f"Generation {gin + 1}/{NGEN}")
-    # Select next generation
+
+    # Generate offspring using NSGA-II selection
     offspring = toolbox.select(population, len(population))
     offspring = list(map(toolbox.clone, offspring))
 
-    # Apply Crossover and Mutaiton
+    # Apply Crossover and Mutation
     for i in range(1, len(offspring), 2):
         if random.random() < CXPB:
             toolbox.mate(offspring[i - 1], offspring[i])
@@ -141,14 +148,15 @@ for gin in range(NGEN):
             toolbox.mutate(mutant)
             del mutant.fitness.values
 
-    # ReEval the invalidated individuals
+    # Evaluate only invalidated individuals
     invalid = [ind for ind in offspring if not ind.fitness.valid]
     fitness = list(map(toolbox.evaluate, invalid))
     for ind, fit in zip(invalid, fitness):
         ind.fitness.values = fit
 
-    # Replace the population
-    population[:] = offspring
+    # Combine parents and offspring, then select next generation
+    combined_population = population + offspring
+    population[:] = toolbox.select(combined_population, len(population))
 
     # Track Metrics per generation
     hard_trend.append(min(ind.fitness.values[0] for ind in population))
@@ -156,44 +164,72 @@ for gin in range(NGEN):
     diversity_trend.append(average_pairwise_diversity(population))
 
     # Log best Fitness
-    best = tools.selBest(population, 1)[0]  # Get the best individual : 0 means first
-    print(f"Best Fitness : {best.fitness.values[0]}")
+    best = tools.selBest(population, 1)[0]  # Get the best individual
+    print(f"Best Hard Constraint Violations: {best.fitness.values[0]}")
+    print(f"Best Soft Constraint Penalty: {best.fitness.values[1]}")
+
+    # Early stopping if we find a perfect solution
+    if best.fitness.values[0] == 0:
+        print(f"Perfect solution found at generation {gin + 1}!")
+        break
 
 
-# 8.5 Plotting the Residue of GA OPtimization Loop i.e. Hard, Soft and Diversity Trends
-# Plot constraint violation trends
-plt.figure(figsize=(10, 4))
-plt.plot(hard_trend, label="Hard Constraint")
-plt.plot(soft_trend, label="Soft Constraint")
-plt.xlabel("Generation")
-plt.ylabel("Penalty")
-plt.title("Constraint Trends Over Generations")
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.savefig(os.path.join(output_dir, "constraint_trend.pdf"))
+# 8.5 Plotting Hard and Soft Constraint Trends Separately
 
+
+# Plot Hard Constraint violations
+plot_hard_constraint_violation_over_generation(hard_trend, output_dir)
+# Plot Soft Constraint penalties
+plot_soft_constraint_violation_over_generation(soft_trend, output_dir)
 # Plot diversity evolution
-plt.figure(figsize=(8, 4))
-plt.plot(diversity_trend, color="orange", label="Diversity")
-plt.xlabel("Generation")
-plt.ylabel("Avg. Chromosome Distance")
-plt.title("Diversity Over Generations")
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.savefig(os.path.join(output_dir, "diversity.pdf"))
-
+plot_diversity_trend(diversity_trend, output_dir)
 # Plot final Pareto front
-hard_vals, soft_vals = zip(*[ind.fitness.values for ind in population])
-plt.figure(figsize=(6, 5))
-plt.scatter(hard_vals, soft_vals, color="blue", alpha=0.6)
-plt.xlabel("Hard Constraint Violations")
-plt.ylabel("Soft Constraint Penalty")
-plt.title("Final Pareto Front")
-plt.grid(True)
-plt.tight_layout()
-plt.savefig(os.path.join(output_dir, "pareto_front.pdf"))
+plot_pareto_front(population, output_dir)
+
+
+# plt.figure(figsize=(8, 4))
+# plt.plot(hard_trend, color="red", label="Hard Constraint Violations")
+# plt.xlabel("Generation")
+# plt.ylabel("Violations")
+# plt.title("Hard Constraint Violations Over Generations")
+# plt.legend()
+# plt.grid(True)
+# plt.tight_layout()
+# plt.savefig(os.path.join(output_dir, "hard_constraint_trend.pdf"))
+
+# # Plot Soft Constraint penalties
+# plt.figure(figsize=(8, 4))
+# plt.plot(soft_trend, color="green", label="Soft Constraint Penalties")
+# plt.xlabel("Generation")
+# plt.ylabel("Penalty")
+# plt.title("Soft Constraint Penalties Over Generations")
+# plt.legend()
+# plt.grid(True)
+# plt.tight_layout()
+# plt.savefig(os.path.join(output_dir, "soft_constraint_trend.pdf"))
+
+# # Plot diversity evolution
+# plt.figure(figsize=(8, 4))
+# plt.plot(diversity_trend, color="orange", label="Diversity")
+# plt.xlabel("Generation")
+# plt.ylabel("Avg. Chromosome Distance")
+# plt.title("Diversity Over Generations")
+# plt.legend()
+# plt.grid(True)
+# plt.tight_layout()
+# plt.savefig(os.path.join(output_dir, "diversity.pdf"))
+
+# # Plot final Pareto front
+# hard_vals, soft_vals = zip(*[ind.fitness.values for ind in population])
+# plt.figure(figsize=(6, 5))
+# plt.scatter(hard_vals, soft_vals, color="blue", alpha=0.6)
+# plt.xlabel("Hard Constraint Violations")
+# plt.ylabel("Soft Constraint Penalty")
+# plt.title("Final Pareto Front")
+# plt.grid(True)
+# plt.tight_layout()
+# plt.savefig(os.path.join(output_dir, "pareto_front.pdf"))
+
 # 9 . Final best solution (Single Objective Optimization)
 # final_best = tools.selBest(population, 1)[0]
 # print("Final Best Individual:")

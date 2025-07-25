@@ -18,5 +18,5 @@ def crossover_uniform(
         if random.random() < cx_prob:
             # Swap genes between the two individuals
             ind1[i], ind2[i] = ind2[i], ind1[i]
-        return ind1, ind2
-    # return the modified individuals
+
+    return ind1, ind2  # Return after processing ALL genes

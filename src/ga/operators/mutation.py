@@ -4,15 +4,47 @@ from src.ga.sessiongene import SessionGene
 
 def mutate_gene(gene: SessionGene, context) -> SessionGene:
     """
-    Performs the Mutation on a single gene (e.g. change time or instructor)
-
+    Performs constraint-aware mutation on a single gene
     """
-    new_quanta = random.sample(list(context["available_quanta"]), len(gene.quanta))
+    # Get course info for constraint-aware mutation
+    course = context["courses"].get(gene.course_id)
+
+    # Find qualified instructors for this course
+    qualified_instructors = [
+        inst_id
+        for inst_id, inst in context["instructors"].items()
+        if gene.course_id in getattr(inst, "qualified_courses", [gene.course_id])
+    ]
+    new_instructor = random.choice(
+        qualified_instructors
+        if qualified_instructors
+        else list(context["instructors"].keys())
+    )
+
+    # Find compatible groups for this course
+    compatible_groups = [
+        grp_id
+        for grp_id, grp in context["groups"].items()
+        if gene.course_id in getattr(grp, "enrolled_courses", [gene.course_id])
+    ]
+    new_group = random.choice(
+        compatible_groups if compatible_groups else list(context["groups"].keys())
+    )
+
+    # Use course's required quanta count if available
+    num_quanta = (
+        getattr(course, "quanta_per_week", len(gene.quanta))
+        if course
+        else len(gene.quanta)
+    )
+    num_quanta = min(num_quanta, len(context["available_quanta"]))
+
+    new_quanta = random.sample(list(context["available_quanta"]), num_quanta)
 
     return SessionGene(
-        course_id=gene.course_id,
-        instructor_id=random.choice(list(context["instructors"].keys())),
-        group_id=gene.group_id,
+        course_id=gene.course_id,  # Keep course the same
+        instructor_id=new_instructor,
+        group_id=new_group,
         room_id=random.choice(list(context["rooms"].keys())),
         quanta=new_quanta,
     )

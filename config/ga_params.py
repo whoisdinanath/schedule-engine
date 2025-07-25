@@ -1,5 +1,5 @@
-# This File Contaitns Genetic Algorithm Parameters
+# This File Contains Genetic Algorithm Parameters
 
-POP_SIZE = 100
-NGEN = 500
-CXPB, MUTPB = 0.7, 0.4
+POP_SIZE = 50
+NGEN = 100
+CXPB, MUTPB = 0.8, 0.3  # Increased crossover, reduced mutation for better convergence
