@@ -72,5 +72,3 @@ Here’s your `## Works and Progress` section in clean GitHub-style Markdown for
 * [ ] Parallel evaluation with multiprocessing
 
 ---
-
-Let me know if you want a `Progress.md` file generated with this content ready to commit.
