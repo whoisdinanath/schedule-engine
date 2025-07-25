@@ -1,6 +1,4 @@
-Here’s your `## Works and Progress` section in clean GitHub-style Markdown for your project `README.md` or `Progress.md`:
 
----
 
 ## 🚧 Works and Progress
 
