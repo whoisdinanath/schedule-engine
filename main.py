@@ -2,7 +2,6 @@ import random
 import os
 from datetime import datetime
 from deap import base, tools, algorithms
-from nbconvert import export
 
 
 # Entities Import
@@ -14,7 +13,7 @@ from src.entities.room import Room
 # Import GA Components and Modules
 from src.ga.sessiongene import SessionGene
 from src.ga.individual import create_individual
-from src.ga.population import generate_population
+from src.ga.population import generate_course_group_aware_population
 from src.ga.operators.crossover import crossover_uniform
 from src.ga.operators.mutation import mutate_individual
 from src.ga.evaluator.fitness import evaluate  # Fitness Function
@@ -74,7 +73,6 @@ link_courses_and_groups(
 link_courses_and_instructors(courses, instructors)
 
 # 4. Prepare Context for GA Population Generation and evaluation
-# Yo Muji ma ajhai dherai kura thpana baaki nai xa
 context = {
     "courses": courses,
     "instructors": instructors,
@@ -83,9 +81,6 @@ context = {
     "available_quanta": qts.get_all_operating_quanta(),
 }
 
-# Assuming one session per course: Yeslai pani quantatimeclass class bata lyauda ramro hunxa
-SESSION_COUNT = len(courses)
-
 # 5. DEAP Setup
 toolbox = base.Toolbox()
 toolbox.register(
@@ -93,11 +88,9 @@ toolbox.register(
 )  # Selector for NSGA-II Multi-objective optimization
 
 toolbox.register(
-    "individual", generate_population, n=1, session_count=SESSION_COUNT, context=context
+    "individual", generate_course_group_aware_population, n=1, context=context
 )
-toolbox.register(
-    "population", generate_population, session_count=SESSION_COUNT, context=context
-)
+toolbox.register("population", generate_course_group_aware_population, context=context)
 
 # Fitness Function
 toolbox.register(
