@@ -17,7 +17,8 @@ from src.ga.sessiongene import SessionGene
 
 #  MultiObjective Fitness: (Hard, Soft) Constraints;
 # In Future Implement hasattr here.
-creator.create("FitnessMulti", base.Fitness, weights=(-1.0, -1.0))
+# (-1.0, -0.1) normalized weight foro hard and soft constraints. Since, SC = 500 so normalize it by 0.01. to make
+creator.create("FitnessMulti", base.Fitness, weights=(-1.0, -0.01))
 creator.create("Individual", list, fitness=creator.FitnessMulti)
 
 

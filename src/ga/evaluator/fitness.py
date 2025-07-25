@@ -60,10 +60,10 @@ def evaluate(
 
     # Soft constraint penalty
     soft_penalty = 0
-    soft_penalty += group_gaps_penalty(sessions)
-    soft_penalty += instructor_gaps_penalty(sessions)
-    soft_penalty += group_midday_break_violation(sessions)
-    soft_penalty += course_split_penalty(sessions)
-    soft_penalty += early_or_late_session_penalty(sessions)
+    soft_penalty += group_gaps_penalty(sessions) /100
+    soft_penalty += instructor_gaps_penalty(sessions) /50
+    soft_penalty += group_midday_break_violation(sessions)/ 30
+    soft_penalty += course_split_penalty(sessions)/20
+    soft_penalty += early_or_late_session_penalty(sessions) / 10
 
     return (hard_penalty, soft_penalty)
