@@ -395,7 +395,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "Thermal Science"
+        "PracticalRoomFeatures": "Engineering Thermodynamics"
     },
     {
         "Semester": 2,
@@ -626,7 +626,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "Advanced Electronics"
+        "PracticalRoomFeatures": "Control BEI"
     },
     {
         "Semester": 3,
@@ -791,7 +791,7 @@
         "L": 3,
         "T": 2,
         "P": 0,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Theory of Machines and Mechanisms"
     },
     {
         "Semester": 4,
@@ -923,7 +923,7 @@
         "L": 4,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "Electrical"
+        "PracticalRoomFeatures": "Electrical Machines"
     },
     {
         "Semester": 4,
@@ -1044,7 +1044,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "Advanced Computer"
+        "PracticalRoomFeatures": "Signals and Systems"
     },
     {
         "Semester": 4,
@@ -1088,7 +1088,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "mechanicsmachinery"
+        "PracticalRoomFeatures": "Mechanics of Solids"
     },
     {
         "Semester": 4,
@@ -1099,7 +1099,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "automobileworkshop"
+        "PracticalRoomFeatures": "Instrumentation and Sensors"
     },
     {
         "Semester": 4,
@@ -1110,7 +1110,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "computer"
+        "PracticalRoomFeatures": "Computer Aided Design"
     },
     {
         "Semester": 4,
@@ -1121,7 +1121,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "fluidengineering"
+        "PracticalRoomFeatures": "Fluid Engineering"
     },
     {
         "Semester": 4,
@@ -1132,7 +1132,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "fluidengineering"
+        "PracticalRoomFeatures": "Fluid Engineering"
     },
     {
         "Semester": 4,
@@ -1308,7 +1308,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Database Management System"
     },
     {
         "Semester": 5,
@@ -1352,7 +1352,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Artificial Intelligence"
     },
     {
         "Semester": 5,
@@ -1429,7 +1429,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedelectronics"
+        "PracticalRoomFeatures": "Filter Design"
     },
     {
         "Semester": 5,
@@ -1462,7 +1462,7 @@
         "L": 3,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Elective I"
     },
     {
         "Semester": 5,
@@ -1473,7 +1473,7 @@
         "L": 3,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Elective I"
     },
     {
         "Semester": 5,
@@ -1495,7 +1495,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "automobileworkshop"
+        "PracticalRoomFeatures": "Fluid Engineering"
     },
     {
         "Semester": 5,
@@ -1506,7 +1506,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "automobileworkshop"
+        "PracticalRoomFeatures": "Heat and Mass Transfer"
     },
     {
         "Semester": 5,
@@ -1528,7 +1528,7 @@
         "L": 3,
         "T": 2,
         "P": 0,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Theory of Machines and Mechanisms"
     },
     {
         "Semester": 5,
@@ -1583,7 +1583,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "computer"
+        "PracticalRoomFeatures": "Numerical Methods Mechanical"
     },
     {
         "Semester": 6,
@@ -1594,7 +1594,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "automobileworkshop"
+        "PracticalRoomFeatures": "Automobile Chassis"
     },
     {
         "Semester": 6,
@@ -1605,7 +1605,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "automobileworkshop"
+        "PracticalRoomFeatures": "Automobile Component Design"
     },
     {
         "Semester": 6,
@@ -1660,7 +1660,7 @@
         "L": 3,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Elective I Automobile"
     },
     {
         "Semester": 6,
@@ -2012,7 +2012,7 @@
         "L": 3,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Elective I Mechanical"
     },
     {
         "Semester": 6,
@@ -2023,7 +2023,7 @@
         "L": 3,
         "T": 2,
         "P": 0,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "automobileworkshop"
     },
     {
         "Semester": 6,
@@ -2067,7 +2067,7 @@
         "L": 3,
         "T": 0,
         "P": 1.5,
-        "PracticalRoomFeatures": "automobileworkshop"
+        "PracticalRoomFeatures": "Mechanics of Machines and Mechanisms"
     },
     {
         "Semester": 7,
@@ -2221,7 +2221,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "communicationelectronics"
+        "PracticalRoomFeatures": "RF and Microwave Engineering"
     },
     {
         "Semester": 7,
@@ -2265,7 +2265,7 @@
         "L": 4,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "communicationelectronics"
+        "PracticalRoomFeatures": "Digital Signal Processing"
     },
     {
         "Semester": 7,

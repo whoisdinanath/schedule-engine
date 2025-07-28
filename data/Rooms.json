@@ -5,7 +5,8 @@
         "capacity": 24,
         "type": "Lab",
         "features": [
-            "DAME"
+            "Mechanics of Solids",
+            "Mechanics of Machines and Mechanisms"
         ]
     },
     {
@@ -35,7 +36,8 @@
         "capacity": 24,
         "type": "Practical",
         "features": [
-            "Thermal Science"
+            "Engineering Thermodynamics",
+            "Heat and Mass Transfer"
         ]
     },
     {
@@ -343,7 +345,8 @@
         "features": [
             "Building Construction",
             "Building Services",
-            "CADD"
+            "CADD",
+            "Computer Aided Design"
         ]
     },
     {
@@ -355,7 +358,9 @@
             "Building Services",
             "Operation Research",
             "Numerical Methods Civil",
-            "Plant Layout and Design"
+            "Plant Layout and Design",
+            "Elective I Automobile",
+            "Elective I Mechanical"
         ]
     },
     {
@@ -366,9 +371,12 @@
         "features": [
             
             "Numerical Methods",
+            "Numerical Methods Mechanical",
             "Data Communication",
             "Computer Organization and Architecture",
-            "Software Engineering"
+            "Software Engineering",
+            "Database Management System",
+            "Control BEI"
         ]
     },
     {
@@ -380,9 +388,9 @@
             "Object Oriented Programming",
             "Data Structure and Algorithms",
             "Distributed Systems",
-            "Elective I"
-            
-            
+            "Elective I",
+            "Signals and Systems",
+            "Filter Design"
         ]
     },
     {
@@ -394,7 +402,9 @@
             "Computer Graphics",
             "Digital Signal Processing",
             "Operating System",
-            "Computer Network"
+            "Computer Network",
+            "Artificial Intelligence",
+            "Elective I"
         ]
     },
     {
@@ -403,16 +413,19 @@
         "capacity": 24,
         "type": "Lab",
         "features": [
-            "electrical circuits and machines"
+            "electrical circuits and machines",
+            "Electrical Machines"
         ]
     },
     {
         "room_id": "D108",
         "name": "Electronics Lab 1",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
-            "Electronic Devices and Circuits"
+            "Electronic Devices and Circuits",
+            "RF and Microwave Engineering",
+            "Instrumentation and Sensors"
         ]
     },
     {
@@ -681,7 +694,9 @@
         "capacity": 24,
         "type": "Lab",
         "features": [
-            "DAME"
+            "automobileworkshop",
+            "Automobile Component Design",
+            "Automobile Chassis"
         ]
     },
     {
