@@ -219,7 +219,7 @@
         "L": 2,
         "T": 4,
         "P": 0,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Machine Drawing"
     },
     {
         "Semester": 2,
@@ -714,7 +714,7 @@
         "L": 3,
         "T": 0,
         "P": 1.5,
-        "PracticalRoomFeatures": "Structure Geology"
+        "PracticalRoomFeatures": "Metrology and Instrumentation"
     },
     {
         "Semester": 3,
@@ -759,6 +759,17 @@
         "T": 0,
         "P": 0,
         "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 7,
+        "Dept": "BIE",
+        "CourseCode": "ENIE 703",
+        "CourseTitle": "Plant Layout Design and OHS",
+        "Credits": 3,
+        "L": 3,
+        "T": 0,
+        "P": 3,
+        "PracticalRoomFeatures": "Plant Layout and Design"
     },
     {
         "Semester": 3,
@@ -1044,7 +1055,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "Automobile Workshop"
+        "PracticalRoomFeatures": "Metrology and Instrumentation"
     },
     {
         "Semester": 4,
@@ -1055,7 +1066,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Workstudy and Human factors"
     },
     {
         "Semester": 4,
@@ -1154,7 +1165,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "computer"
+        "PracticalRoomFeatures": "numerical_methods_computer"
     },
     {
         "Semester": 5,
@@ -1246,14 +1257,14 @@
     },
     {
         "Semester": 5,
-        "Dept": "BAE, BCE, BME",
+        "Dept": "BAE, BCE, BME, BIE",
         "CourseCode": "ENCE 307",
         "CourseTitle": "Control System and Automation",
         "Credits": 3,
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedelectronics"
+        "PracticalRoomFeatures": "Control System and Automation"
     },
     {
         "Semester": 5,
@@ -1550,7 +1561,7 @@
         "L": 3,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Industrial_elective_I"
     },
     {
         "Semester": 5,
@@ -1902,7 +1913,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Operation Research"
     },
     {
         "Semester": 6,
@@ -2441,7 +2452,7 @@
         "L": 3,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Industrial_elective_III"
     },
     {
         "Semester": 7,
@@ -2452,7 +2463,7 @@
         "L": 3,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Industrial_elective_IV"
     },
     {
         "Semester": 7,
