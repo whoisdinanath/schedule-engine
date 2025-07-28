@@ -30,7 +30,7 @@
         "L": 2,
         "T": 0,
         "P": 8,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Design Studio"
     },
     {
         "Semester": 1,
@@ -41,7 +41,7 @@
         "L": 2,
         "T": 0,
         "P": 4,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Architectural Graphics"
     },
     {
         "Semester": 1,
@@ -52,8 +52,10 @@
         "L": 2,
         "T": 0,
         "P": 3,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Free Hand Sketching"
     },
+
+    
     {
         "Semester": 1,
         "Dept": "BARCH",
@@ -96,7 +98,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "computer"
+        "PracticalRoomFeatures": "Computer"
     },
     {
         "Semester": 1,
@@ -118,7 +120,7 @@
         "L": 2,
         "T": 0,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Geology"
     },
     {
         "Semester": 1,
@@ -129,7 +131,7 @@
         "L": 2,
         "T": 0,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Material Science"
     },
     {
         "Semester": 1,
@@ -140,7 +142,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "electrical"
+        "PracticalRoomFeatures": "Electrical"
     },
     {
         "Semester": 1,
@@ -151,7 +153,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "electrical"
+        "PracticalRoomFeatures": "Electrical"
     },
     {
         "Semester": 1,
@@ -162,7 +164,7 @@
         "L": 2,
         "T": 0,
         "P": 4,
-        "PracticalRoomFeatures": "drawing"
+        "PracticalRoomFeatures": "Drawing"
     },
     {
         "Semester": 1,
@@ -173,7 +175,7 @@
         "L": 1,
         "T": 0,
         "P": 3,
-        "PracticalRoomFeatures": "workshop"
+        "PracticalRoomFeatures": "Workshop"
     },
     {
         "Semester": 1,
@@ -184,7 +186,7 @@
         "L": 4,
         "T": 1,
         "P": 2,
-        "PracticalRoomFeatures": "physics"
+        "PracticalRoomFeatures": "Physics"
     },
     {
         "Semester": 1,
@@ -195,7 +197,7 @@
         "L": 3,
         "T": 0,
         "P": 3,
-        "PracticalRoomFeatures": "chemistry"
+        "PracticalRoomFeatures": "Chemistry"
     },
     {
         "Semester": 2,
@@ -239,7 +241,7 @@
         "L": 2,
         "T": 0,
         "P": 3,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Architectural Graphics"
     },
     {
         "Semester": 2,
@@ -250,7 +252,7 @@
         "L": 2,
         "T": 0,
         "P": 8,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Design Studio"
     },
     {
         "Semester": 2,
@@ -261,7 +263,7 @@
         "L": 2,
         "T": 0,
         "P": 3,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Construction"
     },
     {
         "Semester": 2,
@@ -272,7 +274,7 @@
         "L": 2,
         "T": 0,
         "P": 3,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Free Hand Sketching"
     },
     {
         "Semester": 2,
@@ -283,7 +285,7 @@
         "L": 3,
         "T": 1,
         "P": 4,
-        "PracticalRoomFeatures": "survey"
+        "PracticalRoomFeatures": "Survey"
     },
     {
         "Semester": 2,
@@ -305,7 +307,7 @@
         "L": 3,
         "T": 0,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "History_Nepalese"
     },
     {
         "Semester": 2,
@@ -327,7 +329,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Advanced Computer"
     },
     {
         "Semester": 2,
@@ -338,7 +340,7 @@
         "L": 3,
         "T": 1,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Material Science"
     },
     {
         "Semester": 2,
@@ -349,7 +351,7 @@
         "L": 2,
         "T": 0,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Geology"
     },
     {
         "Semester": 2,
@@ -360,7 +362,7 @@
         "L": 4,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "electrical"
+        "PracticalRoomFeatures": "Electrical"
     },
     {
         "Semester": 2,
@@ -371,7 +373,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "advancedelectronics"
+        "PracticalRoomFeatures": "Advanced Electronics"
     },
     {
         "Semester": 2,
@@ -382,7 +384,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "electronics"
+        "PracticalRoomFeatures": "Electronics"
     },
     {
         "Semester": 2,
@@ -393,7 +395,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "thermalscience"
+        "PracticalRoomFeatures": "Thermal Science"
     },
     {
         "Semester": 2,
@@ -404,7 +406,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "workshop"
+        "PracticalRoomFeatures": "Workshop"
     },
     {
         "Semester": 2,
@@ -415,7 +417,7 @@
         "L": 2,
         "T": 0,
         "P": 4,
-        "PracticalRoomFeatures": "drawing"
+        "PracticalRoomFeatures": "Drawing"
     },
     {
         "Semester": 2,
@@ -426,7 +428,7 @@
         "L": 4,
         "T": 1,
         "P": 2,
-        "PracticalRoomFeatures": "physics"
+        "PracticalRoomFeatures": "Physics"
     },
     {
         "Semester": 2,
@@ -437,7 +439,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "chemistry"
+        "PracticalRoomFeatures": "Chemistry"
     },
     {
         "Semester": 3,
@@ -448,7 +450,7 @@
         "L": 3,
         "T": 2,
         "P": 1.5,
-        "PracticalRoomFeatures": "materialscience"
+        "PracticalRoomFeatures": "Material Science"
     },
     {
         "Semester": 3,
@@ -470,7 +472,7 @@
         "L": 0,
         "T": 0,
         "P": 10,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Design Studio"
     },
     {
         "Semester": 3,
@@ -481,7 +483,7 @@
         "L": 2,
         "T": 0,
         "P": 3,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Construction"
     },
     {
         "Semester": 3,
@@ -492,7 +494,7 @@
         "L": 4,
         "T": 2,
         "P": 1.5,
-        "PracticalRoomFeatures": "fluidengineering"
+        "PracticalRoomFeatures": "Fluid Engineering"
     },
     {
         "Semester": 3,
@@ -503,7 +505,7 @@
         "L": 3,
         "T": 1,
         "P": 4,
-        "PracticalRoomFeatures": "survey"
+        "PracticalRoomFeatures": "Survey"
     },
     {
         "Semester": 3,
@@ -514,7 +516,7 @@
         "L": 2,
         "T": 0,
         "P": 3,
-        "PracticalRoomFeatures": "computer"
+        "PracticalRoomFeatures": "Computer"
     },
     {
         "Semester": 3,
@@ -525,7 +527,7 @@
         "L": 2,
         "T": 0,
         "P": 1.5,
-        "PracticalRoomFeatures": "materialscience"
+        "PracticalRoomFeatures": "Material Science"
     },
     {
         "Semester": 3,
@@ -536,7 +538,7 @@
         "L": 3,
         "T": 0,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "History_east"
     },
     {
         "Semester": 3,
@@ -591,7 +593,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Advanced Computer"
     },
     {
         "Semester": 3,
@@ -602,7 +604,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Advanced Computer"
     },
     {
         "Semester": 3,
@@ -613,7 +615,7 @@
         "L": 3,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Structure"
     },
     {
         "Semester": 3,
@@ -624,7 +626,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedelectronics"
+        "PracticalRoomFeatures": "Advanced Electronics"
     },
     {
         "Semester": 3,
@@ -635,7 +637,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "advancedelectronics"
+        "PracticalRoomFeatures": "Advanced Electronics"
     },
     {
         "Semester": 3,
@@ -646,7 +648,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedelectronics"
+        "PracticalRoomFeatures": "Advanced Electronics"
     },
     {
         "Semester": 3,
@@ -668,7 +670,7 @@
         "L": 3,
         "T": 1,
         "P": 0,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "English"
     },
     {
         "Semester": 3,
@@ -679,7 +681,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "materialscience"
+        "PracticalRoomFeatures": "Material Science"
     },
     {
         "Semester": 3,
@@ -690,7 +692,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "mechcad"
+        "PracticalRoomFeatures": "Mannufacturing"
     },
     {
         "Semester": 3,
@@ -701,7 +703,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "thermalscience"
+        "PracticalRoomFeatures": "Thermal Science"
     },
     {
         "Semester": 3,
@@ -712,7 +714,7 @@
         "L": 3,
         "T": 0,
         "P": 1.5,
-        "PracticalRoomFeatures": "structuregeology"
+        "PracticalRoomFeatures": "Structure Geology"
     },
     {
         "Semester": 3,
@@ -723,7 +725,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "materialscience"
+        "PracticalRoomFeatures": "Material Science"
     },
     {
         "Semester": 3,
@@ -734,7 +736,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "thermalscience"
+        "PracticalRoomFeatures": "Thermal Science"
     },
     {
         "Semester": 3,
@@ -767,7 +769,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "computer"
+        "PracticalRoomFeatures": "Computer"
     },
     {
         "Semester": 4,
@@ -789,7 +791,7 @@
         "L": 0,
         "T": 0,
         "P": 10,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Design Studio"
     },
     {
         "Semester": 4,
@@ -800,7 +802,7 @@
         "L": 2,
         "T": 0,
         "P": 2,
-        "PracticalRoomFeatures": "computer"
+        "PracticalRoomFeatures": "CADD"
     },
     {
         "Semester": 4,
@@ -811,7 +813,7 @@
         "L": 4,
         "T": 2,
         "P": 2,
-        "PracticalRoomFeatures": "materialscience"
+        "PracticalRoomFeatures": "Material Science"
     },
     {
         "Semester": 4,
@@ -822,7 +824,7 @@
         "L": 2,
         "T": 0,
         "P": 4,
-        "PracticalRoomFeatures": "survey"
+        "PracticalRoomFeatures": "Surveying"
     },
     {
         "Semester": 4,
@@ -844,7 +846,7 @@
         "L": 3,
         "T": 0,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "History_west"
     },
     {
         "Semester": 4,
@@ -877,7 +879,7 @@
         "L": 3,
         "T": 1,
         "P": 3,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Advanced Computer"
     },
     {
         "Semester": 4,
@@ -888,7 +890,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Advanced Computer"
     },
     {
         "Semester": 4,
@@ -899,7 +901,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Advanced Computer"
     },
     {
         "Semester": 4,
@@ -910,7 +912,7 @@
         "L": 4,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "electrical"
+        "PracticalRoomFeatures": "Electrical"
     },
     {
         "Semester": 4,
@@ -921,7 +923,7 @@
         "L": 3,
         "T": 0,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "English"
     },
     {
         "Semester": 4,
@@ -943,7 +945,7 @@
         "L": 4,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Hydraulics"
     },
     {
         "Semester": 4,
@@ -954,7 +956,7 @@
         "L": 4,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Structure"
     },
     {
         "Semester": 4,
@@ -965,7 +967,7 @@
         "L": 3,
         "T": 2,
         "P": 1,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Water Supply"
     },
     {
         "Semester": 4,
@@ -998,7 +1000,7 @@
         "L": 4,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedelectronics"
+        "PracticalRoomFeatures": "Advanced Electronics"
     },
     {
         "Semester": 4,
@@ -1009,7 +1011,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Advanced Computer"
     },
     {
         "Semester": 4,
@@ -1020,7 +1022,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedelectronics"
+        "PracticalRoomFeatures": "Advanced Electronics"
     },
     {
         "Semester": 4,
@@ -1031,7 +1033,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "advancedcomputer"
+        "PracticalRoomFeatures": "Advanced Computer"
     },
     {
         "Semester": 4,
@@ -1042,7 +1044,7 @@
         "L": 3,
         "T": 1,
         "P": 1.5,
-        "PracticalRoomFeatures": "automobileworkshop"
+        "PracticalRoomFeatures": "Automobile Workshop"
     },
     {
         "Semester": 4,
@@ -1218,7 +1220,7 @@
         "L": 0,
         "T": 0,
         "P": 10,
-        "PracticalRoomFeatures": "computer"
+        "PracticalRoomFeatures": "Design Studio"
     },
     {
         "Semester": 5,
@@ -1240,7 +1242,7 @@
         "L": 2,
         "T": 0,
         "P": 4,
-        "PracticalRoomFeatures": "drawing"
+        "PracticalRoomFeatures": "Working Drawing"
     },
     {
         "Semester": 5,
@@ -1658,7 +1660,7 @@
         "L": 0,
         "T": 0,
         "P": 10,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Design Studio"
     },
     {
         "Semester": 6,
@@ -1669,7 +1671,7 @@
         "L": 2,
         "T": 0,
         "P": 3,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Building Construction"
     },
     {
         "Semester": 6,
@@ -1768,7 +1770,7 @@
         "L": 2,
         "T": 0,
         "P": 1.5,
-        "PracticalRoomFeatures": "electrical"
+        "PracticalRoomFeatures": "Building Services"
     },
     {
         "Semester": 6,
@@ -2472,7 +2474,7 @@
         "L": 0,
         "T": 0,
         "P": 12,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Design Studio"
     },
     {
         "Semester": 8,
@@ -2560,7 +2562,7 @@
         "L": 3,
         "T": 0,
         "P": 0,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Arc_elective_II"
     },
     {
         "Semester": 8,
@@ -2769,7 +2771,7 @@
         "L": 0,
         "T": 0,
         "P": 12,
-        "PracticalRoomFeatures": ""
+        "PracticalRoomFeatures": "Design Studio"
     },
     {
         "Semester": 9,
@@ -2781,6 +2783,17 @@
         "T": 0,
         "P": 5,
         "PracticalRoomFeatures": ""
+    },
+    {
+    "Semester": 9,
+    "Dept": "BARCH",
+    "CourseCode": "ENAR 803",
+    "CourseTitle": "LANDSCAPE DESIGN & SITE PLANNING",
+    "Credits": 4,
+    "L": 2,
+    "T": 0,
+    "P": 2,
+    "PracticalRoomFeatures": "Landscape Design and Site Planning"
     },
     {
         "Semester": 9,

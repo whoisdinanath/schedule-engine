@@ -54,12 +54,54 @@
         ]
     },
     {
+        "room_id": "A202",
+        "name": "Classroom A-202",
+        "capacity": 48,
+        "type": "Practical",
+        "features": [
+            "Design Studio",
+            "Building Construction",
+            "Architectural Graphics",
+            "History_nep"
+        ]
+    },
+    {
+        "room_id": "A203",
+        "name": "Classroom A-203",
+        "capacity": 48,
+        "type": "Practical",
+        "features": [
+            "Design Studio",
+            "Building Construction",
+            "History_nep"
+        ]
+    },
+    {
+        "room_id": "A204",
+        "name": "Classroom A-204",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "DAR"
+        ]
+    },
+    {
         "room_id": "A301",
         "name": "Classroom A-301",
         "capacity": 48,
         "type": "Lecture",
         "features": [
             "DAR"
+        ]
+    },
+    {
+        "room_id": "A301",
+        "name": "Classroom A-301",
+        "capacity": 48,
+        "type": "Practical",
+        "features": [
+            "Design Studio",
+            "Working Drawing"
         ]
     },
     {
@@ -81,12 +123,33 @@
         ]
     },
     {
+        "room_id": "A303",
+        "name": "Classroom A-303",
+        "capacity": 48,
+        "type": "Practical",
+        "features": [
+            "Design Studio",
+            "Landscape Design and Site Planning"
+        ]
+    },
+    {
+        "room_id": "A305",
+        "name": "Classroom A-305",
+        "capacity": 48,
+        "type": "Practical",
+        "features": [
+            "Free Hand Sketching",
+            "Working Drawing"
+        ]
+    },
+    {
         "room_id": "B101",
         "name": "Seminar Room B-101",
         "capacity": 48,
         "type": "Seminar Room",
         "features": [
-            "DAR"
+            "Arc_elective_II"
+
         ]
     },
     {
@@ -167,7 +230,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Arc_elective_II"
         ]
     },
     {
@@ -262,20 +325,22 @@
     },
     {
         "room_id": "D101",
-        "name": "Computer Lab 1",
+        "name": "Computer Lab 1 D-101",
         "capacity": 24,
         "type": "Lab",
         "features": [
-            "DECE"
+            "Building Construction",
+            "Building Services",
+            "CADD"
         ]
     },
     {
         "room_id": "D102",
-        "name": "Computer Lab 2",
+        "name": "Computer Lab 2 D-102",
         "capacity": 24,
         "type": "Lab",
         "features": [
-            "DECE"
+            "Building Services"
         ]
     },
     {
@@ -528,6 +593,24 @@
         "type": "Lecture",
         "features": [
             "DAR"
+        ]
+    },
+    {
+        "room_id": "F-207",
+        "name": "Classroom F-207",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Building Construction"
+        ]
+    },
+    {
+        "room_id": "F-207",
+        "name": "Classroom F-207",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "History_west"
         ]
     },
     {
