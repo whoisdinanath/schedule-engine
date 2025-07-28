@@ -14,7 +14,10 @@
         "capacity": 24,
         "type": "Practical",
         "features": [
-            "fluidengineering"
+            "Fluid Engineering",
+            "Water Supply",
+            "Hydraulics",
+            "Hydropower"
         ]
     },
     {
@@ -182,10 +185,10 @@
     {
         "room_id": "B202",
         "name": "Classroom B-202",
-        "capacity": 48,
-        "type": "Lecture",
+        "capacity": 24,
+        "type": "Practical",
         "features": [
-            "DCE"
+            "English"
         ]
     },
     {
@@ -286,15 +289,7 @@
         ]
 
     },
-    {
-        "room_id": "B310",
-        "name": "Classroom B-310",
-        "capacity": 48,
-        "type": "Lecture",
-        "features": [
-            "DCE"
-        ]
-    },
+    
     {
         "room_id": "B311",
         "name": "Classroom B-311",
@@ -344,7 +339,7 @@
         "room_id": "D101",
         "name": "Computer Lab 1 D-101",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "Building Construction",
             "Building Services",
@@ -355,28 +350,39 @@
         "room_id": "D102",
         "name": "Computer Lab 2 D-102",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "Building Services",
-            "Operation Research"
+            "Operation Research",
+            "Numerical Methods Civil",
+            "Plant Layout and Design"
         ]
     },
     {
         "room_id": "D104",
         "name": "Computer Lab 3",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
-            "Plant Layout and Design"
+            
+            "Numerical Methods",
+            "Data Communication",
+            "Computer Organization and Architecture",
+            "Software Engineering"
         ]
     },
     {
         "room_id": "D105",
         "name": "Computer Lab 4",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
-            "DECE"
+            "Object Oriented Programming",
+            "Data Structure and Algorithms",
+            "Distributed Systems",
+            "Elective I"
+            
+            
         ]
     },
     {
@@ -385,7 +391,10 @@
         "capacity": 24,
         "type": "Lab",
         "features": [
-            "DECE"
+            "Computer Graphics",
+            "Digital Signal Processing",
+            "Operating System",
+            "Computer Network"
         ]
     },
     {
@@ -394,7 +403,7 @@
         "capacity": 24,
         "type": "Lab",
         "features": [
-            "DECE"
+            "electrical circuits and machines"
         ]
     },
     {
@@ -403,23 +412,24 @@
         "capacity": 24,
         "type": "Lab",
         "features": [
-            "DECE"
+            "Electronic Devices and Circuits"
         ]
     },
     {
         "room_id": "D110",
         "name": "Electronics Lab 2",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
-            "Control System and Automation"
+            "Control System and Automation",
+            "Electromagnetics"
         ]
     },
     {
         "room_id": "D111",
         "name": "Drawing Lab 1",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "Machine Drawing"
         ]
@@ -428,9 +438,9 @@
         "room_id": "D112",
         "name": "Drawing Lab 2",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
-            "DAME"
+            "Drawing"
         ]
     },
     {
@@ -439,16 +449,19 @@
         "capacity": 24,
         "type": "Lab",
         "features": [
-            "DECE"
+            "Digital logic",
+            "Instrumentation"
         ]
     },
     {
         "room_id": "E004",
         "name": "Structure Geology Lab",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
-            "DCE"
+            "Geology",
+            "Structure",
+            "Transportation Engineering"
         ]
     },
     {
@@ -644,18 +657,22 @@
         "room_id": "W102",
         "name": "Material Testing Lab",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
-            "DCE"
+            "Material Science",
+            "Soil Mechanics",
+            "Foundation Engineering",
+            "Concrete Science",
+            "Design of RCC Structures"
         ]
     },
     {
         "room_id": "W103",
         "name": "Survey Lab",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
-            "DCE"
+            "Surveying"
         ]
     },
     {
@@ -671,7 +688,7 @@
         "room_id": "W104",
         "name": "Machine Shop",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "Workshop"
         ]
