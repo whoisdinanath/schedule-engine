@@ -105,7 +105,7 @@ toolbox.register(
 # Genetic Operators
 toolbox.register("mate", crossover_uniform, cx_prob=CXPB)
 toolbox.register("mutate", mutate_individual, context=context, mut_prob=MUTPB)
-# toolbox.register("select", tools.selTournament, tournsize=3) # Not needed for NSGA-II, dont konw why not needed?
+# toolbox.register("select", tools.selTournament, tournsize=3) # Not needed for NSGA-II, dont konw why not needed? coz it uses binary tournament selection internally
 
 # 6. Create Population
 
@@ -179,53 +179,6 @@ plot_diversity_trend(diversity_trend, output_dir)
 # Plot final Pareto front
 plot_pareto_front(population, output_dir)
 
-
-# plt.figure(figsize=(8, 4))
-# plt.plot(hard_trend, color="red", label="Hard Constraint Violations")
-# plt.xlabel("Generation")
-# plt.ylabel("Violations")
-# plt.title("Hard Constraint Violations Over Generations")
-# plt.legend()
-# plt.grid(True)
-# plt.tight_layout()
-# plt.savefig(os.path.join(output_dir, "hard_constraint_trend.pdf"))
-
-# # Plot Soft Constraint penalties
-# plt.figure(figsize=(8, 4))
-# plt.plot(soft_trend, color="green", label="Soft Constraint Penalties")
-# plt.xlabel("Generation")
-# plt.ylabel("Penalty")
-# plt.title("Soft Constraint Penalties Over Generations")
-# plt.legend()
-# plt.grid(True)
-# plt.tight_layout()
-# plt.savefig(os.path.join(output_dir, "soft_constraint_trend.pdf"))
-
-# # Plot diversity evolution
-# plt.figure(figsize=(8, 4))
-# plt.plot(diversity_trend, color="orange", label="Diversity")
-# plt.xlabel("Generation")
-# plt.ylabel("Avg. Chromosome Distance")
-# plt.title("Diversity Over Generations")
-# plt.legend()
-# plt.grid(True)
-# plt.tight_layout()
-# plt.savefig(os.path.join(output_dir, "diversity.pdf"))
-
-# # Plot final Pareto front
-# hard_vals, soft_vals = zip(*[ind.fitness.values for ind in population])
-# plt.figure(figsize=(6, 5))
-# plt.scatter(hard_vals, soft_vals, color="blue", alpha=0.6)
-# plt.xlabel("Hard Constraint Violations")
-# plt.ylabel("Soft Constraint Penalty")
-# plt.title("Final Pareto Front")
-# plt.grid(True)
-# plt.tight_layout()
-# plt.savefig(os.path.join(output_dir, "pareto_front.pdf"))
-
-# 9 . Final best solution (Single Objective Optimization)
-# final_best = tools.selBest(population, 1)[0]
-# print("Final Best Individual:")
 
 # 9 (Aliter): For MOO Multi Objective Optimization: We implement code slot #9 . below
 pareto_front = tools.sortNondominated(

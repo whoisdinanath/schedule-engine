@@ -15,6 +15,7 @@ def plot_soft_constraint_violation_over_generation(soft_trend, output_dir):
     plt.xlabel("Generation")
     plt.ylabel("Penalty")
     plt.title("Soft Constraint Penalties Over Generations")
+    # plt.yscale("log")
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
