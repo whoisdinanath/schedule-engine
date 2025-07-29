@@ -26,7 +26,7 @@ Semester,Dept, CourseCode, CourseTitle, Credits, L, T, P
 5,BAE, ENSH 304, Probability and Statistics,3,3,1,0
 5,BAE, ENME 304, Organization and Management,3,3,1,0
 5,BAE, ENME 308, Heat and Mass Transfer,3,3,1,1.5
-5,BAE, ENCE 307, Control System and Automation,3,3,1,1.5
+5,BAE, ENEE 307, Control System and Automation,3,3,1,1.5
 5,BAE, ENAM 301, Electric and Hybrid Vehicles,3,3,1,1.5
 5,BAE, ENAM 302, Automobile Engines,3,3,0,1.5
 5,BAE, ENSH 303, Technical English,1,1,0,0
@@ -267,7 +267,7 @@ Semester,Dept, CourseCode, CourseTitle, Credits, L, T, P
 4,BME, ENME 252, Instrumentation and Sensors,3,3,1,1.5
 4,BME, ENME 253, Computer Aided Design,3,3,1,1.5
 4,BME, ENME 254, Fluid Mechanics with Engineering Applications,3,3,1,1.5
-5,BME, ENCE 307, Control System and Automation,3,3,1,1.5
+5,BME, ENEE 307, Control System and Automation,3,3,1,1.5
 5,BME, ENSH 301, Numerical Methods,3,3,1,3
 5,BME, ENME 301, Automotive Technology,3,3,1,1.5
 5,BME, ENME 302, Fluid Machines,3,3,1,1.5
