@@ -1,139 +1,7833 @@
 [
     {
         "id": "I1",
-        "name": "Dr. Smith",
+        "name": "Hariram Limbu",
         "courses": [
-            "ENSH 101",
-            "ENME 103",
-            "ENSH 104",
-            "ENME 101",
-            "ENME 106",
-            "ENSH 102"
+            "ENSH 151",
+            "ENSH 252",
+            "ENSH 253"
         ],
         "availability": {
             "Monday": [
                 {
-                    "start": "09:00",
-                    "end": "12:00"
-                },
-                {
-                    "start": "14:00",
-                    "end": "17:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Tuesday": [
                 {
-                    "start": "10:00",
-                    "end": "16:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Wednesday": [
                 {
-                    "start": "09:00",
-                    "end": "15:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Thursday": [
                 {
-                    "start": "10:00",
-                    "end": "16:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Friday": [
                 {
-                    "start": "09:00",
-                    "end": "14:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ]
         }
     },
     {
         "id": "I2",
-        "name": "Dr. Johnson",
+        "name": "Tek Bahadur Budathoki",
         "courses": [
-            "ENAR 101",
-            "ENAR 103",
-            "ENAR 104",
-            "ENAR 105",
-            "ENCE 101",
-            "ENEX 101",
-            "ENSH 103"
+            "ENSH 151",
+            "ENSH 252",
+            "ENSH 253",
+            "ENSH 252",
+            "ENSH 252-PR"
         ],
         "availability": {
             "Monday": [
                 {
-                    "start": "08:00",
-                    "end": "12:00"
-                },
-                {
-                    "start": "13:00",
-                    "end": "17:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Tuesday": [
                 {
-                    "start": "09:00",
-                    "end": "15:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Wednesday": [
                 {
-                    "start": "08:00",
-                    "end": "16:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Thursday": [
                 {
-                    "start": "09:00",
-                    "end": "15:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Friday": [
                 {
-                    "start": "10:00",
-                    "end": "16:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ]
         }
     },
     {
         "id": "I3",
-        "name": "Dr. Williams",
+        "name": "Anup Subedi",
         "courses": [
-            "ENCT 101",
-            "ENCE 102",
-            "ENCE 103",
-            "ENEE 103"
+            "ENSH 151",
+            "ENSH 252",
+            "ENSH 253",
+            "ENSH 154"
         ],
         "availability": {
             "Monday": [
                 {
-                    "start": "10:00",
-                    "end": "15:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Tuesday": [
                 {
-                    "start": "09:00",
-                    "end": "14:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Wednesday": [
                 {
-                    "start": "11:00",
-                    "end": "16:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Thursday": [
                 {
-                    "start": "08:00",
-                    "end": "13:00"
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ],
             "Friday": [
                 {
-                    "start": "09:00",
-                    "end": "15:00"
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I4",
+        "name": "Sabita Bashyal",
+        "courses": [
+            "ENSH 151",
+            "ENSH 252",
+            "ENSH 253",
+            "ENSH 155",
+            "ENSH 242",
+            "ENCE 151"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I5",
+        "name": "Merina Sthapit",
+        "courses": [
+            "ENSH 151",
+            "ENSH 253",
+            "ENSH 252"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I6",
+        "name": "Baldev Adhikari",
+        "courses": [
+            "ENSH 151",
+            "ENSH 253",
+            "ENSH 252",
+            "ENSH 252-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I7",
+        "name": "Dr Manoj Kumar Thapa",
+        "courses": [
+            "ENSH 152"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I8",
+        "name": "Yubaraj Thapa",
+        "courses": [
+            "ENSH 152"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I9",
+        "name": "Bhupak Lal Joshi",
+        "courses": [
+            "ENSH 152",
+            "ENSH 152-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I10",
+        "name": "Manoj Kumar Tapa",
+        "courses": [
+            "ENSH 152",
+            "ENSH 152-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I11",
+        "name": "Prakash Poudel",
+        "courses": [
+            "ENSH 153",
+            "ENSH 154",
+            "ENSH 154-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I12",
+        "name": "Prabin Shrestha",
+        "courses": [
+            "ENSH 153",
+            "ELEC 152-PR",
+            "ENSH 154"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I13",
+        "name": "Pratash Poudel",
+        "courses": [
+            "ENSH 153",
+            "ENSH 153-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I14",
+        "name": "Dinesh Shah",
+        "courses": [
+            "ENSH 153",
+            "ENSH 154",
+            "ENSH 154-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I15",
+        "name": "Sharmila Dangol",
+        "courses": [
+            "ENSH 153",
+            "ENSH 154",
+            "ENSH 154-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I16",
+        "name": "Hemanta Khanal",
+        "courses": [
+            "ENSH 153",
+            "ENSH 155",
+            "ENSH 242"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I17",
+        "name": "Pratigya K.C. Karki",
+        "courses": [
+            "ENSH 153-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I18",
+        "name": "Prabin Awasthi",
+        "courses": [
+            "ENSH 204",
+            "ENSH 251",
+            "ENSH 302"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I19",
+        "name": "Prajwal Singh Thapa",
+        "courses": [
+            "ENSH 204",
+            "ENSH 251",
+            "ENSH 302"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I20",
+        "name": "Arati Kumri Mainali",
+        "courses": [
+            "ENSH 204",
+            "ENSH 251",
+            "ENSH 302"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I21",
+        "name": "Anuj Ghimire",
+        "courses": [
+            "ENCT 252-PR",
+            "ENCT 251"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I22",
+        "name": "Anup Shrestha",
+        "courses": [
+            "ENCT 254-PR",
+            "ENCT 151",
+            "ENCT 151-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I23",
+        "name": "Bibat Thokar",
+        "courses": [
+            "ENCT 411",
+            "ENCT 411-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I24",
+        "name": "Bikal Adhikari",
+        "courses": [
+            "ENEX 255-PR",
+            "ENEX 255"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I25",
+        "name": "Binod Sapkota",
+        "courses": [
+            "ENCT 304",
+            "ENCT 304-PR",
+            "ENCT 253-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I26",
+        "name": "Dip ram Bhujel",
+        "courses": [
+            "ENCT 253",
+            "ENCT 253-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I27",
+        "name": "Ganesh Kumal",
+        "courses": [
+            "ENEX 152",
+            "ENEX 152-PR",
+            "ENEX 253-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I28",
+        "name": "Hari Bahadur",
+        "courses": [
+            "ENCT 201-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I29",
+        "name": "Hemanta Joshi",
+        "courses": [
+            "ENCT 253",
+            "ENCT 253-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I30",
+        "name": "Jalauddin Mansur",
+        "courses": [
+            "ENCT 304-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I31",
+        "name": "Janardhan Bhatta",
+        "courses": [
+            "ENCT 254-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I32",
+        "name": "Jibesh Bhattarai",
+        "courses": [
+            "ENME 252-PR",
+            "ENCT 352-PR",
+            "ENCT 411-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I33",
+        "name": "Kiran chandra Dahal",
+        "courses": [
+            "ENEX 152-PR",
+            "ENEX 152",
+            "ENEX 152-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I34",
+        "name": "Kobid Karkee",
+        "courses": [
+            "ENEX 254",
+            "ENEX 254-PR",
+            "ENEX 411",
+            "ENEX 411-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I35",
+        "name": "Madhusudan Nyaupane",
+        "courses": [
+            "ENEE 154",
+            "ENEE 154-PR",
+            "ENEE 154",
+            "ENEE 154-PR",
+            "ENEE 254",
+            "ENEE 254-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I36",
+        "name": "Nirupama Bashyal",
+        "courses": [
+            "ENME 304",
+            "ENCE 356"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I37",
+        "name": "Praches Acharya",
+        "courses": [
+            "ENEX 252-PR",
+            "ENME 253-PR",
+            "ENEX 413-PR",
+            "ENEX 416-PR",
+            "ENEX 252-PR",
+            "ENEX 253-PR",
+            "ENEX 253"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I38",
+        "name": "Prabin Sharma Poudyal",
+        "courses": [
+            "ENCT 305",
+            "ENCT 305 PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I39",
+        "name": "Pravin Sangroula",
+        "courses": [
+            "ENCT 252",
+            "ENCT 252-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I40",
+        "name": "Pradip Sah",
+        "courses": [
+            "ENEE 154-PR",
+            "ENEE 254-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I41",
+        "name": "Rajan Bhandari",
+        "courses": [
+            "ENCT 201",
+            "ENCT 201-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I42",
+        "name": "Rajendra Karki",
+        "courses": [
+            "ENCT 355",
+            "ENCT 412"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I43",
+        "name": "Rajad Shakya",
+        "courses": [
+            "ENCE 365-389",
+            "ENCE 365-389-PR",
+            "ENCT 385-399",
+            "ENCT 385-399-PR",
+            "ENCT 301",
+            "ENCT 301-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I44",
+        "name": "RR",
+        "courses": [
+            "ENEX 151-PR",
+            "ENEX 151"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I45",
+        "name": "Shanta Maharjan",
+        "courses": [
+            "ENEX 417"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I46",
+        "name": "Shiva Shankar Sah",
+        "courses": [
+            "ENEX 151-PR",
+            "ENEX 151"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I47",
+        "name": "Shiva Shankar Shah",
+        "courses": [
+            "ENEX 301",
+            "ENEX 301-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I48",
+        "name": "Shreekar Tiwari",
+        "courses": [
+            "ENEX 416-PR",
+            "ENEX 413-PR",
+            "ENEX 416",
+            "ENEX 413"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I49",
+        "name": "Subodh Kumar Ravi",
+        "courses": [
+            "ENEX 151-PR",
+            "ENEX 151",
+            "ENEX 254-PR",
+            "ENEX 151-PR",
+            "ENEX 151"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I50",
+        "name": "Sudeep Shrestha",
+        "courses": [
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I51",
+        "name": "Sunil Thapa",
+        "courses": [
+            "ENCT 352",
+            "ENCT 352-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I52",
+        "name": "Sunita Raj K.C.",
+        "courses": [
+            "ENCT 355",
+            "ENCT 355-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I53",
+        "name": "Suramya Sharma Dahal",
+        "courses": [
+            "ENEX 415"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I54",
+        "name": "Suwarna Lingden",
+        "courses": [
+            "ENEX 252",
+            "ENEX 252-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I55",
+        "name": "Umesh Kanta Ghimire",
+        "courses": [
+            "ENCT 305-PR",
+            "ENEX 411-PR",
+            "ENEX 416-PR",
+            "ENEX 413-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I56",
+        "name": "Aayush Pudasaini",
+        "courses": [
+            "ENIE 352-PR",
+            "ENIE 435-444-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I57",
+        "name": "Akhalesh Yadav",
+        "courses": [
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I58",
+        "name": "Ankit Shrestha",
+        "courses": [
+            "ENIE 445-449",
+            "ENIE 445-449-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I59",
+        "name": "Ayush Pudasaini",
+        "courses": [
+            "ENME 251-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I60",
+        "name": "Badri Prasad Adhikari",
+        "courses": [
+            "ENAM 351"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I61",
+        "name": "Bhakta Man Nakarmi",
+        "courses": [
+            "ENME 155-PR",
+            "ENME 153",
+            "ENME 155-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I62",
+        "name": "Bibek Dhungana",
+        "courses": [
+            "ENME 253",
+            "ENME 253-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I63",
+        "name": "Bibek Pudasaini",
+        "courses": [
+            "ENME 152-PR",
+            "ENME 152",
+            "ENME 158-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I64",
+        "name": "Bikash Chhantyal",
+        "courses": [
+            "ENME 254",
+            "ENME 254-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I65",
+        "name": "Bikki Chhantyal",
+        "courses": [
+            "ENME 206-PR",
+            "ENME 251-PR",
+            "ENME 254",
+            "ENME 251-PR",
+            "ENME 254-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I66",
+        "name": "Bishal Kumar",
+        "courses": [
+            "ENME 302-PR",
+            "ENME 252",
+            "ENME 252-PR",
+            "ENME 155",
+            "ENME 158-PR",
+            "ENME 252",
+            "ENME 252-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I67",
+        "name": "Bishwo Ram Parajuli",
+        "courses": [
+            "ENIE 251",
+            "ENIE 251-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I68",
+        "name": "BKJ (Full name not provided)",
+        "courses": [
+            ""
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I69",
+        "name": "BT (Full name not provided)",
+        "courses": [
+            ""
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I70",
+        "name": "Debendra Bahadur Raut",
+        "courses": [
+            "ENME 303",
+            "ENME 252-PR",
+            "ENME 309",
+            "ENME 309-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I71",
+        "name": "Dharma Maharjan",
+        "courses": [
+            "ENIE 325-334",
+            "ENIE 325-334-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I72",
+        "name": "Gautam Das Tuladhar",
+        "courses": [
+            "ENME 155-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I73",
+        "name": "GRP (Full name not provided)",
+        "courses": [
+            "ENIE 203",
+            "ENIE 254",
+            "ENIE 305"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I74",
+        "name": "Janardan Bhatta",
+        "courses": [
+            "ENIE 411"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I75",
+        "name": "Kamal Pokharel",
+        "courses": [
+            "ENME 255",
+            "ENME 255-PR",
+            "ENME 155",
+            "ENME 155-PR",
+            "ENIE 352"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I76",
+        "name": "KP (Full name not provided)",
+        "courses": [
+            "ENIE 203",
+            "ENIE 254",
+            "ENIE 305"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I77",
+        "name": "Laxman Palikhel",
+        "courses": [
+            "ENAM 351",
+            "ENAM 351-PR",
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I78",
+        "name": "Lochan Devkota",
+        "courses": [
+            "ENME 151",
+            "ENME 151-PR",
+            "ENME 206",
+            "ENME 206-PR",
+            "ENAM 412",
+            "ENAM 412-PR",
+            "ENME 151-PR",
+            "ENME 151",
+            "ENIE 254"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I79",
+        "name": "Madhusudan Nyaupane",
+        "courses": [
+            "ENEE 254",
+            "ENEE 254-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I80",
+        "name": "Manoj Adhikari",
+        "courses": [
+            "ENME 251",
+            "ENAM 352",
+            "ENME 251-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I81",
+        "name": "Narad Kumar Rai",
+        "courses": [
+            "ENME 158-PR",
+            "ENAM 351-PR",
+            "ENAM 351"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I82",
+        "name": "NKR (Full name not provided)",
+        "courses": [
+            "ENIE 325-334-PR",
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I83",
+        "name": "OM (Full name not provided)",
+        "courses": [
+            ""
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I84",
+        "name": "Oscar Gautam",
+        "courses": [
+            "ENME 158-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I85",
+        "name": "Pitambar Chaulagain",
+        "courses": [
+            "ENIE 251",
+            "ENIE 251-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I86",
+        "name": "Pradip Sah",
+        "courses": [
+            "ENME 255-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I87",
+        "name": "Pradip Shah",
+        "courses": [
+            "ENME 255-PR",
+            "ENME 255",
+            "ENCE 307-PR",
+            "ENCE 307"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I88",
+        "name": "Pramod Shrestha",
+        "courses": [
+            "ENME 254-PR",
+            "ENCE 251-PR",
+            "ENCE 151",
+            "ENCE 307",
+            "ENCE 307-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I89",
+        "name": "Pratik Adhikari",
+        "courses": [
+            "ENME 155-PR",
+            "ENME 155",
+            "ENME 253"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I90",
+        "name": "PS (Full name not provided)",
+        "courses": [
+            "ENIE 325-334-PR",
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I91",
+        "name": "Purusottam Khatiwada",
+        "courses": [
+            "ENME 152",
+            "ENME 158-PR",
+            "ENME 158"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I92",
+        "name": "Raj Kumar Chaulagain",
+        "courses": [
+            "ENME 152",
+            "ENME 255",
+            "ENME 255-PR",
+            "ENME 152-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I93",
+        "name": "Rajan Dahal",
+        "courses": [
+            "ENME 158-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I94",
+        "name": "Rajan Sharma",
+        "courses": [
+            "ENIE 352",
+            "ENIE 352-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I95",
+        "name": "Ram Kumar Joshi",
+        "courses": [
+            "ENME 155-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I96",
+        "name": "Sajendra Man Bajracharya",
+        "courses": [
+            "ENME 153",
+            "ENME 158-PR",
+            "ENME 256",
+            "ENME 303",
+            "ENME 152-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I97",
+        "name": "Shambhu Krishna Mastara",
+        "courses": [
+            "ENME 155-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I98",
+        "name": "SM (Full name not provided)",
+        "courses": [
+            "ENEE 307-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I99",
+        "name": "SP (Full name not provided)",
+        "courses": [
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I100",
+        "name": "SRG (Full name not provided)",
+        "courses": [
+            "ENIE 301"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I101",
+        "name": "SRG (Full name not provided)",
+        "courses": [
+            "ENIE 352",
+            "ENIE 352-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I102",
+        "name": "Sudan Neupane",
+        "courses": [
+            "ENME 151",
+            "ENME 151-PR",
+            "ENSH 252-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I103",
+        "name": "Sudhan Neupane",
+        "courses": [
+            "ENIE 325-334",
+            "ENIE 325-334-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I104",
+        "name": "Sudhan Neupane",
+        "courses": [
+            "ENIE 445-449",
+            "ENIE 445-449-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I105",
+        "name": "Sugam Maharjan",
+        "courses": [
+            "ENME 158-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I106",
+        "name": "Sujit Regmi",
+        "courses": [
+            "ENME 158-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I107",
+        "name": "Suman Acharya",
+        "courses": [
+            "ENME 255",
+            "ENME 255-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I108",
+        "name": "Suman Acharya",
+        "courses": [
+            "ENME 414-PR",
+            "ENME 414-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I109",
+        "name": "Sunil Adhikari",
+        "courses": [
+            "ENME 158-PR",
+            "ENME 158",
+            "ENCE 256",
+            "ENAM 352",
+            "ENAM 352-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I110",
+        "name": "Sunny Pradhan",
+        "courses": [
+            "ENAM 351",
+            "ENAM 351-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I111",
+        "name": "Sushant Raj Giri",
+        "courses": [
+            "ENME 356"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I112",
+        "name": "UA (Full name not provided)",
+        "courses": [
+            "ENIE 301"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I113",
+        "name": "UKG (Full name not provided)",
+        "courses": [
+            "ENEE 307",
+            "ENEE 307-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I114",
+        "name": "Abinesh Khatri",
+        "courses": [
+            "ENCE 252",
+            "ENCE 252-PR",
+            "ENCE 202",
+            "ENCE 202-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I115",
+        "name": "Atul Bhandari",
+        "courses": [
+            "ENCE 254-PR",
+            "ENCE 254"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I116",
+        "name": "Bhes Kumar Karki",
+        "courses": [
+            "ENCE 153-PR",
+            "ENCE 153",
+            "ENCE 254",
+            "ENCE 153",
+            "ENCE 153-PR",
+            "ENCE 254"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I117",
+        "name": "Bibek Babu Lamichhanie",
+        "courses": [
+            "ENCE 253",
+            "ENCE 253-PR",
+            "ENCE 253",
+            "ENCE 253-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I118",
+        "name": "Bibek Pudasaini",
+        "courses": [
+            "ENME 101",
+            "ENME 101-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I119",
+        "name": "Bijaya Kumar Tuladhar",
+        "courses": [
+            "ENCE 255"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I120",
+        "name": "Bimal Ojha",
+        "courses": [
+            "ENCE 252",
+            "ENCE 252-PR",
+            "ENCE 352"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I121",
+        "name": "Biraj Pandey",
+        "courses": [
+            "ENCE 205",
+            "ENCE 205-PR",
+            "ENCE 352-PR",
+            "ENME 101",
+            "ENME 101-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I122",
+        "name": "Bishal Kumar",
+        "courses": [
+            "ENME 101",
+            "ENME 101-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I123",
+        "name": "Charchit Nagila",
+        "courses": [
+            "ENCE 151-PR",
+            "ENCE 151",
+            "ENME 205"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I124",
+        "name": "ChiniKaji Maharjan",
+        "courses": [
+            "ENCE 153-PR",
+            "ENCE 253",
+            "ENCE 253-PR",
+            "ENCE 205",
+            "ENCE 205-PR",
+            "ENCE 153",
+            "ENCE 153-PR",
+            "ENCE 203-PR",
+            "ENCE 203"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I125",
+        "name": "Deepak Gautam",
+        "courses": [
+            "ENCE 152",
+            "ENCE 152-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I126",
+        "name": "Alin Chandra Shakya",
+        "courses": [
+            "ENCE 260",
+            "ENCE 252",
+            "ENCE 252-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I127",
+        "name": "Indra Narayan Yadav",
+        "courses": [
+            "ENCE 151",
+            "ENCE 151-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I128",
+        "name": "Sanjeema Bajracharya",
+        "courses": [
+            "ENCE 205",
+            "ENCE 156"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I129",
+        "name": "Sujan Tripathi",
+        "courses": [
+            "ENCE 352",
+            "ENCE 352-PR",
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I130",
+        "name": "Om Shanti Maharjan",
+        "courses": [
+            "ENCE 261-PR",
+            "ENCE 153-PR",
+            "ENCE 261-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I131",
+        "name": "Pradeep Prasad Bhatta",
+        "courses": [
+            "ENCE 261-PR",
+            "ENCE 261"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I132",
+        "name": "Gobinda Prasad Paudel",
+        "courses": [
+            "ENCE 306",
+            "ENCE 306-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I133",
+        "name": "Gopal Bhattarai",
+        "courses": [
+            "ENCE 251-PR",
+            "ENCE 251"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I134",
+        "name": "Gopal Gautam",
+        "courses": [
+            "ENCE 251-PR",
+            "ENCE 251"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I135",
+        "name": "Harshikesh Karna",
+        "courses": [
+            "ENCE 252",
+            "ENCE 252-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I136",
+        "name": "Himal Karki Katuwal",
+        "courses": [
+            "ENCE 252"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I137",
+        "name": "Jenish Maharjan",
+        "courses": [
+            "ENME 101",
+            "ENME 101-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I138",
+        "name": "Khem Raj Regmi",
+        "courses": [
+            "ENCE 352",
+            "ENCE 352-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I139",
+        "name": "Kiran Lal Maharjan",
+        "courses": [
+            "ENCE 253",
+            "ENCE 253-PR",
+            "ENCE 304",
+            "ENCE 304-PR",
+            "ENCE 302",
+            "ENCE 302-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I140",
+        "name": "Krishna Bahadur Baniya",
+        "courses": [
+            "ENCE 205",
+            "ENCE 205-PR",
+            "ENCE 352-PR",
+            "ENME 101",
+            "ENME 101-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I141",
+        "name": "Krishna Bhattarai",
+        "courses": [
+            "ENCE 353",
+            "ENCE 353-PR",
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I142",
+        "name": "Manoj Adhikari",
+        "courses": [
+            "ENME 101"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I143",
+        "name": "Narad Narad Kumar Rai",
+        "courses": [
+            "ENME 101"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I144",
+        "name": "Nirajan Devkota",
+        "courses": [
+            "ENCE 251-PR",
+            "ENCE 251",
+            "ENCE 403",
+            "ENCE 403-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I145",
+        "name": "Oscar Gautam",
+        "courses": [
+            "ENME 101-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I146",
+        "name": "Piyush Pradhan",
+        "courses": [
+            "ENCE 205",
+            "ENCE 205-PR",
+            "ENCE 352"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I147",
+        "name": "Pradeep Pr. Bhatta",
+        "courses": [
+            "ENCE 351",
+            "ENCE 261-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I148",
+        "name": "Prajwal Singh Thapa",
+        "courses": [
+            "ENSH 251"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I149",
+        "name": "Pramod Shrestha",
+        "courses": [
+            "ENCE 306-PR",
+            "ENCE 403-PR",
+            "ENCE 251-PR",
+            "ENCE 252-PR",
+            "ENME 205-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I150",
+        "name": "Purushottam Khatiwada",
+        "courses": [
+            "ENME 101",
+            "ENME 205-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I151",
+        "name": "Rajan Dahal",
+        "courses": [
+            "ENME 205-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I152",
+        "name": "Rajendra Bahadur Chhetri",
+        "courses": [
+            "ENCE 251-PR",
+            "ENCE 251",
+            "ENCE 403",
+            "ENCE 403-PR",
+            "ENCE 251",
+            "ENCE 251-PR",
+            ""
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I153",
+        "name": "Rajesh Khadka",
+        "courses": [
+            "ENCE 402",
+            "ENCE 402-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I154",
+        "name": "Ram Prasad Neupane",
+        "courses": [
+            "ENCE 255"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I155",
+        "name": "Ramesh Karki",
+        "courses": [
+            "ENCE 153-PR",
+            "ENCE 153",
+            "ENCE 253",
+            "ENCE 302",
+            "ENCE 203",
+            "ENCE 203-PR",
+            "ENCE 153",
+            "ENCE 153-PR",
+            "ENCE 253",
+            "ENCE 261-PR",
+            "ENCE 261"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I156",
+        "name": "Sajendra Man Bajracharya",
+        "courses": [
+            "ENME 101"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I157",
+        "name": "Sanjima Bajracharya",
+        "courses": [
+            "ENCE 205",
+            "ENCE 205-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I158",
+        "name": "Shailendra Raj Khanal",
+        "courses": [
+            "ENCE 152-PR",
+            "ENCE 402",
+            "ENME 101-PR",
+            "ENCE 102-PR",
+            "ENCE 102-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I159",
+        "name": "Shambhu Kumar Thakur",
+        "courses": [
+            "ENCE 151",
+            "ENCE 253",
+            "ENCE 253-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I160",
+        "name": "Shes Raj Kafle",
+        "courses": [
+            "ENCE 302",
+            "ENCE 302-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I161",
+        "name": "Subha Laxmi Ranjitkar",
+        "courses": [
+            "ENCE 254-PR",
+            "ENCE 254",
+            "ENCE 254",
+            "ENCE 254-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I162",
+        "name": "Sugam Maharjan",
+        "courses": [
+            "ENME 101",
+            "ENME 101-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I163",
+        "name": "Sujit Regmi",
+        "courses": [
+            "ENME 101",
+            "ENME 101-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I164",
+        "name": "Sukriti Suvedi",
+        "courses": [
+            "ENCE 254",
+            "ENCE 254-PR",
+            "ENCE 351",
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I165",
+        "name": "Sunil Adhikari",
+        "courses": [
+            "ENME 101",
+            "ENME 101-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I166",
+        "name": "Surakshya Kafle",
+        "courses": [
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I167",
+        "name": "Sushant Sapkota",
+        "courses": [
+            "ENCE 152",
+            "ENCE 152-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I168",
+        "name": "Extra Professor 1",
+        "courses": [
+            "ENCE 301"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I169",
+        "name": "Mimang Hang Kirat",
+        "courses": [
+            "ENAR 255-PR",
+            "ENAR 351-PR",
+            "ENAR 301-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I170",
+        "name": "Amrit Jeev Tamrakar",
+        "courses": [
+            "ENAR 304-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I171",
+        "name": "Bibek Karki",
+        "courses": [
+            "ENAR 304-PR",
+            "ENAR 255-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I172",
+        "name": "Bidita Shakya",
+        "courses": [
+            "ENAR 351-PR",
+            "ENAR 301-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I173",
+        "name": "Bimala Tuladhar",
+        "courses": [
+            "ENAR 561"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I174",
+        "name": "Chhanya Nidal",
+        "courses": [
+            "ENAR 501"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I175",
+        "name": "Niranjan Shrestha",
+        "courses": [
+            "ENAR 254-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I176",
+        "name": "Pradeep Adhikari",
+        "courses": [
+            "ENAR 462-PR",
+            "ENAR 302"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I177",
+        "name": "Prajal Pradhan",
+        "courses": [
+            "ENAR 254",
+            "ENAR 254-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I178",
+        "name": "Ranjan C. Prajapati",
+        "courses": [
+            "ENAR 352"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I179",
+        "name": "Rashmi Shakya",
+        "courses": [
+            "ENAR 255-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I180",
+        "name": "Ravindra Gautam",
+        "courses": [
+            "ENAR 465-484-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I181",
+        "name": "Renu Maharjan",
+        "courses": [
+            "ENAR 462-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I182",
+        "name": "Richa Dhungana",
+        "courses": [
+            "ENAR 301-PR",
+            "ENAR 351-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I183",
+        "name": "Sanjaya Kumar Rokka",
+        "courses": [
+            "ENAR 465-484-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I184",
+        "name": "Sanjaya Maharjan",
+        "courses": [
+            "ENEE 356-PR",
+            "ENCE 358",
+            "ENCE 358-PR",
+            "ENAR 352",
+            "ENCE 358-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I185",
+        "name": "Shova Thapa",
+        "courses": [
+            "ENAR 462-PR",
+            "ENAR 561",
+            "ENAR 501"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I186",
+        "name": "Shreeejana Maharjan",
+        "courses": [
+            "ENAR 304-PR",
+            "ENAR 255-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I187",
+        "name": "Sudeep Sharma Poudyal",
+        "courses": [
+            "ENAR 462-PR",
+            "ENAR 503"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I188",
+        "name": "Suman Joshi",
+        "courses": [
+            "ENAR 301-PR",
+            "ENAR 351-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I189",
+        "name": "Subik Kumar Shrestha",
+        "courses": [
+            "ENAR 501"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I190",
+        "name": "Bijay K. Tuladhar",
+        "courses": [
+            "ENAR 352"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I191",
+        "name": "Madhusudhan Nyaupane",
+        "courses": [
+            "ENAR 356"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I192",
+        "name": "Pradip Sah",
+        "courses": [
+            "ENEE 356-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I193",
+        "name": "Pramesh Malla",
+        "courses": [
+            "ENAR 465-484-PR",
+            "ENCE 358",
+            "ENCE 358-PR"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
                 }
             ]
         }

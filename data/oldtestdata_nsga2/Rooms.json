@@ -154,6 +154,7 @@
         "type": "Seminar Room",
         "features": [
             "Arc_elective_II"
+
         ]
     },
     {
@@ -264,8 +265,10 @@
             "Metrology and Instrumentation",
             "industrial_elective_III",
             "industrial_elective_I(Pneumatics)"
+            
         ]
     },
+    
     {
         "room_id": "B309",
         "name": "Classroom B-309",
@@ -283,9 +286,12 @@
         "features": [
             "Workstudy and Human factors",
             "industrial_elective_I(Energy Audit)",
+
             "insutrial_elective_IV"
         ]
+
     },
+    
     {
         "room_id": "B311",
         "name": "Classroom B-311",
@@ -363,6 +369,7 @@
         "capacity": 24,
         "type": "Practical",
         "features": [
+            
             "Numerical Methods",
             "Numerical Methods Mechanical",
             "Data Communication",

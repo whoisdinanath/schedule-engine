@@ -1,0 +1,200 @@
+[
+    {
+        "Semester": 1,
+        "Dept": "BAE, BCE, BCT, BEI, BIE, BME",
+        "CourseCode": "ENSH 101",
+        "CourseTitle": "Engineering Mathematics I",
+        "Credits": 3,
+        "L": 3,
+        "T": 2,
+        "P": 0,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BAE, BIE, BME",
+        "CourseCode": "ENME 103",
+        "CourseTitle": "Engineering Mechanics I",
+        "Credits": 3,
+        "L": 3,
+        "T": 1,
+        "P": 0,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BARCH",
+        "CourseCode": "ENAR 101",
+        "CourseTitle": "Design Studio I",
+        "Credits": 8,
+        "L": 2,
+        "T": 0,
+        "P": 8,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BARCH",
+        "CourseCode": "ENAR 104",
+        "CourseTitle": "Architectural Graphics I",
+        "Credits": 2,
+        "L": 2,
+        "T": 0,
+        "P": 4,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BARCH",
+        "CourseCode": "ENAR 105",
+        "CourseTitle": "Free Hand Sketching I",
+        "Credits": 2,
+        "L": 2,
+        "T": 0,
+        "P": 3,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BARCH",
+        "CourseCode": "ENSH 104",
+        "CourseTitle": "Mathematics for Architecture I",
+        "Credits": 3,
+        "L": 3,
+        "T": 2,
+        "P": 0,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BARCH",
+        "CourseCode": "ENAR 102",
+        "CourseTitle": "Introduction to Architecture",
+        "Credits": 2,
+        "L": 2,
+        "T": 0,
+        "P": 0,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BARCH",
+        "CourseCode": "ENAR 103",
+        "CourseTitle": "Building Material I",
+        "Credits": 3,
+        "L": 3,
+        "T": 1,
+        "P": 0,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BAE, BCE, BCT, BEI, BIE, BME",
+        "CourseCode": "ENCT 101",
+        "CourseTitle": "Computer Programming",
+        "Credits": 3,
+        "L": 3,
+        "T": 1,
+        "P": 3,
+        "PracticalRoomFeatures": "computer"
+    },
+    {
+        "Semester": 1,
+        "Dept": "BCE",
+        "CourseCode": "ENCE 101",
+        "CourseTitle": "Engineering Mechanics",
+        "Credits": 4,
+        "L": 4,
+        "T": 2,
+        "P": 0,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BCE",
+        "CourseCode": "ENCE 102",
+        "CourseTitle": "Engineering Geology I",
+        "Credits": 2,
+        "L": 2,
+        "T": 0,
+        "P": 1,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BCE",
+        "CourseCode": "ENCE 103",
+        "CourseTitle": "Civil Engineering Materials",
+        "Credits": 2,
+        "L": 2,
+        "T": 0,
+        "P": 1,
+        "PracticalRoomFeatures": ""
+    },
+    {
+        "Semester": 1,
+        "Dept": "BCE",
+        "CourseCode": "ENEE 103",
+        "CourseTitle": "Basic Electrical and Electronics Engineering",
+        "Credits": 3,
+        "L": 3,
+        "T": 1,
+        "P": 1.5,
+        "PracticalRoomFeatures": "electrical"
+    },
+    {
+        "Semester": 1,
+        "Dept": "BAE, BCT, BEI, BIE, BME",
+        "CourseCode": "ENEX 101",
+        "CourseTitle": "Fundamental of Electrical and Electronics Engineering",
+        "Credits": 3,
+        "L": 3,
+        "T": 1,
+        "P": 3,
+        "PracticalRoomFeatures": "electrical"
+    },
+    {
+        "Semester": 1,
+        "Dept": "BAE, BCT, BEI, BIE, BME",
+        "CourseCode": "ENME 101",
+        "CourseTitle": "Engineering Drawing",
+        "Credits": 2,
+        "L": 2,
+        "T": 0,
+        "P": 4,
+        "PracticalRoomFeatures": "Drawing"
+    },
+    {
+        "Semester": 1,
+        "Dept": "BCT, BEI",
+        "CourseCode": "ENME 106",
+        "CourseTitle": "Engineering Workshop",
+        "Credits": 1,
+        "L": 1,
+        "T": 0,
+        "P": 3,
+        "PracticalRoomFeatures": "workshop"
+    },
+    {
+        "Semester": 1,
+        "Dept": "BAE, BCT, BEI, BIE",
+        "CourseCode": "ENSH 102",
+        "CourseTitle": "Engineering Physics",
+        "Credits": 4,
+        "L": 4,
+        "T": 1,
+        "P": 2,
+        "PracticalRoomFeatures": "physics"
+    },
+    {
+        "Semester": 1,
+        "Dept": "BCE, BME",
+        "CourseCode": "ENSH 103",
+        "CourseTitle": "Engineering Chemistry",
+        "Credits": 3,
+        "L": 3,
+        "T": 0,
+        "P": 3,
+        "PracticalRoomFeatures": "chemistry"
+    }
+]
