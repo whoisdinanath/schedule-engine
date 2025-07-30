@@ -34,14 +34,8 @@ class Course:
             raise ValueError(
                 f"Course {self.course_id}: quanta_per_week must be positive"
             )
-        if not self.enrolled_group_ids:
-            raise ValueError(
-                f"Course {self.course_id}: must have at least one enrolled group"
-            )
-        if not self.qualified_instructor_ids:
-            raise ValueError(
-                f"Course {self.course_id}: must have at least one qualified instructor"
-            )
+        # Note: enrolled_group_ids can be empty for certain courses/semesters
+        # Note: qualified_instructor_ids can be empty for certain courses/semesters
 
     def is_instructor_qualified(self, instructor_id: str) -> bool:
         """Check if an instructor is qualified to teach this course."""

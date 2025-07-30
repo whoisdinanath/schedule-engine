@@ -1,7 +1,7 @@
 # This File Contains Genetic Algorithm Parameters
 
 # Population size - smaller population for faster convergence with constraint-aware initialization
-POP_SIZE = 30
+POP_SIZE = 100
 
 # Number of generations - reduced since constraint-aware init should converge faster
 NGEN = 100

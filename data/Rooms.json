@@ -3,7 +3,7 @@
         "room_id": "A101",
         "name": "Mechanics of Machinery Lab",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "Mechanics of Solids",
             "Mechanics of Machines and Mechanisms"
@@ -25,7 +25,7 @@
         "room_id": "A103",
         "name": "Material Science",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "DAME"
         ]
@@ -46,7 +46,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAR"
+            "Lecture Room"
         ]
     },
     {
@@ -55,11 +55,11 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAR"
+            "Lecture Room"
         ]
     },
     {
-        "room_id": "A202",
+        "room_id": "A202x",
         "name": "Classroom A-202",
         "capacity": 24,
         "type": "Practical",
@@ -87,7 +87,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAR"
+            "Lecture Room"
         ]
     },
     {
@@ -96,11 +96,11 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAR"
+            "Lecture Room"
         ]
     },
     {
-        "room_id": "A301",
+        "room_id": "A301x",
         "name": "Classroom A-301",
         "capacity": 24,
         "type": "Practical",
@@ -115,7 +115,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAR"
+            "Lecture Room"
         ]
     },
     {
@@ -124,11 +124,11 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAR"
+            "Lecture Room"
         ]
     },
     {
-        "room_id": "A303",
+        "room_id": "A303x",
         "name": "Classroom A-303",
         "capacity": 24,
         "type": "Practical",
@@ -151,7 +151,7 @@
         "room_id": "B101",
         "name": "Seminar Room B-101",
         "capacity": 24,
-        "type": "Seminar Room",
+        "type": "Lecture",
         "features": [
             "Arc_elective_II"
         ]
@@ -162,7 +162,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAR"
+            "Lecture Room"
         ]
     },
     {
@@ -171,7 +171,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Lecture Room"
         ]
     },
     {
@@ -180,7 +180,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Lecture Room"
         ]
     },
     {
@@ -216,7 +216,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Lecture Room"
         ]
     },
     {
@@ -225,7 +225,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Lecture Room"
         ]
     },
     {
@@ -241,9 +241,9 @@
         "room_id": "B303",
         "name": "Seminar Room B-303",
         "capacity": 48,
-        "type": "Seminar Room",
+        "type": "Lecture",
         "features": [
-            "DIE"
+            "Lecture Room"
         ]
     },
     {
@@ -272,7 +272,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DIE"
+            "Lecture Room"
         ]
     },
     {
@@ -292,7 +292,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Lecture Room"
         ]
     },
     {
@@ -301,7 +301,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Lecture Room"
         ]
     },
     {
@@ -310,7 +310,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Lecture Room"
         ]
     },
     {
@@ -319,7 +319,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Lecture Room"
         ]
     },
     {
@@ -328,7 +328,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DCE"
+            "Lecture Room"
         ]
     },
     {
@@ -390,7 +390,7 @@
         "room_id": "D106",
         "name": "Computer Lab 5",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "Computer Graphics",
             "Digital Signal Processing",
@@ -404,7 +404,7 @@
         "room_id": "D107",
         "name": "Electrical Lab",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "electrical circuits and machines",
             "Electrical Machines"
@@ -453,7 +453,7 @@
         "room_id": "E201",
         "name": "Electronics Lab 3",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "Digital logic",
             "Instrumentation"
@@ -476,7 +476,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAME"
+            "Lecture Room"
         ]
     },
     {
@@ -485,7 +485,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAME"
+            "Lecture Room"
         ]
     },
     {
@@ -494,7 +494,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAME"
+            "Lecture Room"
         ]
     },
     {
@@ -503,16 +503,16 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAME"
+            "Lecture Room"
         ]
     },
     {
         "room_id": "E104",
         "name": "Seminar Room E-104",
         "capacity": 48,
-        "type": "Seminar Room",
+        "type": "Lecture",
         "features": [
-            "DAME"
+            "Lecture Room"
         ]
     },
     {
@@ -521,7 +521,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAME"
+            "Lecture Room"
         ]
     },
     {
@@ -530,7 +530,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAME"
+            "Lecture Room"
         ]
     },
     {
@@ -539,7 +539,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAME"
+            "Lecture Room"
         ]
     },
     {
@@ -548,7 +548,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DECE"
+            "Lecture Room"
         ]
     },
     {
@@ -557,7 +557,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DECE"
+            "Lecture Room"
         ]
     },
     {
@@ -566,7 +566,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DECE"
+            "Lecture Room"
         ]
     },
     {
@@ -575,7 +575,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DECE"
+            "Lecture Room"
         ]
     },
     {
@@ -584,7 +584,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DECE"
+            "Lecture Room"
         ]
     },
     {
@@ -593,7 +593,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DECE"
+            "Lecture Room"
         ]
     },
     {
@@ -602,16 +602,16 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DECE"
+            "Lecture Room"
         ]
     },
     {
         "room_id": "E405",
         "name": "Seminar Room E-405",
         "capacity": 48,
-        "type": "Seminar Room",
+        "type": "Lecture",
         "features": [
-            "DECE"
+            "Lecture Room"
         ]
     },
     {
@@ -620,7 +620,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAR"
+            "Lecture Room"
         ]
     },
     {
@@ -629,7 +629,7 @@
         "capacity": 48,
         "type": "Lecture",
         "features": [
-            "DAR"
+            "Lecture Room"
         ]
     },
     {
@@ -642,7 +642,7 @@
         ]
     },
     {
-        "room_id": "F-207",
+        "room_id": "F-207x",
         "name": "Classroom F-207",
         "capacity": 24,
         "type": "Practical",
@@ -654,7 +654,7 @@
         "room_id": "W101",
         "name": "Mechanical Workshop",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "DAME"
         ]
@@ -682,10 +682,10 @@
         ]
     },
     {
-        "room_id": "W104",
+        "room_id": "W104x",
         "name": "Automobile Workshop",
         "capacity": 24,
-        "type": "Lab",
+        "type": "Practical",
         "features": [
             "automobileworkshop",
             "Automobile Component Design",
