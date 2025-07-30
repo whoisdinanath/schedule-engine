@@ -17,6 +17,10 @@ from src.ga.population import generate_course_group_aware_population
 from src.ga.operators.crossover import crossover_uniform
 from src.ga.operators.mutation import mutate_individual
 from src.ga.evaluator.fitness import evaluate  # Fitness Function
+from src.ga.evaluator.detailed_fitness import (
+    evaluate_detailed,
+    evaluate_from_detailed,
+)  # Enhanced evaluation
 
 
 from src.metrics.diversity import average_pairwise_diversity
@@ -44,6 +48,11 @@ from src.exporter.plotdiversity import plot_diversity_trend
 from src.exporter.plothard import plot_hard_constraint_violation_over_generation
 from src.exporter.plotpareto import plot_pareto_front
 from src.exporter.plotsoft import plot_soft_constraint_violation_over_generation
+from src.exporter.plot_detailed_constraints import (
+    plot_individual_hard_constraints,
+    plot_individual_soft_constraints,
+    plot_constraint_summary,
+)
 
 # Import Decoder
 from src.decoder.individual_decoder import decode_individual
@@ -121,6 +130,27 @@ hard_trend = []
 soft_trend = []
 diversity_trend = []
 
+# Enhanced constraint tracking - individual constraint trends
+hard_constraint_names = [
+    "no_group_overlap",
+    "no_instructor_conflict",
+    "instructor_not_qualified",
+    "room_type_mismatch",
+    "availability_violations",
+    "incomplete_or_extra_sessions",
+]
+soft_constraint_names = [
+    "group_gaps_penalty",
+    "instructor_gaps_penalty",
+    "group_midday_break_violation",
+    "course_split_penalty",
+    "early_or_late_session_penalty",
+]
+
+# Initialize detailed tracking dictionaries
+hard_trends = {name: [] for name in hard_constraint_names}
+soft_trends = {name: [] for name in soft_constraint_names}
+
 # 8. Run GenAlgo
 for gin in range(NGEN):
     print(f"Generation {gin + 1}/{NGEN}")
@@ -156,10 +186,27 @@ for gin in range(NGEN):
     soft_trend.append(min(ind.fitness.values[1] for ind in population))
     diversity_trend.append(average_pairwise_diversity(population))
 
-    # Log best Fitness
+    # Track detailed constraints from the best individual
     best = tools.selBest(population, 1)[0]  # Get the best individual
+    best_hard_details, best_soft_details = evaluate_detailed(
+        best, courses, instructors, groups, rooms
+    )
+
+    # Update detailed constraint trends
+    for constraint_name in hard_constraint_names:
+        hard_trends[constraint_name].append(best_hard_details[constraint_name])
+
+    for constraint_name in soft_constraint_names:
+        soft_trends[constraint_name].append(best_soft_details[constraint_name])
+
+    # Log best Fitness
     print(f"Best Hard Constraint Violations: {best.fitness.values[0]}")
     print(f"Best Soft Constraint Penalty: {best.fitness.values[1]}")
+
+    # Log detailed constraint breakdown for the best individual
+    if gin % 10 == 0 or gin == NGEN - 1:  # Print details every 10 generations
+        print(f"  Hard constraint details: {best_hard_details}")
+        print(f"  Soft constraint details: {best_soft_details}")
 
     # Early stopping if we find a perfect solution
     if best.fitness.values[0] == 0:
@@ -169,15 +216,21 @@ for gin in range(NGEN):
 
 # 8.5 Plotting Hard and Soft Constraint Trends Separately
 
-
 # Plot Hard Constraint violations
 plot_hard_constraint_violation_over_generation(hard_trend, output_dir)
 # Plot Soft Constraint penalties
 plot_soft_constraint_violation_over_generation(soft_trend, output_dir)
 # Plot diversity evolution
 plot_diversity_trend(diversity_trend, output_dir)
-# Plot final Pareto front
+# Plot final Pareto front (enhanced version)
 plot_pareto_front(population, output_dir)
+
+# NEW: Plot detailed individual constraints
+plot_individual_hard_constraints(hard_trends, output_dir)
+plot_individual_soft_constraints(soft_trends, output_dir)
+plot_constraint_summary(hard_trends, soft_trends, output_dir)
+
+print(f"Detailed constraint plots saved in {output_dir}/hard/ and {output_dir}/soft/")
 
 
 # 9 (Aliter): For MOO Multi Objective Optimization: We implement code slot #9 . below

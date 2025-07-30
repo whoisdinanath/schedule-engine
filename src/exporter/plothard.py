@@ -20,3 +20,4 @@ def plot_hard_constraint_violation_over_generation(hard_trend, output_dir):
     plt.grid(True)
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, "hard_constraint_trend.pdf"))
+    plt.close()  # Close the figure to free memory
