@@ -42,7 +42,7 @@ class QuantumTimeSystem:
     """
 
     # Constants
-    QUANTUM_MINUTES: ClassVar[int] = 15
+    QUANTUM_MINUTES: ClassVar[int] = 60
     UNIT_COURSE_DURATION: ClassVar[int] = 60  # Duration in minutes
 
     # Derived constants
@@ -65,13 +65,13 @@ class QuantumTimeSystem:
     ]
 
     DEFAULT_OPERATING_HOURS: ClassVar[Dict[str, Optional[Tuple[str, str]]]] = {
-        "Sunday": ("09:00", "14:00"),  # Closed by default
+        "Sunday": ("08:00", "20:00"),  # Closed by default
         "Monday": ("08:00", "20:00"),
         "Tuesday": ("08:00", "20:00"),
         "Wednesday": ("08:00", "20:00"),
         "Thursday": ("08:00", "20:00"),
         "Friday": ("08:00", "20:00"),
-        "Saturday": None,  # Shorter Saturday
+        "Saturday": None,  # Shorter Saturday (or fully Closed)
     }
 
     def __init__(self):
