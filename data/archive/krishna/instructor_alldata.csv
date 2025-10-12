@@ -1,0 +1,194 @@
+Department,instructor_id,name,qualified_courses
+DOAS,1,Hariram Limbu,"ENSH 151,ENSH 252,ENSH 253"
+DOAS,2,Tek Bahadur Budathoki,"ENSH 151,ENSH 252,ENSH 253,  ENSH 252,ENSH 252-PR"
+DOAS,3,Anup Subedi,"ENSH 151,ENSH 252,ENSH 253,ENSH 154"
+DOAS,4,Sabita Bashyal,"ENSH 151,ENSH 252,ENSH 253,ENSH 155,ENSH 242,ENCE 151"
+DOAS,5,Merina Sthapit,"ENSH 151,ENSH 253,ENSH 252"
+DOAS,6,Baldev Adhikari,"ENSH 151,ENSH 253,ENSH 252,ENSH 252-PR"
+DOAS,7,Dr Manoj Kumar Thapa,ENSH 152
+DOAS,8,Yubaraj Thapa,ENSH 152
+DOAS,9,Bhupak Lal Joshi,"ENSH 152,ENSH 152-PR"
+DOAS,10,Manoj Kumar Tapa,"ENSH 152,ENSH 152-PR"
+DOAS,11,Prakash Poudel,"ENSH 153,ENSH 154,ENSH 154-PR"
+DOAS,12,Prabin Shrestha,"ENSH 153,ELEC 152-PR,ENSH 154"
+DOAS,13,Pratash Poudel,"ENSH 153,ENSH 153-PR"
+DOAS,14,Dinesh Shah,"ENSH 153,ENSH 154,ENSH 154-PR"
+DOAS,15,Sharmila Dangol,"ENSH 153,ENSH 154,ENSH 154-PR"
+DOAS,16,Hemanta Khanal,"ENSH 153,ENSH 155,ENSH 242"
+DOAS,17,Pratigya K.C. Karki,ENSH 153-PR
+DOAS,18,Prabin Awasthi,"ENSH 204, ENSH 251, ENSH 302"
+DOAS,19,Prajwal Singh Thapa,"ENSH 204, ENSH 251, ENSH 302"
+DOAS,20,Arati Kumri Mainali,"ENSH 204, ENSH 251, ENSH 302"
+BEICTEE,21,Anuj Ghimire,"ENCT 252-PR,ENCT 251"
+BEICTEE,22,Anup Shrestha,"ENCT 254-PR,ENCT 151,ENCT 151-PR"
+BEICTEE,23,Bibat Thokar,"ENCT 411, ENCT 411-PR"
+BEICTEE,24,Bikal Adhikari,"ENEX 255-PR,ENEX 255"
+BEICTEE,25,Binod Sapkota,"ENCT 304, ENCT 304-PR, ENCT 253-PR"
+BEICTEE,26,Dip ram Bhujel,"ENCT 253,ENCT 253-PR"
+BEICTEE,27,Ganesh Kumal,"ENEX 152,ENEX 152-PR,ENEX 253-PR"
+BEICTEE,28,Hari Bahadur,ENCT 201-PR
+BEICTEE,29,Hemanta Joshi,"ENCT 253, ENCT 253-PR"
+BEICTEE,30,Jalauddin Mansur,ENCT 304-PR
+BEICTEE,31,Janardhan Bhatta,ENCT 254-PR
+BEICTEE,32,Jibesh Bhattarai,"ENME 252-PR, ENCT 352-PR,  ENCT 411-PR"
+BEICTEE,33,Kiran chandra Dahal,"ENEX 152-PR, ENEX 152,ENEX 152-PR"
+BEICTEE,34,Kobid Karkee,"ENEX 254,ENEX 254-PR, ENEX 411, ENEX 411-PR"
+BEICTEE,35,Madhusudan Nyaupane,"ENEE 154,ENEE 154-PR, ENEE 154,ENEE 154-PR,ENEE 254,ENEE 254-PR"
+BEICTEE,36,Nirupama Bashyal,"ENME 304, ENCE 356"
+BEICTEE,37,Praches Acharya,"ENEX 252-PR,ENME 253-PR, ENEX 413-PR, ENEX 416-PR, ENEX 252-PR,ENEX 253-PR,ENEX 253"
+BEICTEE,38,Prabin Sharma Poudyal,"ENCT 305, ENCT 305 PR"
+BEICTEE,39,Pravin Sangroula,"ENCT 252,ENCT 252-PR"
+BEICTEE,40,Pradip Sah,"ENEE 154-PR,ENEE 254-PR"
+BEICTEE,41,Rajan Bhandari,"ENCT 201, ENCT 201-PR"
+BEICTEE,42,Rajendra Karki,"ENCT 355, ENCT 412"
+BEICTEE,43,Rajad Shakya,"ENCE 365-389, ENCE 365-389-PR, ENCT 385-399, ENCT 385-399-PR, ENCT 301, ENCT 301-PR"
+BEICTEE,44,RR,"ENEX 151-PR,ENEX 151"
+BEICTEE,45,Shanta Maharjan,ENEX 417
+BEICTEE,46,Shiva Shankar Sah,"ENEX 151-PR,ENEX 151"
+BEICTEE,47,Shiva Shankar Shah,"ENEX 301, ENEX 301-PR"
+BEICTEE,48,Shreekar Tiwari,"ENEX 416-PR, ENEX 413-PR, ENEX 416, ENEX 413"
+BEICTEE,49,Subodh Kumar Ravi,"ENEX 151-PR,ENEX 151, ENEX 254-PR, ENEX 151-PR,ENEX 151"
+BEICTEE,50,Sudeep Shrestha,"ENCE 365-389, ENCE 365-389-PR"
+BEICTEE,51,Sunil Thapa,"ENCT 352, ENCT 352-PR"
+BEICTEE,52,Sunita Raj K.C.,"ENCT 355, ENCT 355-PR"
+BEICTEE,53,Suramya Sharma Dahal,ENEX 415
+BEICTEE,54,Suwarna Lingden,"ENEX 252,ENEX 252-PR"
+BEICTEE,55,Umesh Kanta Ghimire,"ENCT 305-PR, ENEX 411-PR, ENEX 416-PR, ENEX 413-PR"
+DAMEI,56,Aayush Pudasaini,"ENIE 352-PR, ENIE 435-444-PR"
+DAMEI,57,Akhalesh Yadav,"ENIE 435-444, ENIE 435-444-PR"
+DAMEI,58,Ankit Shrestha,"ENIE 445-449, ENIE 445-449-PR"
+DAMEI,59,Ayush Pudasaini,ENME 251-PR
+DAMEI,60,Badri Prasad Adhikari,ENAM 351
+DAMEI,61,Bhakta Man Nakarmi,"ENME 155-PR, ENME 153,ENME 155-PR"
+DAMEI,62,Bibek Dhungana,"ENME 253, ENME 253-PR"
+DAMEI,63,Bibek Pudasaini,"ENME 152-PR, ENME 152,ENME 158-PR"
+DAMEI,64,Bikash Chhantyal,"ENME 254, ENME 254-PR"
+DAMEI,65,Bikki Chhantyal,"ENME 206-PR, ENME 251-PR, ENME 254,ENME 251-PR,ENME 254-PR"
+DAMEI,66,Bishal Kumar,"ENME 302-PR, ENME 252, ENME 252-PR, ENME 155,ENME 158-PR,ENME 252,ENME 252-PR"
+DAMEI,67,Bishwo Ram Parajuli,"ENIE 251, ENIE 251-PR"
+DAMEI,68,BKJ (Full name not provided),
+DAMEI,69,BT (Full name not provided),
+DAMEI,70,Debendra Bahadur Raut,"ENME 303, ENME 252-PR, ENME 309, ENME 309-PR"
+DAMEI,71,Dharma Maharjan,"ENIE 325-334, ENIE 325-334-PR"
+DAMEI,72,Gautam Das Tuladhar,ENME 155-PR
+DAMEI,73,GRP (Full name not provided),"ENIE 203, ENIE 254, ENIE 305"
+DAMEI,74,Janardan Bhatta,ENIE 411
+DAMEI,75,Kamal Pokharel,"ENME 255,ENME 255-PR,ENME 155,ENME 155-PR, ENIE 352"
+DAMEI,76,KP (Full name not provided),"ENIE 203, ENIE 254, ENIE 305"
+DAMEI,77,Laxman Palikhel,"ENAM 351, ENAM 351-PR, ENIE 435-444, ENIE 435-444-PR"
+DAMEI,78,Lochan Devkota,"ENME 151, ENME 151-PR, ENME 206, ENME 206-PR, ENAM 412, ENAM 412-PR, ENME 151-PR,ENME 151,ENIE 254"
+DAMEI,79,Madhusudan Nyaupane,"ENEE 254, ENEE 254-PR"
+DAMEI,80,Manoj Adhikari,"ENME 251, ENAM 352, ENME 251-PR"
+DAMEI,81,Narad Kumar Rai,"ENME 158-PR, ENAM 351-PR, ENAM 351"
+DAMEI,82,NKR (Full name not provided),"ENIE 325-334-PR, ENIE 435-444, ENIE 435-444-PR"
+DAMEI,83,OM (Full name not provided),
+DAMEI,84,Oscar Gautam,ENME 158-PR
+DAMEI,85,Pitambar Chaulagain,"ENIE 251, ENIE 251-PR"
+DAMEI,86,Pradip Sah,ENME 255-PR
+DAMEI,87,Pradip Shah,"ENME 255-PR,  ENME 255, ENCE 307-PR, ENCE 307"
+DAMEI,88,Pramod Shrestha,"ENME 254-PR,ENCE 251-PR,ENCE 151, ENCE 307, ENCE 307-PR"
+DAMEI,89,Pratik Adhikari,"ENME 155-PR,ENME 155,ENME 253"
+DAMEI,90,PS (Full name not provided),"ENIE 325-334-PR, ENIE 435-444, ENIE 435-444-PR"
+DAMEI,91,Purusottam Khatiwada,"ENME 152,ENME 158-PR,ENME 158"
+DAMEI,92,Raj Kumar Chaulagain,"ENME 152, ENME 255,ENME 255-PR, ENME 152-PR"
+DAMEI,93,Rajan Dahal,ENME 158-PR
+DAMEI,94,Rajan Sharma,"ENIE 352, ENIE 352-PR"
+DAMEI,95,Ram Kumar Joshi,ENME 155-PR
+DAMEI,96,Sajendra Man Bajracharya,"ENME 153,ENME 158-PR, ENME 256, ENME 303, ENME 152-PR"
+DAMEI,97,Shambhu Krishna Mastara,ENME 155-PR
+DAMEI,98,SM (Full name not provided),ENEE 307-PR
+DAMEI,99,SP (Full name not provided),"ENIE 435-444, ENIE 435-444-PR"
+DAMEI,100,SRG (Full name not provided),ENIE 301
+DAMEI,101,SRG (Full name not provided),"ENIE 352, ENIE 352-PR"
+DAMEI,102,Sudan Neupane,"ENME 151,ENME 151-PR,ENSH 252-PR"
+DAMEI,103,Sudhan Neupane,"ENIE 325-334, ENIE 325-334-PR"
+DAMEI,104,Sudhan Neupane,"ENIE 445-449, ENIE 445-449-PR"
+DAMEI,105,Sugam Maharjan,ENME 158-PR
+DAMEI,106,Sujit Regmi,ENME 158-PR
+DAMEI,107,Suman Acharya,"ENME 255,ENME 255-PR"
+DAMEI,108,Suman Acharya,"ENME 414-PR, ENME 414-PR"
+DAMEI,109,Sunil Adhikari,"ENME 158-PR,ENME 158,ENCE 256, ENAM 352, ENAM 352-PR"
+DAMEI,110,Sunny Pradhan,"ENAM 351, ENAM 351-PR"
+DAMEI,111,Sushant Raj Giri,ENME 356
+DAMEI,112,UA (Full name not provided),ENIE 301
+DAMEI,113,UKG (Full name not provided),"ENEE 307, ENEE 307-PR"
+Civil Department,114,Abinesh Khatri,"ENCE 252,ENCE 252-PR, ENCE 202, ENCE 202-PR"
+Civil Department,115,Atul Bhandari,"ENCE 254-PR,ENCE 254"
+Civil Department,116,Bhes Kumar Karki,"ENCE 153-PR,ENCE 153,ENCE 254, ENCE 153, ENCE 153-PR, ENCE 254"
+Civil Department,117,Bibek Babu Lamichhanie,"ENCE 253,ENCE 253-PR, ENCE 253, ENCE 253-PR"
+Civil Department,118,Bibek Pudasaini,"ENME 101, ENME 101-PR"
+Civil Department,119,Bijaya Kumar Tuladhar,ENCE 255
+Civil Department,120,Bimal Ojha,"ENCE 252,ENCE 252-PR, ENCE 352"
+Civil Department,121,Biraj Pandey,"ENCE 205, ENCE 205-PR,  ENCE 352-PR, ENME 101, ENME 101-PR"
+Civil Department,122,Bishal Kumar,"ENME 101, ENME 101-PR"
+Civil Department,123,Charchit Nagila,"ENCE 151-PR,ENCE 151,ENME 205"
+Civil Department,124,ChiniKaji Maharjan,"ENCE 153-PR,ENCE 253,ENCE 253-PR, ENCE 205, ENCE 205-PR, ENCE 153, ENCE 153-PR, ENCE 203-PR,  ENCE 203"
+Civil Department,125,Deepak Gautam,"ENCE 152, ENCE 152-PR"
+Civil Department,126,Alin Chandra Shakya,"ENCE 260,ENCE 252, ENCE 252-PR"
+Civil Department,127,Indra Narayan Yadav,"ENCE 151, ENCE 151-PR"
+Civil Department,128,Sanjeema Bajracharya,"ENCE 205, ENCE 156"
+Civil Department,129,Sujan Tripathi,"ENCE 352, ENCE 352-PR, ENCE 365-389, ENCE 365-389-PR"
+Civil Department,130,Om Shanti Maharjan,"ENCE 261-PR,  ENCE 153-PR,ENCE 261-PR"
+Civil Department,131,Pradeep Prasad Bhatta,"ENCE 261-PR,ENCE 261"
+Civil Department,132,Gobinda Prasad Paudel,"ENCE 306, ENCE 306-PR"
+Civil Department,133,Gopal Bhattarai,"ENCE 251-PR,ENCE 251"
+Civil Department,134,Gopal Gautam,"ENCE 251-PR,ENCE 251"
+Civil Department,135,Harshikesh Karna,"ENCE 252,ENCE 252-PR"
+Civil Department,136,Himal Karki Katuwal,ENCE 252
+Civil Department,137,Jenish Maharjan,"ENME 101, ENME 101-PR"
+Civil Department,138,Khem Raj Regmi,"ENCE 352, ENCE 352-PR"
+Civil Department,139,Kiran Lal Maharjan,"ENCE 253,ENCE 253-PR, ENCE 304, ENCE 304-PR, ENCE 302, ENCE 302-PR"
+Civil Department,140,Krishna Bahadur Baniya,"ENCE 205, ENCE 205-PR,  ENCE 352-PR, ENME 101, ENME 101-PR"
+Civil Department,141,Krishna Bhattarai,"ENCE 353, ENCE 353-PR, ENCE 365-389, ENCE 365-389-PR"
+Civil Department,142,Manoj Adhikari,ENME 101
+Civil Department,143,Narad Narad Kumar Rai,ENME 101
+Civil Department,144,Nirajan Devkota,"ENCE 251-PR,ENCE 251, ENCE 403, ENCE 403-PR"
+Civil Department,145,Oscar Gautam,ENME 101-PR
+Civil Department,146,Piyush Pradhan,"ENCE 205, ENCE 205-PR, ENCE 352"
+Civil Department,147,Pradeep Pr. Bhatta,"ENCE 351, ENCE 261-PR"
+Civil Department,148,Prajwal Singh Thapa,ENSH 251
+Civil Department,149,Pramod Shrestha,"ENCE 306-PR, ENCE 403-PR, ENCE 251-PR, ENCE 252-PR, ENME 205-PR"
+Civil Department,150,Purushottam Khatiwada,"ENME 101, ENME 205-PR"
+Civil Department,151,Rajan Dahal,ENME 205-PR
+Civil Department,152,Rajendra Bahadur Chhetri,"ENCE 251-PR,ENCE 251, ENCE 403, ENCE 403-PR, ENCE 251, ENCE 251-PR, "
+Civil Department,153,Rajesh Khadka,"ENCE 402, ENCE 402-PR"
+Civil Department,154,Ram Prasad Neupane,ENCE 255
+Civil Department,155,Ramesh Karki,"ENCE 153-PR,ENCE 153,ENCE 253, ENCE 302,  ENCE 203, ENCE 203-PR, ENCE 153, ENCE 153-PR, ENCE 253, ENCE 261-PR, ENCE 261"
+Civil Department,156,Sajendra Man Bajracharya,ENME 101
+Civil Department,157,Sanjima Bajracharya,"ENCE 205, ENCE 205-PR"
+Civil Department,158,Shailendra Raj Khanal,"ENCE 152-PR, ENCE 402, ENME 101-PR, ENCE 102-PR, ENCE 102-PR"
+Civil Department,159,Shambhu Kumar Thakur,"ENCE 151,ENCE 253, ENCE 253-PR"
+Civil Department,160,Shes Raj Kafle,"ENCE 302, ENCE 302-PR"
+Civil Department,161,Subha Laxmi Ranjitkar,"ENCE 254-PR,ENCE 254, ENCE 254, ENCE 254-PR"
+Civil Department,162,Sugam Maharjan,"ENME 101, ENME 101-PR"
+Civil Department,163,Sujit Regmi,"ENME 101, ENME 101-PR"
+Civil Department,164,Sukriti Suvedi,"ENCE 254, ENCE 254-PR, ENCE 351, ENCE 365-389, ENCE 365-389-PR"
+Civil Department,165,Sunil Adhikari,"ENME 101, ENME 101-PR"
+Civil Department,166,Surakshya Kafle,"ENCE 365-389, ENCE 365-389-PR"
+Civil Department,167,Sushant Sapkota,"ENCE 152,ENCE 152-PR"
+Civil Department,168,Extra Professor 1,ENCE 301
+Archit,169,Mimang Hang Kirat,"ENAR 255-PR, ENAR 351-PR, ENAR 301-PR"
+Archit,170,Amrit Jeev Tamrakar,ENAR 304-PR
+Archit,171,Bibek Karki,"ENAR 304-PR, ENAR 255-PR"
+Archit,172,Bidita Shakya,"ENAR 351-PR, ENAR 301-PR"
+Archit,173,Bimala Tuladhar,ENAR 561
+Archit,174,Chhanya Nidal,ENAR 501
+Archit,175,Niranjan Shrestha,ENAR 254-PR
+Archit,176,Pradeep Adhikari,"ENAR 462-PR, ENAR 302"
+Archit,177,Prajal Pradhan,"ENAR 254, ENAR 254-PR"
+Archit,178,Ranjan C. Prajapati,ENAR 352
+Archit,179,Rashmi Shakya,ENAR 255-PR
+Archit,180,Ravindra Gautam,ENAR 465-484-PR
+Archit,181,Renu Maharjan,ENAR 462-PR
+Archit,182,Richa Dhungana,"ENAR 301-PR, ENAR 351-PR"
+Archit,183,Sanjaya Kumar Rokka,ENAR 465-484-PR
+Archit,184,Sanjaya Maharjan,"ENEE 356-PR, ENCE 358, ENCE 358-PR, ENAR 352, ENCE 358-PR"
+Archit,185,Shova Thapa,"ENAR 462-PR, ENAR 561, ENAR 501"
+Archit,186,Shreeejana Maharjan,"ENAR 304-PR, ENAR 255-PR"
+Archit,187,Sudeep Sharma Poudyal,"ENAR 462-PR, ENAR 503"
+Archit,188,Suman Joshi,"ENAR 301-PR, ENAR 351-PR"
+Archit,189,Subik Kumar Shrestha,ENAR 501
+Archit,190,Bijay K. Tuladhar,ENAR 352
+Archit,191,Madhusudhan Nyaupane,ENAR 356
+Archit,192,Pradip Sah,ENEE 356-PR
+Archit,193,Pramesh Malla,"ENAR 465-484-PR, ENCE 358, ENCE 358-PR"

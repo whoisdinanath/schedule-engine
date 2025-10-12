@@ -1,0 +1,704 @@
+[
+    {
+        "room_id": "A101",
+        "name": "Mechanics of Machinery Lab",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Mechanics of Solids",
+            "Mechanics of Machines and Mechanisms"
+        ]
+    },
+    {
+        "room_id": "A102",
+        "name": "Fluid Engineering Lab",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Fluid Engineering",
+            "Water Supply",
+            "Hydraulics",
+            "Hydropower"
+        ]
+    },
+    {
+        "room_id": "A103",
+        "name": "Material Science",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "A104",
+        "name": "Thermal Science",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Engineering Thermodynamics",
+            "Heat and Mass Transfer"
+        ]
+    },
+    {
+        "room_id": "A201",
+        "name": "Classroom A-201",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "A202",
+        "name": "Classroom A-202",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "A202x",
+        "name": "Classroom A-202",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Design Studio",
+            "Building Construction",
+            "Architectural Graphics",
+            "History_nep"
+        ]
+    },
+    {
+        "room_id": "A203",
+        "name": "Classroom A-203",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Design Studio",
+            "Building Construction",
+            "History_nep"
+        ]
+    },
+    {
+        "room_id": "A204",
+        "name": "Classroom A-204",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "A301",
+        "name": "Classroom A-301",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "A301x",
+        "name": "Classroom A-301",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Design Studio",
+            "Working Drawing"
+        ]
+    },
+    {
+        "room_id": "A302",
+        "name": "Classroom A-302",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "A303",
+        "name": "Classroom A-303",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "A303x",
+        "name": "Classroom A-303",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Design Studio",
+            "Landscape Design and Site Planning"
+        ]
+    },
+    {
+        "room_id": "A305",
+        "name": "Classroom A-305",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Free Hand Sketching",
+            "Working Drawing"
+        ]
+    },
+    {
+        "room_id": "B101",
+        "name": "Seminar Room B-101",
+        "capacity": 24,
+        "type": "Lecture",
+        "features": [
+            "Arc_elective_II"
+        ]
+    },
+    {
+        "room_id": "B102",
+        "name": "Classroom B-102",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B103",
+        "name": "Classroom B-103",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B104",
+        "name": "Classroom B-104",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B202",
+        "name": "Classroom B-202",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "English"
+        ]
+    },
+    {
+        "room_id": "B203",
+        "name": "Physics Lab",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Physics"
+        ]
+    },
+    {
+        "room_id": "B204",
+        "name": "Chemistry Lab",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Chemistry"
+        ]
+    },
+    {
+        "room_id": "B205",
+        "name": "Classroom B-205",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B206",
+        "name": "Classroom B-206",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B207",
+        "name": "Classroom B-207",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Arc_elective_II"
+        ]
+    },
+    {
+        "room_id": "B303",
+        "name": "Seminar Room B-303",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B304",
+        "name": "Classroom B-304",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "numerical_methods_computer"
+        ]
+    },
+    {
+        "room_id": "B308",
+        "name": "Classroom B-308",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Metrology and Instrumentation",
+            "industrial_elective_III",
+            "industrial_elective_I(Pneumatics)"
+        ]
+    },
+    {
+        "room_id": "B309",
+        "name": "Classroom B-309",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B310",
+        "name": "Classroom B-310",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Workstudy and Human factors",
+            "industrial_elective_I(Energy Audit)",
+            "insutrial_elective_IV"
+        ]
+    },
+    {
+        "room_id": "B311",
+        "name": "Classroom B-311",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B312",
+        "name": "Classroom B-312",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B402",
+        "name": "Classroom B-402",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B403",
+        "name": "Classroom B-403",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "B407",
+        "name": "Classroom B-407",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "D101",
+        "name": "Computer Lab 1 D-101",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Building Construction",
+            "Building Services",
+            "CADD",
+            "Computer Aided Design"
+        ]
+    },
+    {
+        "room_id": "D102",
+        "name": "Computer Lab 2 D-102",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Building Services",
+            "Operation Research",
+            "Numerical Methods Civil",
+            "Plant Layout and Design",
+            "Elective I Automobile",
+            "Elective I Mechanical"
+        ]
+    },
+    {
+        "room_id": "D104",
+        "name": "Computer Lab 3",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Numerical Methods",
+            "Numerical Methods Mechanical",
+            "Data Communication",
+            "Computer Organization and Architecture",
+            "Software Engineering",
+            "Database Management System",
+            "Control BEI"
+        ]
+    },
+    {
+        "room_id": "D105",
+        "name": "Computer Lab 4",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Object Oriented Programming",
+            "Data Structure and Algorithms",
+            "Distributed Systems",
+            "Elective I",
+            "Signals and Systems",
+            "Filter Design"
+        ]
+    },
+    {
+        "room_id": "D106",
+        "name": "Computer Lab 5",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Computer Graphics",
+            "Digital Signal Processing",
+            "Operating System",
+            "Computer Network",
+            "Artificial Intelligence",
+            "Elective I"
+        ]
+    },
+    {
+        "room_id": "D107",
+        "name": "Electrical Lab",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "electrical circuits and machines",
+            "Electrical Machines"
+        ]
+    },
+    {
+        "room_id": "D108",
+        "name": "Electronics Lab 1",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Electronic Devices and Circuits",
+            "RF and Microwave Engineering",
+            "Instrumentation and Sensors"
+        ]
+    },
+    {
+        "room_id": "D110",
+        "name": "Electronics Lab 2",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Control System and Automation",
+            "Electromagnetics"
+        ]
+    },
+    {
+        "room_id": "D111",
+        "name": "Drawing Lab 1",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Machine Drawing"
+        ]
+    },
+    {
+        "room_id": "D112",
+        "name": "Drawing Lab 2",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Drawing"
+        ]
+    },
+    {
+        "room_id": "E201",
+        "name": "Electronics Lab 3",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Digital logic",
+            "Instrumentation"
+        ]
+    },
+    {
+        "room_id": "E004",
+        "name": "Structure Geology Lab",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Geology",
+            "Structure",
+            "Transportation Engineering"
+        ]
+    },
+    {
+        "room_id": "E002",
+        "name": "Classroom E-002",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E003",
+        "name": "Classroom E-003",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E101",
+        "name": "Classroom E-101",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E102",
+        "name": "Classroom E-102",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E104",
+        "name": "Seminar Room E-104",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E203",
+        "name": "Classroom E-203",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E204",
+        "name": "Classroom E-204",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E205",
+        "name": "Classroom E-205",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E302",
+        "name": "Classroom E-302",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E303",
+        "name": "Classroom E-303",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E304",
+        "name": "Classroom E-304",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E305",
+        "name": "Classroom E-305",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E402",
+        "name": "Classroom E-402",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E403",
+        "name": "Classroom E-403",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E404",
+        "name": "Classroom E-404",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "E405",
+        "name": "Seminar Room E-405",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "F101",
+        "name": "Classroom F-101",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "F102",
+        "name": "Classroom F-102",
+        "capacity": 48,
+        "type": "Lecture",
+        "features": [
+            "Lecture Room"
+        ]
+    },
+    {
+        "room_id": "F-207",
+        "name": "Classroom F-207",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Building Construction"
+        ]
+    },
+    {
+        "room_id": "F-207x",
+        "name": "Classroom F-207",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "History_west"
+        ]
+    },
+    {
+        "room_id": "W101",
+        "name": "Mechanical Workshop",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "DAME"
+        ]
+    },
+    {
+        "room_id": "W102",
+        "name": "Material Testing Lab",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Material Science",
+            "Soil Mechanics",
+            "Foundation Engineering",
+            "Concrete Science",
+            "Design of RCC Structures"
+        ]
+    },
+    {
+        "room_id": "W103",
+        "name": "Survey Lab",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Surveying"
+        ]
+    },
+    {
+        "room_id": "W104x",
+        "name": "Automobile Workshop",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "automobileworkshop",
+            "Automobile Component Design",
+            "Automobile Chassis"
+        ]
+    },
+    {
+        "room_id": "W104",
+        "name": "Machine Shop",
+        "capacity": 24,
+        "type": "Practical",
+        "features": [
+            "Workshop"
+        ]
+    }
+]

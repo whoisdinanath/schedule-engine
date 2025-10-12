@@ -1,470 +1,703 @@
-"""
-Population class for managing collections of chromosomes in the genetic algorithm.
-"""
-
-from typing import List, Dict, Any, Optional, Callable, Tuple
+from typing import List, Dict, Tuple
 import random
-import statistics
-from collections import defaultdict
-import copy
 
-from .chromosome import Chromosome, Gene
-from ..entities import Course, Instructor, Room, Group
-from ..utils.logger import get_logger
-from ..utils.config import TIME_SLOTS
+from src.ga.sessiongene import SessionGene
+from src.ga.individual import create_individual
 
 
-class Population:
+def generate_course_group_aware_population(n: int, context: Dict) -> List:
     """
-    Manages a collection of chromosomes representing potential timetable solutions.
-    Provides methods for initialization, evaluation, and selection operations.
+    Generate population using course-group enrollment structure.
+    This approach is superior to random generation as it respects
+    fundamental university timetabling constraints.
+
+    Args:
+        n: Population size
+        context: Dict containing courses, groups, instructors, rooms, available_quanta
+
+    Returns:
+        List of individuals (each is a list of SessionGenes)
     """
-    
-    def __init__(self, size: int = 50):
-        """
-        Initialize population with specified size.
-        
-        Args:
-            size: Number of chromosomes in the population
-        """
-        self.size = size
-        self.chromosomes: List[Chromosome] = []
-        self.generation = 0
-        self.best_fitness_history: List[float] = []
-        self.avg_fitness_history: List[float] = []
-        self.diversity_history: List[float] = []
-        self.logger = get_logger(self.__class__.__name__)
-    
-    def initialize_random(self,
-                         courses: Dict[str, Course],
-                         instructors: Dict[str, Instructor],
-                         rooms: Dict[str, Room],
-                         groups: Dict[str, Group]) -> None:
-        """
-        Initialize population with random chromosomes.
-        
-        Args:
-            courses: Dictionary of course entities
-            instructors: Dictionary of instructor entities
-            rooms: Dictionary of room entities
-            groups: Dictionary of group entities
-        """
-        self.logger.info(f"Initializing population with {self.size} random chromosomes...")
-        
-        self.chromosomes.clear()
-        
-        for i in range(self.size):
-            chromosome = self._create_random_chromosome(courses, instructors, rooms, groups)
-            if chromosome:
-                self.chromosomes.append(chromosome)
-            else:
-                self.logger.warning(f"Failed to create chromosome {i}")
-        
-        self.logger.info(f"Successfully created {len(self.chromosomes)} chromosomes")
-    
-    def _create_random_chromosome(self,
-                                courses: Dict[str, Course],
-                                instructors: Dict[str, Instructor],
-                                rooms: Dict[str, Room],
-                                groups: Dict[str, Group]) -> Optional[Chromosome]:
-        """
-        Create a single random chromosome.
-        
-        Args:
-            courses: Dictionary of course entities
-            instructors: Dictionary of instructor entities  
-            rooms: Dictionary of room entities
-            groups: Dictionary of group entities
-        
-        Returns:
-            Random chromosome or None if creation failed
-        """
-        try:
-            genes = []
-            
-            # Create genes for each required course session for each group
-            for course_id, course in courses.items():
-                for group_id in course.group_ids:
-                    # Only create genes for groups that exist in the groups dictionary
-                    if group_id in groups:
-                        for session_index in range(course.sessions_per_week):
-                            gene = self._create_random_gene(
-                                course, instructors, rooms, groups, session_index, group_id
-                            )
-                            if gene:
-                                genes.append(gene)
-            
-            return Chromosome(genes)
-            
-        except Exception as e:
-            self.logger.error(f"Error creating random chromosome: {str(e)}")
-            return None
-    
-    def _create_random_gene(self,
-                          course: Course,
-                          instructors: Dict[str, Instructor],
-                          rooms: Dict[str, Room],
-                          groups: Dict[str, Group],
-                          session_index: int,
-                          group_id: str) -> Optional[Gene]:
-        """
-        Create a random gene for a course session for a specific group.
-        
-        Args:
-            course: Course entity
-            instructors: Dictionary of instructor entities
-            rooms: Dictionary of room entities
-            groups: Dictionary of group entities
-            session_index: Index of the session within the course
-            group_id: ID of the specific group attending this session
-        
-        Returns:
-            Random gene or None if creation failed
-        """
-        try:
-            # Get qualified instructors
-            qualified_instructors = [
-                instructor_id for instructor_id in course.qualified_instructor_ids
-                if instructor_id in instructors
-            ]
-            
-            if not qualified_instructors:
-                self.logger.warning(f"No qualified instructors found for course {course.course_id}")
-                return None
-            
-            # Get suitable rooms
-            suitable_rooms = [
-                room_id for room_id, room in rooms.items()
-                if room.is_suitable_for_course_type(course.required_room_type)
-            ]
-            
-            if not suitable_rooms:
-                self.logger.warning(f"No suitable rooms found for course {course.course_id}")
-                return None
-            
-            # Get available time slots (all possible combinations)
-            available_slots = []
-            for day in TIME_SLOTS['days']:
-                for time_slot in TIME_SLOTS['slots']:
-                    available_slots.append((day, time_slot))
-            
-            if not available_slots:
-                self.logger.warning("No time slots available")
-                return None
-            
-            # Randomly select instructor, room, and time slot
-            instructor_id = random.choice(qualified_instructors)
-            room_id = random.choice(suitable_rooms)
-            day, time_slot = random.choice(available_slots)
-            
-            # Create and return gene
-            return Gene(
-                course_id=course.course_id,
-                instructor_id=instructor_id,
-                room_id=room_id,
-                day=day,
-                time_slot=time_slot,
-                session_index=session_index,
-                group_id=group_id
+    population = []
+
+    # Step 1: Extract course-group enrollment relationships
+    course_group_sessions = extract_course_group_relationships(context)
+
+    if not course_group_sessions:
+        print("Warning: No valid course-group relationships found!")
+        return []
+
+    print(f"Found {len(course_group_sessions)} course-group relationships")
+
+    for individual_idx in range(n):
+        genes = []
+        used_quanta = set()  # Track used quanta for this individual to avoid conflicts
+        instructor_schedule = {}  # Track instructor schedules to avoid conflicts
+        group_schedule = {}  # Track group schedules to avoid conflicts
+
+        # Step 2: For each valid course-group pair, create sessions
+        for course_id, group_id in course_group_sessions:
+            course = context["courses"][course_id]
+            group = context["groups"][group_id]
+
+            # Create sessions for different course components (L, T, P)
+            session_genes = create_course_component_sessions_with_conflict_avoidance(
+                course_id,
+                group_id,
+                course,
+                context,
+                used_quanta,
+                instructor_schedule,
+                group_schedule,
             )
-            
-        except Exception as e:
-            self.logger.error(f"Error creating random gene for course {course.course_id}, group {group_id}: {str(e)}")
-            return None
-    
-    def add_chromosome(self, chromosome: Chromosome) -> None:
-        """Add a chromosome to the population."""
-        self.chromosomes.append(chromosome)
-    
-    def remove_chromosome(self, index: int) -> Chromosome:
-        """Remove and return a chromosome at the specified index."""
-        if 0 <= index < len(self.chromosomes):
-            return self.chromosomes.pop(index)
-        raise IndexError(f"Chromosome index {index} out of range")
-    
-    def get_chromosome(self, index: int) -> Chromosome:
-        """Get chromosome at specified index."""
-        return self.chromosomes[index]
-    
-    def set_chromosome(self, index: int, chromosome: Chromosome) -> None:
-        """Set chromosome at specified index."""
-        self.chromosomes[index] = chromosome
-    
-    def get_size(self) -> int:
-        """Get current population size."""
-        return len(self.chromosomes)
-    
-    def get_best_chromosome(self) -> Optional[Chromosome]:
-        """Get the chromosome with the best fitness."""
-        if not self.chromosomes:
-            return None
-        
-        # Find chromosome with highest fitness (assuming higher is better)
-        best_chromosome = max(self.chromosomes, key=lambda c: c.fitness if c.fitness != float('-inf') else float('-inf'))
-        
-        if best_chromosome.fitness == float('-inf'):
-            return None
-            
-        return best_chromosome
-    
-    def get_worst_chromosome(self) -> Optional[Chromosome]:
-        """Get the chromosome with the worst fitness."""
-        if not self.chromosomes:
-            return None
-        
-        # Find chromosome with lowest fitness
-        worst_chromosome = min(self.chromosomes, key=lambda c: c.fitness if c.fitness != float('-inf') else float('inf'))
-        
-        return worst_chromosome
-    
-    def get_fitness_statistics(self) -> Dict[str, float]:
-        """
-        Get fitness statistics for the population.
-        
-        Returns:
-            Dictionary with fitness statistics
-        """
-        if not self.chromosomes:
-            return {'mean': 0, 'std': 0, 'min': 0, 'max': 0, 'median': 0}
-        
-        fitness_values = [c.fitness for c in self.chromosomes if c.fitness != float('-inf')]
-        
-        if not fitness_values:
-            return {'mean': 0, 'std': 0, 'min': 0, 'max': 0, 'median': 0}
-        
-        return {
-            'mean': statistics.mean(fitness_values),
-            'std': statistics.stdev(fitness_values) if len(fitness_values) > 1 else 0,
-            'min': min(fitness_values),
-            'max': max(fitness_values),
-            'median': statistics.median(fitness_values)
-        }
-    
-    def calculate_diversity(self) -> float:
-        """
-        Calculate population diversity based on genotype differences.
-        
-        Returns:
-            Diversity score between 0 and 1
-        """
-        if len(self.chromosomes) < 2:
-            return 0.0
-        
-        total_distance = 0
-        comparisons = 0
-        
-        for i in range(len(self.chromosomes)):
-            for j in range(i + 1, len(self.chromosomes)):
-                distance = self._calculate_chromosome_distance(
-                    self.chromosomes[i], self.chromosomes[j]
-                )
-                total_distance += distance
-                comparisons += 1
-        
-        if comparisons == 0:
-            return 0.0
-        
-        average_distance = total_distance / comparisons
-        return min(average_distance, 1.0)  # Normalize to [0, 1]
-    
-    def _calculate_chromosome_distance(self, chr1: Chromosome, chr2: Chromosome) -> float:
-        """
-        Calculate normalized distance between two chromosomes.
-        
-        Args:
-            chr1: First chromosome
-            chr2: Second chromosome
-        
-        Returns:
-            Distance score between 0 and 1
-        """
-        if len(chr1.genes) != len(chr2.genes):
-            return 1.0  # Maximum distance if different sizes
-        
-        differences = 0
-        total_genes = len(chr1.genes)
-        
-        for gene1, gene2 in zip(chr1.genes, chr2.genes):
-            # Count differences in gene attributes
-            if gene1.instructor_id != gene2.instructor_id:
-                differences += 1
-            if gene1.room_id != gene2.room_id:
-                differences += 1
-            if gene1.day != gene2.day:
-                differences += 1
-            if gene1.time_slot != gene2.time_slot:
-                differences += 1
-        
-        # Normalize by total possible differences (4 attributes per gene)
-        if total_genes == 0:
-            return 0.0
-            
-        max_differences = total_genes * 4
-        return differences / max_differences
-    
-    def sort_by_fitness(self, reverse: bool = True) -> None:
-        """
-        Sort population by fitness.
-        
-        Args:
-            reverse: If True, sort in descending order (best first)
-        """
-        self.chromosomes.sort(
-            key=lambda c: c.fitness if c.fitness != float('-inf') else (float('-inf') if reverse else float('inf')),
-            reverse=reverse
-        )
-    
-    def truncate(self, new_size: int) -> None:
-        """
-        Truncate population to specified size, keeping the best chromosomes.
-        
-        Args:
-            new_size: New population size
-        """
-        if new_size < len(self.chromosomes):
-            self.sort_by_fitness(reverse=True)
-            self.chromosomes = self.chromosomes[:new_size]
-            self.size = new_size
-    
-    def extend(self, chromosomes: List[Chromosome]) -> None:
-        """
-        Add multiple chromosomes to the population.
-        
-        Args:
-            chromosomes: List of chromosomes to add
-        """
-        self.chromosomes.extend(chromosomes)
-    
-    def clear(self) -> None:
-        """Clear all chromosomes from the population."""
-        self.chromosomes.clear()
-    
-    def update_history(self) -> None:
-        """Update fitness and diversity history."""
-        stats = self.get_fitness_statistics()
-        diversity = self.calculate_diversity()
-        
-        self.best_fitness_history.append(stats['max'])
-        self.avg_fitness_history.append(stats['mean'])
-        self.diversity_history.append(diversity)
-    
-    def get_elite(self, elite_size: int) -> List[Chromosome]:
-        """
-        Get elite chromosomes (best performers).
-        
-        Args:
-            elite_size: Number of elite chromosomes to return
-        
-        Returns:
-            List of elite chromosomes
-        """
-        self.sort_by_fitness(reverse=True)
-        return [chromosome.copy() for chromosome in self.chromosomes[:elite_size]]
-    
-    def replace_worst(self, new_chromosomes: List[Chromosome]) -> None:
-        """
-        Replace worst chromosomes with new ones.
-        
-        Args:
-            new_chromosomes: List of new chromosomes to add
-        """
-        self.sort_by_fitness(reverse=True)
-        
-        # Replace worst chromosomes
-        num_to_replace = min(len(new_chromosomes), len(self.chromosomes))
-        self.chromosomes[-num_to_replace:] = new_chromosomes[:num_to_replace]
-    
-    def tournament_selection(self, tournament_size: int = 5) -> Chromosome:
-        """
-        Select a chromosome using tournament selection.
-        
-        Args:
-            tournament_size: Size of the tournament
-        
-        Returns:
-            Selected chromosome
-        """
-        if tournament_size > len(self.chromosomes):
-            tournament_size = len(self.chromosomes)
-        
-        # Randomly select chromosomes for tournament
-        tournament = random.sample(self.chromosomes, tournament_size)
-        
-        # Return the best chromosome from tournament
-        return max(tournament, key=lambda c: c.fitness if c.fitness != float('-inf') else float('-inf'))
-    
-    def roulette_selection(self) -> Chromosome:
-        """
-        Select a chromosome using roulette wheel selection.
-        
-        Returns:
-            Selected chromosome
-        """
-        fitness_values = [c.fitness for c in self.chromosomes]
-        
-        # Handle negative fitness values by shifting
-        min_fitness = min(fitness_values)
-        if min_fitness < 0:
-            adjusted_fitness = [f - min_fitness + 1 for f in fitness_values]
+            genes.extend(session_genes)
+
+        if genes:
+            population.append(create_individual(genes))
         else:
-            adjusted_fitness = fitness_values
-        
-        total_fitness = sum(adjusted_fitness)
-        
-        if total_fitness == 0:
-            return random.choice(self.chromosomes)
-        
-        # Spin the roulette wheel
-        pick = random.uniform(0, total_fitness)
-        current = 0
-        
-        for i, fitness in enumerate(adjusted_fitness):
-            current += fitness
-            if current >= pick:
-                return self.chromosomes[i]
-        
-        # Fallback (shouldn't reach here)
-        return self.chromosomes[-1]
+            print(f"Warning: Individual {individual_idx+1} has no genes!")
+
+    print(
+        f"Generated {len(population)} individuals with average {sum(len(ind) for ind in population)/len(population):.1f} genes each"
+    )
+    return population
+
+
+def extract_course_group_relationships(context: Dict) -> List[Tuple[str, str]]:
+    """
+    Extract valid course-group enrollment pairs from the context.
+
+    Returns:
+        List of (course_id, group_id) tuples representing valid enrollments
+    """
+    course_group_pairs = []
+
+    for group_id, group in context["groups"].items():
+        # Get enrolled courses for this group
+        enrolled_courses = getattr(group, "enrolled_courses", [])
+
+        for course_id in enrolled_courses:
+            if course_id in context["courses"]:
+                course_group_pairs.append((course_id, group_id))
+
+    return course_group_pairs
+
+
+def create_course_component_sessions(
+    course_id: str, group_id: str, course, context: Dict
+) -> List[SessionGene]:
+    """
+    Create session genes for different course components (Lecture, Tutorial, Practical).
+    Based on the FullSyllabusAll.json structure with L, T, P components.
+
+    Args:
+        course_id: Course identifier
+        group_id: Group identifier
+        course: Course object
+        context: GA context with resources
+
+    Returns:
+        List of SessionGene objects for this course-group combination
+    """
+    session_genes = []
+
+    # Get course component information with fallbacks
+    lecture_hours = getattr(course, "L", getattr(course, "lecture_hours", 0))
+    tutorial_hours = getattr(course, "T", getattr(course, "tutorial_hours", 0))
+    practical_hours = getattr(course, "P", getattr(course, "practical_hours", 0))
+
+    # Create Lecture Sessions
+    if lecture_hours > 0:
+        lecture_gene = create_component_session(
+            course_id, group_id, "lecture", lecture_hours, context
+        )
+        if lecture_gene:
+            session_genes.append(lecture_gene)
+
+    # Create Tutorial Sessions
+    if tutorial_hours > 0:
+        tutorial_gene = create_component_session(
+            course_id, group_id, "tutorial", tutorial_hours, context
+        )
+        if tutorial_gene:
+            session_genes.append(tutorial_gene)
+
+    # Create Practical Sessions
+    if practical_hours > 0:
+        practical_gene = create_component_session(
+            course_id,
+            group_id,
+            "practical",
+            practical_hours,
+            context,
+            require_special_room=True,
+        )
+        if practical_gene:
+            session_genes.append(practical_gene)
+
+    # If no components defined, create default sessions based on course requirements
+    if not session_genes:
+        # Try to get total hours from course metadata
+        total_hours = getattr(course, "total_hours_per_week", 3)
+        credit_hours = getattr(course, "credit_hours", 3)
+        hours_per_week = getattr(
+            course, "hours_per_week", max(total_hours, credit_hours)
+        )
+
+        default_gene = create_component_session(
+            course_id, group_id, "default", hours_per_week, context
+        )
+        if default_gene:
+            session_genes.append(default_gene)
+
+    return session_genes
+
+
+def create_course_component_sessions_with_conflict_avoidance(
+    course_id: str,
+    group_id: str,
+    course,
+    context: Dict,
+    used_quanta: set,
+    instructor_schedule: dict,
+    group_schedule: dict,
+) -> List[SessionGene]:
+    """
+    Create session genes while avoiding time conflicts.
+
+    Args:
+        course_id: Course identifier
+        group_id: Group identifier
+        course: Course object
+        context: GA context with resources
+        used_quanta: Set of already used time quanta for this individual
+        instructor_schedule: Dict tracking instructor time assignments
+        group_schedule: Dict tracking group time assignments
+
+    Returns:
+        List of SessionGene objects for this course-group combination
+    """
+    session_genes = []
+
+    # Get course component information with fallbacks
+    lecture_hours = getattr(course, "L", getattr(course, "lecture_hours", 0))
+    tutorial_hours = getattr(course, "T", getattr(course, "tutorial_hours", 0))
+    practical_hours = getattr(course, "P", getattr(course, "practical_hours", 0))
+
+    # Create Lecture Sessions
+    if lecture_hours > 0:
+        lecture_gene = create_component_session_with_conflict_avoidance(
+            course_id,
+            group_id,
+            "lecture",
+            lecture_hours,
+            context,
+            used_quanta,
+            instructor_schedule,
+            group_schedule,
+        )
+        if lecture_gene:
+            session_genes.append(lecture_gene)
+
+    # Create Tutorial Sessions
+    if tutorial_hours > 0:
+        tutorial_gene = create_component_session_with_conflict_avoidance(
+            course_id,
+            group_id,
+            "tutorial",
+            tutorial_hours,
+            context,
+            used_quanta,
+            instructor_schedule,
+            group_schedule,
+        )
+        if tutorial_gene:
+            session_genes.append(tutorial_gene)
+
+    # Create Practical Sessions
+    if practical_hours > 0:
+        practical_gene = create_component_session_with_conflict_avoidance(
+            course_id,
+            group_id,
+            "practical",
+            practical_hours,
+            context,
+            used_quanta,
+            instructor_schedule,
+            group_schedule,
+            require_special_room=True,
+        )
+        if practical_gene:
+            session_genes.append(practical_gene)
+
+    # If no components defined, create default sessions based on course requirements
+    if not session_genes:
+        # Try to get total hours from course metadata
+        total_hours = getattr(course, "total_hours_per_week", 3)
+        credit_hours = getattr(course, "credit_hours", 3)
+        hours_per_week = getattr(
+            course, "hours_per_week", max(total_hours, credit_hours)
+        )
+
+        default_gene = create_component_session_with_conflict_avoidance(
+            course_id,
+            group_id,
+            "default",
+            hours_per_week,
+            context,
+            used_quanta,
+            instructor_schedule,
+            group_schedule,
+        )
+        if default_gene:
+            session_genes.append(default_gene)
+
+    return session_genes
+
+
+def create_component_session_with_conflict_avoidance(
+    course_id: str,
+    group_id: str,
+    component_type: str,
+    hours: int,
+    context: Dict,
+    used_quanta: set,
+    instructor_schedule: dict,
+    group_schedule: dict,
+    require_special_room: bool = False,
+) -> SessionGene:
+    """
+    Create a single session while avoiding instructor and group conflicts.
+    """
+    course = context["courses"][course_id]
+
+    # Find qualified instructors
+    qualified_instructors = find_qualified_instructors(course_id, context)
+    if not qualified_instructors:
+        qualified_instructors = list(context["instructors"].values())
+
+    if not qualified_instructors:
+        return None
+
+    instructor = random.choice(qualified_instructors)
+
+    # Find suitable rooms
+    suitable_rooms = find_suitable_rooms(
+        course, component_type, context, require_special_room
+    )
+    if not suitable_rooms:
+        suitable_rooms = list(context["rooms"].values())
+
+    if not suitable_rooms:
+        return None
+
+    room = random.choice(suitable_rooms)
+
+    # Convert hours to quanta and assign conflict-free time slots
+    # Each hour = 4 quanta (15-minute slots), but limit max session length
+    quanta_per_hour = 4
+    max_session_length = 8  # Maximum 2 hours per session
+
+    raw_quanta_needed = max(1, int(hours * quanta_per_hour))
+    quanta_needed = min(raw_quanta_needed, max_session_length)
+
+    # If the course needs more quanta than max session length, we should create multiple sessions
+    # For now, just limit to reasonable session length
+
+    # Find available quanta that don't conflict with used ones
+    available_quanta = [q for q in context["available_quanta"] if q not in used_quanta]
+
+    if len(available_quanta) < quanta_needed:
+        # If not enough conflict-free quanta, use some that are already used (allow some conflicts for now)
+        available_quanta = list(context["available_quanta"])
+
+    quanta_needed = min(quanta_needed, len(available_quanta))
+
+    if quanta_needed == 0:
+        return None
+
+    # Assign time quanta
+    assigned_quanta = assign_conflict_free_quanta(
+        quanta_needed, available_quanta, used_quanta
+    )
+
+    if not assigned_quanta:
+        return None
+
+    # Update tracking structures
+    used_quanta.update(assigned_quanta)
+    instructor_id = instructor.instructor_id
+    if instructor_id not in instructor_schedule:
+        instructor_schedule[instructor_id] = set()
+    instructor_schedule[instructor_id].update(assigned_quanta)
+
+    if group_id not in group_schedule:
+        group_schedule[group_id] = set()
+    group_schedule[group_id].update(assigned_quanta)
+
+    # Create session gene
+    session_gene = SessionGene(
+        course_id=course_id,
+        instructor_id=instructor_id,
+        group_id=group_id,
+        room_id=room.room_id,
+        quanta=assigned_quanta,
+    )
+
+    return session_gene
+
+
+def assign_conflict_free_quanta(
+    quanta_needed: int, available_quanta: List, used_quanta: set
+) -> List:
+    """
+    Assign time quanta while avoiding conflicts with already used quanta.
+    Prefers consecutive slots for better scheduling quality.
+    """
+    if quanta_needed <= 0:
+        return []
+
+    # Filter out already used quanta
+    free_quanta = [q for q in available_quanta if q not in used_quanta]
+
+    if len(free_quanta) < quanta_needed:
+        # If not enough free quanta, fall back to all available
+        free_quanta = list(available_quanta)
+
+    quanta_needed = min(quanta_needed, len(free_quanta))
+
+    if quanta_needed == 0:
+        return []
+
+    # For sessions needing 2-4 quanta, try to find consecutive slots
+    if 2 <= quanta_needed <= 4 and len(free_quanta) >= quanta_needed:
+        # Sort quanta to find consecutive sequences
+        sorted_free = sorted(free_quanta)
+
+        # Try to find consecutive slots
+        for i in range(len(sorted_free) - quanta_needed + 1):
+            consecutive_candidates = sorted_free[i : i + quanta_needed]
+
+            # Check if they are truly consecutive
+            is_consecutive = True
+            for j in range(1, len(consecutive_candidates)):
+                if consecutive_candidates[j] - consecutive_candidates[j - 1] != 1:
+                    is_consecutive = False
+                    break
+
+            if is_consecutive:
+                return consecutive_candidates
+
+    # If no consecutive slots found or not needed, select randomly
+    return random.sample(free_quanta, quanta_needed)
+    """
+    Create session genes for different course components (Lecture, Tutorial, Practical).
+    Based on the FullSyllabusAll.json structure with L, T, P components.
     
-    def get_statistics(self) -> Dict[str, Any]:
-        """
-        Get comprehensive population statistics.
-        
-        Returns:
-            Dictionary with population statistics
-        """
-        fitness_stats = self.get_fitness_statistics()
-        diversity = self.calculate_diversity()
-        
-        return {
-            'size': len(self.chromosomes),
-            'generation': self.generation,
-            'fitness_stats': fitness_stats,
-            'diversity': diversity,
-            'best_fitness_history': self.best_fitness_history.copy(),
-            'avg_fitness_history': self.avg_fitness_history.copy(),
-            'diversity_history': self.diversity_history.copy()
-        }
+    Args:
+        course_id: Course identifier
+        group_id: Group identifier  
+        course: Course object
+        context: GA context with resources
     
-    def __len__(self) -> int:
-        """Get population size."""
-        return len(self.chromosomes)
-    
-    def __iter__(self):
-        """Make population iterable over chromosomes."""
-        return iter(self.chromosomes)
-    
-    def __getitem__(self, index: int) -> Chromosome:
-        """Get chromosome by index."""
-        return self.chromosomes[index]
-    
-    def __setitem__(self, index: int, chromosome: Chromosome) -> None:
-        """Set chromosome by index."""
-        self.chromosomes[index] = chromosome
-    
-    def __str__(self) -> str:
-        stats = self.get_fitness_statistics()
-        return f"Population(size={len(self.chromosomes)}, gen={self.generation}, best_fitness={stats['max']:.4f})"
-    
-    def __repr__(self) -> str:
-        return self.__str__()
+    Returns:
+        List of SessionGene objects for this course-group combination
+    """
+    session_genes = []
+
+    # Get course component information with fallbacks
+    lecture_hours = getattr(course, "L", getattr(course, "lecture_hours", 0))
+    tutorial_hours = getattr(course, "T", getattr(course, "tutorial_hours", 0))
+    practical_hours = getattr(course, "P", getattr(course, "practical_hours", 0))
+
+    # Create Lecture Sessions
+    if lecture_hours > 0:
+        lecture_gene = create_component_session(
+            course_id, group_id, "lecture", lecture_hours, context
+        )
+        if lecture_gene:
+            session_genes.append(lecture_gene)
+
+    # Create Tutorial Sessions
+    if tutorial_hours > 0:
+        tutorial_gene = create_component_session(
+            course_id, group_id, "tutorial", tutorial_hours, context
+        )
+        if tutorial_gene:
+            session_genes.append(tutorial_gene)
+
+    # Create Practical Sessions
+    if practical_hours > 0:
+        practical_gene = create_component_session(
+            course_id,
+            group_id,
+            "practical",
+            practical_hours,
+            context,
+            require_special_room=True,
+        )
+        if practical_gene:
+            session_genes.append(practical_gene)
+
+    # If no components defined, create default sessions based on course requirements
+    if not session_genes:
+        # Try to get total hours from course metadata
+        total_hours = getattr(course, "total_hours_per_week", 3)
+        credit_hours = getattr(course, "credit_hours", 3)
+        hours_per_week = getattr(
+            course, "hours_per_week", max(total_hours, credit_hours)
+        )
+
+        default_gene = create_component_session(
+            course_id, group_id, "default", hours_per_week, context
+        )
+        if default_gene:
+            session_genes.append(default_gene)
+
+    return session_genes
+
+
+def create_component_session(
+    course_id: str,
+    group_id: str,
+    component_type: str,
+    hours: int,
+    context: Dict,
+    require_special_room: bool = False,
+) -> SessionGene:
+    """
+    Create a single session for a specific course component.
+
+    Args:
+        course_id: Course identifier
+        group_id: Group identifier
+        component_type: "lecture", "tutorial", "practical", or "default"
+        hours: Number of hours per week for this component
+        context: GA context
+        require_special_room: Whether this component needs special room features
+
+    Returns:
+        SessionGene object for this component (or None if creation fails)
+    """
+    course = context["courses"][course_id]
+
+    # Find qualified instructors
+    qualified_instructors = find_qualified_instructors(course_id, context)
+    if not qualified_instructors:
+        # Fallback to any instructor if none qualified
+        qualified_instructors = list(context["instructors"].values())
+
+    if not qualified_instructors:
+        print(f"Warning: No instructors available for course {course_id}")
+        return None
+
+    instructor = random.choice(qualified_instructors)
+
+    # Find suitable rooms
+    suitable_rooms = find_suitable_rooms(
+        course, component_type, context, require_special_room
+    )
+    if not suitable_rooms:
+        # Fallback to any room if none suitable
+        suitable_rooms = list(context["rooms"].values())
+
+    if not suitable_rooms:
+        print(f"Warning: No rooms available for course {course_id}")
+        return None
+
+    room = random.choice(suitable_rooms)
+
+    # Convert hours to quanta (assuming 1 hour = 4 quanta of 15 minutes each)
+    # But limit session length to reasonable maximum (2 hours = 8 quanta)
+    quanta_per_hour = 4
+    max_session_length = 8  # Maximum 2 hours per session
+
+    raw_quanta_needed = max(1, int(hours * quanta_per_hour))
+    quanta_needed = min(raw_quanta_needed, max_session_length)
+    quanta_needed = min(quanta_needed, len(context["available_quanta"]))
+
+    # Assign time quanta with some intelligence
+    assigned_quanta = assign_intelligent_quanta(
+        quanta_needed, context["available_quanta"]
+    )
+
+    if not assigned_quanta:
+        print(f"Warning: No time quanta available for course {course_id}")
+        return None
+
+    # Create session gene
+    session_gene = SessionGene(
+        course_id=course_id,
+        instructor_id=instructor.instructor_id,
+        group_id=group_id,
+        room_id=room.room_id,
+        quanta=assigned_quanta,
+    )
+
+    return session_gene
+
+
+def find_qualified_instructors(course_id: str, context: Dict) -> List:
+    """Find instructors qualified to teach this course."""
+    qualified = []
+
+    for instructor in context["instructors"].values():
+        # Check if instructor is qualified for this course
+        qualified_courses = getattr(instructor, "qualified_courses", [course_id])
+        if course_id in qualified_courses:
+            qualified.append(instructor)
+
+    return qualified
+
+
+def find_suitable_rooms(
+    course, component_type: str, context: Dict, require_special_room: bool = False
+) -> List:
+    """
+    Find rooms suitable for this course component.
+    Takes into account special room requirements and capacity.
+    """
+    suitable = []
+
+    # Get required room features from course
+    required_features = getattr(course, "PracticalRoomFeatures", "")
+    course_id = getattr(course, "course_id", "")
+
+    # Find the group size for capacity matching
+    # Look through all groups to find ones enrolled in this course
+    max_group_size = 30  # default
+    for group in context["groups"].values():
+        if course_id in getattr(group, "enrolled_courses", []):
+            group_size = getattr(group, "student_count", 30)
+            max_group_size = max(max_group_size, group_size)
+
+    for room in context["rooms"].values():
+        room_features = getattr(room, "features", [])
+        room_capacity = getattr(room, "capacity", 50)
+        room_type = getattr(room, "type", "Classroom")
+
+        # Check capacity requirement
+        if room_capacity < max_group_size:
+            continue
+
+        if require_special_room and required_features:
+            # For practicals, check if room has required features
+            if isinstance(room_features, list):
+                room_features_str = " ".join(room_features).lower()
+            else:
+                room_features_str = str(room_features).lower()
+
+            if required_features.lower() in room_features_str:
+                suitable.append(room)
+        elif component_type == "practical" and room_type.lower() in [
+            "lab",
+            "laboratory",
+        ]:
+            # For practicals without specific requirements, prefer labs
+            suitable.append(room)
+        elif component_type in ["lecture", "tutorial"]:
+            # For lectures/tutorials, prefer classrooms but any room with capacity works
+            suitable.append(room)
+        else:
+            # Fallback - any room with adequate capacity
+            suitable.append(room)
+
+    return suitable
+
+
+def assign_intelligent_quanta(quanta_needed: int, available_quanta: List) -> List:
+    """
+    Assign time quanta with intelligence to avoid fragmentation and conflicts.
+    Ensures no overlap by randomly selecting from available slots.
+    """
+    if quanta_needed <= 0:
+        return []
+
+    available_list = list(available_quanta)
+
+    if quanta_needed > len(available_list):
+        quanta_needed = len(available_list)
+
+    if quanta_needed == 0:
+        return []
+
+    # For better schedule quality, try to find consecutive quanta first
+    # But only for smaller requirements (up to 8 quanta = 2 hours)
+    if quanta_needed <= 8:
+        # Try to find consecutive quanta
+        for attempt in range(3):  # 3 attempts to find consecutive slots
+            start_idx = random.randint(0, max(0, len(available_list) - quanta_needed))
+            consecutive_quanta = available_list[start_idx : start_idx + quanta_needed]
+
+            if len(consecutive_quanta) == quanta_needed:
+                # Simple check for reasonable time spread
+                if (
+                    quanta_needed == 1
+                    or (max(consecutive_quanta) - min(consecutive_quanta))
+                    < quanta_needed * 1.5
+                ):
+                    return consecutive_quanta
+
+    # Fallback: Random selection to ensure diversity and avoid conflicts
+    return random.sample(available_list, quanta_needed)
+
+
+def generate_random_gene(
+    possible_courses,
+    possible_instructors,
+    possible_groups,
+    possible_rooms,
+    available_quanta,
+) -> SessionGene:
+    """Legacy function for backward compatibility."""
+    course = random.choice(possible_courses)
+
+    # Try to find a qualified instructor (constraint-aware)
+    qualified_instructors = [
+        inst
+        for inst in possible_instructors
+        if course.course_id in getattr(inst, "qualified_courses", [course.course_id])
+    ]
+    instructor = random.choice(
+        qualified_instructors if qualified_instructors else possible_instructors
+    )
+
+    # Try to find a compatible group (constraint-aware)
+    compatible_groups = [
+        grp
+        for grp in possible_groups
+        if course.course_id in getattr(grp, "enrolled_courses", [course.course_id])
+    ]
+    group = random.choice(compatible_groups if compatible_groups else possible_groups)
+
+    room = random.choice(possible_rooms)
+
+    # Use course's required quanta count if available
+    num_quanta = getattr(course, "quanta_per_week", random.randint(1, 4))
+    num_quanta = min(
+        num_quanta, len(available_quanta)
+    )  # Ensure we don't exceed available
+
+    # You may want to base this on course.quanta_per_week
+    quanta = random.sample(list(available_quanta), num_quanta)
+
+    return SessionGene(
+        course_id=course.course_id,
+        instructor_id=instructor.instructor_id,
+        group_id=group.group_id,
+        room_id=room.room_id,
+        quanta=quanta,
+    )
+
+
+def generate_population(
+    n: int, session_count: int = None, context: Dict = None
+) -> List:
+    """
+    Wrapper function for backward compatibility.
+    Now uses course-group aware generation instead of random.
+    """
+    if context is None:
+        raise ValueError("Context must be provided for population generation")
+
+    return generate_course_group_aware_population(n, context)

@@ -1,7 +1,10 @@
 .vscode/
 __pycache__/
 *.log
-*.md
+*.logs
+# *.md
 !README.md
 output/
 TEMPFILESWORKING/
+logs/
+test*.py

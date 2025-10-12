@@ -1,9 +1,0 @@
-room_id,name,capacity,type,available_slots
-L101,Lecture Hall 1,100,lecture,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-L102,Lecture Hall 2,80,lecture,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-L103,Lecture Hall 3,120,lecture,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-LAB101,Computer Lab 1,60,lab,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-LAB102,Computer Lab 2,60,lab,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-LAB103,Physics Lab,60,lab,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-S101,Seminar Room 1,25,seminar,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"
-S102,Seminar Room 2,20,seminar,"monday_08:00-18:00,tuesday_08:00-18:00,wednesday_08:00-18:00,thursday_08:00-18:00,friday_08:00-18:00"

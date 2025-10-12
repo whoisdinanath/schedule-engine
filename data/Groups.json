@@ -1,0 +1,267 @@
+[
+    {
+        "group_id": "BAE2",
+        "name": "Automobile Engineering Semester 2",
+        "student_count": 47,
+        "courses": [
+            "ENSH 151",
+            "ENSH 153",
+            "ENME 151",
+            "ENME 152",
+            "ENME 153",
+            "ENME 155"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BAE2A",
+            "BAE2B"
+        ]
+    },
+    {
+        "group_id": "BAE4",
+        "name": "Automobile Engineering Semester 4",
+        "student_count": 47,
+        "courses": [
+            "ENSH 252",
+            "ENEE 254",
+            "ENME 252",
+            "ENME 255",
+            "ENME 253",
+            "ENME 256"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BAE4A",
+            "BAE4B"
+        ]
+    },
+    {
+        "group_id": "BARCH2",
+        "name": "Architecture Semester 2",
+        "student_count": 47,
+        "courses": [
+            "ENSH 155",
+            "ENAR 151",
+            "ENAR 152",
+            "ENAR 153",
+            "ENAR 154",
+            "ENAR 155",
+            "ENCE 156"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BARCH2A",
+            "BARCH2B"
+        ]
+    },
+    {
+        "group_id": "BARCH4",
+        "name": "Architecture Semester 4",
+        "student_count": 47,
+        "courses": [
+            "ENAR 251",
+            "ENAR 252",
+            "ENAR 253",
+            "ENAR 254",
+            "ENAR 255",
+            "ENCE 260",
+            "ENCE 261"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BARCH4A",
+            "BARCH4B"
+        ]
+    },
+    {
+        "group_id": "BCE2",
+        "name": "Civil Engineering Semester 2",
+        "student_count": 47,
+        "courses": [
+            "ENSH 151",
+            "ENSH 152",
+            "ENME 158",
+            "ENCE 151",
+            "ENCE 152",
+            "ENCE 153"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BCE2A",
+            "BCE2B",
+            "BCE2C",
+            "BCE2D",
+            "BCE2E",
+            "BCE2F"
+        ]
+    },
+    {
+        "group_id": "BCE4",
+        "name": "Civil Engineering Semester 4",
+        "student_count": 47,
+        "courses": [
+            "ENSH 251",
+            "ENSH 253",
+            "ENCE 251",
+            "ENCE 252",
+            "ENCE 253",
+            "ENCE 254",
+            "ENCE 255",
+            "ENCE 256"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BCE4A",
+            "BCE4B",
+            "BCE4C",
+            "BCE4D",
+            "BCE4E",
+            "BCE4F"
+        ]
+    },
+    {
+        "group_id": "BCT2",
+        "name": "Computer Engineering Semester 2",
+        "student_count": 47,
+        "courses": [
+            "ENSH 151",
+            "ENCT 151",
+            "ENEX 152",
+            "ENEX 151",
+            "ENSH 153",
+            "ENEE 154"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BCT2A",
+            "BCT2B"
+        ]
+    },
+    {
+        "group_id": "BCT4",
+        "name": "Computer Engineering Semester 4",
+        "student_count": 47,
+        "courses": [
+            "ENSH 252",
+            "ENEX 252",
+            "ENEX 254",
+            "ENCT 252",
+            "ENCT 253",
+            "ENCT 254"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BCT4A",
+            "BCT4B"
+        ]
+    },
+    {
+        "group_id": "BEI2",
+        "name": "Electronics and Communication Engineering Semester 2",
+        "student_count": 47,
+        "courses": [
+            "ENSH 151",
+            "ENCT 151",
+            "ENEX 151",
+            "ENEX 152",
+            "ENEE 154",
+            "ENSH 153"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BEI2A",
+            "BEI2B"
+        ]
+    },
+    {
+        "group_id": "BEI4",
+        "name": "Electronics and Communication Engineering Semester 4",
+        "student_count": 47,
+        "courses": [
+            "ENSH 252",
+            "ENCT 251",
+            "ENEX 252",
+            "ENEX 253",
+            "ENEX 254",
+            "ENEX 255"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BEI4A",
+            "BEI4B"
+        ]
+    },
+    {
+        "group_id": "BIE2",
+        "name": "Industrial Engineering Semester 2",
+        "student_count": 47,
+        "courses": [
+            "ENSH 151",
+            "ENSH 153",
+            "ENME 152",
+            "ENME 153",
+            "ENME 151",
+            "ENME 155"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BIE2A",
+            "BIE2B"
+        ]
+    },
+    {
+        "group_id": "BIE4",
+        "name": "Industrial Engineering Semester 4",
+        "student_count": 47,
+        "courses": [
+            "ENSH 252",
+            "ENEE 254",
+            "ENME 255",
+            "ENIE 252",
+            "ENIE 251",
+            "ENIE 253",
+            "ENIE 254"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BIE4A",
+            "BIE4B"
+        ]
+    },
+    {
+        "group_id": "BME2",
+        "name": "Mechanical Engineering Semester 2",
+        "student_count": 47,
+        "courses": [
+            "ENSH 151",
+            "ENSH 152",
+            "ENME 151",
+            "ENME 152",
+            "ENME 153",
+            "ENME 155"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BME2A",
+            "BME2B"
+        ]
+    },
+    {
+        "group_id": "BME4",
+        "name": "Mechanical Engineering Semester 4",
+        "student_count": 47,
+        "courses": [
+            "ENSH 253",
+            "ENEE 254",
+            "ENME 251",
+            "ENME 252",
+            "ENME 253",
+            "ENME 254"
+        ],
+        "prefers_break": true,
+        "subgroups": [
+            "BME4A",
+            "BME4B"
+        ]
+    }
+]

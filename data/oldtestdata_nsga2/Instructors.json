@@ -1,0 +1,141 @@
+[
+    {
+        "id": "I1",
+        "name": "Dr. Smith",
+        "courses": [
+            "ENSH 101",
+            "ENME 103",
+            "ENSH 104",
+            "ENME 101",
+            "ENME 106",
+            "ENSH 102"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "09:00",
+                    "end": "12:00"
+                },
+                {
+                    "start": "14:00",
+                    "end": "17:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "10:00",
+                    "end": "16:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "09:00",
+                    "end": "15:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "10:00",
+                    "end": "16:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "09:00",
+                    "end": "14:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I2",
+        "name": "Dr. Johnson",
+        "courses": [
+            "ENAR 101",
+            "ENAR 103",
+            "ENAR 104",
+            "ENAR 105",
+            "ENCE 101",
+            "ENEX 101",
+            "ENSH 103"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "08:00",
+                    "end": "12:00"
+                },
+                {
+                    "start": "13:00",
+                    "end": "17:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "09:00",
+                    "end": "15:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "08:00",
+                    "end": "16:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "09:00",
+                    "end": "15:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "10:00",
+                    "end": "16:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "I3",
+        "name": "Dr. Williams",
+        "courses": [
+            "ENCT 101",
+            "ENCE 102",
+            "ENCE 103",
+            "ENEE 103"
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "10:00",
+                    "end": "15:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "09:00",
+                    "end": "14:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "11:00",
+                    "end": "16:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "08:00",
+                    "end": "13:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "09:00",
+                    "end": "15:00"
+                }
+            ]
+        }
+    }
+]
