@@ -70,11 +70,25 @@ def instructor_not_qualified(
 def room_type_mismatch(sessions: List[CourseSession]) -> int:
     """
     Counts how many sessions are scheduled in rooms that don't match required features.
+    Checks if required features are a subset of available room features.
     """
     violations = 0
 
     for session in sessions:
-        if session.room.room_features != session.required_room_features:
+        # Convert both to sets for subset comparison
+        required_features = (
+            set(session.required_room_features)
+            if isinstance(session.required_room_features, list)
+            else {session.required_room_features}
+        )
+        room_features = (
+            set(session.room.room_features)
+            if isinstance(session.room.room_features, list)
+            else {session.room.room_features}
+        )
+
+        # Check if all required features are present in room features
+        if not required_features.issubset(room_features):
             violations += 1
 
     return violations

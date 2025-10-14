@@ -179,7 +179,9 @@ def load_courses(path: str) -> Dict[str, Course]:
                 enrolled_group_ids=[],
                 qualified_instructor_ids=[],
             )
-            course.course_code = practical_id
+            course.course_code = (
+                course_code  # Use base course_code for instructor matching
+            )
             course.department = department
             course.semester = semester
             course.credits = credits
