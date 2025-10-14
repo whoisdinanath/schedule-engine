@@ -1,15 +1,39 @@
 from typing import List, Dict, Tuple
 import random
+from tqdm import tqdm
 
 from src.ga.sessiongene import SessionGene
 from src.ga.individual import create_individual
+from src.ga.group_hierarchy import analyze_group_hierarchy
+from src.ga.course_group_pairs import generate_course_group_pairs
 
 
 def generate_course_group_aware_population(n: int, context: Dict) -> List:
     """
-    Generate population using course-group enrollment structure.
-    This approach is superior to random generation as it respects
-    fundamental university timetabling constraints.
+    Generate population using simple course-group enrollment structure.
+
+    NEW ARCHITECTURE: No parent groups!
+    - Each group is independent (subgroups are just regular groups)
+    - Each (course, group) pair gets ONE session gene
+    - Simple iteration: for each group, create genes for all enrolled courses
+
+    This ensures no duplicate genes.
+
+    ⚠️  CRITICAL: GENE ORDERING GUARANTEE
+
+    This function creates genes in DETERMINISTIC ORDER for all individuals:
+    1. Iterates through context["groups"] (dict maintains insertion order in Python 3.7+)
+    2. For each group, iterates through enrolled_courses
+    3. Creates exactly ONE gene per (course, group) pair
+
+    This deterministic ordering ensures ALL individuals have genes at the SAME
+    POSITIONS representing the SAME (course, group) pairs. This is required by
+    the position-independent crossover operator (crossover_course_group_aware),
+    which validates this structure and matches genes by (course_id, group_ids)
+    identity rather than relying on position.
+
+    MUTATION REQUIREMENT: Mutation operators MUST NOT reorder genes or change
+    (course_id, group_ids) values. See src/ga/operators/mutation.py for details.
 
     Args:
         n: Population size
@@ -20,37 +44,53 @@ def generate_course_group_aware_population(n: int, context: Dict) -> List:
     """
     population = []
 
-    # Step 1: Extract course-group enrollment relationships
-    course_group_sessions = extract_course_group_relationships(context)
+    # Step 1: Extract simple course-group enrollment pairs
+    course_group_pairs = []
+    for group_id, group in context["groups"].items():
+        enrolled_courses = getattr(group, "enrolled_courses", [])
+        for course_id in enrolled_courses:
+            if course_id in context["courses"]:
+                course_group_pairs.append((course_id, group_id))
 
-    if not course_group_sessions:
-        print("Warning: No valid course-group relationships found!")
+    if not course_group_pairs:
+        print("Warning: No valid course-group pairs found!")
         return []
 
-    print(f"Found {len(course_group_sessions)} course-group relationships")
+    print(f"Found {len(course_group_pairs)} course-group pairs to schedule")
 
-    for individual_idx in range(n):
+    for individual_idx in tqdm(
+        range(n), desc="Generating population", unit="ind", disable=n < 20
+    ):
         genes = []
         used_quanta = set()  # Track used quanta for this individual to avoid conflicts
         instructor_schedule = {}  # Track instructor schedules to avoid conflicts
         group_schedule = {}  # Track group schedules to avoid conflicts
 
-        # Step 2: For each valid course-group pair, create sessions
-        for course_id, group_id in course_group_sessions:
-            course = context["courses"][course_id]
-            group = context["groups"][group_id]
+        # Step 2: For each (course, group) pair, create ONE session gene
+        for course_id, group_id in course_group_pairs:
+            course = context["courses"].get(course_id)
+            if not course:
+                continue
 
-            # Create sessions for different course components (L, T, P)
-            session_genes = create_course_component_sessions_with_conflict_avoidance(
+            # Determine session type from course_id
+            is_practical = course_id.endswith("-PR")
+            session_type = "practical" if is_practical else "theory"
+            num_quanta = course.quanta_per_week
+
+            # Create ONE session gene for this (course, group) combination
+            session_gene = create_session_gene_with_conflict_avoidance(
                 course_id,
-                group_id,
+                [group_id],  # Single group
+                session_type,
+                num_quanta,
                 course,
                 context,
                 used_quanta,
                 instructor_schedule,
                 group_schedule,
             )
-            genes.extend(session_genes)
+            if session_gene:
+                genes.append(session_gene)
 
         if genes:
             population.append(create_individual(genes))
@@ -87,68 +127,46 @@ def create_course_component_sessions(
     course_id: str, group_id: str, course, context: Dict
 ) -> List[SessionGene]:
     """
-    Create session genes for different course components (Lecture, Tutorial, Practical).
-    Based on the FullSyllabusAll.json structure with L, T, P components.
+    Create session genes for a course-group combination.
+
+    NOTE: Course loading (input_encoder.py) already splits courses into:
+    - Theory courses: "ENME 103" with quanta_per_week = L + T
+    - Practical courses: "ENME 103-PR" with quanta_per_week = P
+
+    So we simply create ONE gene per course using its quanta_per_week value.
 
     Args:
-        course_id: Course identifier
+        course_id: Course identifier (e.g., "ENME 103" or "ENME 103-PR")
         group_id: Group identifier
-        course: Course object
+        course: Course object (already has correct quanta_per_week)
         context: GA context with resources
 
     Returns:
-        List of SessionGene objects for this course-group combination
+        List of SessionGene objects (typically 1 gene per course-group pair)
     """
     session_genes = []
 
-    # Get course component information with fallbacks
-    lecture_hours = getattr(course, "L", getattr(course, "lecture_hours", 0))
-    tutorial_hours = getattr(course, "T", getattr(course, "tutorial_hours", 0))
-    practical_hours = getattr(course, "P", getattr(course, "practical_hours", 0))
+    # Use the quanta_per_week from Course entity (already correctly set during loading)
+    quanta_needed = course.quanta_per_week
 
-    # Create Lecture Sessions
-    if lecture_hours > 0:
-        lecture_gene = create_component_session(
-            course_id, group_id, "lecture", lecture_hours, context
-        )
-        if lecture_gene:
-            session_genes.append(lecture_gene)
+    # Determine session type from course_id
+    is_practical = course_id.endswith("-PR")
+    component_type = "practical" if is_practical else "theory"
 
-    # Create Tutorial Sessions
-    if tutorial_hours > 0:
-        tutorial_gene = create_component_session(
-            course_id, group_id, "tutorial", tutorial_hours, context
-        )
-        if tutorial_gene:
-            session_genes.append(tutorial_gene)
+    # Create a single session gene for this course-group combination
+    gene = create_component_session(
+        course_id,
+        group_id,
+        component_type,
+        quanta_needed,
+        context,
+        require_special_room=is_practical,
+    )
 
-    # Create Practical Sessions
-    if practical_hours > 0:
-        practical_gene = create_component_session(
-            course_id,
-            group_id,
-            "practical",
-            practical_hours,
-            context,
-            require_special_room=True,
-        )
-        if practical_gene:
-            session_genes.append(practical_gene)
-
-    # If no components defined, create default sessions based on course requirements
-    if not session_genes:
-        # Try to get total hours from course metadata
-        total_hours = getattr(course, "total_hours_per_week", 3)
-        credit_hours = getattr(course, "credit_hours", 3)
-        hours_per_week = getattr(
-            course, "hours_per_week", max(total_hours, credit_hours)
-        )
-
-        default_gene = create_component_session(
-            course_id, group_id, "default", hours_per_week, context
-        )
-        if default_gene:
-            session_genes.append(default_gene)
+    if gene:
+        session_genes.append(gene)
+    else:
+        print(f"⚠️  Failed to create gene for {course_id} with group {group_id}")
 
     return session_genes
 
@@ -165,94 +183,148 @@ def create_course_component_sessions_with_conflict_avoidance(
     """
     Create session genes while avoiding time conflicts.
 
+    NOTE: Course loading (input_encoder.py) already splits courses into:
+    - Theory courses: "ENME 103" with quanta_per_week = L + T
+    - Practical courses: "ENME 103-PR" with quanta_per_week = P
+
+    So we simply create ONE gene per course using its quanta_per_week value.
+
     Args:
-        course_id: Course identifier
+        course_id: Course identifier (e.g., "ENME 103" or "ENME 103-PR")
         group_id: Group identifier
-        course: Course object
+        course: Course object (already has correct quanta_per_week)
         context: GA context with resources
         used_quanta: Set of already used time quanta for this individual
         instructor_schedule: Dict tracking instructor time assignments
         group_schedule: Dict tracking group time assignments
 
     Returns:
-        List of SessionGene objects for this course-group combination
+        List of SessionGene objects (typically 1 gene per course-group pair)
     """
     session_genes = []
 
-    # Get course component information with fallbacks
-    lecture_hours = getattr(course, "L", getattr(course, "lecture_hours", 0))
-    tutorial_hours = getattr(course, "T", getattr(course, "tutorial_hours", 0))
-    practical_hours = getattr(course, "P", getattr(course, "practical_hours", 0))
+    # Use the quanta_per_week from Course entity (already correctly set during loading)
+    quanta_needed = course.quanta_per_week
 
-    # Create Lecture Sessions
-    if lecture_hours > 0:
-        lecture_gene = create_component_session_with_conflict_avoidance(
-            course_id,
-            group_id,
-            "lecture",
-            lecture_hours,
-            context,
-            used_quanta,
-            instructor_schedule,
-            group_schedule,
-        )
-        if lecture_gene:
-            session_genes.append(lecture_gene)
+    # Determine session type from course_id
+    is_practical = course_id.endswith("-PR")
+    component_type = "practical" if is_practical else "theory"
 
-    # Create Tutorial Sessions
-    if tutorial_hours > 0:
-        tutorial_gene = create_component_session_with_conflict_avoidance(
-            course_id,
-            group_id,
-            "tutorial",
-            tutorial_hours,
-            context,
-            used_quanta,
-            instructor_schedule,
-            group_schedule,
-        )
-        if tutorial_gene:
-            session_genes.append(tutorial_gene)
+    # Create a single session gene for this course-group combination
+    gene = create_component_session_with_conflict_avoidance(
+        course_id,
+        group_id,
+        component_type,
+        quanta_needed,
+        context,
+        used_quanta,
+        instructor_schedule,
+        group_schedule,
+        require_special_room=is_practical,
+    )
 
-    # Create Practical Sessions
-    if practical_hours > 0:
-        practical_gene = create_component_session_with_conflict_avoidance(
-            course_id,
-            group_id,
-            "practical",
-            practical_hours,
-            context,
-            used_quanta,
-            instructor_schedule,
-            group_schedule,
-            require_special_room=True,
+    if gene:
+        session_genes.append(gene)
+    else:
+        print(
+            f"⚠️  Failed to create gene for {course_id} with group {group_id} (conflict-avoidance)"
         )
-        if practical_gene:
-            session_genes.append(practical_gene)
-
-    # If no components defined, create default sessions based on course requirements
-    if not session_genes:
-        # Try to get total hours from course metadata
-        total_hours = getattr(course, "total_hours_per_week", 3)
-        credit_hours = getattr(course, "credit_hours", 3)
-        hours_per_week = getattr(
-            course, "hours_per_week", max(total_hours, credit_hours)
-        )
-
-        default_gene = create_component_session_with_conflict_avoidance(
-            course_id,
-            group_id,
-            "default",
-            hours_per_week,
-            context,
-            used_quanta,
-            instructor_schedule,
-            group_schedule,
-        )
-        if default_gene:
-            session_genes.append(default_gene)
 
     return session_genes
+
+
+def create_session_gene_with_conflict_avoidance(
+    course_id: str,
+    group_ids: List[str],
+    session_type: str,
+    num_quanta: int,
+    course,
+    context: Dict,
+    used_quanta: set,
+    instructor_schedule: dict,
+    group_schedule: dict,
+) -> SessionGene:
+    """
+    Create ONE session gene for a (course, groups) combination.
+
+    Args:
+        course_id: Course identifier
+        group_ids: List of group IDs (can be single or multiple)
+        session_type: "theory" or "practical"
+        num_quanta: Number of quanta needed (from course.quanta_per_week)
+        course: Course entity
+        context: GA context
+        used_quanta, instructor_schedule, group_schedule: Conflict tracking
+
+    Returns:
+        SessionGene or None if creation failed
+    """
+    # Find qualified instructors
+    qualified_instructors = find_qualified_instructors(course_id, context)
+    if not qualified_instructors:
+        qualified_instructors = list(context["instructors"].values())
+
+    if not qualified_instructors:
+        return None
+
+    instructor = random.choice(qualified_instructors)
+
+    # Find suitable rooms
+    is_practical = session_type == "practical"
+    suitable_rooms = find_suitable_rooms(
+        course, session_type, context, require_special_room=is_practical
+    )
+    if not suitable_rooms:
+        suitable_rooms = list(context["rooms"].values())
+
+    if not suitable_rooms:
+        return None
+
+    room = random.choice(suitable_rooms)
+
+    # Find available quanta that don't conflict
+    available_quanta = [q for q in context["available_quanta"] if q not in used_quanta]
+
+    if len(available_quanta) < num_quanta:
+        # Fall back to all if not enough free
+        available_quanta = list(context["available_quanta"])
+
+    quanta_needed = min(num_quanta, len(available_quanta))
+
+    if quanta_needed == 0:
+        return None
+
+    # Assign time quanta
+    assigned_quanta = assign_conflict_free_quanta(
+        quanta_needed, available_quanta, used_quanta
+    )
+
+    if not assigned_quanta:
+        return None
+
+    # Update tracking structures
+    used_quanta.update(assigned_quanta)
+    instructor_id = instructor.instructor_id
+    if instructor_id not in instructor_schedule:
+        instructor_schedule[instructor_id] = set()
+    instructor_schedule[instructor_id].update(assigned_quanta)
+
+    # Update group schedules for ALL groups in this session
+    for gid in group_ids:
+        if gid not in group_schedule:
+            group_schedule[gid] = set()
+        group_schedule[gid].update(assigned_quanta)
+
+    # Create session gene with multi-group support
+    session_gene = SessionGene(
+        course_id=course_id,
+        instructor_id=instructor_id,
+        group_ids=group_ids,  # Can be multiple groups
+        room_id=room.room_id,
+        quanta=assigned_quanta,
+    )
+
+    return session_gene
 
 
 def create_component_session_with_conflict_avoidance(
@@ -268,6 +340,9 @@ def create_component_session_with_conflict_avoidance(
 ) -> SessionGene:
     """
     Create a single session while avoiding instructor and group conflicts.
+
+    DEPRECATED: Use create_session_gene_with_conflict_avoidance instead.
+    Kept for backwards compatibility with old population generators.
     """
     course = context["courses"][course_id]
 
@@ -339,7 +414,7 @@ def create_component_session_with_conflict_avoidance(
     session_gene = SessionGene(
         course_id=course_id,
         instructor_id=instructor_id,
-        group_id=group_id,
+        group_ids=[group_id],  # Changed to list for multi-group support
         room_id=room.room_id,
         quanta=assigned_quanta,
     )
@@ -390,71 +465,6 @@ def assign_conflict_free_quanta(
 
     # If no consecutive slots found or not needed, select randomly
     return random.sample(free_quanta, quanta_needed)
-    """
-    Create session genes for different course components (Lecture, Tutorial, Practical).
-    Based on the FullSyllabusAll.json structure with L, T, P components.
-    
-    Args:
-        course_id: Course identifier
-        group_id: Group identifier  
-        course: Course object
-        context: GA context with resources
-    
-    Returns:
-        List of SessionGene objects for this course-group combination
-    """
-    session_genes = []
-
-    # Get course component information with fallbacks
-    lecture_hours = getattr(course, "L", getattr(course, "lecture_hours", 0))
-    tutorial_hours = getattr(course, "T", getattr(course, "tutorial_hours", 0))
-    practical_hours = getattr(course, "P", getattr(course, "practical_hours", 0))
-
-    # Create Lecture Sessions
-    if lecture_hours > 0:
-        lecture_gene = create_component_session(
-            course_id, group_id, "lecture", lecture_hours, context
-        )
-        if lecture_gene:
-            session_genes.append(lecture_gene)
-
-    # Create Tutorial Sessions
-    if tutorial_hours > 0:
-        tutorial_gene = create_component_session(
-            course_id, group_id, "tutorial", tutorial_hours, context
-        )
-        if tutorial_gene:
-            session_genes.append(tutorial_gene)
-
-    # Create Practical Sessions
-    if practical_hours > 0:
-        practical_gene = create_component_session(
-            course_id,
-            group_id,
-            "practical",
-            practical_hours,
-            context,
-            require_special_room=True,
-        )
-        if practical_gene:
-            session_genes.append(practical_gene)
-
-    # If no components defined, create default sessions based on course requirements
-    if not session_genes:
-        # Try to get total hours from course metadata
-        total_hours = getattr(course, "total_hours_per_week", 3)
-        credit_hours = getattr(course, "credit_hours", 3)
-        hours_per_week = getattr(
-            course, "hours_per_week", max(total_hours, credit_hours)
-        )
-
-        default_gene = create_component_session(
-            course_id, group_id, "default", hours_per_week, context
-        )
-        if default_gene:
-            session_genes.append(default_gene)
-
-    return session_genes
 
 
 def create_component_session(
@@ -529,7 +539,7 @@ def create_component_session(
     session_gene = SessionGene(
         course_id=course_id,
         instructor_id=instructor.instructor_id,
-        group_id=group_id,
+        group_ids=[group_id],  # Changed to list for multi-group support
         room_id=room.room_id,
         quanta=assigned_quanta,
     )
@@ -684,7 +694,7 @@ def generate_random_gene(
     return SessionGene(
         course_id=course.course_id,
         instructor_id=instructor.instructor_id,
-        group_id=group.group_id,
+        group_ids=[group.group_id],  # Changed to list for multi-group support
         room_id=room.room_id,
         quanta=quanta,
     )

@@ -1,13 +1,31 @@
 """
+CONTINUOUS QUANTUM TIME SYSTEM
+
+This module implements a quantum-based time system where quantum indices are CONTINUOUS
+and only cover operating hours. Non-operating times receive NO quantum indices.
+
 CONSTANTS:
-QUANTUM_MINUTES: Duration of a Single Quantum in Minutes
-UNIT_COURSE_DURATION: Standard Course Duration in Minutes
+QUANTUM_MINUTES: Duration of a Single Quantum in Minutes (also the Unit Course Duration)
 QUANTA_PER_HOUR: Number of Quanta in One Hour
-QUANTA_PER_DAY: Number of Quanta in One Day
-TOTAL_WEEKLY_QUANTA: Total Quanta in a Week
 UNIT_SESSION_DURATION_QUANTA: Duration of a Single Session in Quanta
-DAY_NAMES: List of Days in a Week
+DAY_NAMES: List of Days in a Week (Sunday-first order)
 DEFAULT_OPERATING_HOURS: Default Operating Hours for Each Day
+
+KEY FEATURES:
+- Continuous indexing: Only operational times get quantum indices
+- No gaps: Quantum 0, 1, 2, ... N-1 represent all operational time slots
+- Day-aware: Each operational day contributes its operating hours only
+- Efficient: No wasted indices on non-operational times (nights, weekends, etc.)
+
+EXAMPLE:
+If operating hours are:
+  Sunday: 08:00-20:00 (12 hours = 12 quanta with 60-min quantum)
+  Monday: 08:00-20:00 (12 hours = 12 quanta)
+
+Then quantum indices are:
+  0-11: Sunday 08:00-19:00
+  12-23: Monday 08:00-19:00
+  (No indices for Sunday 00:00-07:59, 20:00-23:59, etc.)
 """
 
 from dataclasses import dataclass, field
@@ -18,12 +36,13 @@ from collections import defaultdict
 @dataclass
 class QuantumTimeSystem:
     """
-    A quantum-based time system for scheduling.
+    A quantum-based time system for scheduling with CONTINUOUS quantum indices.
 
-    - Time is represented in 15-minute units (quanta).
+    - Time is represented in quantum units (default: 60-minute units).
     - Operating hours are configured per day.
+    - Quantum indices are CONTINUOUS and ONLY cover operating hours.
+    - No quantum indices are assigned to non-operating times.
     - Supports schedule encoding/decoding into quantum sets.
-    - Enables efficient time range calculation, day-wise quanta grouping, and merging.
 
     Public Methods:
         __init__(self)
@@ -32,26 +51,23 @@ class QuantumTimeSystem:
         encode_schedule(self, schedule_json: Dict) -> Set[int]
         decode_schedule(self, quanta_set: Set[int]) -> Dict[str, List[Dict]]
         get_all_operating_quanta(self) -> Set[int]
-        time_to_quanta(cls, day: str, time_str: str) -> int (classmethod)
-        quanta_to_time(cls, quantum: int) -> Tuple[str, str] (classmethod)
+        time_to_quanta(self, day: str, time_str: str) -> int
+        quanta_to_time(self, quantum: int) -> Tuple[str, str]
 
     Example:
         qts = QuantumTimeSystem()
-        q = qts.time_to_quanta("Monday", "10:30")
+        q = qts.time_to_quanta("Monday", "10:00")  # Returns continuous index
         day, time = qts.quanta_to_time(q)
     """
 
     # Constants
-    QUANTUM_MINUTES: ClassVar[int] = 60
-    UNIT_COURSE_DURATION: ClassVar[int] = 60  # Duration in minutes
+    QUANTUM_MINUTES: ClassVar[int] = (
+        60  # Quantum duration in minutes (also unit course duration)
+    )
 
     # Derived constants
     QUANTA_PER_HOUR: ClassVar[int] = 60 // QUANTUM_MINUTES
-    QUANTA_PER_DAY: ClassVar[int] = 24 * QUANTA_PER_HOUR
-    TOTAL_WEEKLY_QUANTA: ClassVar[int] = 7 * QUANTA_PER_DAY
-    UNIT_SESSION_DURATION_QUANTA: ClassVar[int] = (
-        UNIT_COURSE_DURATION // QUANTUM_MINUTES
-    )
+    UNIT_SESSION_DURATION_QUANTA: ClassVar[int] = 1  # One quantum per session
 
     # Day configuration
     DAY_NAMES: ClassVar[List[str]] = [
@@ -77,7 +93,7 @@ class QuantumTimeSystem:
     def __init__(self):
         """
         Initializes the QuantumTimeSystem with default operating hours.
-        Precomputes quantum bounds for each day
+        Precomputes continuous quantum mappings for each operational day.
 
         Example:
             qts = QuantumTimeSystem()
@@ -87,108 +103,160 @@ class QuantumTimeSystem:
 
     def _build_quanta_map(self) -> None:
         """
-        Builds a mapping of days to their quantum operating ranges.
+        Builds continuous quantum mappings for operational days only.
+
+        Creates:
+        - day_quanta_offset: Starting quantum index for each day
+        - day_start_time: Operating start time for each day (in minutes from midnight)
+        - day_quanta_count: Number of quanta available for each day
+        - total_quanta: Total continuous quanta across all operational days
 
         Example:
-            self.quanta_hours['Monday'] = (32,80)
+            If Sun 08:00-20:00 (12 quanta) and Mon 08:00-20:00 (12 quanta):
+            day_quanta_offset = {'Sunday': 0, 'Monday': 12, ...}
+            day_start_time = {'Sunday': 480, 'Monday': 480, ...}  # 8*60 = 480
+            day_quanta_count = {'Sunday': 12, 'Monday': 12, ...}
         """
-        self.quanta_hours = {}
-        for day, hours in self.operating_hours.items():
-            self.quanta_hours[day] = (
-                self._convert_hours_to_quanta(day, hours) if hours else None
-            )
+        self.day_quanta_offset = {}
+        self.day_start_time = {}
+        self.day_quanta_count = {}
 
-    def _convert_hours_to_quanta(
-        self, day: str, hours: Tuple[str, str]
-    ) -> Tuple[int, int]:
+        current_offset = 0
+
+        for day in self.DAY_NAMES:
+            hours = self.operating_hours.get(day)
+
+            if hours:
+                # Parse start and end times
+                start_hour, start_min = map(int, hours[0].split(":"))
+                end_hour, end_min = map(int, hours[1].split(":"))
+
+                # Convert to minutes from midnight
+                start_minutes = start_hour * 60 + start_min
+                end_minutes = end_hour * 60 + end_min
+
+                # Calculate number of quanta for this day
+                duration_minutes = end_minutes - start_minutes
+                quanta_count = duration_minutes // self.QUANTUM_MINUTES
+
+                self.day_quanta_offset[day] = current_offset
+                self.day_start_time[day] = start_minutes
+                self.day_quanta_count[day] = quanta_count
+
+                current_offset += quanta_count
+            else:
+                # Non-operational day
+                self.day_quanta_offset[day] = None
+                self.day_start_time[day] = None
+                self.day_quanta_count[day] = 0
+
+        self.total_quanta = current_offset
+
+    def time_to_quanta(self, day: str, time_str: str) -> int:
         """
-        Converts start and end times for a day into a tuple of quantum indices.
-
-        Args:
-            day: Day of the week
-            hours: Tuple of (start_time, end_time) in "HH:MM" format
-
-        Returns:
-            Tuple[int, int]: Start and end quantum indices
-
-        Example:
-            (32, 80) for ("08:00", "20:00") on Monday
-
-
-        """
-        start = self.time_to_quanta(day, hours[0]) % self.QUANTA_PER_DAY
-        end = self.time_to_quanta(day, hours[1]) % self.QUANTA_PER_DAY
-        return (start, end)
-
-    @classmethod
-    def time_to_quanta(cls, day: str, time_str: str) -> int:
-        """
-        Convert (day, time) to global quantum index (GQI)
+        Convert (day, time) to CONTINUOUS quantum index.
+        Only returns indices for times within operating hours.
 
         Args:
             day: Day of the week
             time_str: Time string in HH:MM format
 
         Returns:
-            int: Global Quantum Index (GQI)
-
-        Example:
-            Monday 09:15 -> 129
-        """
-        day_idx = cls._validate_and_get_day_index(day)
-        hours, minutes = map(int, time_str.split(":"))
-        return (
-            day_idx * cls.QUANTA_PER_DAY
-            + hours * cls.QUANTA_PER_HOUR
-            + minutes // cls.QUANTUM_MINUTES
-        )
-
-    @classmethod
-    def _validate_and_get_day_index(cls, day: str) -> int:
-        """
-        Validates and returns the index of the day name.
-
-        Args:
-            day: Day name
-
-        Returns:
-            Index: (0-6)
+            int: Continuous Quantum Index
 
         Raises:
-            ValueError: If the day name is invalid
-        """
-        try:
-            return cls.DAY_NAMES.index(day.capitalize())
-        except ValueError as e:
-            raise ValueError(f"Invalid day name: {day}") from e
+            ValueError: If day is non-operational or time is outside operating hours
 
-    @classmethod
-    def quanta_to_time(cls, quantum: int) -> Tuple[str, str]:
+        Example:
+            If Sunday operates 08:00-20:00 and Monday operates 08:00-20:00:
+            Sunday 08:00 -> 0
+            Sunday 09:00 -> 1
+            Monday 08:00 -> 12
+            Monday 09:00 -> 13
         """
-        Convert global quantum back to (day, HH:MM) format
+        day = day.capitalize()
+
+        # Check if day is operational
+        if not self.is_operational(day):
+            raise ValueError(f"{day} is not an operational day")
+
+        # Parse time
+        hour, minute = map(int, time_str.split(":"))
+        time_minutes = hour * 60 + minute
+
+        # Get day's operating parameters
+        start_minutes = self.day_start_time[day]
+        quanta_offset = self.day_quanta_offset[day]
+        quanta_count = self.day_quanta_count[day]
+
+        # Check if time is within operating hours
+        operating_hours = self.operating_hours[day]
+        end_hour, end_minute = map(int, operating_hours[1].split(":"))
+        end_minutes = end_hour * 60 + end_minute
+
+        if time_minutes < start_minutes or time_minutes >= end_minutes:
+            raise ValueError(
+                f"Time {time_str} on {day} is outside operating hours "
+                f"({operating_hours[0]}-{operating_hours[1]})"
+            )
+
+        # Calculate quantum index within the day
+        minutes_from_start = time_minutes - start_minutes
+        quantum_in_day = minutes_from_start // self.QUANTUM_MINUTES
+
+        # Return continuous quantum index
+        return quanta_offset + quantum_in_day
+
+    def quanta_to_time(self, quantum: int) -> Tuple[str, str]:
+        """
+        Convert CONTINUOUS quantum index back to (day, HH:MM) format.
 
         Args:
-            quantum: Global Quantum Index in the range (0, TOTAL_WEEKLY_QUANTA)
+            quantum: Continuous Quantum Index (0 to total_quanta-1)
 
         Returns:
-            Tuple of the day name and time string in HH:MM format
+            Tuple of (day_name, time_string in HH:MM format)
 
+        Raises:
+            ValueError: If quantum is out of valid range
+
+        Example:
+            If Sunday operates 08:00-20:00 (12 quanta), Monday 08:00-20:00 (12 quanta):
+            quantum 0 -> ('Sunday', '08:00')
+            quantum 11 -> ('Sunday', '19:00')
+            quantum 12 -> ('Monday', '08:00')
+            quantum 23 -> ('Monday', '19:00')
         """
-        cls._validate_quantum(quantum)
-
-        day_idx, quanta_in_day = divmod(quantum, cls.QUANTA_PER_DAY)
-        hour, minute_quanta = divmod(quanta_in_day, cls.QUANTA_PER_HOUR)
-        minute = minute_quanta * cls.QUANTUM_MINUTES
-
-        return cls.DAY_NAMES[day_idx], f"{hour:02d}:{minute:02d}"
-
-    @classmethod
-    def _validate_quantum(cls, quantum: int) -> None:
-        """Validate quantum value is within bounds"""
-        if not 0 <= quantum < cls.TOTAL_WEEKLY_QUANTA:
+        if not 0 <= quantum < self.total_quanta:
             raise ValueError(
-                f"Quantum must be between 0 and {cls.TOTAL_WEEKLY_QUANTA-1}"
+                f"Quantum {quantum} is out of range (0 to {self.total_quanta-1})"
             )
+
+        # Find which day this quantum belongs to
+        for day in self.DAY_NAMES:
+            if self.day_quanta_offset[day] is None:
+                continue
+
+            day_offset = self.day_quanta_offset[day]
+            day_count = self.day_quanta_count[day]
+
+            # Check if quantum falls within this day's range
+            if day_offset <= quantum < day_offset + day_count:
+                # Calculate quantum position within the day
+                quantum_in_day = quantum - day_offset
+
+                # Convert to time
+                minutes_from_start = quantum_in_day * self.QUANTUM_MINUTES
+                start_minutes = self.day_start_time[day]
+                total_minutes = start_minutes + minutes_from_start
+
+                hour = total_minutes // 60
+                minute = total_minutes % 60
+
+                return day, f"{hour:02d}:{minute:02d}"
+
+        # Should never reach here if quantum is valid
+        raise ValueError(f"Could not decode quantum {quantum}")
 
     def set_operating_hours(
         self, day: str, start_time: Optional[str], end_time: Optional[str]
@@ -260,10 +328,10 @@ class QuantumTimeSystem:
 
     def decode_schedule(self, quanta_set: Set[int]) -> Dict[str, List[Dict]]:
         """
-        Converts a set of quantum indices back to readable JSON schedule.
+        Converts a set of continuous quantum indices back to readable JSON schedule.
 
         Args:
-            quanta_set: Set of quantum indices
+            quanta_set: Set of continuous quantum indices
 
         Returns:
             { day: [ {"start": "HH:MM", "end": "HH:MM"}, ... ] }
@@ -271,32 +339,59 @@ class QuantumTimeSystem:
         schedule = {day: [] for day in self.DAY_NAMES}
         day_groups = self._group_quanta_by_day(quanta_set)
 
-        for day_idx, quanta_list in day_groups.items():
+        for day, quanta_list in day_groups.items():
             if quanta_list:
-                schedule[self.DAY_NAMES[day_idx]] = self._merge_consecutive_quanta(
-                    quanta_list
-                )
+                schedule[day] = self._merge_consecutive_quanta(quanta_list)
 
         return {day: periods for day, periods in schedule.items() if periods}
 
-    def _group_quanta_by_day(self, quanta_set: Set[int]) -> Dict[int, List[int]]:
-        """Group quanta by day index"""
+    def _group_quanta_by_day(self, quanta_set: Set[int]) -> Dict[str, List[int]]:
+        """
+        Group continuous quanta by their corresponding days.
+
+        Args:
+            quanta_set: Set of continuous quantum indices
+
+        Returns:
+            Dict mapping day names to lists of quantum indices within that day
+        """
         day_groups = defaultdict(list)
-        for q in sorted(quanta_set):
-            day_idx = q // self.QUANTA_PER_DAY
-            day_groups[day_idx].append(q % self.QUANTA_PER_DAY)
+
+        for quantum in sorted(quanta_set):
+            # Find which day this quantum belongs to
+            for day in self.DAY_NAMES:
+                if self.day_quanta_offset[day] is None:
+                    continue
+
+                day_offset = self.day_quanta_offset[day]
+                day_count = self.day_quanta_count[day]
+
+                if day_offset <= quantum < day_offset + day_count:
+                    # This quantum belongs to this day
+                    day_groups[day].append(quantum)
+                    break
+
         return day_groups
 
     def _merge_consecutive_quanta(self, quanta_list: List[int]) -> List[Dict]:
-        """Merge consecutive quanta into time periods"""
+        """
+        Merge consecutive continuous quanta into time periods.
+
+        Args:
+            quanta_list: List of continuous quantum indices (should be sorted)
+
+        Returns:
+            List of period dictionaries with start/end times
+        """
         periods = []
         if not quanta_list:
             return periods
 
-        current_start = quanta_list[0]
+        sorted_quanta = sorted(quanta_list)
+        current_start = sorted_quanta[0]
         current_end = current_start + 1
 
-        for q in quanta_list[1:]:
+        for q in sorted_quanta[1:]:
             if q == current_end:
                 current_end += 1
             else:
@@ -312,30 +407,45 @@ class QuantumTimeSystem:
         Get all quantum time slots during operating hours across all days.
 
         Returns:
-            Set[int]: Set of all operating quantum indices
+            Set[int]: Set of all continuous operating quantum indices (0 to total_quanta-1)
         """
         all_quanta = set()
-        for day_idx, day_name in enumerate(self.DAY_NAMES):
-            hours = self.operating_hours.get(day_name)
-            if hours:
-                start_q = self.time_to_quanta(day_name, hours[0])
-                end_q = self.time_to_quanta(day_name, hours[1])
-                all_quanta.update(range(start_q, end_q))
+
+        for day in self.DAY_NAMES:
+            if self.day_quanta_offset[day] is not None:
+                day_offset = self.day_quanta_offset[day]
+                day_count = self.day_quanta_count[day]
+                all_quanta.update(range(day_offset, day_offset + day_count))
+
         return all_quanta
 
     def _create_period(self, start: int, end: int) -> Dict:
         """
-        Converts start and end quanta into a period dictionary
+        Converts start and end continuous quantum indices into a period dictionary.
+
+        Args:
+            start: Starting continuous quantum index (inclusive)
+            end: Ending continuous quantum index (exclusive)
+
+        Returns:
+            Dict with 'start' and 'end' time strings
         """
+        _, start_time = self.quanta_to_time(start)
+        if end < self.total_quanta:
+            _, end_time = self.quanta_to_time(end)
+        else:
+            end_time = self._get_day_end_time(start)
+
         return {
-            "start": self._quanta_to_time_str(start),
-            "end": self._quanta_to_time_str(end),
+            "start": start_time,
+            "end": end_time,
         }
 
-    def _quanta_to_time_str(self, quanta: int) -> str:
+    def _get_day_end_time(self, quantum: int) -> str:
         """
-        Converts a within-day quantum index to HH:MM string.
+        Get the end time for the day containing the given quantum.
+        Used when a period extends to the end of operating hours.
         """
-        hour, minute_quanta = divmod(quanta, self.QUANTA_PER_HOUR)
-        minute = minute_quanta * self.QUANTUM_MINUTES
-        return f"{hour:02d}:{minute:02d}"
+        day, _ = self.quanta_to_time(quantum)
+        operating_hours = self.operating_hours[day]
+        return operating_hours[1]

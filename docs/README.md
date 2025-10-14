@@ -1,110 +1,101 @@
-# Schedule Engine Documentation
+# Documentation Standards - Schedule Engine
 
-Welcome to the Schedule Engine documentation! This directory contains comprehensive documentation for the project.
+## Philosophy
+Code is self-documenting. `/docs` captures **concepts and architecture**, not implementation details.
 
-## 📁 Documentation Structure
+## Documentation Rules
 
-### Product Design Documentation
-**Location:** [`product-design/`](./product-design/)
+### ✅ DO Include
+- **Problem statement**: What issue does this solve?
+- **Solution approach**: High-level strategy
+- **Key components**: What modules/classes are involved?
+- **Design rationale**: WHY this approach? What tradeoffs?
+- **Architecture decisions**: How components interact
+- **Migration impact**: Breaking changes, compatibility
 
-Complete product design and system architecture documentation for transforming the Schedule Engine from a research project into a production-ready commercial product.
+### ❌ DON'T Include
+- Code snippets (except minimal, crucial examples)
+- Line-by-line implementation explanations
+- Detailed function descriptions (use docstrings for that)
+- Verbose prose or filler words
+- Step-by-step tutorials
 
-**What's Inside:**
-- Executive summary and recommendations
-- Complete system design and architecture
-- Database schema and design
-- Technology stack comparisons
-- API specifications
-- Implementation roadmap
-- Cost analysis and financial projections
-- Quick start guide
+## Structure Template
+```markdown
+# Feature Name
 
-**👉 Start Here:** [Product Design README](./product-design/README.md)
+## Problem
+1-2 sentences: what issue existed?
 
-## 🎯 Quick Links
+## Solution
+1 sentence: core approach
 
-### For Decision Makers
-- [Executive Summary](./product-design/EXECUTIVE_SUMMARY.md) - Quick overview (5 min read)
-- [Visual Summary](./product-design/VISUAL_SUMMARY.md) - Diagrams and visual reference
+## Architecture
+Bullet points:
+- Component A: purpose
+- Component B: purpose
+- Key interaction: how they work together
 
-### For Development Team
-- [Full System Design](./product-design/FULL_SYSTEM_DESIGN.md) - Complete guide (30 min read)
-- [Quick Start Guide](./product-design/QUICK_START_GUIDE.md) - Step-by-step implementation
-- [Database Schema](./product-design/DATABASE_SCHEMA.sql) - Production-ready schema
-- [API Specification](./product-design/API_SPECIFICATION.md) - REST API documentation
+## Design Rationale
+Why this approach over alternatives? What tradeoffs?
 
-### For Technical Review
-- [Technology Comparison](./product-design/TECHNOLOGY_COMPARISON.md) - Detailed tech stack analysis
+## Implementation
+"See `path/to/module.py`" (NO code details)
+```
 
-## 🔑 Key Recommendations
+## Length Guidelines
+- **Total doc**: 30-80 lines max
+- **Per section**: 1-2 short paragraphs OR bullet list
+- **Paragraphs**: 2-4 sentences max
+- **Code examples**: Only if absolutely critical (< 5 lines)
 
-**Database:** PostgreSQL + Redis  
-**Application:** Web Application (SaaS)  
-**Architecture:** Microservices (FastAPI + React)  
-**Timeline:** 14 weeks to MVP, 20 weeks to launch  
-**Investment:** $143K initial + $20K/month operational
+## Example: Good vs Bad
 
-## 📊 What's Covered
+### ❌ BAD (Too Verbose)
+```markdown
+The QuantumTimeSystem class uses several data structures to track
+operating hours. First, it creates a day_quanta_offset dictionary
+which stores the starting quantum index for each day. This is calculated
+by iterating through all days and accumulating the quanta counts...
 
-The documentation covers:
+Here's how the time_to_quanta method works:
+```python
+def time_to_quanta(self, day: str, time_str: str) -> int:
+    day = day.capitalize()
+    if not self.is_operational(day):
+        raise ValueError(f"{day} is not an operational day")
+    # ... 20+ more lines
+```
+```
 
-✅ Current state analysis  
-✅ Production system architecture  
-✅ Database design (research vs production)  
-✅ MVP feature definition  
-✅ Technology stack recommendations  
-✅ Security and compliance  
-✅ Scalability strategy  
-✅ Cost and revenue analysis  
-✅ Implementation roadmap  
-✅ Risk assessment  
-✅ Go-to-market strategy  
+### ✅ GOOD (Concise)
+```markdown
+## Architecture
+- `day_quanta_offset`: Starting index per operational day
+- `time_to_quanta()`: Converts wall-clock to continuous index, validates against operating hours
+- Raises `ValueError` for non-operational times
 
-## 🚀 Getting Started
+See `src/encoder/quantum_time_system.py` for implementation.
+```
 
-1. **Understand the Vision:** Read the [Executive Summary](./product-design/EXECUTIVE_SUMMARY.md)
-2. **Review Architecture:** Study the [Full System Design](./product-design/FULL_SYSTEM_DESIGN.md)
-3. **Plan Development:** Follow the [Quick Start Guide](./product-design/QUICK_START_GUIDE.md)
-4. **Begin Implementation:** Use the technical documentation
+## Cross-References
+Instead of repeating information:
+- Link to other docs: "See `quantum-migration.md` for update steps"
+- Reference code: "Implementation in `constraints/soft.py`"
+- Point to tests: "Run `test_continuous_quanta.py` to verify"
 
-## 📝 Document Status
+## Maintenance
+- Update docs when **concepts** change, not for small code tweaks
+- Remove outdated docs immediately
+- Merge redundant docs into single files
 
-| Document Category | Status | Last Updated |
-|------------------|--------|--------------|
-| Product Design | ✅ Complete | Oct 2025 |
-| API Documentation | ✅ Complete | Oct 2025 |
-| Database Design | ✅ Complete | Oct 2025 |
-| Implementation Guide | ✅ Complete | Oct 2025 |
-
-## 🔄 Future Documentation
-
-Coming soon:
-- [ ] User manual and guides
-- [ ] API client libraries
-- [ ] Deployment guides
-- [ ] Performance tuning guides
-- [ ] Troubleshooting guides
-
-## 📧 Contributing
-
-This documentation is a living resource. To contribute:
-1. Review existing content
-2. Identify gaps or updates needed
-3. Submit pull request with changes
-4. Update version and date
-
-## 🆘 Getting Help
-
-For questions about:
-- **Product/Business:** Review Executive Summary
-- **Technical Architecture:** Review Full System Design
-- **Implementation:** Review Quick Start Guide
-- **API Integration:** Review API Specification
+## Enforcement
+All `/docs` files reviewed for:
+1. Concept-focused (not code-focused)
+2. Conciseness (under length limits)
+3. Problem → Solution → Architecture structure
+4. No redundant explanations
 
 ---
 
-**Project:** Schedule Engine  
-**Documentation Version:** 1.0  
-**Last Updated:** October 2025
-
-[Back to Project Root](../)
+**Remember**: If it's in the code, it doesn't need to be in the docs. Document the thinking, not the typing.

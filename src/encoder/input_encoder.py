@@ -27,6 +27,7 @@ from src.encoder.quantum_time_system import QuantumTimeSystem
 def encode_availability(availability_dict: Dict, qts: QuantumTimeSystem) -> set:
     """
     Converts human-readable availability into a set of quantum indices.
+    Automatically clips availability periods to operating hours.
 
     Args:
         availability_dict (Dict): Availability per weekday in format {"Monday": [{"start": "08:00", "end": "10:00"}, ...]}.
@@ -37,10 +38,54 @@ def encode_availability(availability_dict: Dict, qts: QuantumTimeSystem) -> set:
     """
     quanta = set()
     for day, periods in availability_dict.items():
+        day_cap = day.capitalize()
+
+        # Skip if day is not operational
+        if not qts.is_operational(day_cap):
+            continue
+
+        # Get operating hours for this day
+        operating_hours = qts.operating_hours[day_cap]
+        op_start_str, op_end_str = operating_hours
+        op_start_minutes = int(op_start_str.split(":")[0]) * 60 + int(
+            op_start_str.split(":")[1]
+        )
+        op_end_minutes = int(op_end_str.split(":")[0]) * 60 + int(
+            op_end_str.split(":")[1]
+        )
+
         for period in periods:
-            start_q = qts.time_to_quanta(day, period["start"])
-            end_q = qts.time_to_quanta(day, period["end"])
+            # Parse availability period
+            avail_start = period["start"]
+            avail_end = period["end"]
+            avail_start_minutes = int(avail_start.split(":")[0]) * 60 + int(
+                avail_start.split(":")[1]
+            )
+            avail_end_minutes = int(avail_end.split(":")[0]) * 60 + int(
+                avail_end.split(":")[1]
+            )
+
+            # Clip to operating hours
+            clipped_start_minutes = max(avail_start_minutes, op_start_minutes)
+            clipped_end_minutes = min(avail_end_minutes, op_end_minutes)
+
+            # Skip if no overlap with operating hours
+            if clipped_start_minutes >= clipped_end_minutes:
+                continue
+
+            # Convert back to HH:MM format
+            clipped_start = (
+                f"{clipped_start_minutes // 60:02d}:{clipped_start_minutes % 60:02d}"
+            )
+            clipped_end = (
+                f"{clipped_end_minutes // 60:02d}:{clipped_end_minutes % 60:02d}"
+            )
+
+            # Encode the clipped period
+            start_q = qts.time_to_quanta(day_cap, clipped_start)
+            end_q = qts.time_to_quanta(day_cap, clipped_end)
             quanta.update(range(start_q, end_q))
+
     return quanta
 
 
@@ -149,6 +194,11 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
     """
     Loads student group data and encodes availability.
 
+    NEW ARCHITECTURE: No parent groups!
+    - Only creates subgroup entities if subgroups exist
+    - If no subgroups, creates the group itself
+    - All groups are independent, no parent-child relationship
+
     Args:
         path (str): Path to group JSON file.
         qts (QuantumTimeSystem): Time system to encode availability.
@@ -158,8 +208,8 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
     """
     data = json.load(open(path))
     groups = {}
+
     for item in data:
-        group_id = item["group_id"]
         group_availability = item.get("availability", {})
         available_quanta = (
             encode_availability(group_availability, qts)
@@ -167,13 +217,42 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
             else qts.get_all_operating_quanta()
         )
 
-        groups[group_id] = Group(
-            group_id=group_id,
-            name=item["name"],
-            student_count=item["student_count"],
-            enrolled_courses=item.get("courses", []),
-            available_quanta=available_quanta,
-        )
+        # Check if subgroups exist
+        subgroups_data = item.get("subgroups", [])
+
+        if subgroups_data:
+            # If subgroups exist, ONLY create subgroups (no parent)
+            for subgroup in subgroups_data:
+                # Handle both old format (string) and new format (dict with id and student_count)
+                if isinstance(subgroup, dict):
+                    subgroup_id = subgroup["id"]
+                    subgroup_count = subgroup.get(
+                        "student_count", item["student_count"] // len(subgroups_data)
+                    )
+                else:
+                    # Old format: subgroup is just a string ID
+                    subgroup_id = subgroup
+                    subgroup_count = item["student_count"] // len(subgroups_data)
+
+                # Create subgroup with inherited courses and availability
+                groups[subgroup_id] = Group(
+                    group_id=subgroup_id,
+                    name=f"{item['name']} - {subgroup_id}",
+                    student_count=subgroup_count,
+                    enrolled_courses=item.get("courses", []),
+                    available_quanta=available_quanta,
+                )
+        else:
+            # No subgroups, create the group itself
+            group_id = item["group_id"]
+            groups[group_id] = Group(
+                group_id=group_id,
+                name=item["name"],
+                student_count=item["student_count"],
+                enrolled_courses=item.get("courses", []),
+                available_quanta=available_quanta,
+            )
+
     return groups
 
 

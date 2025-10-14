@@ -1,4 +1,5 @@
 # Schedule Engine Agent Guide
+- create all test files inside test/
 
 - **Architecture** `main.py` drives the GA run: load JSON via `src/encoder/input_encoder.py`, seed RNG, register GA toolbox, execute NSGA-II for `config/ga_params.NGEN`, decode winners with `src/decoder/individual_decoder.py`, then export using `src/exporter/exporter.py`.
 - **Data Flow** Inputs in `data/*.json` become entities (`src/entities/*`) and availability quanta (`QuantumTimeSystem`). GA chromosomes (`src/ga/sessiongene.py`) pass through seeding (`src/ga/population.py`), evaluation (`src/ga/evaluator/{fitness,detailed_fitness}.py` plus `src/constraints/{hard,soft}.py`), and decoding to `CourseSession` records.
@@ -9,5 +10,5 @@
 - **Exports & Reports** `export_everything` writes JSON plus plots into `output/evaluation_<timestamp>/`. Plot modules under `src/exporter/` require the same directory structure. Calendar appearance is controlled via `config/calendar_config.py`.
 - **Workflows** Run the solver with `python main.py`. Dependencies: DEAP, Matplotlib (install with `pip install -r requirements.txt` when available, otherwise `pip install deap matplotlib`). With no automated tests, shorten `config/ga_params.NGEN` for quick smoke runs.
 - **Warnings & Defaults** When availability is absent, groups default to operating quanta, instructors/rooms become fully available. Existing warning prints highlight missing enrollments/qualifications; keep them when extending validation.
-- **Documentation** Keep project docs inside `docs/`. Maintain concise, factual notes: split theoretical GA rationale from implementation specifics, avoid filler, and reference concrete modules (e.g., constraints, mutation, exporter) for each point.
+- **Documentation** Keep project docs inside `docs/`. **Be VERY concise**: focus on concepts, architecture, and design decisions ONLY—NO code snippets (only if absolutely crucial can use code snippets), NO detailed implementations, NO verbose explanations. Structure: problem → solution approach → key components. Use bullet points. Max 1-2 short paragraphs per major topic. Reference module names for details (e.g., "see `constraints/hard.py`") rather than explaining code. Split theory from implementation. Avoid filler words. Document WHY (rationale, tradeoffs), not HOW (code does that).
 - **Style Notes** Match existing ASCII-only style, Sunday-first ordering for schedules, and reuse shared constants (e.g., `QuantumTimeSystem.DAY_NAMES`) when adding new reports.

@@ -1,4 +1,5 @@
 import os
+import csv
 import matplotlib.pyplot as plt
 from deap import tools
 import numpy as np
@@ -9,6 +10,40 @@ def plot_pareto_front(population, output_dir):
     Enhanced Pareto front visualization showing all points with better visibility.
     """
     hard_vals, soft_vals = zip(*[ind.fitness.values for ind in population])
+
+    # Create CSVs subdirectory
+    csv_dir = os.path.join(output_dir, "CSVs")
+    os.makedirs(csv_dir, exist_ok=True)
+
+    # Save population data to CSV
+    csv_path = os.path.join(csv_dir, "population_fitness.csv")
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            [
+                "Individual_Index",
+                "Hard_Constraint_Violations",
+                "Soft_Constraint_Penalties",
+            ]
+        )
+        for idx, (h, s) in enumerate(zip(hard_vals, soft_vals)):
+            writer.writerow([idx, h, s])
+
+    # Save Pareto front data to CSV
+    pareto_front = tools.sortNondominated(
+        population, len(population), first_front_only=True
+    )[0]
+    pareto_hard = [ind.fitness.values[0] for ind in pareto_front]
+    pareto_soft = [ind.fitness.values[1] for ind in pareto_front]
+
+    csv_path = os.path.join(csv_dir, "pareto_front.csv")
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            ["Pareto_Index", "Hard_Constraint_Violations", "Soft_Constraint_Penalties"]
+        )
+        for idx, (h, s) in enumerate(zip(pareto_hard, pareto_soft)):
+            writer.writerow([idx, h, s])
 
     # Create comprehensive plots showing all data
     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(16, 12))
@@ -42,13 +77,7 @@ def plot_pareto_front(population, output_dir):
         hard_vals, soft_vals, color="lightblue", alpha=0.4, s=20, label="Population"
     )
 
-    # Highlight the actual Pareto front
-    pareto_front = tools.sortNondominated(
-        population, len(population), first_front_only=True
-    )[0]
-    pareto_hard = [ind.fitness.values[0] for ind in pareto_front]
-    pareto_soft = [ind.fitness.values[1] for ind in pareto_front]
-
+    # Use the Pareto front data already calculated above
     ax2.scatter(
         pareto_hard,
         pareto_soft,

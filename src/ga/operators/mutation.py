@@ -5,26 +5,23 @@ from typing import List
 
 def mutate_gene(gene: SessionGene, context) -> SessionGene:
     """
-    Performs intelligent constraint-aware mutation on a single gene.
-    Preserves course-group relationships and uses domain knowledge.
+    Performs constraint-aware mutation on a single gene.
+
+    CRITICAL: Course and Group are NEVER mutated!
+    Only mutates: Instructor, Room, Time slots
+
+    This preserves the fundamental (course, group) enrollment structure
+    and prevents incomplete_or_extra_sessions violations.
     """
     # Get course info for constraint-aware mutation
     course = context["courses"].get(gene.course_id)
 
-    # CRITICAL: Preserve course-group enrollment relationship
-    # Only mutate to groups that are actually enrolled in this course
-    enrolled_groups = []
-    for grp_id, grp in context["groups"].items():
-        if gene.course_id in getattr(grp, "enrolled_courses", []):
-            enrolled_groups.append(grp_id)
-
-    # If current group is valid, keep it with very high probability (90%)
-    if gene.group_id in enrolled_groups and random.random() < 0.9:
-        new_group = gene.group_id  # Keep existing valid group
-    else:
-        new_group = random.choice(
-            enrolled_groups if enrolled_groups else [gene.group_id]
-        )
+    # ========================================
+    # COURSE & GROUP: NEVER MUTATED
+    # ========================================
+    # Keep course_id and group_ids exactly as they are
+    new_course_id = gene.course_id
+    new_group_ids = gene.group_ids
 
     # Find qualified instructors for this course
     qualified_instructors = [
@@ -41,8 +38,15 @@ def mutate_gene(gene: SessionGene, context) -> SessionGene:
             qualified_instructors if qualified_instructors else [gene.instructor_id]
         )
 
+    # ========================================
+    # ROOM: Mutate intelligently
+    # ========================================
     # Smart room selection with capacity and feature constraints
-    suitable_rooms = find_suitable_rooms_for_course(gene.course_id, new_group, context)
+    # Use first group for room suitability check
+    primary_group = gene.group_ids[0] if gene.group_ids else None
+    suitable_rooms = find_suitable_rooms_for_course(
+        gene.course_id, primary_group, context
+    )
     if gene.room_id in suitable_rooms and random.random() < 0.5:
         new_room = gene.room_id  # Keep current room if suitable
     else:
@@ -50,44 +54,46 @@ def mutate_gene(gene: SessionGene, context) -> SessionGene:
             suitable_rooms if suitable_rooms else list(context["rooms"].keys())
         )
 
-    # Intelligent time assignment with conflict avoidance
+    # ========================================
+    # TIME: Mutate intelligently (preserve quanta count!)
+    # ========================================
+    # CRITICAL: Keep the SAME number of quanta to preserve course requirements
     new_quanta = mutate_time_quanta(gene, course, context)
 
     return SessionGene(
-        course_id=gene.course_id,  # Always preserve course ID
-        instructor_id=new_instructor,
-        group_id=new_group,
-        room_id=new_room,
-        quanta=new_quanta,
+        course_id=new_course_id,  # NEVER MUTATED
+        instructor_id=new_instructor,  # Mutated
+        group_ids=new_group_ids,  # NEVER MUTATED
+        room_id=new_room,  # Mutated
+        quanta=new_quanta,  # Mutated (but count preserved)
     )
 
 
 def mutate_time_quanta(gene: SessionGene, course, context) -> List[int]:
     """
-    Intelligently mutate time quanta while respecting course requirements.
-    """
-    # Determine required quanta based on course info
-    if course:
-        # Check if course has L, T, P components
-        lecture_hours = getattr(course, "L", 0)
-        tutorial_hours = getattr(course, "T", 0)
-        practical_hours = getattr(course, "P", 0)
+    Intelligently mutate time quanta while PRESERVING quanta count.
 
-        # Calculate total required quanta (4 quanta per hour)
-        total_hours = lecture_hours + tutorial_hours + practical_hours
-        if total_hours > 0:
-            num_quanta = int(total_hours * 4)
-        else:
-            num_quanta = getattr(course, "quanta_per_week", len(gene.quanta))
-    else:
-        num_quanta = len(gene.quanta)
+    CRITICAL: Number of quanta MUST stay the same to avoid
+    incomplete_or_extra_sessions violations!
+
+    Only changes WHEN the session happens, not HOW LONG it is.
+    """
+    # CRITICAL: Preserve the exact number of quanta
+    num_quanta = len(gene.quanta)
+
+    # Validate against course requirements (sanity check)
+    if course:
+        expected_quanta = getattr(course, "quanta_per_week", num_quanta)
+        if num_quanta != expected_quanta:
+            # If current gene has wrong count, fix it
+            num_quanta = expected_quanta
 
     # Ensure we don't exceed available quanta
     num_quanta = min(num_quanta, len(context["available_quanta"]))
     num_quanta = max(1, num_quanta)  # At least 1 quantum
 
-    # 30% chance to keep current time if it's reasonable
-    if len(gene.quanta) == num_quanta and random.random() < 0.3:
+    # 30% chance to keep current time slots completely unchanged
+    if random.random() < 0.3:
         return gene.quanta
 
     # Try to assign consecutive quanta for better scheduling

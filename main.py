@@ -2,6 +2,7 @@ import random
 import os
 from datetime import datetime
 from deap import base, tools, algorithms
+from tqdm import tqdm
 
 
 # Entities Import
@@ -14,7 +15,7 @@ from src.entities.room import Room
 from src.ga.sessiongene import SessionGene
 from src.ga.individual import create_individual
 from src.ga.population import generate_course_group_aware_population
-from src.ga.operators.crossover import crossover_uniform
+from src.ga.operators.crossover import crossover_course_group_aware
 from src.ga.operators.mutation import mutate_individual
 from src.ga.evaluator.fitness import evaluate  # Fitness Function
 from src.ga.evaluator.detailed_fitness import (
@@ -112,16 +113,85 @@ toolbox.register(
 )
 
 # Genetic Operators
-toolbox.register("mate", crossover_uniform, cx_prob=CXPB)
+toolbox.register("mate", crossover_course_group_aware, cx_prob=CXPB)
 toolbox.register("mutate", mutate_individual, context=context, mut_prob=MUTPB)
 # toolbox.register("select", tools.selTournament, tournsize=3) # Not needed for NSGA-II, dont konw why not needed? coz it uses binary tournament selection internally
+
+
+# 5.5 Add Validation Function for Gene Alignment
+def validate_gene_alignment(population):
+    """
+    Verify all individuals have matching (course, group) at each gene position.
+
+    This validation ensures the position-independent crossover assumption holds:
+    all individuals must represent the same set of (course, group) pairs.
+
+    Args:
+        population: List of individuals to validate
+
+    Raises:
+        ValueError: If any individual has mismatched (course, group) pairs
+    """
+    if not population:
+        return
+
+    # Use first individual as reference
+    reference = [
+        (gene.course_id, tuple(sorted(gene.group_ids))) for gene in population[0]
+    ]
+    reference_set = set(reference)
+
+    for idx, individual in enumerate(population[1:], start=1):
+        current = [
+            (gene.course_id, tuple(sorted(gene.group_ids))) for gene in individual
+        ]
+        current_set = set(current)
+
+        if current_set != reference_set:
+            # Find differences
+            missing_in_current = reference_set - current_set
+            extra_in_current = current_set - reference_set
+
+            raise ValueError(
+                f"❌ Gene alignment validation FAILED!\n"
+                f"   Individual {idx} has different (course, group) pairs than Individual 0.\n"
+                f"   Individual 0 has {len(reference_set)} unique pairs.\n"
+                f"   Individual {idx} has {len(current_set)} unique pairs.\n"
+                f"   Missing in Individual {idx}: {missing_in_current}\n"
+                f"   Extra in Individual {idx}: {extra_in_current}\n"
+                f"   This indicates a bug in population generation or mutation."
+            )
+
+        # Also check for duplicates within individual
+        if len(current) != len(current_set):
+            duplicates = [x for x in current if current.count(x) > 1]
+            raise ValueError(
+                f"❌ Individual {idx} contains DUPLICATE (course, group) pairs!\n"
+                f"   Duplicates: {set(duplicates)}\n"
+                f"   This violates the fundamental chromosome structure."
+            )
+
 
 # 6. Create Population
 
 population = toolbox.population(n=POP_SIZE)
 
+# 6.5 Validate Initial Population Structure
+print("Validating initial population gene alignment...")
+try:
+    validate_gene_alignment(population)
+    print(
+        "Gene alignment verified: All individuals have consistent (course, group) structure"
+    )
+except ValueError as e:
+    print(f"WARNING: Population validation failed!\n{e}")
+    print("   Continuing anyway, but crossover may fail...")
+
 # 7.  Evaluate the Initial Population
-fitness = list(map(toolbox.evaluate, population))
+print("Evaluating initial population...")
+fitness = list(
+    map(toolbox.evaluate, tqdm(population, desc="Initial Eval", leave=False))
+)
 for ind, fit in zip(population, fitness):
     ind.fitness.values = fit
 
@@ -152,8 +222,8 @@ hard_trends = {name: [] for name in hard_constraint_names}
 soft_trends = {name: [] for name in soft_constraint_names}
 
 # 8. Run GenAlgo
-for gin in range(NGEN):
-    print(f"Generation {gin + 1}/{NGEN}")
+for gin in tqdm(range(NGEN), desc="GA Progress", unit="gen"):
+    # print(f"Generation {gin + 1}/{NGEN}")  # tqdm provides this now
 
     # Generate offspring using NSGA-II selection
     offspring = toolbox.select(population, len(population))
@@ -173,13 +243,32 @@ for gin in range(NGEN):
 
     # Evaluate only invalidated individuals
     invalid = [ind for ind in offspring if not ind.fitness.valid]
-    fitness = list(map(toolbox.evaluate, invalid))
+    fitness = list(
+        map(
+            toolbox.evaluate,
+            tqdm(
+                invalid,
+                desc=f"Gen {gin+1} Eval",
+                leave=False,
+                disable=len(invalid) == 0,
+            ),
+        )
+    )
     for ind, fit in zip(invalid, fitness):
         ind.fitness.values = fit
 
     # Combine parents and offspring, then select next generation
     combined_population = population + offspring
     population[:] = toolbox.select(combined_population, len(population))
+
+    # Periodic validation to catch any gene alignment corruption
+    # (Uncomment if you suspect issues with mutation or other operators)
+    # if gin % 20 == 0:
+    #     try:
+    #         validate_gene_alignment(population)
+    #     except ValueError as e:
+    #         print(f"⚠️  Generation {gin + 1}: Gene alignment corrupted!\n{e}")
+    #         break
 
     # Track Metrics per generation
     hard_trend.append(min(ind.fitness.values[0] for ind in population))
@@ -199,18 +288,26 @@ for gin in range(NGEN):
     for constraint_name in soft_constraint_names:
         soft_trends[constraint_name].append(best_soft_details[constraint_name])
 
-    # Log best Fitness
-    print(f"Best Hard Constraint Violations: {best.fitness.values[0]}")
-    print(f"Best Soft Constraint Penalty: {best.fitness.values[1]}")
+    # Log best Fitness (write to tqdm postfix instead of printing)
+    tqdm.write(
+        f"Gen {gin+1}: Hard={best.fitness.values[0]:.0f}, Soft={best.fitness.values[1]:.2f}"
+    )
 
     # Log detailed constraint breakdown for the best individual
     if gin % 10 == 0 or gin == NGEN - 1:  # Print details every 10 generations
-        print(f"  Hard constraint details: {best_hard_details}")
-        print(f"  Soft constraint details: {best_soft_details}")
+        tqdm.write(f"  [HARD] Total Violations: {best.fitness.values[0]:.0f}")
+        for name, value in best_hard_details.items():
+            if value > 0:  # Only show violated constraints
+                tqdm.write(f"    - {name}: {value}")
+
+        tqdm.write(f"  [SOFT] Total Penalty: {best.fitness.values[1]:.2f}")
+        for name, value in best_soft_details.items():
+            if value > 0:  # Only show penalties
+                tqdm.write(f"    - {name}: {value}")
 
     # Early stopping if we find a perfect solution
     if best.fitness.values[0] == 0:
-        print(f"Perfect solution found at generation {gin + 1}!")
+        tqdm.write(f"✓ Perfect solution found at generation {gin + 1}!")
         break
 
 

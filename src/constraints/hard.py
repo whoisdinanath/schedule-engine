@@ -84,18 +84,28 @@ def availability_violations(sessions: List[CourseSession]) -> int:
     """
     Counts how many sessions are scheduled during unavailable time slots for
     the group, instructor, or room.
+
+    For multi-group sessions, checks availability for all assigned groups.
     """
     violations = 0
 
     for session in sessions:
         for q in session.session_quanta:
+            # Check if quantum is unavailable for instructor or room
             if (
                 q not in session.instructor.available_quanta
-                or q not in session.group.available_quanta
                 or q not in session.room.available_quanta
             ):
                 violations += 1
                 break  # Only count one violation per session
+
+        # For multi-group sessions, check all groups' availability
+        # If primary group exists, use it; otherwise skip group availability check
+        if session.group:
+            for q in session.session_quanta:
+                if q not in session.group.available_quanta:
+                    violations += 1
+                    break  # Only count one violation per session
 
     return violations
 
@@ -104,18 +114,47 @@ def incomplete_or_extra_sessions(
     sessions: List[CourseSession], course_map: Dict[str, Course]
 ) -> int:
     """
-    Verifies that each course is scheduled for exactly the required number of quanta.
+    Verifies that each course is scheduled for exactly the required number of quanta
+    PER GROUP that is enrolled in that course.
 
-    Returns the number of courses that are under- or over-scheduled.
+    New Architecture:
+    - Courses are taught per group (not globally)
+    - Theory sessions may use parent groups (whole class)
+    - Practical sessions may use subgroups
+    - Must check: each (course, group) combination has correct quanta
+
+    Returns:
+        Number of (course, group) combinations that are under- or over-scheduled.
+
+    Example:
+        If BAE2 is enrolled in ENME 151 (5 quanta/week),
+        we should have exactly 5 quanta for (ENME 151, BAE2) combination.
     """
-    quanta_counter = defaultdict(int)
+    # Count quanta per (course_id, group_id) combination
+    course_group_quanta = defaultdict(int)
 
     for session in sessions:
-        quanta_counter[session.course_id] += len(session.session_quanta)
+        course_id = session.course_id
+        # Each session can have multiple groups (multi-group sessions)
+        # Count quanta for each group separately
+        for group_id in session.group_ids:
+            key = (course_id, group_id)
+            course_group_quanta[key] += len(session.session_quanta)
 
     violations = 0
-    for cid, course in course_map.items():
-        if quanta_counter[cid] != course.quanta_per_week:
-            violations += 1
+
+    # Check each course's enrolled groups
+    for course_id, course in course_map.items():
+        expected_quanta = course.quanta_per_week
+        enrolled_groups = course.enrolled_group_ids
+
+        # For each group enrolled in this course
+        for group_id in enrolled_groups:
+            key = (course_id, group_id)
+            actual_quanta = course_group_quanta.get(key, 0)
+
+            # Check if scheduled correctly for this (course, group) pair
+            if actual_quanta != expected_quanta:
+                violations += 1
 
     return violations

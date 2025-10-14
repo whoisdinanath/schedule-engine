@@ -8,3 +8,5 @@ output/
 TEMPFILESWORKING/
 logs/
 test*.py
+product-design/
+prompts/

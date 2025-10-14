@@ -52,18 +52,19 @@ def decode_individual(
     for gene in individual:
         course = courses[gene.course_id]
         instructor = instructors[gene.instructor_id]
-        group = groups[gene.group_id]
+        # Get primary group (first group in the list)
+        group = groups[gene.group_ids[0]] if gene.group_ids else None
         room = rooms[gene.room_id]
 
         session = CourseSession(
             course_id=gene.course_id,
             instructor_id=gene.instructor_id,
-            group_ids=[gene.group_id],
+            group_ids=gene.group_ids,  # Now directly use the list from gene
             room_id=gene.room_id,
             session_quanta=gene.quanta,
             required_room_features=course.required_room_features,
             instructor=instructor,
-            group=group,
+            group=group,  # Primary group for backward compatibility
             room=room,
         )
 

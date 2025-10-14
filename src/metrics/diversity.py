@@ -18,7 +18,8 @@ def gene_distance(g1: SessionGene, g2: SessionGene) -> float:
         score += 1
     if g1.instructor_id != g2.instructor_id:
         score += 1
-    if g1.group_id != g2.group_id:
+    # Compare group_ids as sets (order doesn't matter)
+    if set(g1.group_ids) != set(g2.group_ids):
         score += 1
     if g1.room_id != g2.room_id:
         score += 1

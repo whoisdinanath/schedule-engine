@@ -72,7 +72,7 @@ def _save_schedule_as_json(
             {
                 "course_id": session.course_id,
                 "instructor_id": session.instructor_id,
-                "group_id": session.group_ids[0] if session.group_ids else None,
+                "group_ids": session.group_ids,  # Export as list for multi-group support
                 "room_id": session.room_id,
                 "time": time_schedule,
             }
@@ -226,16 +226,23 @@ def _save_json_schedule_as_pdf(
     course_ids = set()
 
     for entry in data:
-        group = entry["group_id"]
+        # Handle both old format (group_id) and new format (group_ids)
+        group_ids = entry.get(
+            "group_ids", [entry.get("group_id")] if entry.get("group_id") else []
+        )
         course = entry["course_id"]
         course_ids.add(course)
+
+        # Add session to all groups in the list
         for day, times in entry["time"].items():
             for s in times:
                 start = to_float(s["start"])
                 end = to_float(s["end"])
-                group_sessions[group].append(
-                    {"day": day, "start": start, "end": end, "label": course}
-                )
+                for group in group_ids:
+                    if group:  # Skip None values
+                        group_sessions[group].append(
+                            {"day": day, "start": start, "end": end, "label": course}
+                        )
 
     # Assign unique color to each course
     course_list = sorted(course_ids)

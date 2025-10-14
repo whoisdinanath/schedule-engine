@@ -13,14 +13,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BAE2A",
-                "student_count": 24
-            },
-            {
-                "id": "BAE2B",
-                "student_count": 23
-            }
+            "BAE2A",
+            "BAE2B"
         ]
     },
     {
@@ -37,14 +31,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BAE4A",
-                "student_count": 24
-            },
-            {
-                "id": "BAE4B",
-                "student_count": 23
-            }
+            "BAE4A",
+            "BAE4B"
         ]
     },
     {
@@ -62,14 +50,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BARCH2A",
-                "student_count": 24
-            },
-            {
-                "id": "BARCH2B",
-                "student_count": 23
-            }
+            "BARCH2A",
+            "BARCH2B"
         ]
     },
     {
@@ -87,14 +69,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BARCH4A",
-                "student_count": 24
-            },
-            {
-                "id": "BARCH4B",
-                "student_count": 23
-            }
+            "BARCH4A",
+            "BARCH4B"
         ]
     },
     {
@@ -111,30 +87,12 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BCE2A",
-                "student_count": 8
-            },
-            {
-                "id": "BCE2B",
-                "student_count": 8
-            },
-            {
-                "id": "BCE2C",
-                "student_count": 8
-            },
-            {
-                "id": "BCE2D",
-                "student_count": 8
-            },
-            {
-                "id": "BCE2E",
-                "student_count": 8
-            },
-            {
-                "id": "BCE2F",
-                "student_count": 7
-            }
+            "BCE2A",
+            "BCE2B",
+            "BCE2C",
+            "BCE2D",
+            "BCE2E",
+            "BCE2F"
         ]
     },
     {
@@ -153,30 +111,12 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BCE4A",
-                "student_count": 8
-            },
-            {
-                "id": "BCE4B",
-                "student_count": 8
-            },
-            {
-                "id": "BCE4C",
-                "student_count": 8
-            },
-            {
-                "id": "BCE4D",
-                "student_count": 8
-            },
-            {
-                "id": "BCE4E",
-                "student_count": 8
-            },
-            {
-                "id": "BCE4F",
-                "student_count": 7
-            }
+            "BCE4A",
+            "BCE4B",
+            "BCE4C",
+            "BCE4D",
+            "BCE4E",
+            "BCE4F"
         ]
     },
     {
@@ -193,14 +133,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BCT2A",
-                "student_count": 24
-            },
-            {
-                "id": "BCT2B",
-                "student_count": 23
-            }
+            "BCT2A",
+            "BCT2B"
         ]
     },
     {
@@ -217,14 +151,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BCT4A",
-                "student_count": 24
-            },
-            {
-                "id": "BCT4B",
-                "student_count": 23
-            }
+            "BCT4A",
+            "BCT4B"
         ]
     },
     {
@@ -241,14 +169,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BEI2A",
-                "student_count": 24
-            },
-            {
-                "id": "BEI2B",
-                "student_count": 23
-            }
+            "BEI2A",
+            "BEI2B"
         ]
     },
     {
@@ -265,14 +187,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BEI4A",
-                "student_count": 24
-            },
-            {
-                "id": "BEI4B",
-                "student_count": 23
-            }
+            "BEI4A",
+            "BEI4B"
         ]
     },
     {
@@ -289,14 +205,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BIE2A",
-                "student_count": 24
-            },
-            {
-                "id": "BIE2B",
-                "student_count": 23
-            }
+            "BIE2A",
+            "BIE2B"
         ]
     },
     {
@@ -314,14 +224,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BIE4A",
-                "student_count": 24
-            },
-            {
-                "id": "BIE4B",
-                "student_count": 23
-            }
+            "BIE4A",
+            "BIE4B"
         ]
     },
     {
@@ -338,14 +242,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BME2A",
-                "student_count": 24
-            },
-            {
-                "id": "BME2B",
-                "student_count": 23
-            }
+            "BME2A",
+            "BME2B"
         ]
     },
     {
@@ -362,14 +260,8 @@
         ],
         "prefers_break": true,
         "subgroups": [
-            {
-                "id": "BME4A",
-                "student_count": 24
-            },
-            {
-                "id": "BME4B",
-                "student_count": 23
-            }
+            "BME4A",
+            "BME4B"
         ]
     }
 ]

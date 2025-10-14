@@ -7,12 +7,14 @@ class SessionGene:
     """
     Each SessionGene Represents a single session in the timtetable.
     This is for the purpose of DEAP Encoding and Genetic Algorithm Engine (GAE)
-    It contains the course, instructor, group, room, and quanta information.
+    It contains the course, instructor, group(s), room, and quanta information.
+
+    A single session can be scheduled for multiple groups simultaneously
+    (e.g., a lecture for BAE2 and BAE4 at the same time in the same room).
     """
 
     course_id: str
     instructor_id: str
-    group_id: str
+    group_ids: List[str]  # Changed from group_id to support multiple groups
     room_id: str
     quanta: List[int]
-    
