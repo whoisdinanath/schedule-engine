@@ -4,7 +4,6 @@ from datetime import datetime
 from deap import base, tools, algorithms
 from tqdm import tqdm
 
-
 # Entities Import
 from src.entities.course import Course
 from src.entities.group import Group
