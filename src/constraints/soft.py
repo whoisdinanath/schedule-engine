@@ -2,22 +2,25 @@
 Soft constraint penalty functions for UCTP.
 Each function returns an integer penalty representing violations of a quality rule.
 These do not impact feasibility, but aim to improve real-world schedule quality.
+
+IMPORTANT: Uses CONTINUOUS quantum system. All time conversions must go through
+QuantumTimeSystem. Never use QUANTA_PER_DAY or day = q // QUANTA_PER_DAY.
 """
 
 from typing import List
 from collections import defaultdict
 from src.entities.decoded_session import CourseSession
+from src.encoder.quantum_time_system import QuantumTimeSystem
+from config.time_config import (
+    MAX_SESSION_COALESCENCE,
+    MAX_SESSIONS_PER_DAY,
+    get_midday_break_quanta,
+    get_preferred_time_range_quanta,
+    quantum_to_day_and_within_day,
+)
 
-# ---------------------------
-# Magic numbers (tunable)
-# ---------------------------
-MAX_SESSION_COALESCENCE = 3  # Max preferred quanta per session block
-MIDDAY_BREAK_START_QUANTA = 48  # 12:00 (96 quanta per day)
-MIDDAY_BREAK_END_QUANTA = 52  # 13:00
-EARLIEST_ALLOWED_QUANTA = 32  # e.g., 08:00
-LATEST_ALLOWED_QUANTA = 76  # e.g., 19:00
-QUANTA_PER_DAY = 96
-MAX_SESSIONS_PER_DAY = 5
+# Global QuantumTimeSystem instance (initialized once)
+_QTS = QuantumTimeSystem()
 
 
 # 1. Group Compactness: penalize gaps in daily group schedule
@@ -36,13 +39,13 @@ def group_gaps_penalty(sessions: List[CourseSession]) -> int:
     penalty = 0
     group_day_quanta = defaultdict(
         lambda: defaultdict(set)
-    )  # group_id -> day_idx -> set of quanta
+    )  # group_id -> day_name -> set of within-day quanta
 
     for session in sessions:
         for group_id in session.group_ids:
             for q in session.session_quanta:
-                day = q // QUANTA_PER_DAY
-                group_day_quanta[group_id][day].add(q % QUANTA_PER_DAY)
+                day, within_day = quantum_to_day_and_within_day(q, _QTS)
+                group_day_quanta[group_id][day].add(within_day)
 
     for days in group_day_quanta.values():
         for quanta in days.values():
@@ -75,8 +78,8 @@ def instructor_gaps_penalty(sessions: List[CourseSession]) -> int:
     for session in sessions:
         iid = session.instructor_id
         for q in session.session_quanta:
-            day = q // QUANTA_PER_DAY
-            instructor_day_quanta[iid][day].add(q % QUANTA_PER_DAY)
+            day, within_day = quantum_to_day_and_within_day(q, _QTS)
+            instructor_day_quanta[iid][day].add(within_day)
 
     for days in instructor_day_quanta.values():
         for quanta in days.values():
@@ -91,9 +94,6 @@ def instructor_gaps_penalty(sessions: List[CourseSession]) -> int:
 
 
 # 3. Group Midday Break Violation
-#  Ineed to change logic to: (if break falls on given quanta: then: no penalty: else how many quanta differene on nearest allocated time :  that is penalty )
-
-
 def group_midday_break_violation(sessions: List[CourseSession]) -> int:
     """
     Penalizes groups that do not have a break during the midday break period.
@@ -108,18 +108,25 @@ def group_midday_break_violation(sessions: List[CourseSession]) -> int:
         int: Total break violation penalty across all groups and days.
     """
     penalty = 0
-    break_quanta = set(range(MIDDAY_BREAK_START_QUANTA, MIDDAY_BREAK_END_QUANTA))
+    # Get break quanta for each day (day_name -> set of within-day quanta)
+    break_quanta_by_day = get_midday_break_quanta(_QTS)
 
     group_day_quanta = defaultdict(lambda: defaultdict(set))
 
     for session in sessions:
         for gid in session.group_ids:
             for q in session.session_quanta:
-                day = q // QUANTA_PER_DAY
-                group_day_quanta[gid][day].add(q % QUANTA_PER_DAY)
+                day, within_day = quantum_to_day_and_within_day(q, _QTS)
+                group_day_quanta[gid][day].add(within_day)
 
     for days in group_day_quanta.values():
-        for quanta in days.values():
+        for day_name, quanta in days.items():
+            # Get break quanta for this specific day
+            if day_name not in break_quanta_by_day:
+                continue  # No break defined for this day
+
+            break_quanta = break_quanta_by_day[day_name]
+
             if break_quanta & quanta:
                 continue  # No penalty if group is free during break
             # Compute min distance to break window
@@ -148,8 +155,8 @@ def course_split_penalty(sessions: List[CourseSession]) -> int:
     for session in sessions:
         cid = session.course_id
         for q in session.session_quanta:
-            day = q // QUANTA_PER_DAY
-            course_day_quanta[cid][day].append(q % QUANTA_PER_DAY)
+            day, within_day = quantum_to_day_and_within_day(q, _QTS)
+            course_day_quanta[cid][day].append(within_day)
 
     for days in course_day_quanta.values():
         for quanta in days.values():
@@ -182,13 +189,64 @@ def early_or_late_session_penalty(sessions: List[CourseSession]) -> int:
         Total penalty points for sessions outside preferred time range.
     """
     penalty = 0
+    # Get preferred time ranges for each day (day_name -> (earliest, latest) within-day quanta)
+    earliest_quanta, latest_quanta = get_preferred_time_range_quanta(_QTS)
+
     for session in sessions:
+        session_violates = False
         for q in session.session_quanta:
-            within_day = q % QUANTA_PER_DAY
-            if (
-                within_day < EARLIEST_ALLOWED_QUANTA
-                or within_day > LATEST_ALLOWED_QUANTA
-            ):
-                penalty += 1
+            day, within_day = quantum_to_day_and_within_day(q, _QTS)
+
+            # Check if this day has preferred hours defined
+            if day not in earliest_quanta or day not in latest_quanta:
+                continue
+
+            if within_day < earliest_quanta[day] or within_day > latest_quanta[day]:
+                session_violates = True
                 break  # Only penalize once per session
+
+        if session_violates:
+            penalty += 1
+
     return penalty
+
+
+# ---------------------------
+# Soft Constraint Registry
+# ---------------------------
+def get_all_soft_constraints():
+    """
+    Returns a dictionary of all available soft constraint functions.
+
+    Returns:
+        Dict[str, callable]: Mapping of constraint names to their functions.
+    """
+    return {
+        "group_gaps_penalty": group_gaps_penalty,
+        "instructor_gaps_penalty": instructor_gaps_penalty,
+        "group_midday_break_violation": group_midday_break_violation,
+        "course_split_penalty": course_split_penalty,
+        "early_or_late_session_penalty": early_or_late_session_penalty,
+    }
+
+
+def get_enabled_soft_constraints():
+    """
+    Returns only the enabled soft constraints based on config.
+
+    Returns:
+        Dict[str, dict]: Mapping of enabled constraint names to their config (function, weight).
+    """
+    from config.constraints import SOFT_CONSTRAINTS_CONFIG
+
+    all_constraints = get_all_soft_constraints()
+    enabled = {}
+
+    for name, config in SOFT_CONSTRAINTS_CONFIG.items():
+        if config["enabled"] and name in all_constraints:
+            enabled[name] = {
+                "function": all_constraints[name],
+                "weight": config["weight"],
+            }
+
+    return enabled

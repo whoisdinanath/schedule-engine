@@ -200,20 +200,14 @@ soft_trend = []
 diversity_trend = []
 
 # Enhanced constraint tracking - individual constraint trends
+# Get constraint names dynamically from config
+from config.constraints import HARD_CONSTRAINTS_CONFIG, SOFT_CONSTRAINTS_CONFIG
+
 hard_constraint_names = [
-    "no_group_overlap",
-    "no_instructor_conflict",
-    "instructor_not_qualified",
-    "room_type_mismatch",
-    "availability_violations",
-    "incomplete_or_extra_sessions",
+    name for name, config in HARD_CONSTRAINTS_CONFIG.items() if config["enabled"]
 ]
 soft_constraint_names = [
-    "group_gaps_penalty",
-    "instructor_gaps_penalty",
-    "group_midday_break_violation",
-    "course_split_penalty",
-    "early_or_late_session_penalty",
+    name for name, config in SOFT_CONSTRAINTS_CONFIG.items() if config["enabled"]
 ]
 
 # Initialize detailed tracking dictionaries

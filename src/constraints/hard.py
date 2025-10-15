@@ -172,3 +172,45 @@ def incomplete_or_extra_sessions(
                 violations += 1
 
     return violations
+
+
+# ---------------------------
+# Hard Constraint Registry
+# ---------------------------
+def get_all_hard_constraints():
+    """
+    Returns a dictionary of all available hard constraint functions.
+
+    Returns:
+        Dict[str, callable]: Mapping of constraint names to their functions.
+    """
+    return {
+        "no_group_overlap": no_group_overlap,
+        "no_instructor_conflict": no_instructor_conflict,
+        "instructor_not_qualified": instructor_not_qualified,
+        "room_type_mismatch": room_type_mismatch,
+        "availability_violations": availability_violations,
+        "incomplete_or_extra_sessions": incomplete_or_extra_sessions,
+    }
+
+
+def get_enabled_hard_constraints():
+    """
+    Returns only the enabled hard constraints based on config.
+
+    Returns:
+        Dict[str, dict]: Mapping of enabled constraint names to their config (function, weight).
+    """
+    from config.constraints import HARD_CONSTRAINTS_CONFIG
+
+    all_constraints = get_all_hard_constraints()
+    enabled = {}
+
+    for name, config in HARD_CONSTRAINTS_CONFIG.items():
+        if config["enabled"] and name in all_constraints:
+            enabled[name] = {
+                "function": all_constraints[name],
+                "weight": config["weight"],
+            }
+
+    return enabled

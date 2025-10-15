@@ -6,24 +6,9 @@ from src.entities.instructor import Instructor
 from src.entities.group import Group
 from src.entities.room import Room
 
-# Hard Constraints
-from src.constraints.hard import (
-    no_group_overlap,
-    no_instructor_conflict,
-    instructor_not_qualified,
-    room_type_mismatch,
-    availability_violations,
-    incomplete_or_extra_sessions,
-)
-
-# Soft Constraints
-from src.constraints.soft import (
-    group_gaps_penalty,
-    instructor_gaps_penalty,
-    group_midday_break_violation,
-    course_split_penalty,
-    early_or_late_session_penalty,
-)
+# Constraint Registries
+from src.constraints.hard import get_enabled_hard_constraints
+from src.constraints.soft import get_enabled_soft_constraints
 
 
 def evaluate_detailed(
@@ -45,24 +30,34 @@ def evaluate_detailed(
 
     sessions = decode_individual(individual, courses, instructors, groups, rooms)
 
-    # Hard constraint penalties (individual breakdown)
-    hard_details = {
-        "no_group_overlap": no_group_overlap(sessions),
-        "no_instructor_conflict": no_instructor_conflict(sessions),
-        "instructor_not_qualified": instructor_not_qualified(sessions, courses),
-        "room_type_mismatch": room_type_mismatch(sessions),
-        "availability_violations": availability_violations(sessions),
-        "incomplete_or_extra_sessions": incomplete_or_extra_sessions(sessions, courses),
-    }
+    # Hard constraint penalties (individual breakdown using registry)
+    hard_details = {}
+    enabled_hard_constraints = get_enabled_hard_constraints()
 
-    # Soft constraint penalties (individual breakdown)
-    soft_details = {
-        "group_gaps_penalty": group_gaps_penalty(sessions),
-        "instructor_gaps_penalty": instructor_gaps_penalty(sessions),
-        "group_midday_break_violation": group_midday_break_violation(sessions),
-        "course_split_penalty": course_split_penalty(sessions),
-        "early_or_late_session_penalty": early_or_late_session_penalty(sessions),
-    }
+    for constraint_name, constraint_info in enabled_hard_constraints.items():
+        constraint_func = constraint_info["function"]
+        weight = constraint_info["weight"]
+
+        # Some hard constraints need courses parameter
+        if constraint_name in [
+            "instructor_not_qualified",
+            "incomplete_or_extra_sessions",
+        ]:
+            penalty = constraint_func(sessions, courses)
+        else:
+            penalty = constraint_func(sessions)
+
+        hard_details[constraint_name] = weight * penalty
+
+    # Soft constraint penalties (individual breakdown using registry)
+    soft_details = {}
+    enabled_soft_constraints = get_enabled_soft_constraints()
+
+    for constraint_name, constraint_info in enabled_soft_constraints.items():
+        constraint_func = constraint_info["function"]
+        weight = constraint_info["weight"]
+        penalty = constraint_func(sessions)
+        soft_details[constraint_name] = weight * penalty
 
     return hard_details, soft_details
 
