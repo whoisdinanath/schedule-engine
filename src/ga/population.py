@@ -107,18 +107,35 @@ def extract_course_group_relationships(context: Dict) -> List[Tuple[str, str]]:
     """
     Extract valid course-group enrollment pairs from the context.
 
+    IMPORTANT: When a course has both theory and practical components
+    (e.g., "ENSH 252" and "ENSH 252-PR"), we need to create genes for BOTH.
+    Groups' enrolled_courses contains course_codes like "ENSH 252", but we need
+    to find all matching course_ids in the courses dict.
+
     Returns:
         List of (course_id, group_id) tuples representing valid enrollments
     """
     course_group_pairs = []
 
     for group_id, group in context["groups"].items():
-        # Get enrolled courses for this group
+        # Get enrolled courses for this group (these are course_codes)
         enrolled_courses = getattr(group, "enrolled_courses", [])
 
-        for course_id in enrolled_courses:
-            if course_id in context["courses"]:
-                course_group_pairs.append((course_id, group_id))
+        for course_code in enrolled_courses:
+            # Find ALL courses with this course_code (theory AND practical)
+            matching_courses = [
+                c
+                for c in context["courses"].values()
+                if hasattr(c, "course_code") and c.course_code == course_code
+            ]
+
+            # If no match found by course_code, try direct lookup by course_id
+            if not matching_courses and course_code in context["courses"]:
+                matching_courses = [context["courses"][course_code]]
+
+            # Add ALL matching courses to the pairs
+            for course in matching_courses:
+                course_group_pairs.append((course.course_id, group_id))
 
     return course_group_pairs
 

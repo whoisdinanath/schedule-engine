@@ -1,7 +1,16 @@
 import os
 import csv
-
 import matplotlib.pyplot as plt
+from .thesis_style import (
+    apply_thesis_style,
+    get_color,
+    save_figure,
+    create_thesis_figure,
+    format_axis,
+)
+
+# Apply thesis styling
+apply_thesis_style()
 
 
 def plot_diversity_trend(diversity_trend, output_dir):
@@ -17,13 +26,24 @@ def plot_diversity_trend(diversity_trend, output_dir):
         for gen, value in enumerate(diversity_trend):
             writer.writerow([gen, value])
 
-    plt.figure(figsize=(8, 4))
-    plt.plot(diversity_trend, color="#F39C12", linewidth=2.5, label="Diversity")
-    plt.xlabel("Generation")
-    plt.ylabel("Avg. Chromosome Distance")
-    plt.title("Diversity Over Generations")
-    plt.legend()
-    plt.grid(True)
+    fig, ax = create_thesis_figure(1, 1, figsize=(9, 5))
+    ax.plot(
+        diversity_trend,
+        color=get_color("orange"),
+        linewidth=2.5,
+        label="Population Diversity",
+        marker="^",
+        markersize=4,
+        markevery=max(1, len(diversity_trend) // 15),
+    )
+
+    format_axis(
+        ax,
+        xlabel="Generation",
+        ylabel="Avg. Chromosome Distance",
+        title="Population Diversity Over Generations",
+        legend=True,
+    )
+
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, "diversity.pdf"))
-    plt.close()
+    save_figure(fig, os.path.join(output_dir, "diversity.pdf"))

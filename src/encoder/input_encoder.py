@@ -308,11 +308,26 @@ def link_courses_and_groups(
     for course in courses.values():
         course.enrolled_group_ids = []
 
+    # BUGFIX: Link groups to ALL courses with matching course_code
+    # (theory AND practical versions)
     for group_id, group in groups.items():
         for course_code in group.enrolled_courses:
-            if course_code in courses:
-                if group_id not in courses[course_code].enrolled_group_ids:
-                    courses[course_code].enrolled_group_ids.append(group_id)
+            # Find ALL courses with this course_code
+            # (theory courses and practical courses share the same course_code)
+            matching_courses = [
+                c
+                for c in courses.values()
+                if hasattr(c, "course_code") and c.course_code == course_code
+            ]
+
+            # If no match found by course_code, try direct lookup by course_id
+            if not matching_courses and course_code in courses:
+                matching_courses = [courses[course_code]]
+
+            # Link group to ALL matching courses
+            for course in matching_courses:
+                if group_id not in course.enrolled_group_ids:
+                    course.enrolled_group_ids.append(group_id)
 
     unassigned = [cid for cid, c in courses.items() if not c.enrolled_group_ids]
     if unassigned:
@@ -329,26 +344,36 @@ def link_courses_and_instructors(
         courses (Dict[str, Course]): Course dictionary.
         instructors (Dict[str, Instructor]): Instructor dictionary.
     """
-    course_code_to_ids = {
-        c.course_code: cid for cid, c in courses.items() if hasattr(c, "course_code")
-    }
-
-    for instructor in instructors.values():
+    # BUGFIX: Store original qualified courses BEFORE clearing
+    # The original bug cleared instructor.qualified_courses first,
+    # then tried to iterate over it (which was now empty!)
+    instructor_original_courses = {}
+    for instructor_id, instructor in instructors.items():
+        instructor_original_courses[instructor_id] = instructor.qualified_courses[:]
         instructor.qualified_courses = []
 
     for course in courses.values():
         course.qualified_instructor_ids = []
 
+    # BUGFIX: Use the SAVED original courses, not the cleared ones
+    # Also link to ALL courses with matching course_code (theory AND practical)
     for instructor_id, instructor in instructors.items():
-        for course_code in instructor.qualified_courses[:]:
-            if course_code in courses:
-                course = courses[course_code]
-            elif course_code in course_code_to_ids:
-                course = courses[course_code_to_ids[course_code]]
-            else:
-                continue
+        for course_code in instructor_original_courses[instructor_id]:
+            # Find ALL courses with this course_code
+            # (theory courses and practical courses share the same course_code)
+            matching_courses = [
+                c
+                for c in courses.values()
+                if hasattr(c, "course_code") and c.course_code == course_code
+            ]
 
-            if instructor_id not in course.qualified_instructor_ids:
-                course.qualified_instructor_ids.append(instructor_id)
-            if course.course_id not in instructor.qualified_courses:
-                instructor.qualified_courses.append(course.course_id)
+            # If no match found by course_code, try direct lookup by course_id
+            if not matching_courses and course_code in courses:
+                matching_courses = [courses[course_code]]
+
+            # Link instructor to ALL matching courses
+            for course in matching_courses:
+                if instructor_id not in course.qualified_instructor_ids:
+                    course.qualified_instructor_ids.append(instructor_id)
+                if course.course_id not in instructor.qualified_courses:
+                    instructor.qualified_courses.append(course.course_id)

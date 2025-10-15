@@ -1,6 +1,16 @@
 import matplotlib.pyplot as plt
 import os
 import csv
+from .thesis_style import (
+    apply_thesis_style,
+    get_color,
+    save_figure,
+    create_thesis_figure,
+    format_axis,
+)
+
+# Apply thesis styling
+apply_thesis_style()
 
 
 def plot_hard_constraint_violation_over_generation(hard_trend, output_dir):
@@ -23,16 +33,25 @@ def plot_hard_constraint_violation_over_generation(hard_trend, output_dir):
         for gen, value in enumerate(hard_trend):
             writer.writerow([gen, value])
 
-    plt.figure(figsize=(8, 4))
-    plt.plot(
-        hard_trend, color="#E74C3C", linewidth=2.5, label="Hard Constraint Violations"
+    fig, ax = create_thesis_figure(1, 1, figsize=(9, 5))
+    ax.plot(
+        hard_trend,
+        color=get_color("red"),
+        linewidth=2.5,
+        label="Hard Constraint Violations",
+        marker="o",
+        markersize=4,
+        markevery=max(1, len(hard_trend) // 15),
     )
-    # plt.yscale("log")
-    plt.xlabel("Generation")
-    plt.ylabel("Violations")
-    plt.title("Hard Constraint Violations Over Generations")
-    plt.legend()
-    plt.grid(True)
+    # ax.set_yscale("log")  # Uncomment if needed
+
+    format_axis(
+        ax,
+        xlabel="Generation",
+        ylabel="Violations",
+        title="Hard Constraint Violations Over Generations",
+        legend=True,
+    )
+
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, "hard_constraint_trend.pdf"))
-    plt.close()  # Close the figure to free memory
+    save_figure(fig, os.path.join(output_dir, "hard_constraint_trend.pdf"))
