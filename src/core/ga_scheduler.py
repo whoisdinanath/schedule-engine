@@ -84,6 +84,7 @@ class GAScheduler:
         context: SchedulingContext,
         hard_constraint_names: List[str],
         soft_constraint_names: List[str],
+        pool=None,  # NEW: Optional multiprocessing Pool
     ):
         """
         Initialize GA scheduler.
@@ -93,11 +94,13 @@ class GAScheduler:
             context: Scheduling context with courses, groups, etc.
             hard_constraint_names: Names of enabled hard constraints
             soft_constraint_names: Names of enabled soft constraints
+            pool: Optional multiprocessing.Pool for parallel fitness evaluation
         """
         self.config = config
         self.context = context
         self.hard_constraint_names = hard_constraint_names
         self.soft_constraint_names = soft_constraint_names
+        self.pool = pool  # NEW: Store pool for parallel evaluation
 
         self.toolbox = None
         self.population = None
@@ -109,6 +112,10 @@ class GAScheduler:
     def setup_toolbox(self):
         """Initialize DEAP toolbox with operators."""
         self.toolbox = base.Toolbox()
+
+        # NEW: Register parallel map if pool is provided
+        if self.pool is not None:
+            self.toolbox.register("map", self.pool.map)
 
         # Selection operator
         self.toolbox.register("select", tools.selNSGA2)

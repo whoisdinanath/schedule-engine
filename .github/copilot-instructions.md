@@ -1,6 +1,7 @@
 # Schedule Engine Agent Guide
 - create all test files inside test/
 
+
 - **Architecture** `main.py` drives the GA run: load JSON via `src/encoder/input_encoder.py`, seed RNG, register GA toolbox, execute NSGA-II for `config/ga_params.NGEN`, decode winners with `src/decoder/individual_decoder.py`, then export using `src/exporter/exporter.py`.
 - **Data Flow** Inputs in `data/*.json` become entities (`src/entities/*`) and availability quanta (`QuantumTimeSystem`). GA chromosomes (`src/ga/sessiongene.py`) pass through seeding (`src/ga/population.py`), evaluation (`src/ga/evaluator/{fitness,detailed_fitness}.py` plus `src/constraints/{hard,soft}.py`), and decoding to `CourseSession` records.
 - **Time System** Always convert between wall-clock and quanta with `QuantumTimeSystem`; operating quanta come from `get_all_operating_quanta()` and `SessionGene.quanta` must stay unique and sorted to avoid duplicate-slot penalties.

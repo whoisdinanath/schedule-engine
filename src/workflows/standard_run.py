@@ -38,6 +38,7 @@ def run_standard_workflow(
     output_dir: Optional[str] = None,
     seed: int = 69,
     validate: bool = True,
+    pool=None,  # NEW: Optional multiprocessing Pool for parallel evaluation
 ) -> Dict:
     """
     Execute standard GA scheduling workflow.
@@ -59,6 +60,7 @@ def run_standard_workflow(
         output_dir: Output directory (auto-generated if None)
         seed: Random seed for reproducibility
         validate: Whether to validate input before running GA
+        pool: Optional multiprocessing.Pool for parallel fitness evaluation
 
     Returns:
         Dict containing:
@@ -157,7 +159,7 @@ def run_standard_workflow(
     # ========================================
     tqdm.write("[GA] Running Genetic Algorithm...\n")
 
-    scheduler = GAScheduler(ga_config, context, hard_names, soft_names)
+    scheduler = GAScheduler(ga_config, context, hard_names, soft_names, pool=pool)
     scheduler.setup_toolbox()
     scheduler.initialize_population()
     scheduler.evolve()
