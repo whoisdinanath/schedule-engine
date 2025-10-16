@@ -11,6 +11,7 @@ from src.entities.group import Group
 from src.entities.instructor import Instructor
 from src.entities.room import Room
 from src.core.types import SchedulingContext
+from src.utils.console import write_header, write_separator, write_info
 
 
 class ValidationError:
@@ -332,29 +333,29 @@ class InputValidator:
         all_issues = self.errors + self.warnings
 
         if not all_issues:
-            print("[OK] Validation passed! No issues found.")
+            write_info("[OK] Validation passed! No issues found.")
             return
 
-        print("\n" + "=" * 60)
-        print("VALIDATION REPORT")
-        print("=" * 60)
+        write_header("VALIDATION REPORT")
 
         if self.errors:
-            print(f"\n[ERROR] Found {len(self.errors)} ERRORS:")
+            write_info(f"[ERROR] Found {len(self.errors)} ERRORS:")
             for error in self.errors:
-                print(f"  {error}")
+                write_info(f"  {error}")
 
         if self.warnings:
-            print(f"\n[WARNING] Found {len(self.warnings)} WARNINGS:")
+            write_info(f"[WARNING] Found {len(self.warnings)} WARNINGS:")
             for warning in self.warnings:
-                print(f"  {warning}")
+                write_info(f"  {warning}")
 
-        print("\n" + "=" * 60)
+        write_separator()
 
         if self.errors:
-            print("[X] Validation FAILED! Fix errors before running GA.")
+            write_info("[X] Validation FAILED! Fix errors before running GA.")
         else:
-            print("[OK] Validation passed with warnings. Review before running GA.")
+            write_info(
+                "[OK] Validation passed with warnings. Review before running GA."
+            )
 
 
 def validate_input(context: SchedulingContext, strict: bool = False) -> bool:

@@ -125,6 +125,7 @@ if __name__ == "__main__":
     from src.encoder.input_encoder import load_groups, load_courses
     from src.encoder.quantum_time_system import QuantumTimeSystem
     from src.ga.group_hierarchy import analyze_group_hierarchy
+    from src.utils.console import write_header, write_info
 
     qts = QuantumTimeSystem()
     groups = load_groups("data/Groups.json", qts)
@@ -133,32 +134,30 @@ if __name__ == "__main__":
 
     pairs = generate_course_group_pairs(courses, groups, hierarchy)
 
-    print("=" * 70)
-    print("Course-Group Pair Generation")
-    print("=" * 70)
-    print(f"\n[...]Total pairs: {len(pairs)}")
-    print(f"🧬 Total genes to create: {count_total_genes(pairs)}")
-    print()
+    write_header("Course-Group Pair Generation")
+    write_info(f"Total pairs: {len(pairs)}")
+    write_info(f"Total genes to create: {count_total_genes(pairs)}")
+    write_info("")
 
     # Show some examples
-    print("Example Theory Pairs (Parent Group):")
+    write_info("Example Theory Pairs (Parent Group):")
     theory_pairs = [p for p in pairs if p[2] == "theory"][:5]
     for course_key, group_ids, session_type, num_quanta in theory_pairs:
-        print(f"  {course_key} → {group_ids} ({num_quanta} quanta)")
-    print()
+        write_info(f"  {course_key} -> {group_ids} ({num_quanta} quanta)")
+    write_info("")
 
-    print("Example Practical Pairs (Subgroups):")
+    write_info("Example Practical Pairs (Subgroups):")
     practical_pairs = [p for p in pairs if p[2] == "practical"][:5]
     for course_key, group_ids, session_type, num_quanta in practical_pairs:
-        print(f"  {course_key} → {group_ids} ({num_quanta} quanta)")
-    print()
+        write_info(f"  {course_key} -> {group_ids} ({num_quanta} quanta)")
+    write_info("")
 
     # Analyze one course
     course_groups = group_pairs_by_course(pairs)
     if course_groups:
         sample_course = list(course_groups.keys())[0]
-        print(f"Detailed breakdown for {sample_course}:")
+        write_info(f"Detailed breakdown for {sample_course}:")
         for course_key, group_ids, session_type, num_quanta in course_groups[
             sample_course
         ]:
-            print(f"  {session_type.upper()}: {group_ids} ({num_quanta} quanta)")
+            write_info(f"  {session_type.upper()}: {group_ids} ({num_quanta} quanta)")

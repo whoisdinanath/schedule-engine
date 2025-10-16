@@ -25,6 +25,7 @@ from src.core.types import SchedulingContext
 from src.core.ga_scheduler import GAScheduler, GAConfig
 from src.validation import validate_input
 from src.workflows.reporting import generate_reports
+from src.utils.console import write_header, write_separator, write_info
 from config.constraints import HARD_CONSTRAINTS_CONFIG, SOFT_CONSTRAINTS_CONFIG
 
 
@@ -74,20 +75,20 @@ def run_standard_workflow(
     # ========================================
     # Step 1: Initialize
     # ========================================
-    tqdm.write("\n" + "🚀 " + "=" * 56)
-    tqdm.write("SCHEDULE ENGINE - Standard Workflow".center(60))
-    tqdm.write("=" * 60 + "\n")
+    write_header("SCHEDULE ENGINE - Standard Workflow")
+    tqdm.write("")
 
     # Set random seed
     random.seed(seed)
-    tqdm.write(f"⚙️  Random seed: {seed}")
+    write_info(f"Random seed: {seed}")
 
     # Create output directory
     if output_dir is None:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_dir = os.path.join("output", f"evaluation_{timestamp}")
     os.makedirs(output_dir, exist_ok=True)
-    tqdm.write(f"📁 Output directory: {output_dir}\n")
+    write_info(f"Output directory: {output_dir}")
+    tqdm.write("")
 
     # ========================================
     # Step 2: Load Data
@@ -100,11 +101,12 @@ def run_standard_workflow(
         qts, context = load_input_data(data_dir)
         pbar.update(5)
 
-    tqdm.write(f"   ✓ Courses: {len(context.courses)}")
-    tqdm.write(f"   ✓ Groups: {len(context.groups)}")
-    tqdm.write(f"   ✓ Instructors: {len(context.instructors)}")
-    tqdm.write(f"   ✓ Rooms: {len(context.rooms)}")
-    tqdm.write(f"   ✓ Time quanta: {len(context.available_quanta)}\n")
+    write_info(f"   Courses: {len(context.courses)}")
+    write_info(f"   Groups: {len(context.groups)}")
+    write_info(f"   Instructors: {len(context.instructors)}")
+    write_info(f"   Rooms: {len(context.rooms)}")
+    write_info(f"   Time quanta: {len(context.available_quanta)}")
+    tqdm.write("")
 
     # ========================================
     # Step 3: Validate (Optional)
@@ -161,9 +163,10 @@ def run_standard_workflow(
     scheduler.evolve()
 
     # ========================================
-    # Step 6: Get Results
+    # Step 6: Decode Best Solution
     # ========================================
-    tqdm.write("\n🔍 Processing Results...")
+    tqdm.write("")
+    tqdm.write("Processing Results...")
 
     best_individual = scheduler.get_best_solution()
     decoded_schedule = decode_individual(
@@ -174,9 +177,10 @@ def run_standard_workflow(
         context.rooms,
     )
 
-    tqdm.write(f"   Hard Violations: {best_individual.fitness.values[0]:.0f}")
-    tqdm.write(f"   Soft Penalty: {best_individual.fitness.values[1]:.2f}")
-    tqdm.write(f"   Schedule sessions: {len(decoded_schedule)}\n")
+    write_info(f"   Hard Violations: {best_individual.fitness.values[0]:.0f}")
+    write_info(f"   Soft Penalty: {best_individual.fitness.values[1]:.2f}")
+    write_info(f"   Schedule sessions: {len(decoded_schedule)}")
+    tqdm.write("")
 
     # ========================================
     # Step 7: Generate Reports
@@ -196,14 +200,13 @@ def run_standard_workflow(
     # ========================================
     # Done!
     # ========================================
-    tqdm.write("\n" + "✨ " + "=" * 56)
-    tqdm.write("WORKFLOW COMPLETE".center(60))
-    tqdm.write("=" * 60)
-    tqdm.write(f"\n📦 Results saved to: {output_dir}")
-    tqdm.write(f"   • schedule.json - Schedule data")
-    tqdm.write(f"   • schedule.pdf - Visual calendar")
-    tqdm.write(f"   • plots/ - Evolution charts")
-    tqdm.write("=" * 60 + "\n")
+    write_header("WORKFLOW COMPLETE")
+    write_info(f"Results saved to: {output_dir}")
+    write_info(f"   - schedule.json: Schedule data")
+    write_info(f"   - schedule.pdf: Visual calendar")
+    write_info(f"   - plots/: Evolution charts")
+    write_separator()
+    tqdm.write("")
 
     return {
         "best_individual": best_individual,

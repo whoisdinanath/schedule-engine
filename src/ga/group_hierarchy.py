@@ -99,25 +99,24 @@ if __name__ == "__main__":
     # Quick test
     from src.encoder.input_encoder import load_groups
     from src.encoder.quantum_time_system import QuantumTimeSystem
+    from src.utils.console import write_header, write_info
 
     qts = QuantumTimeSystem()
     groups = load_groups("data/Groups.json", qts)
 
     hierarchy = analyze_group_hierarchy(groups)
 
-    print("=" * 70)
-    print("Group Hierarchy Analysis")
-    print("=" * 70)
-    print(f"\n[...]Total groups: {len(groups)}")
-    print(f"👥 Parent groups: {len(hierarchy['parents'])}")
-    print(f"👤 Standalone groups: {len(hierarchy['standalone'])}")
-    print(f"📋 Total subgroups: {len(hierarchy['parent_map'])}")
-    print()
+    write_header("Group Hierarchy Analysis")
+    write_info(f"Total groups: {len(groups)}")
+    write_info(f"Parent groups: {len(hierarchy['parents'])}")
+    write_info(f"Standalone groups: {len(hierarchy['standalone'])}")
+    write_info(f"Total subgroups: {len(hierarchy['parent_map'])}")
+    write_info("")
 
-    print("Parent Groups and Their Subgroups:")
+    write_info("Parent Groups and Their Subgroups:")
     for parent in hierarchy["parents"][:5]:  # Show first 5
         subgroups = hierarchy["subgroups"][parent]
-        print(f"  {parent} → {subgroups}")
+        write_info(f"  {parent} -> {subgroups}")
     print()
 
     print("Standalone Groups (no subgroups):")
