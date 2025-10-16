@@ -140,7 +140,7 @@ def group_midday_break_violation(sessions: List[CourseSession]) -> int:
 def course_split_penalty(sessions: List[CourseSession]) -> int:
     """Calculate penalty for sessions that are split into small blocks.
 
-    Penalizes course sessions that are broken into blocks smaller than the
+    Penalizes course sessions that are broken into blocks smaller or larger than the
     preferred coalescence size to encourage longer continuous sessions.
 
     Args:
@@ -175,40 +175,40 @@ def course_split_penalty(sessions: List[CourseSession]) -> int:
     return penalty
 
 
-# 5. Early/Late Session Penalty
-def early_or_late_session_penalty(sessions: List[CourseSession]) -> int:
-    """Calculate penalty for sessions scheduled outside preferred hours.
+# # 5. Early/Late Session Penalty
+# def early_or_late_session_penalty(sessions: List[CourseSession]) -> int:
+#     """Calculate penalty for sessions scheduled outside preferred hours.
 
-    Penalizes sessions that start too early or end too late in the day
-    to maintain reasonable academic hours.
+#     Penalizes sessions that start too early or end too late in the day
+#     to maintain reasonable academic hours.
 
-    Args:
-        sessions: List of course sessions to evaluate.
+#     Args:
+#         sessions: List of course sessions to evaluate.
 
-    Returns:
-        Total penalty points for sessions outside preferred time range.
-    """
-    penalty = 0
-    # Get preferred time ranges for each day (day_name -> (earliest, latest) within-day quanta)
-    earliest_quanta, latest_quanta = get_preferred_time_range_quanta(_QTS)
+#     Returns:
+#         Total penalty points for sessions outside preferred time range.
+#     """
+#     penalty = 0
+#     # Get preferred time ranges for each day (day_name -> (earliest, latest) within-day quanta)
+#     earliest_quanta, latest_quanta = get_preferred_time_range_quanta(_QTS)
 
-    for session in sessions:
-        session_violates = False
-        for q in session.session_quanta:
-            day, within_day = quantum_to_day_and_within_day(q, _QTS)
+#     for session in sessions:
+#         session_violates = False
+#         for q in session.session_quanta:
+#             day, within_day = quantum_to_day_and_within_day(q, _QTS)
 
-            # Check if this day has preferred hours defined
-            if day not in earliest_quanta or day not in latest_quanta:
-                continue
+#             # Check if this day has preferred hours defined
+#             if day not in earliest_quanta or day not in latest_quanta:
+#                 continue
 
-            if within_day < earliest_quanta[day] or within_day > latest_quanta[day]:
-                session_violates = True
-                break  # Only penalize once per session
+#             if within_day < earliest_quanta[day] or within_day > latest_quanta[day]:
+#                 session_violates = True
+#                 break  # Only penalize once per session
 
-        if session_violates:
-            penalty += 1
+#         if session_violates:
+#             penalty += 1
 
-    return penalty
+#     return penalty
 
 
 # ---------------------------
@@ -226,8 +226,9 @@ def get_all_soft_constraints():
         "instructor_gaps_penalty": instructor_gaps_penalty,
         "group_midday_break_violation": group_midday_break_violation,
         "course_split_penalty": course_split_penalty,
-        "early_or_late_session_penalty": early_or_late_session_penalty,
+        # "early_or_late_session_penalty": early_or_late_session_penalty,
     }
+    
 
 
 def get_enabled_soft_constraints():

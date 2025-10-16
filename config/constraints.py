@@ -12,11 +12,11 @@ see config/time_config.py which derives values from QuantumTimeSystem.
 # Enable/disable individual hard constraints and set their weights
 HARD_CONSTRAINTS_CONFIG = {
     # Format: "constraint_name": {"enabled": bool, "weight": float}
-    "no_group_overlap": {"enabled": False, "weight": 1.0},
-    "no_instructor_conflict": {"enabled": False, "weight": 1.0},
-    "instructor_not_qualified": {"enabled": False, "weight": 1.0},
-    "room_type_mismatch": {"enabled": False, "weight": 1.0},
-    "availability_violations": {"enabled": False, "weight": 1.0},
+    "no_group_overlap": {"enabled": True, "weight": 2.0},
+    "no_instructor_conflict": {"enabled": True, "weight": 1.0},
+    "instructor_not_qualified": {"enabled": True, "weight": 2.0},
+    "room_type_mismatch": {"enabled": True, "weight": 1.0},
+    "availability_violations": {"enabled": True, "weight": 1.0},
     "incomplete_or_extra_sessions": {"enabled": True, "weight": 1.0},
 }
 
@@ -28,12 +28,12 @@ SOFT_CONSTRAINTS_CONFIG = {
     # Format: "constraint_name": {"enabled": bool, "weight": float}
     # Compactness constraints (minimize gaps in schedules)
     "group_gaps_penalty": {"enabled": True, "weight": 1.0},
-    "instructor_gaps_penalty": {"enabled": False, "weight": 1.0},
+    "instructor_gaps_penalty": {"enabled": True, "weight": 1.0},
     # Time preference constraints (see config/time_config.py for time parameters)
     "group_midday_break_violation": {"enabled": False, "weight": 1.0},
-    "early_or_late_session_penalty": {"enabled": False, "weight": 1.0},
+    # "early_or_late_session_penalty": {"enabled": False, "weight": 1.0},
     # Session structure constraints
-    "course_split_penalty": {"enabled": False, "weight": 1.0},
+    "course_split_penalty": {"enabled": True, "weight": 1.0},
 }
 
 # ============================================================================
