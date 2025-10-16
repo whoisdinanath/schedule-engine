@@ -194,6 +194,7 @@ def run_standard_workflow(
             population=scheduler.population,
             qts=qts,
             output_dir=output_dir,
+            course_map=context.courses,
         )
         pbar.update(1)
 

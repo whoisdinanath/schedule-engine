@@ -5,11 +5,13 @@ Handles plotting and export of GA results.
 Extracted from main.py for modularity.
 """
 
-from typing import List
+from typing import List, Dict
 from src.entities.decoded_session import CourseSession
+from src.entities.course import Course
 from src.encoder.quantum_time_system import QuantumTimeSystem
 from src.core.ga_scheduler import GAMetrics
 from src.exporter.exporter import export_everything
+from src.exporter.violation_reporter import generate_violation_report
 from src.exporter.plotdiversity import plot_diversity_trend
 from src.exporter.plothard import plot_hard_constraint_violation_over_generation
 from src.exporter.plotsoft import plot_soft_constraint_violation_over_generation
@@ -27,13 +29,15 @@ def generate_reports(
     population: List,
     qts: QuantumTimeSystem,
     output_dir: str,
+    course_map: Dict[tuple, Course] = None,
 ):
     """
-    Generate all output artifacts: plots, JSON, PDFs.
+    Generate all output artifacts: plots, JSON, PDFs, violation reports.
 
     Creates:
         - schedule.json: Schedule in JSON format
         - schedule.pdf: Visual calendar with color-coded sessions
+        - violation_report.txt: Detailed constraint violation report
         - Evolution plots: hard/soft constraint trends, diversity
         - Pareto front visualization
         - Detailed constraint breakdown plots
@@ -44,6 +48,7 @@ def generate_reports(
         population: Final population (for Pareto front)
         qts: Quantum time system (for time conversion)
         output_dir: Output directory path
+        course_map: Dictionary of courses (for violation analysis)
     """
 
     # Export schedule (JSON + PDF)
@@ -51,6 +56,12 @@ def generate_reports(
     export_everything(decoded_schedule, output_dir, qts)
     print("      [OK] schedule.json")
     print("      [OK] schedule.pdf")
+
+    # Generate violation report
+    if course_map:
+        print("  [+] Generating violation report...")
+        generate_violation_report(decoded_schedule, course_map, qts, output_dir)
+        print("      [OK] violation_report.txt")
 
     # Plot evolution trends
     print("  [+] Generating evolution plots...")
