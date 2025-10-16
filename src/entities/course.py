@@ -19,6 +19,7 @@ class Course:
         required_room_features: Type of room required (e.g., 'lecture', 'lab', 'seminar')
         enrolled_group_ids: List of student group IDs enrolled in this course
         qualified_instructor_ids: List of instructor IDs qualified to teach this course
+        course_type: Type of course - 'theory' or 'practical'
     """
 
     course_id: str
@@ -27,6 +28,7 @@ class Course:
     required_room_features: str
     enrolled_group_ids: List[str]
     qualified_instructor_ids: List[str]
+    course_type: str = "theory"  # Default to theory
 
     def __post_init__(self):
         """Validate course data after initialization."""

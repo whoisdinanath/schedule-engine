@@ -21,6 +21,22 @@ from config.calendar_config import (
 )
 
 
+def _format_course_name_with_type(course_id: str, course_type: str) -> str:
+    """Append (TH) or (PR) tag to course name based on course type.
+
+    Args:
+        course_id (str): The course ID.
+        course_type (str): The course type ('theory' or 'practical').
+
+    Returns:
+        str: Course ID with appropriate tag appended.
+    """
+    if course_type == "practical":
+        return f"{course_id} (PR)"
+    else:
+        return f"{course_id} (TH)"
+
+
 def _get_time_schedule_format(
     qts: QuantumTimeSystem, quanta: List[int]
 ) -> Dict[str, List[Dict[str, str]]]:
@@ -68,9 +84,16 @@ def _save_schedule_as_json(
     result = []
     for session in schedule:
         time_schedule = _get_time_schedule_format(qts, session.session_quanta)
+        # Format course_id with (TH) or (PR) tag for display
+        display_course_id = _format_course_name_with_type(
+            session.course_id, session.course_type
+        )
+
         result.append(
             {
-                "course_id": session.course_id,
+                "course_id": display_course_id,  # Display with (TH) or (PR) tag
+                "original_course_id": session.course_id,  # Keep original for reference
+                "course_type": session.course_type,  # Include course type
                 "instructor_id": session.instructor_id,
                 "group_ids": session.group_ids,  # Export as list for multi-group support
                 "room_id": session.room_id,

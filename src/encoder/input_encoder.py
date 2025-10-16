@@ -155,10 +155,11 @@ def load_courses(path: str) -> Dict[str, Course]:
             course = Course(
                 course_id=theory_id,
                 name=f"{name} (Theory)",
-                quanta_per_week=L + T,
+                quanta_per_week=int(L + T),
                 required_room_features=["lecture room"],
                 enrolled_group_ids=[],
                 qualified_instructor_ids=[],
+                course_type="theory",
             )
             course.course_code = course_code
             course.department = department
@@ -174,10 +175,11 @@ def load_courses(path: str) -> Dict[str, Course]:
             course = Course(
                 course_id=practical_id,
                 name=f"{name} (Practical)",
-                quanta_per_week=P,
+                quanta_per_week=int(P),
                 required_room_features=practical_features or ["lab"],
                 enrolled_group_ids=[],
                 qualified_instructor_ids=[],
+                course_type="practical",
             )
             course.course_code = (
                 course_code  # Use base course_code for instructor matching

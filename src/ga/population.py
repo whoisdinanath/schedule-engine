@@ -45,12 +45,19 @@ def generate_course_group_aware_population(n: int, context: Dict) -> List:
     population = []
 
     # Step 1: Extract simple course-group enrollment pairs
+    # BUGFIX: Also include practical courses (with -PR suffix)
     course_group_pairs = []
     for group_id, group in context["groups"].items():
         enrolled_courses = getattr(group, "enrolled_courses", [])
         for course_id in enrolled_courses:
+            # Add theory course if it exists
             if course_id in context["courses"]:
                 course_group_pairs.append((course_id, group_id))
+
+            # BUGFIX: Also add practical course if it exists
+            practical_id = course_id + "-PR"
+            if practical_id in context["courses"]:
+                course_group_pairs.append((practical_id, group_id))
 
     if not course_group_pairs:
         print("Warning: No valid course-group pairs found!")
@@ -587,7 +594,7 @@ def find_suitable_rooms(
     suitable = []
 
     # Get required room features from course
-    required_features = getattr(course, "PracticalRoomFeatures", "")
+    required_features = getattr(course, "required_room_features", [])
     course_id = getattr(course, "course_id", "")
 
     # Find the group size for capacity matching
@@ -599,7 +606,7 @@ def find_suitable_rooms(
             max_group_size = max(max_group_size, group_size)
 
     for room in context["rooms"].values():
-        room_features = getattr(room, "features", [])
+        room_features = getattr(room, "room_features", [])
         room_capacity = getattr(room, "capacity", 50)
         room_type = getattr(room, "type", "Classroom")
 
@@ -609,12 +616,32 @@ def find_suitable_rooms(
 
         if require_special_room and required_features:
             # For practicals, check if room has required features
-            if isinstance(room_features, list):
-                room_features_str = " ".join(room_features).lower()
-            else:
-                room_features_str = str(room_features).lower()
+            # Normalize to list
+            req_list = (
+                required_features
+                if isinstance(required_features, list)
+                else [required_features]
+            )
+            room_list = (
+                room_features if isinstance(room_features, list) else [room_features]
+            )
 
-            if required_features.lower() in room_features_str:
+            # Check if ALL required features match ANY room feature (substring matching)
+            # This handles cases where course needs "computer" and room has "computer graphics"
+            all_matched = True
+            for req in req_list:
+                req_lower = req.lower().strip()
+                if not req_lower:  # Skip empty requirements
+                    continue
+                # Check if this requirement matches any room feature
+                matched = any(req_lower in room_feat.lower() for room_feat in room_list)
+                if not matched:
+                    all_matched = False
+                    break
+
+            if (
+                all_matched and req_list
+            ):  # Only add if there were requirements and all matched
                 suitable.append(room)
         elif component_type == "practical" and room_type.lower() in [
             "lab",

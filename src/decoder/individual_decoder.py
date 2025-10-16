@@ -63,6 +63,7 @@ def decode_individual(
             room_id=gene.room_id,
             session_quanta=gene.quanta,
             required_room_features=course.required_room_features,
+            course_type=course.course_type,  # Propagate course type
             instructor=instructor,
             group=group,  # Primary group for backward compatibility
             room=room,

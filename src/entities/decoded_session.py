@@ -21,6 +21,7 @@ class CourseSession:
         room_id (str): ID of the room assigned to this session.
         session_quanta (List[int]): List of time quanta (e.g., 15-min blocks) during which the session is scheduled.
         required_room_features (str): Room feature type required (e.g., "lab", "lecture").
+        course_type (str): Type of course - 'theory' or 'practical'.
         instructor (Instructor, optional): Reference to the assigned Instructor object.
         group (Group, optional): Reference to the primary Group object (if applicable).
         room (Room, optional): Reference to the assigned Room object.
@@ -32,6 +33,7 @@ class CourseSession:
     room_id: str
     session_quanta: List[int]
     required_room_features: str
+    course_type: str = "theory"
     instructor: Instructor = None
     group: Group = None
     room: Room = None

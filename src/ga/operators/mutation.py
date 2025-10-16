@@ -128,7 +128,7 @@ def find_suitable_rooms_for_course(course_id: str, group_id: str, context) -> Li
         return list(context["rooms"].keys())
 
     # Get course requirements
-    required_features = getattr(course, "PracticalRoomFeatures", "")
+    required_features = getattr(course, "required_room_features", [])
     room_type_needed = getattr(course, "room_type", "")
 
     # Get group size for capacity matching
@@ -137,7 +137,7 @@ def find_suitable_rooms_for_course(course_id: str, group_id: str, context) -> Li
     suitable_room_ids = []
 
     for room_id, room in context["rooms"].items():
-        room_features = getattr(room, "features", [])
+        room_features = getattr(room, "room_features", [])
         room_capacity = getattr(room, "capacity", 50)
         room_type = getattr(room, "type", "Classroom")
 
@@ -147,12 +147,32 @@ def find_suitable_rooms_for_course(course_id: str, group_id: str, context) -> Li
 
         # Check feature requirements
         if required_features:
-            if isinstance(room_features, list):
-                room_features_str = " ".join(room_features).lower()
-            else:
-                room_features_str = str(room_features).lower()
+            # Normalize to list
+            req_list = (
+                required_features
+                if isinstance(required_features, list)
+                else [required_features]
+            )
+            room_list = (
+                room_features if isinstance(room_features, list) else [room_features]
+            )
 
-            if required_features.lower() in room_features_str:
+            # Check if ALL required features match ANY room feature (substring matching)
+            # This handles cases where course needs "computer" and room has "computer graphics"
+            all_matched = True
+            for req in req_list:
+                req_lower = req.lower().strip()
+                if not req_lower:  # Skip empty requirements
+                    continue
+                # Check if this requirement matches any room feature
+                matched = any(req_lower in room_feat.lower() for room_feat in room_list)
+                if not matched:
+                    all_matched = False
+                    break
+
+            if (
+                all_matched and req_list
+            ):  # Only add if there were requirements and all matched
                 suitable_room_ids.append(room_id)
         elif room_type_needed:
             # Check room type requirement
