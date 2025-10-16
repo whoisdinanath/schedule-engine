@@ -74,6 +74,7 @@ class InputValidator:
         self._validate_rooms()
         self._validate_relationships()
         self._validate_availability()
+        self._validate_room_features_for_enrolled_courses()
 
         return self.errors + self.warnings
 
@@ -319,6 +320,116 @@ class InputValidator:
                     "INFO",
                 )
             )
+
+    def _validate_room_features_for_enrolled_courses(self):
+        """
+        Validate that rooms have required features for all enrolled courses.
+
+        For each group:
+        - Get all enrolled courses
+        - Extract required room features from those courses
+        - Check if at least one room exists with all those required features
+        """
+        # Collect all unique required features across all enrolled courses
+        all_required_features = set()
+        for course in self.context.courses.values():
+            if course.required_room_features:
+                # Handle both list and string formats
+                if isinstance(course.required_room_features, list):
+                    all_required_features.update(course.required_room_features)
+                else:
+                    all_required_features.add(course.required_room_features)
+
+        # Check if rooms exist with each required feature
+        available_room_features = set()
+        for room in self.context.rooms.values():
+            if room.room_features:
+                # Handle both list and string formats
+                if isinstance(room.room_features, list):
+                    available_room_features.update(room.room_features)
+                else:
+                    available_room_features.add(room.room_features)
+
+        # Find missing features
+        missing_features = all_required_features - available_room_features
+
+        if missing_features:
+            self.errors.append(
+                ValidationError(
+                    "ROOM_FEATURES",
+                    f"Required room features not available in any room: {', '.join(sorted(str(f) for f in missing_features))}. "
+                    f"Courses requiring these features cannot be scheduled.",
+                )
+            )
+
+        # Check for each group's enrolled courses
+        for group_id, group in self.context.groups.items():
+            group_required_features = set()
+            problematic_courses = []
+
+            for course_id in group.enrolled_courses:
+                # Find course in context
+                course = None
+                for c in self.context.courses.values():
+                    if (
+                        hasattr(c, "course_code") and c.course_code == course_id
+                    ) or c.course_id == course_id:
+                        course = c
+                        break
+
+                if course and course.required_room_features:
+                    # Handle both list and string formats
+                    features_list = (
+                        course.required_room_features
+                        if isinstance(course.required_room_features, list)
+                        else [course.required_room_features]
+                    )
+                    group_required_features.update(features_list)
+
+                    # Check if any room can satisfy this requirement
+                    has_suitable_room = False
+                    for room in self.context.rooms.values():
+                        # Get room features as list
+                        room_features_list = (
+                            room.room_features
+                            if isinstance(room.room_features, list)
+                            else [room.room_features]
+                        )
+
+                        # Check if any required feature matches any room feature
+                        feature_match = any(
+                            req_feature in room_features_list
+                            or any(
+                                room.is_suitable_for_course_type(req_feature)
+                                for req_feature in features_list
+                            )
+                            for req_feature in features_list
+                        )
+
+                        if feature_match and room.can_accommodate_group_size(
+                            group.student_count
+                        ):
+                            has_suitable_room = True
+                            break
+
+                    if not has_suitable_room:
+                        problematic_courses.append(
+                            (course.course_id, str(course.required_room_features))
+                        )
+
+            # Report group-specific issues
+            if problematic_courses:
+                course_list = ", ".join(
+                    [f"{cid}({feat})" for cid, feat in problematic_courses]
+                )
+                self.warnings.append(
+                    ValidationError(
+                        "ROOM_FEATURES",
+                        f"Group {group_id} ({group.student_count} students) enrolled in courses requiring "
+                        f"features that no suitable room can satisfy: {course_list}",
+                        "WARNING",
+                    )
+                )
 
     def has_errors(self) -> bool:
         """Check if validation found any errors."""

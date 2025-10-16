@@ -9328,5 +9328,329 @@
                 }
             ]
         }
+    },
+    {
+        "id": "IX99",
+        "name": "Hari Bahadur",
+        "courses": [
+            {
+                "coursecode": "ENAR 151",
+                "coursetype": "Theory"
+            },
+            {
+                "coursecode": "ENAR 151",
+                "coursetype": "Practical"
+            },
+            {
+                "coursecode": "",
+                "coursetype": "Theory"
+            },
+            {
+                "coursecode": "",
+                "coursetype": "Practical"
+            }
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "IX99",
+        "name": "Hari Bahadur",
+        "courses": [
+            {
+                "coursecode": "ENAR 151",
+                "coursetype": "theory"
+            },
+            {
+                "coursecode": "ENAR 151",
+                "coursetype": "practical"
+            },
+            {
+                "coursecode": "ENAR 152",
+                "coursetype": "theory"
+            },
+            {
+                "coursecode": "ENAR 152",
+                "coursetype": "practical"
+            }
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "IX100",
+        "name": "Sita Sharma",
+        "courses": [
+            {
+                "coursecode": "ENAR 153",
+                "coursetype": "theory"
+            },
+            {
+                "coursecode": "ENAR 153",
+                "coursetype": "practical"
+            },
+            {
+                "coursecode": "ENAR 155",
+                "coursetype": "theory"
+            },
+            {
+                "coursecode": "ENAR 155",
+                "coursetype": "practical"
+            }
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "IX101",
+        "name": "Gopal Verma",
+        "courses": [
+            {
+                "coursecode": "ENAR 154",
+                "coursetype": "theory"
+            },
+            {
+                "coursecode": "ENAR 154",
+                "coursetype": "practical"
+            },
+            {
+                "coursecode": "ENAR 251",
+                "coursetype": "practical"
+            },
+            {
+                "coursecode": "ENAR 255",
+                "coursetype": "theory"
+            }
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "IX102",
+        "name": "Anjali Devi",
+        "courses": [
+            {
+                "coursecode": "ENAR 252",
+                "coursetype": "theory"
+            },
+            {
+                "coursecode": "ENAR 253",
+                "coursetype": "theory"
+            },
+            {
+                "coursecode": "ENAR 253",
+                "coursetype": "practical"
+            },
+            {
+                "coursecode": "ENCT 254",
+                "coursetype": "theory"
+            },
+            {
+                "coursecode": "ENSH 251",
+                "coursetype": "practical"
+            }
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
+    },
+    {
+        "id": "IX103",
+        "name": "Ramesh Poudel",
+        "courses": [
+            {
+                "coursecode": "ENIE 253",
+                "coursetype": "theory"
+            },
+            {
+                "coursecode": "ENIE 253",
+                "coursetype": "practical"
+            },
+            {
+                "coursecode": "ENIE 252",
+                "coursetype": "theory"
+            }
+        ],
+        "availability": {
+            "Monday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Thursday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ],
+            "Friday": [
+                {
+                    "start": "06:00",
+                    "end": "19:00"
+                }
+            ]
+        }
     }
 ]

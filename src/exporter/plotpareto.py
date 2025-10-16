@@ -142,16 +142,33 @@ def plot_pareto_front(population, output_dir):
     try:
         from scipy.stats import gaussian_kde
 
-        if len(np.unique(hard_vals)) > 1 and len(np.unique(soft_vals)) > 1:
+        # Check if data has sufficient variance for KDE
+        hard_std = np.std(hard_vals)
+        soft_std = np.std(soft_vals)
+        has_sufficient_variance = (
+            len(np.unique(hard_vals)) > 1
+            and len(np.unique(soft_vals)) > 1
+            and hard_std > 1e-6
+            and soft_std > 1e-6
+        )
+
+        if has_sufficient_variance:
             # Create density heatmap
             hard_range = np.linspace(min(hard_vals), max(hard_vals), 50)
             soft_range = np.linspace(min(soft_vals), max(soft_vals), 50)
             H, S = np.meshgrid(hard_range, soft_range)
             positions = np.vstack([H.ravel(), S.ravel()])
             values = np.vstack([hard_vals, soft_vals])
-            kernel = gaussian_kde(values)
-            density = np.reshape(kernel(positions).T, H.shape)
 
+            try:
+                kernel = gaussian_kde(values)
+                density = np.reshape(kernel(positions).T, H.shape)
+            except np.linalg.LinAlgError:
+                # Data is too degenerate for KDE, fall back to histogram
+                has_sufficient_variance = False
+
+        if has_sufficient_variance:
+            # Successfully created KDE, plot it
             im = ax3.contourf(H, S, density, levels=20, cmap="Blues", alpha=0.6)
             ax3.scatter(
                 hard_vals,
@@ -173,7 +190,32 @@ def plot_pareto_front(population, output_dir):
             )
             plt.colorbar(im, ax=ax3, label="Density")
         else:
-            # Fallback if density estimation fails
+            # Fallback: use 2D histogram for low-variance data
+            # Create histogram
+            try:
+                hist, xedges, yedges = np.histogram2d(
+                    hard_vals,
+                    soft_vals,
+                    bins=[
+                        min(20, len(np.unique(hard_vals))),
+                        min(20, len(np.unique(soft_vals))),
+                    ],
+                )
+                # Plot histogram as heatmap
+                extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
+                im = ax3.imshow(
+                    hist.T,
+                    extent=extent,
+                    origin="lower",
+                    cmap="Blues",
+                    alpha=0.6,
+                    aspect="auto",
+                )
+                plt.colorbar(im, ax=ax3, label="Count")
+            except:
+                # Ultimate fallback: just scatter
+                pass
+
             ax3.scatter(
                 hard_vals,
                 soft_vals,
@@ -193,8 +235,8 @@ def plot_pareto_front(population, output_dir):
                 linewidth=1.5,
                 zorder=5,
             )
-    except ImportError:
-        # Fallback without scipy
+    except (ImportError, Exception) as e:
+        # Fallback without scipy or on any other error
         ax3.scatter(
             hard_vals,
             soft_vals,

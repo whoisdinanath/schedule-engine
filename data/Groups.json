@@ -98,7 +98,7 @@
         ]
     },
     {
-        "group_id": "BCE2",
+        "group_id": "BCE2AB",
         "name": "Civil Engineering Semester 2",
         "student_count": 47,
         "courses": [
@@ -118,7 +118,23 @@
             {
                 "id": "BCE2B",
                 "student_count": 8
-            },
+            }
+        ]
+    },
+    {
+        "group_id": "BCE2CD",
+        "name": "Civil Engineering Semester 2",
+        "student_count": 47,
+        "courses": [
+            "ENSH 151",
+            "ENSH 152",
+            "ENME 158",
+            "ENCE 151",
+            "ENCE 152",
+            "ENCE 153"
+        ],
+        "prefers_break": true,
+        "subgroups": [
             {
                 "id": "BCE2C",
                 "student_count": 8
@@ -126,19 +142,35 @@
             {
                 "id": "BCE2D",
                 "student_count": 8
-            },
+            }
+        ]
+    },
+    {
+        "group_id": "BCE2EF",
+        "name": "Civil Engineering Semester 2",
+        "student_count": 47,
+        "courses": [
+            "ENSH 151",
+            "ENSH 152",
+            "ENME 158",
+            "ENCE 151",
+            "ENCE 152",
+            "ENCE 153"
+        ],
+        "prefers_break": true,
+        "subgroups": [
             {
                 "id": "BCE2E",
                 "student_count": 8
             },
             {
                 "id": "BCE2F",
-                "student_count": 7
+                "student_count": 8
             }
         ]
     },
     {
-        "group_id": "BCE4",
+        "group_id": "BCE4AB",
         "name": "Civil Engineering Semester 4",
         "student_count": 47,
         "courses": [
@@ -160,7 +192,25 @@
             {
                 "id": "BCE4B",
                 "student_count": 8
-            },
+            }
+        ]
+    },
+    {
+        "group_id": "BCE4CD",
+        "name": "Civil Engineering Semester 4",
+        "student_count": 47,
+        "courses": [
+            "ENSH 251",
+            "ENSH 253",
+            "ENCE 251",
+            "ENCE 252",
+            "ENCE 253",
+            "ENCE 254",
+            "ENCE 255",
+            "ENCE 256"
+        ],
+        "prefers_break": true,
+        "subgroups": [
             {
                 "id": "BCE4C",
                 "student_count": 8
@@ -168,14 +218,32 @@
             {
                 "id": "BCE4D",
                 "student_count": 8
-            },
+            }
+        ]
+    },
+    {
+        "group_id": "BCE4EF",
+        "name": "Civil Engineering Semester 4",
+        "student_count": 47,
+        "courses": [
+            "ENSH 251",
+            "ENSH 253",
+            "ENCE 251",
+            "ENCE 252",
+            "ENCE 253",
+            "ENCE 254",
+            "ENCE 255",
+            "ENCE 256"
+        ],
+        "prefers_break": true,
+        "subgroups": [
             {
                 "id": "BCE4E",
                 "student_count": 8
             },
             {
                 "id": "BCE4F",
-                "student_count": 7
+                "student_count": 8
             }
         ]
     },

@@ -66,8 +66,9 @@
         "features": [
             "Design Studio",
             "Building Construction",
+            "Construction",
             "Architectural Graphics",
-            "History_nep"
+            "History_Nepalese"
         ]
     },
     {
@@ -78,7 +79,8 @@
         "features": [
             "Design Studio",
             "Building Construction",
-            "History_nep"
+            "Construction",
+            "History_Nepalese"
         ]
     },
     {
@@ -340,6 +342,7 @@
             "Building Construction",
             "Building Services",
             "CADD",
+            "Construction",
             "Computer Aided Design"
         ]
     },
@@ -416,7 +419,7 @@
         "capacity": 24,
         "type": "Practical",
         "features": [
-            "Electronic Devices and Circuits",
+            "Electronic Device and Circuits",
             "RF and Microwave Engineering",
             "Instrumentation and Sensors"
         ]
@@ -638,7 +641,8 @@
         "capacity": 24,
         "type": "Practical",
         "features": [
-            "Building Construction"
+            "Building Construction",
+            "Construction"
         ]
     },
     {
