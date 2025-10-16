@@ -79,7 +79,7 @@ def generate_course_group_pairs(
 
             if not matching_courses:
                 print(
-                    f"⚠️  Warning: Course {course_code} not found for group {parent_prefix}"
+                    f"[!] Warning: Course {course_code} not found for group {parent_prefix}"
                 )
                 continue
 

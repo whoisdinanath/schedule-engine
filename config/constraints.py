@@ -15,9 +15,9 @@ HARD_CONSTRAINTS_CONFIG = {
     "no_group_overlap": {"enabled": False, "weight": 1.0},
     "no_instructor_conflict": {"enabled": False, "weight": 1.0},
     "instructor_not_qualified": {"enabled": False, "weight": 1.0},
-    "room_type_mismatch": {"enabled": True, "weight": 1.0},
+    "room_type_mismatch": {"enabled": False, "weight": 1.0},
     "availability_violations": {"enabled": False, "weight": 1.0},
-    "incomplete_or_extra_sessions": {"enabled": False, "weight": 1.0},
+    "incomplete_or_extra_sessions": {"enabled": True, "weight": 1.0},
 }
 
 # ============================================================================

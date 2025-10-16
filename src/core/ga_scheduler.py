@@ -179,7 +179,7 @@ class GAScheduler:
         """Run genetic algorithm evolution loop."""
         for gen in tqdm(
             range(self.config.generations),
-            desc="   🧬 Evolution Progress",
+            desc="   [>>] Evolution Progress",
             unit="gen",
             bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]",
         ):
@@ -270,7 +270,7 @@ class GAScheduler:
     ):
         """Print detailed constraint breakdown."""
         tqdm.write(
-            f"\n   📊 Gen {gen+1}: Hard={best.fitness.values[0]:.0f}, "
+            f"\n   [GEN {gen+1}] Hard={best.fitness.values[0]:.0f}, "
             f"Soft={best.fitness.values[1]:.2f}"
         )
 
@@ -341,7 +341,7 @@ class GAScheduler:
                 missing = reference_set - current_set
                 extra = current_set - reference_set
                 raise ValueError(
-                    f"❌ Gene alignment validation FAILED!\n"
+                    f"[X] Gene alignment validation FAILED!\n"
                     f"   Individual {idx} has different structure than Individual 0.\n"
                     f"   Missing pairs: {missing}\n"
                     f"   Extra pairs: {extra}\n"
@@ -352,6 +352,6 @@ class GAScheduler:
             if len(current) != len(current_set):
                 duplicates = [x for x in current if current.count(x) > 1]
                 raise ValueError(
-                    f"❌ Individual {idx} contains DUPLICATE (course, course_type, group) pairs!\n"
+                    f"[X] Individual {idx} contains DUPLICATE (course, course_type, group) pairs!\n"
                     f"   Duplicates: {set(duplicates)}"
                 )

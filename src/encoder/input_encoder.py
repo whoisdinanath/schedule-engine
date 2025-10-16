@@ -356,7 +356,7 @@ def link_courses_and_groups(
 
             if not found_any:
                 print(
-                    f"⚠️  Warning: No courses found for '{course_code}' in group {group_id}"
+                    f"[!] Warning: No courses found for '{course_code}' in group {group_id}"
                 )
 
     # Note: We no longer warn about unassigned courses here since filtering

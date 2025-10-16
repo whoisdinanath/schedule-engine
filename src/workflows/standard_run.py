@@ -95,7 +95,7 @@ def run_standard_workflow(
     # ========================================
     with tqdm(
         total=5,
-        desc="📥 Loading Input Data",
+        desc="[>>] Loading Input Data",
         bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
     ) as pbar:
         qts, context = load_input_data(data_dir)
@@ -113,17 +113,17 @@ def run_standard_workflow(
     # ========================================
     if validate:
         with tqdm(
-            total=1, desc="✓ Validating Input", bar_format="{l_bar}{bar}| {elapsed}"
+            total=1, desc="[OK] Validating Input", bar_format="{l_bar}{bar}| {elapsed}"
         ) as pbar:
             validation_result = validate_input(context, strict=False)
             pbar.update(1)
 
         if not validation_result:
             raise ValueError(
-                "❌ Input validation failed with ERRORS! Fix errors and try again."
+                "[X] Input validation failed with ERRORS! Fix errors and try again."
             )
 
-        tqdm.write("   ✓ Input validation passed\n")
+        tqdm.write("   [OK] Input validation passed\n")
 
     # ========================================
     # Step 4: Configure GA
@@ -143,7 +143,7 @@ def run_standard_workflow(
         name for name, cfg in SOFT_CONSTRAINTS_CONFIG.items() if cfg["enabled"]
     ]
 
-    tqdm.write("🧬 Genetic Algorithm Configuration:")
+    tqdm.write("[GA] Genetic Algorithm Configuration:")
     tqdm.write(
         f"   Population: {ga_config.pop_size} | Generations: {ga_config.generations}"
     )
@@ -155,7 +155,7 @@ def run_standard_workflow(
     # ========================================
     # Step 5: Run GA
     # ========================================
-    tqdm.write("🧬 Running Genetic Algorithm...\n")
+    tqdm.write("[GA] Running Genetic Algorithm...\n")
 
     scheduler = GAScheduler(ga_config, context, hard_names, soft_names)
     scheduler.setup_toolbox()

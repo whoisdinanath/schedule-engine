@@ -130,7 +130,7 @@ def availability_violations(sessions: List[CourseSession]) -> int:
 
 
 def incomplete_or_extra_sessions(
-    sessions: List[CourseSession], course_map: Dict[str, Course]
+    sessions: List[CourseSession], course_map: Dict[tuple, Course]
 ) -> int:
     """
     Verifies that each course is scheduled for exactly the required number of quanta
@@ -142,6 +142,10 @@ def incomplete_or_extra_sessions(
     - Practical sessions may use subgroups
     - Must check: each (course, group) combination has correct quanta
 
+    IMPORTANT: course_map keys are tuples (course_code, course_type), but
+    session.course_id is just the course_code string. Must extract course_code
+    from tuple keys for proper comparison.
+
     Returns:
         Number of (course, group) combinations that are under- or over-scheduled.
 
@@ -149,27 +153,33 @@ def incomplete_or_extra_sessions(
         If BAE2 is enrolled in ENME 151 (5 quanta/week),
         we should have exactly 5 quanta for (ENME 151, BAE2) combination.
     """
-    # Count quanta per (course_id, group_id) combination
+    # Count quanta per (course_code, course_type, group_id) combination
+    # Use (course_code, course_type) to distinguish theory from practical
     course_group_quanta = defaultdict(int)
 
     for session in sessions:
-        course_id = session.course_id
+        course_code = session.course_id  # This is just the course code string
+        course_type = session.course_type  # This is "theory" or "practical"
+
         # Each session can have multiple groups (multi-group sessions)
         # Count quanta for each group separately
         for group_id in session.group_ids:
-            key = (course_id, group_id)
+            # Key must match course_map key structure: (course_code, course_type)
+            key = ((course_code, course_type), group_id)
             course_group_quanta[key] += len(session.session_quanta)
 
     violations = 0
 
     # Check each course's enrolled groups
-    for course_id, course in course_map.items():
+    # course_key is (course_code, course_type) tuple
+    for course_key, course in course_map.items():
         expected_quanta = course.quanta_per_week
         enrolled_groups = course.enrolled_group_ids
 
         # For each group enrolled in this course
         for group_id in enrolled_groups:
-            key = (course_id, group_id)
+            # Use same key structure as counting above
+            key = (course_key, group_id)
             actual_quanta = course_group_quanta.get(key, 0)
 
             # Check if scheduled correctly for this (course, group) pair

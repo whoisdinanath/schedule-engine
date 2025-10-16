@@ -23,14 +23,14 @@ class SchedulingContext:
     and documentation.
 
     Attributes:
-        courses: Dictionary mapping course IDs to Course objects
+        courses: Dictionary mapping (course_code, course_type) tuples to Course objects
         groups: Dictionary mapping group IDs to Group objects
         instructors: Dictionary mapping instructor IDs to Instructor objects
         rooms: Dictionary mapping room IDs to Room objects
         available_quanta: List of available time quantum indices
     """
 
-    courses: Dict[str, Course]
+    courses: Dict[tuple, Course]  # Keys are (course_code, course_type) tuples
     groups: Dict[str, Group]
     instructors: Dict[str, Instructor]
     rooms: Dict[str, Room]

@@ -404,7 +404,7 @@ def _format_group_violations(violations: List[Dict]) -> List[str]:
 
     for (group, time), conflicts in conflict_groups.items():
         lines.append(
-            f"\n⚠️  Group {group} has {len(conflicts)} overlapping sessions at {time}:"
+            f"\n[!]  Group {group} has {len(conflicts)} overlapping sessions at {time}:"
         )
         for conflict in conflicts:
             lines.append(
@@ -430,7 +430,7 @@ def _format_instructor_violations(violations: List[Dict]) -> List[str]:
 
     for (instructor, time), conflicts in conflict_groups.items():
         lines.append(
-            f"\n⚠️  Instructor {instructor} has {len(conflicts)} overlapping sessions at {time}:"
+            f"\n[!]  Instructor {instructor} has {len(conflicts)} overlapping sessions at {time}:"
         )
         for conflict in conflicts:
             lines.append(
@@ -456,7 +456,7 @@ def _format_room_violations(violations: List[Dict]) -> List[str]:
 
     for (room, time), conflicts in conflict_groups.items():
         lines.append(
-            f"\n⚠️  Room {room} has {len(conflicts)} overlapping sessions at {time}:"
+            f"\n[!]  Room {room} has {len(conflicts)} overlapping sessions at {time}:"
         )
         for conflict in conflicts:
             lines.append(
@@ -476,7 +476,7 @@ def _format_qualification_violations(violations: List[Dict]) -> List[str]:
 
     for v in violations:
         lines.append(
-            f"\n⚠️  Instructor {v['instructor']} is NOT qualified for {v['course']} ({v['course_type']})"
+            f"\n[!]  Instructor {v['instructor']} is NOT qualified for {v['course']} ({v['course_type']})"
         )
         lines.append(f"    Groups: {v['groups']}")
         lines.append(f"    Room: {v['room']}")
@@ -494,7 +494,7 @@ def _format_room_type_violations(violations: List[Dict]) -> List[str]:
 
     for v in violations:
         lines.append(
-            f"\n⚠️  Course {v['course']} requires features not in room {v['room']}"
+            f"\n[!]  Course {v['course']} requires features not in room {v['room']}"
         )
         lines.append(f"    Groups: {v['groups']}")
         lines.append(f"    Required: {v['required_features']}")
@@ -520,7 +520,7 @@ def _format_availability_violations(violations: List[Dict]) -> List[str]:
     for viol_type, viols in by_type.items():
         lines.append(f"\n{viol_type}: {len(viols)} violations")
         for v in viols:
-            lines.append(f"  ⚠️  {v['entity']} unavailable at {v['time']}")
+            lines.append(f"  [!]  {v['entity']} unavailable at {v['time']}")
             lines.append(f"      Course: {v['course']}")
             if "groups" in v:
                 lines.append(f"      Groups: {v['groups']}")
@@ -548,7 +548,7 @@ def _format_schedule_violations(violations: List[Dict]) -> List[str]:
         lines.append(f"\nUnder-scheduled Courses: {len(under)}")
         for v in under:
             lines.append(
-                f"  ⚠️  {v['course']} for group {v['group']}: "
+                f"  [!]  {v['course']} for group {v['group']}: "
                 f"Expected {v['expected']} quanta, got {v['actual']}"
             )
 
@@ -556,7 +556,7 @@ def _format_schedule_violations(violations: List[Dict]) -> List[str]:
         lines.append(f"\nOver-scheduled Courses: {len(over)}")
         for v in over:
             lines.append(
-                f"  ⚠️  {v['course']} for group {v['group']}: "
+                f"  [!]  {v['course']} for group {v['group']}: "
                 f"Expected {v['expected']} quanta, got {v['actual']}"
             )
 

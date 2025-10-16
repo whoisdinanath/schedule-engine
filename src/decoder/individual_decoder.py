@@ -20,7 +20,7 @@ from src.entities.room import Room
 
 def decode_individual(
     individual: List[SessionGene],
-    courses: Dict[str, Course],
+    courses: Dict[tuple, Course],  # Keys are (course_code, course_type) tuples
     instructors: Dict[str, Instructor],
     groups: Dict[str, Group],
     rooms: Dict[str, Room],

@@ -20,7 +20,7 @@ def generate_course_group_aware_population(n: int, context: SchedulingContext) -
 
     This ensures no duplicate genes.
 
-    ⚠️  CRITICAL: GENE ORDERING GUARANTEE
+    [!]  CRITICAL: GENE ORDERING GUARANTEE
 
     This function creates genes in DETERMINISTIC ORDER for all individuals:
     1. Iterates through context["groups"] (dict maintains insertion order in Python 3.7+)
@@ -190,7 +190,7 @@ def create_course_component_sessions(
     if gene:
         session_genes.append(gene)
     else:
-        print(f"⚠️  Failed to create gene for {course_id} with group {group_id}")
+        print(f"[!]  Failed to create gene for {course_id} with group {group_id}")
 
     return session_genes
 
@@ -248,7 +248,7 @@ def create_course_component_sessions_with_conflict_avoidance(
         session_genes.append(gene)
     else:
         print(
-            f"⚠️  Failed to create gene for {course_id} with group {group_id} (conflict-avoidance)"
+            f"[!]  Failed to create gene for {course_id} with group {group_id} (conflict-avoidance)"
         )
 
     return session_genes

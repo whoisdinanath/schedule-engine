@@ -13,7 +13,7 @@ from src.constraints.soft import get_enabled_soft_constraints
 
 def evaluate(
     individual: List[SessionGene],
-    courses: Dict[str, Course],
+    courses: Dict[tuple, Course],  # Keys are (course_code, course_type) tuples
     instructors: Dict[str, Instructor],
     groups: Dict[str, Group],
     rooms: Dict[str, Room] = None,

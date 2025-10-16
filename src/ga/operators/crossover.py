@@ -55,7 +55,7 @@ def crossover_course_group_aware(
         missing_in_ind1 = keys2 - keys1
         missing_in_ind2 = keys1 - keys2
         raise ValueError(
-            f"❌ CROSSOVER ERROR: Individuals have mismatched (course, group) pairs!\n"
+            f"[X] CROSSOVER ERROR: Individuals have mismatched (course, group) pairs!\n"
             f"   Individual 1 has {len(keys1)} pairs, Individual 2 has {len(keys2)} pairs.\n"
             f"   Missing in Individual 1: {missing_in_ind1}\n"
             f"   Missing in Individual 2: {missing_in_ind2}\n"
@@ -85,7 +85,7 @@ def crossover_uniform(
     ind1: List[SessionGene], ind2: List[SessionGene], cx_prob: float = 0.5
 ):
     """
-    ⚠️  DEPRECATED: Position-Dependent Uniform Crossover
+    [!]  DEPRECATED: Position-Dependent Uniform Crossover
 
     This operator swaps entire genes by array index. It is ONLY SAFE if ALL
     individuals in the population have genes in IDENTICAL POSITIONS representing
