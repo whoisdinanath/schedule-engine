@@ -9,6 +9,7 @@ import os
 import random
 from datetime import datetime
 from typing import Dict, Optional
+from tqdm import tqdm
 
 from src.encoder.input_encoder import (
     load_courses,
@@ -73,69 +74,64 @@ def run_standard_workflow(
     # ========================================
     # Step 1: Initialize
     # ========================================
-    print("=" * 60)
-    print("SCHEDULE ENGINE - Standard Workflow")
-    print("=" * 60)
+    tqdm.write("\n" + "🚀 " + "=" * 56)
+    tqdm.write("SCHEDULE ENGINE - Standard Workflow".center(60))
+    tqdm.write("=" * 60 + "\n")
 
     # Set random seed
     random.seed(seed)
-    print(f"Random seed: {seed}")
+    tqdm.write(f"⚙️  Random seed: {seed}")
 
     # Create output directory
     if output_dir is None:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_dir = os.path.join("output", f"evaluation_{timestamp}")
     os.makedirs(output_dir, exist_ok=True)
-    print(f"Output directory: {output_dir}")
+    tqdm.write(f"📁 Output directory: {output_dir}\n")
 
     # ========================================
     # Step 2: Load Data
     # ========================================
-    print("\n" + "=" * 60)
-    print("Step 1: Loading Input Data")
-    print("=" * 60)
+    with tqdm(
+        total=5,
+        desc="📥 Loading Input Data",
+        bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
+    ) as pbar:
+        qts, context = load_input_data(data_dir)
+        pbar.update(5)
 
-    qts, context = load_input_data(data_dir)
-
-    print(f"[OK] Loaded {len(context.courses)} courses")
-    print(f"[OK] Loaded {len(context.groups)} groups")
-    print(f"[OK] Loaded {len(context.instructors)} instructors")
-    print(f"[OK] Loaded {len(context.rooms)} rooms")
-    print(f"[OK] Available time quanta: {len(context.available_quanta)}")
+    tqdm.write(f"   ✓ Courses: {len(context.courses)}")
+    tqdm.write(f"   ✓ Groups: {len(context.groups)}")
+    tqdm.write(f"   ✓ Instructors: {len(context.instructors)}")
+    tqdm.write(f"   ✓ Rooms: {len(context.rooms)}")
+    tqdm.write(f"   ✓ Time quanta: {len(context.available_quanta)}\n")
 
     # ========================================
     # Step 3: Validate (Optional)
     # ========================================
     if validate:
-        print("\n" + "=" * 60)
-        print("Step 2: Validating Input Data")
-        print("=" * 60)
+        with tqdm(
+            total=1, desc="✓ Validating Input", bar_format="{l_bar}{bar}| {elapsed}"
+        ) as pbar:
+            validation_result = validate_input(context, strict=False)
+            pbar.update(1)
 
-        if not validate_input(context, strict=False):
+        if not validation_result:
             raise ValueError(
-                "Input validation failed with ERRORS! Fix errors and try again."
+                "❌ Input validation failed with ERRORS! Fix errors and try again."
             )
 
-        print("\n[OK] Input validation passed (warnings are OK)!")
+        tqdm.write("   ✓ Input validation passed\n")
 
     # ========================================
     # Step 4: Configure GA
     # ========================================
-    print("\n" + "=" * 60)
-    print("Step 3: Configuring Genetic Algorithm")
-    print("=" * 60)
-
     ga_config = GAConfig(
         pop_size=pop_size,
         generations=generations,
         crossover_prob=crossover_prob,
         mutation_prob=mutation_prob,
     )
-
-    print(f"Population size: {ga_config.pop_size}")
-    print(f"Generations: {ga_config.generations}")
-    print(f"Crossover prob: {ga_config.crossover_prob}")
-    print(f"Mutation prob: {ga_config.mutation_prob}")
 
     # Get enabled constraint names
     hard_names = [
@@ -145,16 +141,19 @@ def run_standard_workflow(
         name for name, cfg in SOFT_CONSTRAINTS_CONFIG.items() if cfg["enabled"]
     ]
 
-    print(f"\nEnabled constraints:")
-    print(f"  Hard: {len(hard_names)} constraints")
-    print(f"  Soft: {len(soft_names)} constraints")
+    tqdm.write("🧬 Genetic Algorithm Configuration:")
+    tqdm.write(
+        f"   Population: {ga_config.pop_size} | Generations: {ga_config.generations}"
+    )
+    tqdm.write(
+        f"   Crossover: {ga_config.crossover_prob:.1%} | Mutation: {ga_config.mutation_prob:.1%}"
+    )
+    tqdm.write(f"   Constraints: {len(hard_names)} hard, {len(soft_names)} soft\n")
 
     # ========================================
     # Step 5: Run GA
     # ========================================
-    print("\n" + "=" * 60)
-    print("Step 4: Running Genetic Algorithm")
-    print("=" * 60)
+    tqdm.write("🧬 Running Genetic Algorithm...\n")
 
     scheduler = GAScheduler(ga_config, context, hard_names, soft_names)
     scheduler.setup_toolbox()
@@ -164,9 +163,7 @@ def run_standard_workflow(
     # ========================================
     # Step 6: Get Results
     # ========================================
-    print("\n" + "=" * 60)
-    print("Step 5: Processing Results")
-    print("=" * 60)
+    tqdm.write("\n🔍 Processing Results...")
 
     best_individual = scheduler.get_best_solution()
     decoded_schedule = decode_individual(
@@ -177,37 +174,36 @@ def run_standard_workflow(
         context.rooms,
     )
 
-    print(f"\n[OK] Best Solution Found:")
-    print(f"  Hard Violations: {best_individual.fitness.values[0]:.0f}")
-    print(f"  Soft Penalty: {best_individual.fitness.values[1]:.2f}")
-    print(f"  Schedule size: {len(decoded_schedule)} sessions")
+    tqdm.write(f"   Hard Violations: {best_individual.fitness.values[0]:.0f}")
+    tqdm.write(f"   Soft Penalty: {best_individual.fitness.values[1]:.2f}")
+    tqdm.write(f"   Schedule sessions: {len(decoded_schedule)}\n")
 
     # ========================================
     # Step 7: Generate Reports
     # ========================================
-    print("\n" + "=" * 60)
-    print("Step 6: Generating Reports")
-    print("=" * 60)
-
-    generate_reports(
-        decoded_schedule=decoded_schedule,
-        metrics=scheduler.metrics,
-        population=scheduler.population,
-        qts=qts,
-        output_dir=output_dir,
-    )
+    with tqdm(
+        total=1, desc="📊 Generating Reports", bar_format="{l_bar}{bar}| {elapsed}"
+    ) as pbar:
+        generate_reports(
+            decoded_schedule=decoded_schedule,
+            metrics=scheduler.metrics,
+            population=scheduler.population,
+            qts=qts,
+            output_dir=output_dir,
+        )
+        pbar.update(1)
 
     # ========================================
     # Done!
     # ========================================
-    print("\n" + "=" * 60)
-    print("[OK] WORKFLOW COMPLETE")
-    print("=" * 60)
-    print(f"Results saved to: {output_dir}")
-    print(f"  - schedule.json: Schedule in JSON format")
-    print(f"  - schedule.pdf: Visual calendar")
-    print(f"  - plots/: Evolution charts")
-    print("=" * 60)
+    tqdm.write("\n" + "✨ " + "=" * 56)
+    tqdm.write("WORKFLOW COMPLETE".center(60))
+    tqdm.write("=" * 60)
+    tqdm.write(f"\n📦 Results saved to: {output_dir}")
+    tqdm.write(f"   • schedule.json - Schedule data")
+    tqdm.write(f"   • schedule.pdf - Visual calendar")
+    tqdm.write(f"   • plots/ - Evolution charts")
+    tqdm.write("=" * 60 + "\n")
 
     return {
         "best_individual": best_individual,

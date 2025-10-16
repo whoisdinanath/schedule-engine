@@ -147,18 +147,29 @@ class GAScheduler:
 
     def initialize_population(self):
         """Create and evaluate initial population."""
-        print(f"Generating population of size {self.config.pop_size}...")
-        self.population = self.toolbox.population(n=self.config.pop_size)
+        with tqdm(
+            total=2,
+            desc="   Initializing Population",
+            leave=False,
+            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
+        ) as pbar:
+            self.population = self.toolbox.population(n=self.config.pop_size)
+            pbar.update(1)
 
-        # Validate gene alignment
-        self._validate_population_structure()
+            # Validate gene alignment
+            self._validate_population_structure()
+            pbar.update(1)
 
         # Evaluate initial population
-        print("Evaluating initial population...")
         fitness_values = list(
             map(
                 self.toolbox.evaluate,
-                tqdm(self.population, desc="Initial Eval", leave=False),
+                tqdm(
+                    self.population,
+                    desc="   Evaluating Initial Pop",
+                    leave=False,
+                    bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
+                ),
             )
         )
         for ind, fit in zip(self.population, fitness_values):
@@ -166,13 +177,18 @@ class GAScheduler:
 
     def evolve(self):
         """Run genetic algorithm evolution loop."""
-        for gen in tqdm(range(self.config.generations), desc="GA Progress", unit="gen"):
+        for gen in tqdm(
+            range(self.config.generations),
+            desc="   🧬 Evolution Progress",
+            unit="gen",
+            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]",
+        ):
             self._evolve_generation(gen)
 
             # Early stopping if perfect solution found
             best = tools.selBest(self.population, 1)[0]
             if best.fitness.values[0] == 0:
-                tqdm.write(f"✓ Perfect solution found at generation {gen + 1}!")
+                tqdm.write(f"\n   ✓ Perfect solution found at generation {gen + 1}!")
                 break
 
     def _evolve_generation(self, gen: int):
@@ -201,9 +217,10 @@ class GAScheduler:
                 self.toolbox.evaluate,
                 tqdm(
                     invalid,
-                    desc=f"Gen {gen+1} Eval",
+                    desc=f"      Gen {gen+1} Eval",
                     leave=False,
                     disable=len(invalid) == 0,
+                    bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
                 ),
             )
         )
@@ -253,19 +270,21 @@ class GAScheduler:
     ):
         """Print detailed constraint breakdown."""
         tqdm.write(
-            f"Gen {gen+1}: Hard={best.fitness.values[0]:.0f}, "
+            f"\n   📊 Gen {gen+1}: Hard={best.fitness.values[0]:.0f}, "
             f"Soft={best.fitness.values[1]:.2f}"
         )
 
-        tqdm.write(f"  [HARD] Total: {best.fitness.values[0]:.0f}")
-        for name, value in hard_details.items():
-            if value > 0:
-                tqdm.write(f"    - {name}: {value}")
+        if best.fitness.values[0] > 0:
+            tqdm.write(f"      [HARD] Total: {best.fitness.values[0]:.0f}")
+            for name, value in hard_details.items():
+                if value > 0:
+                    tqdm.write(f"         • {name}: {value}")
 
-        tqdm.write(f"  [SOFT] Total: {best.fitness.values[1]:.2f}")
-        for name, value in soft_details.items():
-            if value > 0:
-                tqdm.write(f"    - {name}: {value}")
+        if best.fitness.values[1] > 0:
+            tqdm.write(f"      [SOFT] Total: {best.fitness.values[1]:.2f}")
+            for name, value in soft_details.items():
+                if value > 0:
+                    tqdm.write(f"         • {name}: {value:.2f}")
 
     def get_best_solution(self):
         """

@@ -272,9 +272,9 @@ def _save_json_schedule_as_pdf(
     color_map = {}
     for course in course_ids:
         if "(PR)" in course:
-            color_map[course] = "#FF0000"  # Red for practical
+            color_map[course] = "#F16A6A"  # Red for practical
         else:
-            color_map[course] = "#0000FF"  # Blue for theory
+            color_map[course] = "#8888F7"  # Blue for theory
 
     # Save PDF
     with PdfPages(output_pdf_path) as pdf:
