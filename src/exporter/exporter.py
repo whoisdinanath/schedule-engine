@@ -234,6 +234,7 @@ def _save_json_schedule_as_pdf(
                 ha="center",
                 va="center",
                 fontsize=8,
+                color="black",  # Black text for both theory and practical
                 wrap=True,
             )
 
@@ -267,19 +268,20 @@ def _save_json_schedule_as_pdf(
                             {"day": day, "start": start, "end": end, "label": course}
                         )
 
-    # Assign unique color to each course
-    course_list = sorted(course_ids)
-    cmap = cm.get_cmap("tab20", len(course_list))
-    color_map = {
-        course: mcolors.to_hex(cmap(i)) for i, course in enumerate(course_list)
-    }
+    # Assign colors based on course type: blue for theory, red for practical
+    color_map = {}
+    for course in course_ids:
+        if "(PR)" in course:
+            color_map[course] = "#FF0000"  # Red for practical
+        else:
+            color_map[course] = "#0000FF"  # Blue for theory
 
     # Save PDF
     with PdfPages(output_pdf_path) as pdf:
         for group_id, sessions in group_sessions.items():
             plot_schedule(sessions, group_id, pdf, color_map)
 
-    print(f"✅ PDF saved as '{output_pdf_path}'")
+    print(f" PDF saved as '{output_pdf_path}'")
 
 
 def export_everything(
@@ -300,9 +302,9 @@ def export_everything(
     Example:
         >>> from src.exporter.exporter import export_everything
         >>> export_everything(final_schedule, "./output", qts_instance)
-        ✅ Schedule exported successfully!
+        [OK-KRISHNA] Schedule exported successfully!
         📄 JSON: ./output/schedule.json
-        📊 PDF:  ./output/calendar_colored_merged.pdf
+        [...]PDF:  ./output/calendar_colored_merged.pdf
 
     Note:
         - Creates output directory if it doesn't exist
@@ -325,6 +327,6 @@ def export_everything(
         end_hour=EXCAL_END_HOUR,
     )
 
-    print("✅ Schedule exported successfully!")
+    print("[OK-KRISHNA] Schedule exported successfully!")
     print(f"📄 JSON: {json_path}")
-    print(f"📊 PDF:  {pdf_path}")
+    print(f"[...]PDF:  {pdf_path}")

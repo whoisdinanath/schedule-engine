@@ -1,4 +1,4 @@
-from typing import List, Dict, Tuple
+from typing import List, Tuple
 import random
 from tqdm import tqdm
 
@@ -6,9 +6,10 @@ from src.ga.sessiongene import SessionGene
 from src.ga.individual import create_individual
 from src.ga.group_hierarchy import analyze_group_hierarchy
 from src.ga.course_group_pairs import generate_course_group_pairs
+from src.core.types import SchedulingContext
 
 
-def generate_course_group_aware_population(n: int, context: Dict) -> List:
+def generate_course_group_aware_population(n: int, context: SchedulingContext) -> List:
     """
     Generate population using simple course-group enrollment structure.
 
@@ -44,20 +45,23 @@ def generate_course_group_aware_population(n: int, context: Dict) -> List:
     """
     population = []
 
-    # Step 1: Extract simple course-group enrollment pairs
-    # BUGFIX: Also include practical courses (with -PR suffix)
-    course_group_pairs = []
-    for group_id, group in context["groups"].items():
-        enrolled_courses = getattr(group, "enrolled_courses", [])
-        for course_id in enrolled_courses:
-            # Add theory course if it exists
-            if course_id in context["courses"]:
-                course_group_pairs.append((course_id, group_id))
+    # Step 1: Analyze group hierarchy and generate proper course-group pairs
+    # This respects parent-subgroup relationships:
+    # - Theory: Lists all subgroups explicitly (e.g., ["BAE2A", "BAE2B"])
+    # - Practical: Each subgroup separately (e.g., ["BAE2A"], then ["BAE2B"])
+    hierarchy = analyze_group_hierarchy(context.groups)
 
-            # BUGFIX: Also add practical course if it exists
-            practical_id = course_id + "-PR"
-            if practical_id in context["courses"]:
-                course_group_pairs.append((practical_id, group_id))
+    # Generate course-group pairs using the proper function
+    # Returns: List[Tuple[course_key, group_ids, session_type, num_quanta]]
+    pair_tuples = generate_course_group_pairs(
+        context.courses, context.groups, hierarchy
+    )
+
+    # Convert to simpler format for gene creation
+    # (course_key, group_ids, session_type, num_quanta) -> (course_key, group_ids)
+    course_group_pairs = [
+        (course_key, group_ids) for course_key, group_ids, _, _ in pair_tuples
+    ]
 
     if not course_group_pairs:
         print("Warning: No valid course-group pairs found!")
@@ -73,21 +77,21 @@ def generate_course_group_aware_population(n: int, context: Dict) -> List:
         instructor_schedule = {}  # Track instructor schedules to avoid conflicts
         group_schedule = {}  # Track group schedules to avoid conflicts
 
-        # Step 2: For each (course, group) pair, create ONE session gene
-        for course_id, group_id in course_group_pairs:
-            course = context["courses"].get(course_id)
+        # Step 2: For each (course, groups) pair, create ONE session gene
+        for course_id, group_ids in course_group_pairs:
+            course = context.courses.get(course_id)
             if not course:
                 continue
 
-            # Determine session type from course_id
-            is_practical = course_id.endswith("-PR")
-            session_type = "practical" if is_practical else "theory"
+            # Get session type from Course object (not from name parsing)
+            session_type = course.course_type
             num_quanta = course.quanta_per_week
 
-            # Create ONE session gene for this (course, group) combination
+            # Create ONE session gene for this (course, groups) combination
+            # group_ids is already a list (may contain multiple groups for theory)
             session_gene = create_session_gene_with_conflict_avoidance(
                 course_id,
-                [group_id],  # Single group
+                group_ids,  # List of groups (multiple for theory, single for practical)
                 session_type,
                 num_quanta,
                 course,
@@ -110,57 +114,54 @@ def generate_course_group_aware_population(n: int, context: Dict) -> List:
     return population
 
 
-def extract_course_group_relationships(context: Dict) -> List[Tuple[str, str]]:
+def extract_course_group_relationships(
+    context: SchedulingContext,
+) -> List[Tuple[str, str]]:
     """
     Extract valid course-group enrollment pairs from the context.
 
-    IMPORTANT: When a course has both theory and practical components
-    (e.g., "ENSH 252" and "ENSH 252-PR"), we need to create genes for BOTH.
-    Groups' enrolled_courses contains course_codes like "ENSH 252", but we need
-    to find all matching course_ids in the courses dict.
+    IMPORTANT: When a course has both theory and practical components,
+    we need to create genes for BOTH. Groups' enrolled_courses contains
+    course_codes like "ENSH 252", but the courses dict is keyed by
+    (course_code, course_type) tuples.
 
     Returns:
-        List of (course_id, group_id) tuples representing valid enrollments
+        List of (course_key, group_id) tuples where course_key is (course_code, course_type)
     """
     course_group_pairs = []
 
-    for group_id, group in context["groups"].items():
+    for group_id, group in context.groups.items():
         # Get enrolled courses for this group (these are course_codes)
         enrolled_courses = getattr(group, "enrolled_courses", [])
 
         for course_code in enrolled_courses:
-            # Find ALL courses with this course_code (theory AND practical)
-            matching_courses = [
-                c
-                for c in context["courses"].values()
-                if hasattr(c, "course_code") and c.course_code == course_code
-            ]
+            # Check for both theory and practical versions
+            # courses dict is keyed by (course_code, course_type) tuples
+            theory_key = (course_code, "theory")
+            practical_key = (course_code, "practical")
 
-            # If no match found by course_code, try direct lookup by course_id
-            if not matching_courses and course_code in context["courses"]:
-                matching_courses = [context["courses"][course_code]]
+            if theory_key in context.courses:
+                course_group_pairs.append((theory_key, group_id))
 
-            # Add ALL matching courses to the pairs
-            for course in matching_courses:
-                course_group_pairs.append((course.course_id, group_id))
+            if practical_key in context.courses:
+                course_group_pairs.append((practical_key, group_id))
 
     return course_group_pairs
 
 
 def create_course_component_sessions(
-    course_id: str, group_id: str, course, context: Dict
+    course_id: str, group_id: str, course, context: SchedulingContext
 ) -> List[SessionGene]:
     """
     Create session genes for a course-group combination.
 
-    NOTE: Course loading (input_encoder.py) already splits courses into:
-    - Theory courses: "ENME 103" with quanta_per_week = L + T
-    - Practical courses: "ENME 103-PR" with quanta_per_week = P
-
-    So we simply create ONE gene per course using its quanta_per_week value.
+    Clean architecture: NO suffixes!
+    - All courses have plain course_id (e.g., "ENME 103")
+    - course_type attribute distinguishes "theory" vs "practical"
+    - Dict keyed by (course_code, course_type) tuples
 
     Args:
-        course_id: Course identifier (e.g., "ENME 103" or "ENME 103-PR")
+        course_id: Can be either course_code string OR (course_code, course_type) tuple
         group_id: Group identifier
         course: Course object (already has correct quanta_per_week)
         context: GA context with resources
@@ -173,9 +174,8 @@ def create_course_component_sessions(
     # Use the quanta_per_week from Course entity (already correctly set during loading)
     quanta_needed = course.quanta_per_week
 
-    # Determine session type from course_id
-    is_practical = course_id.endswith("-PR")
-    component_type = "practical" if is_practical else "theory"
+    # Get component type from Course object (not from name parsing)
+    component_type = course.course_type
 
     # Create a single session gene for this course-group combination
     gene = create_component_session(
@@ -184,7 +184,7 @@ def create_course_component_sessions(
         component_type,
         quanta_needed,
         context,
-        require_special_room=is_practical,
+        require_special_room=(component_type == "practical"),
     )
 
     if gene:
@@ -199,7 +199,7 @@ def create_course_component_sessions_with_conflict_avoidance(
     course_id: str,
     group_id: str,
     course,
-    context: Dict,
+    context: SchedulingContext,
     used_quanta: set,
     instructor_schedule: dict,
     group_schedule: dict,
@@ -207,14 +207,12 @@ def create_course_component_sessions_with_conflict_avoidance(
     """
     Create session genes while avoiding time conflicts.
 
-    NOTE: Course loading (input_encoder.py) already splits courses into:
-    - Theory courses: "ENME 103" with quanta_per_week = L + T
-    - Practical courses: "ENME 103-PR" with quanta_per_week = P
-
-    So we simply create ONE gene per course using its quanta_per_week value.
+    Clean architecture: NO suffixes!
+    - All courses have plain course_id (e.g., "ENME 103")
+    - course_type attribute distinguishes "theory" vs "practical"
 
     Args:
-        course_id: Course identifier (e.g., "ENME 103" or "ENME 103-PR")
+        course_id: Can be course_code string OR (course_code, course_type) tuple
         group_id: Group identifier
         course: Course object (already has correct quanta_per_week)
         context: GA context with resources
@@ -230,9 +228,8 @@ def create_course_component_sessions_with_conflict_avoidance(
     # Use the quanta_per_week from Course entity (already correctly set during loading)
     quanta_needed = course.quanta_per_week
 
-    # Determine session type from course_id
-    is_practical = course_id.endswith("-PR")
-    component_type = "practical" if is_practical else "theory"
+    # Get component type from Course object (not from name parsing)
+    component_type = course.course_type
 
     # Create a single session gene for this course-group combination
     gene = create_component_session_with_conflict_avoidance(
@@ -244,7 +241,7 @@ def create_course_component_sessions_with_conflict_avoidance(
         used_quanta,
         instructor_schedule,
         group_schedule,
-        require_special_room=is_practical,
+        require_special_room=(component_type == "practical"),
     )
 
     if gene:
@@ -263,7 +260,7 @@ def create_session_gene_with_conflict_avoidance(
     session_type: str,
     num_quanta: int,
     course,
-    context: Dict,
+    context: SchedulingContext,
     used_quanta: set,
     instructor_schedule: dict,
     group_schedule: dict,
@@ -286,7 +283,7 @@ def create_session_gene_with_conflict_avoidance(
     # Find qualified instructors
     qualified_instructors = find_qualified_instructors(course_id, context)
     if not qualified_instructors:
-        qualified_instructors = list(context["instructors"].values())
+        qualified_instructors = list(context.instructors.values())
 
     if not qualified_instructors:
         return None
@@ -299,7 +296,7 @@ def create_session_gene_with_conflict_avoidance(
         course, session_type, context, require_special_room=is_practical
     )
     if not suitable_rooms:
-        suitable_rooms = list(context["rooms"].values())
+        suitable_rooms = list(context.rooms.values())
 
     if not suitable_rooms:
         return None
@@ -307,11 +304,11 @@ def create_session_gene_with_conflict_avoidance(
     room = random.choice(suitable_rooms)
 
     # Find available quanta that don't conflict
-    available_quanta = [q for q in context["available_quanta"] if q not in used_quanta]
+    available_quanta = [q for q in context.available_quanta if q not in used_quanta]
 
     if len(available_quanta) < num_quanta:
         # Fall back to all if not enough free
-        available_quanta = list(context["available_quanta"])
+        available_quanta = list(context.available_quanta)
 
     quanta_needed = min(num_quanta, len(available_quanta))
 
@@ -340,8 +337,21 @@ def create_session_gene_with_conflict_avoidance(
         group_schedule[gid].update(assigned_quanta)
 
     # Create session gene with multi-group support
+    # Extract actual course_id from course object (plain code, no tuple)
+    actual_course_id = (
+        course.course_id
+        if hasattr(course, "course_id")
+        else (course_id[0] if isinstance(course_id, tuple) else course_id)
+    )
+
+    # Get course_type from course object
+    actual_course_type = (
+        course.course_type if hasattr(course, "course_type") else session_type
+    )
+
     session_gene = SessionGene(
-        course_id=course_id,
+        course_id=actual_course_id,
+        course_type=actual_course_type,
         instructor_id=instructor_id,
         group_ids=group_ids,  # Can be multiple groups
         room_id=room.room_id,
@@ -356,7 +366,7 @@ def create_component_session_with_conflict_avoidance(
     group_id: str,
     component_type: str,
     hours: int,
-    context: Dict,
+    context: SchedulingContext,
     used_quanta: set,
     instructor_schedule: dict,
     group_schedule: dict,
@@ -368,12 +378,12 @@ def create_component_session_with_conflict_avoidance(
     DEPRECATED: Use create_session_gene_with_conflict_avoidance instead.
     Kept for backwards compatibility with old population generators.
     """
-    course = context["courses"][course_id]
+    course = context.courses[course_id]
 
     # Find qualified instructors
     qualified_instructors = find_qualified_instructors(course_id, context)
     if not qualified_instructors:
-        qualified_instructors = list(context["instructors"].values())
+        qualified_instructors = list(context.instructors.values())
 
     if not qualified_instructors:
         return None
@@ -385,7 +395,7 @@ def create_component_session_with_conflict_avoidance(
         course, component_type, context, require_special_room
     )
     if not suitable_rooms:
-        suitable_rooms = list(context["rooms"].values())
+        suitable_rooms = list(context.rooms.values())
 
     if not suitable_rooms:
         return None
@@ -404,11 +414,11 @@ def create_component_session_with_conflict_avoidance(
     # For now, just limit to reasonable session length
 
     # Find available quanta that don't conflict with used ones
-    available_quanta = [q for q in context["available_quanta"] if q not in used_quanta]
+    available_quanta = [q for q in context.available_quanta if q not in used_quanta]
 
     if len(available_quanta) < quanta_needed:
         # If not enough conflict-free quanta, use some that are already used (allow some conflicts for now)
-        available_quanta = list(context["available_quanta"])
+        available_quanta = list(context.available_quanta)
 
     quanta_needed = min(quanta_needed, len(available_quanta))
 
@@ -435,8 +445,13 @@ def create_component_session_with_conflict_avoidance(
     group_schedule[group_id].update(assigned_quanta)
 
     # Create session gene
+    # Extract course_id and course_type
+    actual_course_id = course_id[0] if isinstance(course_id, tuple) else course_id
+    actual_course_type = component_type
+
     session_gene = SessionGene(
-        course_id=course_id,
+        course_id=actual_course_id,
+        course_type=actual_course_type,
         instructor_id=instructor_id,
         group_ids=[group_id],  # Changed to list for multi-group support
         room_id=room.room_id,
@@ -496,7 +511,7 @@ def create_component_session(
     group_id: str,
     component_type: str,
     hours: int,
-    context: Dict,
+    context: SchedulingContext,
     require_special_room: bool = False,
 ) -> SessionGene:
     """
@@ -513,13 +528,13 @@ def create_component_session(
     Returns:
         SessionGene object for this component (or None if creation fails)
     """
-    course = context["courses"][course_id]
+    course = context.courses[course_id]
 
     # Find qualified instructors
     qualified_instructors = find_qualified_instructors(course_id, context)
     if not qualified_instructors:
         # Fallback to any instructor if none qualified
-        qualified_instructors = list(context["instructors"].values())
+        qualified_instructors = list(context.instructors.values())
 
     if not qualified_instructors:
         print(f"Warning: No instructors available for course {course_id}")
@@ -533,7 +548,7 @@ def create_component_session(
     )
     if not suitable_rooms:
         # Fallback to any room if none suitable
-        suitable_rooms = list(context["rooms"].values())
+        suitable_rooms = list(context.rooms.values())
 
     if not suitable_rooms:
         print(f"Warning: No rooms available for course {course_id}")
@@ -548,20 +563,23 @@ def create_component_session(
 
     raw_quanta_needed = max(1, int(hours * quanta_per_hour))
     quanta_needed = min(raw_quanta_needed, max_session_length)
-    quanta_needed = min(quanta_needed, len(context["available_quanta"]))
+    quanta_needed = min(quanta_needed, len(context.available_quanta))
 
     # Assign time quanta with some intelligence
-    assigned_quanta = assign_intelligent_quanta(
-        quanta_needed, context["available_quanta"]
-    )
+    assigned_quanta = assign_intelligent_quanta(quanta_needed, context.available_quanta)
 
     if not assigned_quanta:
         print(f"Warning: No time quanta available for course {course_id}")
         return None
 
     # Create session gene
+    # Extract course_id and course_type
+    actual_course_id = course_id[0] if isinstance(course_id, tuple) else course_id
+    actual_course_type = component_type
+
     session_gene = SessionGene(
-        course_id=course_id,
+        course_id=actual_course_id,
+        course_type=actual_course_type,
         instructor_id=instructor.instructor_id,
         group_ids=[group_id],  # Changed to list for multi-group support
         room_id=room.room_id,
@@ -571,13 +589,19 @@ def create_component_session(
     return session_gene
 
 
-def find_qualified_instructors(course_id: str, context: Dict) -> List:
-    """Find instructors qualified to teach this course."""
+def find_qualified_instructors(course_id, context: SchedulingContext) -> List:
+    """
+    Find instructors qualified to teach this course.
+
+    Args:
+        course_id: Can be plain string or (course_code, course_type) tuple
+    """
     qualified = []
 
-    for instructor in context["instructors"].values():
+    for instructor in context.instructors.values():
         # Check if instructor is qualified for this course
-        qualified_courses = getattr(instructor, "qualified_courses", [course_id])
+        # instructor.qualified_courses now contains tuples (course_code, course_type)
+        qualified_courses = getattr(instructor, "qualified_courses", [])
         if course_id in qualified_courses:
             qualified.append(instructor)
 
@@ -585,7 +609,10 @@ def find_qualified_instructors(course_id: str, context: Dict) -> List:
 
 
 def find_suitable_rooms(
-    course, component_type: str, context: Dict, require_special_room: bool = False
+    course,
+    component_type: str,
+    context: SchedulingContext,
+    require_special_room: bool = False,
 ) -> List:
     """
     Find rooms suitable for this course component.
@@ -600,12 +627,12 @@ def find_suitable_rooms(
     # Find the group size for capacity matching
     # Look through all groups to find ones enrolled in this course
     max_group_size = 30  # default
-    for group in context["groups"].values():
+    for group in context.groups.values():
         if course_id in getattr(group, "enrolled_courses", []):
             group_size = getattr(group, "student_count", 30)
             max_group_size = max(max_group_size, group_size)
 
-    for room in context["rooms"].values():
+    for room in context.rooms.values():
         room_features = getattr(room, "room_features", [])
         room_capacity = getattr(room, "capacity", 50)
         room_type = getattr(room, "type", "Classroom")
@@ -737,6 +764,7 @@ def generate_random_gene(
 
     return SessionGene(
         course_id=course.course_id,
+        course_type=getattr(course, "course_type", "theory"),  # Default to theory
         instructor_id=instructor.instructor_id,
         group_ids=[group.group_id],  # Changed to list for multi-group support
         room_id=room.room_id,
@@ -745,7 +773,7 @@ def generate_random_gene(
 
 
 def generate_population(
-    n: int, session_count: int = None, context: Dict = None
+    n: int, session_count: int = None, context: SchedulingContext = None
 ) -> List:
     """
     Wrapper function for backward compatibility.

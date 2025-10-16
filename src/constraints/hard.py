@@ -52,7 +52,7 @@ def no_instructor_conflict(sessions: List[CourseSession]) -> int:
 
 
 def instructor_not_qualified(
-    sessions: List[CourseSession], course_map: Dict[str, Course]
+    sessions: List[CourseSession], course_map: Dict[tuple, Course]
 ) -> int:
     """
     Checks how many sessions are assigned to unqualified instructors.
@@ -60,7 +60,12 @@ def instructor_not_qualified(
     violations = 0
 
     for session in sessions:
-        qualified = course_map[session.course_id].qualified_instructor_ids
+        # Construct tuple key from course_id and course_type
+        course_key = (session.course_id, session.course_type)
+        if course_key not in course_map:
+            continue  # Skip if course not found
+
+        qualified = course_map[course_key].qualified_instructor_ids
         if session.instructor_id not in qualified:
             violations += 1
 

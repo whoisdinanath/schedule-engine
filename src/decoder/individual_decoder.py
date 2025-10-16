@@ -50,7 +50,10 @@ def decode_individual(
     decoded_sessions = []
 
     for gene in individual:
-        course = courses[gene.course_id]
+        # Look up course using tuple key (course_id, course_type)
+        course_key = (gene.course_id, gene.course_type)
+        course = courses[course_key]
+
         instructor = instructors[gene.instructor_id]
         # Get primary group (first group in the list)
         group = groups[gene.group_ids[0]] if gene.group_ids else None
@@ -59,13 +62,13 @@ def decode_individual(
         session = CourseSession(
             course_id=gene.course_id,
             instructor_id=gene.instructor_id,
-            group_ids=gene.group_ids,  # Now directly use the list from gene
+            group_ids=gene.group_ids,
             room_id=gene.room_id,
             session_quanta=gene.quanta,
             required_room_features=course.required_room_features,
-            course_type=course.course_type,  # Propagate course type
+            course_type=gene.course_type,  # Use gene's course_type
             instructor=instructor,
-            group=group,  # Primary group for backward compatibility
+            group=group,  # Primary group (first in list)
             room=room,
         )
 

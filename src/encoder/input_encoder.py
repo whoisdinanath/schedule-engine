@@ -93,6 +93,9 @@ def load_instructors(path: str, qts: QuantumTimeSystem) -> Dict[str, Instructor]
     """
     Loads instructor data from JSON file and encodes their availability.
 
+    New format supports courses as list of objects with 'coursecode' and 'coursetype'.
+    Old format supported courses as flat list of strings.
+
     Args:
         path (str): Path to JSON file.
         qts (QuantumTimeSystem): Time conversion system.
@@ -109,25 +112,50 @@ def load_instructors(path: str, qts: QuantumTimeSystem) -> Dict[str, Instructor]
             encode_availability(availability, qts) if availability else set()
         )
 
+        # Parse courses - support both old flat list and new object format
+        courses_data = item.get("courses", [])
+        course_qualifications = []
+
+        for course_entry in courses_data:
+            if isinstance(course_entry, dict):
+                # New format: {"coursecode": "ENSH 151", "coursetype": "Theory"}
+                course_qualifications.append(course_entry)
+            else:
+                # Old format: "ENSH 151" or "ENSH 151-PR"
+                # Convert to new format for backward compatibility
+                if course_entry.endswith("-PR"):
+                    course_qualifications.append(
+                        {"coursecode": course_entry[:-3], "coursetype": "Practical"}
+                    )
+                else:
+                    course_qualifications.append(
+                        {"coursecode": course_entry, "coursetype": "Theory"}
+                    )
+
         instructors[item["id"]] = Instructor(
             instructor_id=item["id"],
             name=item["name"],
-            qualified_courses=item.get("courses", []),
+            qualified_courses=course_qualifications,
             is_full_time=is_full_time,
             available_quanta=available_quanta,
         )
     return instructors
 
 
-def load_courses(path: str) -> Dict[str, Course]:
+def load_courses(path: str) -> Dict[tuple, Course]:
     """
-    Loads courses from FullSyllabusAll format and splits them into separate theory/practical subjects.
+    Loads courses from FullSyllabusAll format and creates separate theory/practical course objects.
+
+    Clean architecture: NO suffix overhead!
+    - course_id = course_code (plain, e.g., "ENME 103")
+    - course_type attribute = "theory" or "practical"
+    - Dict keyed by (course_code, course_type) tuple for uniqueness
 
     Args:
         path (str): Path to the course JSON file.
 
     Returns:
-        Dict[str, Course]: Dictionary of Course objects, with practical courses suffixed by "-PR".
+        Dict[tuple, Course]: Dictionary keyed by (course_code, course_type) tuples.
     """
     data = json.load(open(path))
     courses = {}
@@ -151,9 +179,8 @@ def load_courses(path: str) -> Dict[str, Course]:
 
         # Create theory course object if L + T > 0
         if L + T > 0:
-            theory_id = course_code
             course = Course(
-                course_id=theory_id,
+                course_id=course_code,  # Plain course code, no suffix!
                 name=f"{name} (Theory)",
                 quanta_per_week=int(L + T),
                 required_room_features=["lecture room"],
@@ -167,13 +194,13 @@ def load_courses(path: str) -> Dict[str, Course]:
             course.credits = credits
             course.lecture_hours = L + T
             course.practical_hours = 0
-            courses[theory_id] = course
+            # Key by (course_code, course_type) for uniqueness
+            courses[(course_code, "theory")] = course
 
         # Create practical course object if P > 0
         if P > 0:
-            practical_id = course_code + "-PR"
             course = Course(
-                course_id=practical_id,
+                course_id=course_code,  # Same course_id as theory!
                 name=f"{name} (Practical)",
                 quanta_per_week=int(P),
                 required_room_features=practical_features or ["lab"],
@@ -181,15 +208,14 @@ def load_courses(path: str) -> Dict[str, Course]:
                 qualified_instructor_ids=[],
                 course_type="practical",
             )
-            course.course_code = (
-                course_code  # Use base course_code for instructor matching
-            )
+            course.course_code = course_code
             course.department = department
             course.semester = semester
             course.credits = credits
             course.lecture_hours = 0
             course.practical_hours = P
-            courses[practical_id] = course
+            # Key by (course_code, course_type) for uniqueness
+            courses[(course_code, "practical")] = course
 
     return courses
 
@@ -298,84 +324,85 @@ def load_rooms(path: str, qts: QuantumTimeSystem) -> Dict[str, Room]:
 
 
 def link_courses_and_groups(
-    courses: Dict[str, Course], groups: Dict[str, Group]
+    courses: Dict[tuple, Course], groups: Dict[str, Group]
 ) -> None:
     """
     Links courses and groups based on group enrollment.
 
     Args:
-        courses (Dict[str, Course]): Courses to update.
+        courses (Dict[tuple, Course]): Courses dict keyed by (course_code, course_type).
         groups (Dict[str, Group]): Groups with enrolled course codes.
     """
     for course in courses.values():
         course.enrolled_group_ids = []
 
-    # BUGFIX: Link groups to ALL courses with matching course_code
-    # (theory AND practical versions)
+    # Link groups to ALL courses with matching course_code (theory AND practical)
     for group_id, group in groups.items():
         for course_code in group.enrolled_courses:
-            # Find ALL courses with this course_code
-            # (theory courses and practical courses share the same course_code)
-            matching_courses = [
-                c
-                for c in courses.values()
-                if hasattr(c, "course_code") and c.course_code == course_code
-            ]
+            # Check for both theory and practical versions
+            theory_key = (course_code, "theory")
+            practical_key = (course_code, "practical")
 
-            # If no match found by course_code, try direct lookup by course_id
-            if not matching_courses and course_code in courses:
-                matching_courses = [courses[course_code]]
+            found_any = False
+            if theory_key in courses:
+                if group_id not in courses[theory_key].enrolled_group_ids:
+                    courses[theory_key].enrolled_group_ids.append(group_id)
+                found_any = True
 
-            # Link group to ALL matching courses
-            for course in matching_courses:
-                if group_id not in course.enrolled_group_ids:
-                    course.enrolled_group_ids.append(group_id)
+            if practical_key in courses:
+                if group_id not in courses[practical_key].enrolled_group_ids:
+                    courses[practical_key].enrolled_group_ids.append(group_id)
+                found_any = True
 
-    unassigned = [cid for cid, c in courses.items() if not c.enrolled_group_ids]
-    if unassigned:
-        print(f"Warning: Courses with no enrolled groups: {unassigned}")
+            if not found_any:
+                print(
+                    f"⚠️  Warning: No courses found for '{course_code}' in group {group_id}"
+                )
+
+    # Note: We no longer warn about unassigned courses here since filtering
+    # happens in load_input_data() before this function is called
 
 
 def link_courses_and_instructors(
-    courses: Dict[str, Course], instructors: Dict[str, Instructor]
+    courses: Dict[tuple, Course], instructors: Dict[str, Instructor]
 ) -> None:
     """
     Links instructors to the courses they are qualified to teach.
 
+    Instructor qualified_courses contains dicts with 'coursecode' and 'coursetype'.
+    Maps instructors to specific course types based on coursetype field.
+
     Args:
-        courses (Dict[str, Course]): Course dictionary.
+        courses (Dict[tuple, Course]): Course dict keyed by (course_code, course_type).
         instructors (Dict[str, Instructor]): Instructor dictionary.
+
+    Note:
+        After linking, instructor.qualified_courses contains (course_code, course_type) tuples.
+        instructor.original_qualified_courses preserves the raw JSON data for validation.
     """
-    # BUGFIX: Store original qualified courses BEFORE clearing
-    # The original bug cleared instructor.qualified_courses first,
-    # then tried to iterate over it (which was now empty!)
+    # Store original qualified courses BEFORE clearing
     instructor_original_courses = {}
     for instructor_id, instructor in instructors.items():
         instructor_original_courses[instructor_id] = instructor.qualified_courses[:]
+        if not hasattr(instructor, "original_qualified_courses"):
+            instructor.original_qualified_courses = instructor.qualified_courses[:]
         instructor.qualified_courses = []
 
     for course in courses.values():
         course.qualified_instructor_ids = []
 
-    # BUGFIX: Use the SAVED original courses, not the cleared ones
-    # Also link to ALL courses with matching course_code (theory AND practical)
+    # Link instructors to courses based on coursecode and coursetype
     for instructor_id, instructor in instructors.items():
-        for course_code in instructor_original_courses[instructor_id]:
-            # Find ALL courses with this course_code
-            # (theory courses and practical courses share the same course_code)
-            matching_courses = [
-                c
-                for c in courses.values()
-                if hasattr(c, "course_code") and c.course_code == course_code
-            ]
+        for qual_entry in instructor_original_courses[instructor_id]:
+            course_code = qual_entry["coursecode"]
+            course_type = qual_entry["coursetype"].lower()  # "theory" or "practical"
 
-            # If no match found by course_code, try direct lookup by course_id
-            if not matching_courses and course_code in courses:
-                matching_courses = [courses[course_code]]
+            # Direct lookup using tuple key
+            course_key = (course_code, course_type)
 
-            # Link instructor to ALL matching courses
-            for course in matching_courses:
+            if course_key in courses:
+                course = courses[course_key]
                 if instructor_id not in course.qualified_instructor_ids:
                     course.qualified_instructor_ids.append(instructor_id)
-                if course.course_id not in instructor.qualified_courses:
-                    instructor.qualified_courses.append(course.course_id)
+                if course_key not in instructor.qualified_courses:
+                    instructor.qualified_courses.append(course_key)

@@ -3,18 +3,9 @@
         "id": "I1",
         "name": "Hariram Limbu",
         "courses": [
-            {
-                "coursecode": "ENSH 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 253",
-                "coursetype": "Theory"
-            }
+            "ENSH 151",
+            "ENSH 252",
+            "ENSH 253"
         ],
         "availability": {
             "Monday": [
@@ -53,26 +44,11 @@
         "id": "I2",
         "name": "Tek Bahadur Budathoki",
         "courses": [
-            {
-                "coursecode": "ENSH 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Practical"
-            }
+            "ENSH 151",
+            "ENSH 252",
+            "ENSH 253",
+            "ENSH 252",
+            "ENSH 252-PR"
         ],
         "availability": {
             "Monday": [
@@ -111,22 +87,10 @@
         "id": "I3",
         "name": "Anup Subedi",
         "courses": [
-            {
-                "coursecode": "ENSH 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 154",
-                "coursetype": "Theory"
-            }
+            "ENSH 151",
+            "ENSH 252",
+            "ENSH 253",
+            "ENSH 154"
         ],
         "availability": {
             "Monday": [
@@ -165,30 +129,12 @@
         "id": "I4",
         "name": "Sabita Bashyal",
         "courses": [
-            {
-                "coursecode": "ENSH 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 155",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 242",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 151",
-                "coursetype": "Theory"
-            }
+            "ENSH 151",
+            "ENSH 252",
+            "ENSH 253",
+            "ENSH 155",
+            "ENSH 242",
+            "ENCE 151"
         ],
         "availability": {
             "Monday": [
@@ -227,18 +173,9 @@
         "id": "I5",
         "name": "Merina Sthapit",
         "courses": [
-            {
-                "coursecode": "ENSH 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Theory"
-            }
+            "ENSH 151",
+            "ENSH 253",
+            "ENSH 252"
         ],
         "availability": {
             "Monday": [
@@ -277,22 +214,10 @@
         "id": "I6",
         "name": "Baldev Adhikari",
         "courses": [
-            {
-                "coursecode": "ENSH 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Practical"
-            }
+            "ENSH 151",
+            "ENSH 253",
+            "ENSH 252",
+            "ENSH 252-PR"
         ],
         "availability": {
             "Monday": [
@@ -331,10 +256,7 @@
         "id": "I7",
         "name": "Dr Manoj Kumar Thapa",
         "courses": [
-            {
-                "coursecode": "ENSH 152",
-                "coursetype": "Theory"
-            }
+            "ENSH 152"
         ],
         "availability": {
             "Monday": [
@@ -373,10 +295,7 @@
         "id": "I8",
         "name": "Yubaraj Thapa",
         "courses": [
-            {
-                "coursecode": "ENSH 152",
-                "coursetype": "Theory"
-            }
+            "ENSH 152"
         ],
         "availability": {
             "Monday": [
@@ -415,14 +334,8 @@
         "id": "I9",
         "name": "Bhupak Lal Joshi",
         "courses": [
-            {
-                "coursecode": "ENSH 152",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 152",
-                "coursetype": "Practical"
-            }
+            "ENSH 152",
+            "ENSH 152-PR"
         ],
         "availability": {
             "Monday": [
@@ -461,14 +374,8 @@
         "id": "I10",
         "name": "Manoj Kumar Tapa",
         "courses": [
-            {
-                "coursecode": "ENSH 152",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 152",
-                "coursetype": "Practical"
-            }
+            "ENSH 152",
+            "ENSH 152-PR"
         ],
         "availability": {
             "Monday": [
@@ -507,18 +414,9 @@
         "id": "I11",
         "name": "Prakash Poudel",
         "courses": [
-            {
-                "coursecode": "ENSH 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 154",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 154",
-                "coursetype": "Practical"
-            }
+            "ENSH 153",
+            "ENSH 154",
+            "ENSH 154-PR"
         ],
         "availability": {
             "Monday": [
@@ -557,18 +455,9 @@
         "id": "I12",
         "name": "Prabin Shrestha",
         "courses": [
-            {
-                "coursecode": "ENSH 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ELEC 152",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENSH 154",
-                "coursetype": "Theory"
-            }
+            "ENSH 153",
+            "ELEC 152-PR",
+            "ENSH 154"
         ],
         "availability": {
             "Monday": [
@@ -607,14 +496,8 @@
         "id": "I13",
         "name": "Pratash Poudel",
         "courses": [
-            {
-                "coursecode": "ENSH 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 153",
-                "coursetype": "Practical"
-            }
+            "ENSH 153",
+            "ENSH 153-PR"
         ],
         "availability": {
             "Monday": [
@@ -653,18 +536,9 @@
         "id": "I14",
         "name": "Dinesh Shah",
         "courses": [
-            {
-                "coursecode": "ENSH 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 154",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 154",
-                "coursetype": "Practical"
-            }
+            "ENSH 153",
+            "ENSH 154",
+            "ENSH 154-PR"
         ],
         "availability": {
             "Monday": [
@@ -703,18 +577,9 @@
         "id": "I15",
         "name": "Sharmila Dangol",
         "courses": [
-            {
-                "coursecode": "ENSH 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 154",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 154",
-                "coursetype": "Practical"
-            }
+            "ENSH 153",
+            "ENSH 154",
+            "ENSH 154-PR"
         ],
         "availability": {
             "Monday": [
@@ -753,18 +618,9 @@
         "id": "I16",
         "name": "Hemanta Khanal",
         "courses": [
-            {
-                "coursecode": "ENSH 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 155",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 242",
-                "coursetype": "Theory"
-            }
+            "ENSH 153",
+            "ENSH 155",
+            "ENSH 242"
         ],
         "availability": {
             "Monday": [
@@ -803,10 +659,7 @@
         "id": "I17",
         "name": "Pratigya K.C. Karki",
         "courses": [
-            {
-                "coursecode": "ENSH 153",
-                "coursetype": "Practical"
-            }
+            "ENSH 153-PR"
         ],
         "availability": {
             "Monday": [
@@ -845,18 +698,9 @@
         "id": "I18",
         "name": "Prabin Awasthi",
         "courses": [
-            {
-                "coursecode": "ENSH 204",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 251",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 302",
-                "coursetype": "Theory"
-            }
+            "ENSH 204",
+            "ENSH 251",
+            "ENSH 302"
         ],
         "availability": {
             "Monday": [
@@ -895,18 +739,9 @@
         "id": "I19",
         "name": "Prajwal Singh Thapa",
         "courses": [
-            {
-                "coursecode": "ENSH 204",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 251",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 302",
-                "coursetype": "Theory"
-            }
+            "ENSH 204",
+            "ENSH 251",
+            "ENSH 302"
         ],
         "availability": {
             "Monday": [
@@ -945,18 +780,9 @@
         "id": "I20",
         "name": "Arati Kumri Mainali",
         "courses": [
-            {
-                "coursecode": "ENSH 204",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 251",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENSH 302",
-                "coursetype": "Theory"
-            }
+            "ENSH 204",
+            "ENSH 251",
+            "ENSH 302"
         ],
         "availability": {
             "Monday": [
@@ -995,14 +821,8 @@
         "id": "I21",
         "name": "Anuj Ghimire",
         "courses": [
-            {
-                "coursecode": "ENCT 252",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCT 251",
-                "coursetype": "Theory"
-            }
+            "ENCT 252-PR",
+            "ENCT 251"
         ],
         "availability": {
             "Monday": [
@@ -1041,18 +861,9 @@
         "id": "I22",
         "name": "Anup Shrestha",
         "courses": [
-            {
-                "coursecode": "ENCT 254",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCT 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 151",
-                "coursetype": "Practical"
-            }
+            "ENCT 254-PR",
+            "ENCT 151",
+            "ENCT 151-PR"
         ],
         "availability": {
             "Monday": [
@@ -1091,14 +902,8 @@
         "id": "I23",
         "name": "Bibat Thokar",
         "courses": [
-            {
-                "coursecode": "ENCT 411",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 411",
-                "coursetype": "Practical"
-            }
+            "ENCT 411",
+            "ENCT 411-PR"
         ],
         "availability": {
             "Monday": [
@@ -1137,14 +942,8 @@
         "id": "I24",
         "name": "Bikal Adhikari",
         "courses": [
-            {
-                "coursecode": "ENEX 255",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 255",
-                "coursetype": "Theory"
-            }
+            "ENEX 255-PR",
+            "ENEX 255"
         ],
         "availability": {
             "Monday": [
@@ -1183,18 +982,9 @@
         "id": "I25",
         "name": "Binod Sapkota",
         "courses": [
-            {
-                "coursecode": "ENCT 304",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 304",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCT 253",
-                "coursetype": "Practical"
-            }
+            "ENCT 304",
+            "ENCT 304-PR",
+            "ENCT 253-PR"
         ],
         "availability": {
             "Monday": [
@@ -1233,14 +1023,8 @@
         "id": "I26",
         "name": "Dip ram Bhujel",
         "courses": [
-            {
-                "coursecode": "ENCT 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 253",
-                "coursetype": "Practical"
-            }
+            "ENCT 253",
+            "ENCT 253-PR"
         ],
         "availability": {
             "Monday": [
@@ -1279,18 +1063,9 @@
         "id": "I27",
         "name": "Ganesh Kumal",
         "courses": [
-            {
-                "coursecode": "ENEX 152",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEX 152",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 253",
-                "coursetype": "Practical"
-            }
+            "ENEX 152",
+            "ENEX 152-PR",
+            "ENEX 253-PR"
         ],
         "availability": {
             "Monday": [
@@ -1329,10 +1104,7 @@
         "id": "I28",
         "name": "Hari Bahadur",
         "courses": [
-            {
-                "coursecode": "ENCT 201",
-                "coursetype": "Practical"
-            }
+            "ENCT 201-PR"
         ],
         "availability": {
             "Monday": [
@@ -1371,14 +1143,8 @@
         "id": "I29",
         "name": "Hemanta Joshi",
         "courses": [
-            {
-                "coursecode": "ENCT 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 253",
-                "coursetype": "Practical"
-            }
+            "ENCT 253",
+            "ENCT 253-PR"
         ],
         "availability": {
             "Monday": [
@@ -1417,10 +1183,7 @@
         "id": "I30",
         "name": "Jalauddin Mansur",
         "courses": [
-            {
-                "coursecode": "ENCT 304",
-                "coursetype": "Practical"
-            }
+            "ENCT 304-PR"
         ],
         "availability": {
             "Monday": [
@@ -1459,10 +1222,7 @@
         "id": "I31",
         "name": "Janardhan Bhatta",
         "courses": [
-            {
-                "coursecode": "ENCT 254",
-                "coursetype": "Practical"
-            }
+            "ENCT 254-PR"
         ],
         "availability": {
             "Monday": [
@@ -1501,18 +1261,9 @@
         "id": "I32",
         "name": "Jibesh Bhattarai",
         "courses": [
-            {
-                "coursecode": "ENME 252",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCT 352",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCT 411",
-                "coursetype": "Practical"
-            }
+            "ENME 252-PR",
+            "ENCT 352-PR",
+            "ENCT 411-PR"
         ],
         "availability": {
             "Monday": [
@@ -1551,18 +1302,9 @@
         "id": "I33",
         "name": "Kiran chandra Dahal",
         "courses": [
-            {
-                "coursecode": "ENEX 152",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 152",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEX 152",
-                "coursetype": "Practical"
-            }
+            "ENEX 152-PR",
+            "ENEX 152",
+            "ENEX 152-PR"
         ],
         "availability": {
             "Monday": [
@@ -1601,22 +1343,10 @@
         "id": "I34",
         "name": "Kobid Karkee",
         "courses": [
-            {
-                "coursecode": "ENEX 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEX 254",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 411",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEX 411",
-                "coursetype": "Practical"
-            }
+            "ENEX 254",
+            "ENEX 254-PR",
+            "ENEX 411",
+            "ENEX 411-PR"
         ],
         "availability": {
             "Monday": [
@@ -1655,30 +1385,12 @@
         "id": "I35",
         "name": "Madhusudan Nyaupane",
         "courses": [
-            {
-                "coursecode": "ENEE 154",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEE 154",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEE 154",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEE 154",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEE 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEE 254",
-                "coursetype": "Practical"
-            }
+            "ENEE 154",
+            "ENEE 154-PR",
+            "ENEE 154",
+            "ENEE 154-PR",
+            "ENEE 254",
+            "ENEE 254-PR"
         ],
         "availability": {
             "Monday": [
@@ -1717,14 +1429,8 @@
         "id": "I36",
         "name": "Nirupama Bashyal",
         "courses": [
-            {
-                "coursecode": "ENME 304",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 356",
-                "coursetype": "Theory"
-            }
+            "ENME 304",
+            "ENCE 356"
         ],
         "availability": {
             "Monday": [
@@ -1763,34 +1469,13 @@
         "id": "I37",
         "name": "Praches Acharya",
         "courses": [
-            {
-                "coursecode": "ENEX 252",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 253",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 413",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 416",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 252",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 253",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 253",
-                "coursetype": "Theory"
-            }
+            "ENEX 252-PR",
+            "ENME 253-PR",
+            "ENEX 413-PR",
+            "ENEX 416-PR",
+            "ENEX 252-PR",
+            "ENEX 253-PR",
+            "ENEX 253"
         ],
         "availability": {
             "Monday": [
@@ -1829,14 +1514,8 @@
         "id": "I38",
         "name": "Prabin Sharma Poudyal",
         "courses": [
-            {
-                "coursecode": "ENCT 305",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 305 PR",
-                "coursetype": "Theory"
-            }
+            "ENCT 305",
+            "ENCT 305 PR"
         ],
         "availability": {
             "Monday": [
@@ -1875,14 +1554,8 @@
         "id": "I39",
         "name": "Pravin Sangroula",
         "courses": [
-            {
-                "coursecode": "ENCT 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 252",
-                "coursetype": "Practical"
-            }
+            "ENCT 252",
+            "ENCT 252-PR"
         ],
         "availability": {
             "Monday": [
@@ -1921,14 +1594,8 @@
         "id": "I40",
         "name": "Pradip Sah",
         "courses": [
-            {
-                "coursecode": "ENEE 154",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEE 254",
-                "coursetype": "Practical"
-            }
+            "ENEE 154-PR",
+            "ENEE 254-PR"
         ],
         "availability": {
             "Monday": [
@@ -1967,14 +1634,8 @@
         "id": "I41",
         "name": "Rajan Bhandari",
         "courses": [
-            {
-                "coursecode": "ENCT 201",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 201",
-                "coursetype": "Practical"
-            }
+            "ENCT 201",
+            "ENCT 201-PR"
         ],
         "availability": {
             "Monday": [
@@ -2013,14 +1674,8 @@
         "id": "I42",
         "name": "Rajendra Karki",
         "courses": [
-            {
-                "coursecode": "ENCT 355",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 412",
-                "coursetype": "Theory"
-            }
+            "ENCT 355",
+            "ENCT 412"
         ],
         "availability": {
             "Monday": [
@@ -2059,30 +1714,12 @@
         "id": "I43",
         "name": "Rajad Shakya",
         "courses": [
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCT 385-399",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 385-399",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCT 301",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 301",
-                "coursetype": "Practical"
-            }
+            "ENCE 365-389",
+            "ENCE 365-389-PR",
+            "ENCT 385-399",
+            "ENCT 385-399-PR",
+            "ENCT 301",
+            "ENCT 301-PR"
         ],
         "availability": {
             "Monday": [
@@ -2121,14 +1758,8 @@
         "id": "I44",
         "name": "RR",
         "courses": [
-            {
-                "coursecode": "ENEX 151",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 151",
-                "coursetype": "Theory"
-            }
+            "ENEX 151-PR",
+            "ENEX 151"
         ],
         "availability": {
             "Monday": [
@@ -2167,10 +1798,7 @@
         "id": "I45",
         "name": "Shanta Maharjan",
         "courses": [
-            {
-                "coursecode": "ENEX 417",
-                "coursetype": "Theory"
-            }
+            "ENEX 417"
         ],
         "availability": {
             "Monday": [
@@ -2209,14 +1837,8 @@
         "id": "I46",
         "name": "Shiva Shankar Sah",
         "courses": [
-            {
-                "coursecode": "ENEX 151",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 151",
-                "coursetype": "Theory"
-            }
+            "ENEX 151-PR",
+            "ENEX 151"
         ],
         "availability": {
             "Monday": [
@@ -2255,14 +1877,8 @@
         "id": "I47",
         "name": "Shiva Shankar Shah",
         "courses": [
-            {
-                "coursecode": "ENEX 301",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEX 301",
-                "coursetype": "Practical"
-            }
+            "ENEX 301",
+            "ENEX 301-PR"
         ],
         "availability": {
             "Monday": [
@@ -2301,22 +1917,10 @@
         "id": "I48",
         "name": "Shreekar Tiwari",
         "courses": [
-            {
-                "coursecode": "ENEX 416",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 413",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 416",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEX 413",
-                "coursetype": "Theory"
-            }
+            "ENEX 416-PR",
+            "ENEX 413-PR",
+            "ENEX 416",
+            "ENEX 413"
         ],
         "availability": {
             "Monday": [
@@ -2355,26 +1959,11 @@
         "id": "I49",
         "name": "Subodh Kumar Ravi",
         "courses": [
-            {
-                "coursecode": "ENEX 151",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEX 254",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 151",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 151",
-                "coursetype": "Theory"
-            }
+            "ENEX 151-PR",
+            "ENEX 151",
+            "ENEX 254-PR",
+            "ENEX 151-PR",
+            "ENEX 151"
         ],
         "availability": {
             "Monday": [
@@ -2413,14 +2002,8 @@
         "id": "I50",
         "name": "Sudeep Shrestha",
         "courses": [
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Practical"
-            }
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
         ],
         "availability": {
             "Monday": [
@@ -2459,14 +2042,8 @@
         "id": "I51",
         "name": "Sunil Thapa",
         "courses": [
-            {
-                "coursecode": "ENCT 352",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 352",
-                "coursetype": "Practical"
-            }
+            "ENCT 352",
+            "ENCT 352-PR"
         ],
         "availability": {
             "Monday": [
@@ -2505,14 +2082,8 @@
         "id": "I52",
         "name": "Sunita Raj K.C.",
         "courses": [
-            {
-                "coursecode": "ENCT 355",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCT 355",
-                "coursetype": "Practical"
-            }
+            "ENCT 355",
+            "ENCT 355-PR"
         ],
         "availability": {
             "Monday": [
@@ -2551,10 +2122,7 @@
         "id": "I53",
         "name": "Suramya Sharma Dahal",
         "courses": [
-            {
-                "coursecode": "ENEX 415",
-                "coursetype": "Theory"
-            }
+            "ENEX 415"
         ],
         "availability": {
             "Monday": [
@@ -2593,14 +2161,8 @@
         "id": "I54",
         "name": "Suwarna Lingden",
         "courses": [
-            {
-                "coursecode": "ENEX 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEX 252",
-                "coursetype": "Practical"
-            }
+            "ENEX 252",
+            "ENEX 252-PR"
         ],
         "availability": {
             "Monday": [
@@ -2639,22 +2201,10 @@
         "id": "I55",
         "name": "Umesh Kanta Ghimire",
         "courses": [
-            {
-                "coursecode": "ENCT 305",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 411",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 416",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENEX 413",
-                "coursetype": "Practical"
-            }
+            "ENCT 305-PR",
+            "ENEX 411-PR",
+            "ENEX 416-PR",
+            "ENEX 413-PR"
         ],
         "availability": {
             "Monday": [
@@ -2693,14 +2243,8 @@
         "id": "I56",
         "name": "Aayush Pudasaini",
         "courses": [
-            {
-                "coursecode": "ENIE 352",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Practical"
-            }
+            "ENIE 352-PR",
+            "ENIE 435-444-PR"
         ],
         "availability": {
             "Monday": [
@@ -2739,14 +2283,8 @@
         "id": "I57",
         "name": "Akhalesh Yadav",
         "courses": [
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Practical"
-            }
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
         ],
         "availability": {
             "Monday": [
@@ -2785,14 +2323,8 @@
         "id": "I58",
         "name": "Ankit Shrestha",
         "courses": [
-            {
-                "coursecode": "ENIE 445-449",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 445-449",
-                "coursetype": "Practical"
-            }
+            "ENIE 445-449",
+            "ENIE 445-449-PR"
         ],
         "availability": {
             "Monday": [
@@ -2831,10 +2363,7 @@
         "id": "I59",
         "name": "Ayush Pudasaini",
         "courses": [
-            {
-                "coursecode": "ENME 251",
-                "coursetype": "Practical"
-            }
+            "ENME 251-PR"
         ],
         "availability": {
             "Monday": [
@@ -2873,10 +2402,7 @@
         "id": "I60",
         "name": "Badri Prasad Adhikari",
         "courses": [
-            {
-                "coursecode": "ENAM 351",
-                "coursetype": "Theory"
-            }
+            "ENAM 351"
         ],
         "availability": {
             "Monday": [
@@ -2915,18 +2441,9 @@
         "id": "I61",
         "name": "Bhakta Man Nakarmi",
         "courses": [
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Practical"
-            }
+            "ENME 155-PR",
+            "ENME 153",
+            "ENME 155-PR"
         ],
         "availability": {
             "Monday": [
@@ -2965,14 +2482,8 @@
         "id": "I62",
         "name": "Bibek Dhungana",
         "courses": [
-            {
-                "coursecode": "ENME 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 253",
-                "coursetype": "Practical"
-            }
+            "ENME 253",
+            "ENME 253-PR"
         ],
         "availability": {
             "Monday": [
@@ -3011,18 +2522,9 @@
         "id": "I63",
         "name": "Bibek Pudasaini",
         "courses": [
-            {
-                "coursecode": "ENME 152",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 152",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            }
+            "ENME 152-PR",
+            "ENME 152",
+            "ENME 158-PR"
         ],
         "availability": {
             "Monday": [
@@ -3061,14 +2563,8 @@
         "id": "I64",
         "name": "Bikash Chhantyal",
         "courses": [
-            {
-                "coursecode": "ENME 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 254",
-                "coursetype": "Practical"
-            }
+            "ENME 254",
+            "ENME 254-PR"
         ],
         "availability": {
             "Monday": [
@@ -3107,26 +2603,11 @@
         "id": "I65",
         "name": "Bikki Chhantyal",
         "courses": [
-            {
-                "coursecode": "ENME 206",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 251",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 251",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 254",
-                "coursetype": "Practical"
-            }
+            "ENME 206-PR",
+            "ENME 251-PR",
+            "ENME 254",
+            "ENME 251-PR",
+            "ENME 254-PR"
         ],
         "availability": {
             "Monday": [
@@ -3165,34 +2646,13 @@
         "id": "I66",
         "name": "Bishal Kumar",
         "courses": [
-            {
-                "coursecode": "ENME 302",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 252",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 252",
-                "coursetype": "Practical"
-            }
+            "ENME 302-PR",
+            "ENME 252",
+            "ENME 252-PR",
+            "ENME 155",
+            "ENME 158-PR",
+            "ENME 252",
+            "ENME 252-PR"
         ],
         "availability": {
             "Monday": [
@@ -3231,14 +2691,8 @@
         "id": "I67",
         "name": "Bishwo Ram Parajuli",
         "courses": [
-            {
-                "coursecode": "ENIE 251",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 251",
-                "coursetype": "Practical"
-            }
+            "ENIE 251",
+            "ENIE 251-PR"
         ],
         "availability": {
             "Monday": [
@@ -3277,10 +2731,7 @@
         "id": "I68",
         "name": "BKJ (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "",
-                "coursetype": "Theory"
-            }
+            ""
         ],
         "availability": {
             "Monday": [
@@ -3319,10 +2770,7 @@
         "id": "I69",
         "name": "BT (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "",
-                "coursetype": "Theory"
-            }
+            ""
         ],
         "availability": {
             "Monday": [
@@ -3361,22 +2809,10 @@
         "id": "I70",
         "name": "Debendra Bahadur Raut",
         "courses": [
-            {
-                "coursecode": "ENME 303",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 252",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 309",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 309",
-                "coursetype": "Practical"
-            }
+            "ENME 303",
+            "ENME 252-PR",
+            "ENME 309",
+            "ENME 309-PR"
         ],
         "availability": {
             "Monday": [
@@ -3415,14 +2851,8 @@
         "id": "I71",
         "name": "Dharma Maharjan",
         "courses": [
-            {
-                "coursecode": "ENIE 325-334",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 325-334",
-                "coursetype": "Practical"
-            }
+            "ENIE 325-334",
+            "ENIE 325-334-PR"
         ],
         "availability": {
             "Monday": [
@@ -3461,10 +2891,7 @@
         "id": "I72",
         "name": "Gautam Das Tuladhar",
         "courses": [
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Practical"
-            }
+            "ENME 155-PR"
         ],
         "availability": {
             "Monday": [
@@ -3503,18 +2930,9 @@
         "id": "I73",
         "name": "GRP (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENIE 203",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 305",
-                "coursetype": "Theory"
-            }
+            "ENIE 203",
+            "ENIE 254",
+            "ENIE 305"
         ],
         "availability": {
             "Monday": [
@@ -3553,10 +2971,7 @@
         "id": "I74",
         "name": "Janardan Bhatta",
         "courses": [
-            {
-                "coursecode": "ENIE 411",
-                "coursetype": "Theory"
-            }
+            "ENIE 411"
         ],
         "availability": {
             "Monday": [
@@ -3595,26 +3010,11 @@
         "id": "I75",
         "name": "Kamal Pokharel",
         "courses": [
-            {
-                "coursecode": "ENME 255",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 255",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENIE 352",
-                "coursetype": "Theory"
-            }
+            "ENME 255",
+            "ENME 255-PR",
+            "ENME 155",
+            "ENME 155-PR",
+            "ENIE 352"
         ],
         "availability": {
             "Monday": [
@@ -3653,18 +3053,9 @@
         "id": "I76",
         "name": "KP (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENIE 203",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 305",
-                "coursetype": "Theory"
-            }
+            "ENIE 203",
+            "ENIE 254",
+            "ENIE 305"
         ],
         "availability": {
             "Monday": [
@@ -3703,22 +3094,10 @@
         "id": "I77",
         "name": "Laxman Palikhel",
         "courses": [
-            {
-                "coursecode": "ENAM 351",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENAM 351",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Practical"
-            }
+            "ENAM 351",
+            "ENAM 351-PR",
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
         ],
         "availability": {
             "Monday": [
@@ -3757,42 +3136,15 @@
         "id": "I78",
         "name": "Lochan Devkota",
         "courses": [
-            {
-                "coursecode": "ENME 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 151",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 206",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 206",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAM 412",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENAM 412",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 151",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 254",
-                "coursetype": "Theory"
-            }
+            "ENME 151",
+            "ENME 151-PR",
+            "ENME 206",
+            "ENME 206-PR",
+            "ENAM 412",
+            "ENAM 412-PR",
+            "ENME 151-PR",
+            "ENME 151",
+            "ENIE 254"
         ],
         "availability": {
             "Monday": [
@@ -3831,14 +3183,8 @@
         "id": "I79",
         "name": "Madhusudan Nyaupane",
         "courses": [
-            {
-                "coursecode": "ENEE 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEE 254",
-                "coursetype": "Practical"
-            }
+            "ENEE 254",
+            "ENEE 254-PR"
         ],
         "availability": {
             "Monday": [
@@ -3877,18 +3223,9 @@
         "id": "I80",
         "name": "Manoj Adhikari",
         "courses": [
-            {
-                "coursecode": "ENME 251",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENAM 352",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 251",
-                "coursetype": "Practical"
-            }
+            "ENME 251",
+            "ENAM 352",
+            "ENME 251-PR"
         ],
         "availability": {
             "Monday": [
@@ -3927,18 +3264,9 @@
         "id": "I81",
         "name": "Narad Kumar Rai",
         "courses": [
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAM 351",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAM 351",
-                "coursetype": "Theory"
-            }
+            "ENME 158-PR",
+            "ENAM 351-PR",
+            "ENAM 351"
         ],
         "availability": {
             "Monday": [
@@ -3977,18 +3305,9 @@
         "id": "I82",
         "name": "NKR (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENIE 325-334",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Practical"
-            }
+            "ENIE 325-334-PR",
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
         ],
         "availability": {
             "Monday": [
@@ -4027,10 +3346,7 @@
         "id": "I83",
         "name": "OM (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "",
-                "coursetype": "Theory"
-            }
+            ""
         ],
         "availability": {
             "Monday": [
@@ -4069,10 +3385,7 @@
         "id": "I84",
         "name": "Oscar Gautam",
         "courses": [
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            }
+            "ENME 158-PR"
         ],
         "availability": {
             "Monday": [
@@ -4111,14 +3424,8 @@
         "id": "I85",
         "name": "Pitambar Chaulagain",
         "courses": [
-            {
-                "coursecode": "ENIE 251",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 251",
-                "coursetype": "Practical"
-            }
+            "ENIE 251",
+            "ENIE 251-PR"
         ],
         "availability": {
             "Monday": [
@@ -4157,10 +3464,7 @@
         "id": "I86",
         "name": "Pradip Sah",
         "courses": [
-            {
-                "coursecode": "ENME 255",
-                "coursetype": "Practical"
-            }
+            "ENME 255-PR"
         ],
         "availability": {
             "Monday": [
@@ -4199,22 +3503,10 @@
         "id": "I87",
         "name": "Pradip Shah",
         "courses": [
-            {
-                "coursecode": "ENME 255",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 255",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 307",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 307",
-                "coursetype": "Theory"
-            }
+            "ENME 255-PR",
+            "ENME 255",
+            "ENCE 307-PR",
+            "ENCE 307"
         ],
         "availability": {
             "Monday": [
@@ -4253,26 +3545,11 @@
         "id": "I88",
         "name": "Pramod Shrestha",
         "courses": [
-            {
-                "coursecode": "ENME 254",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 307",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 307",
-                "coursetype": "Practical"
-            }
+            "ENME 254-PR",
+            "ENCE 251-PR",
+            "ENCE 151",
+            "ENCE 307",
+            "ENCE 307-PR"
         ],
         "availability": {
             "Monday": [
@@ -4311,18 +3588,9 @@
         "id": "I89",
         "name": "Pratik Adhikari",
         "courses": [
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 253",
-                "coursetype": "Theory"
-            }
+            "ENME 155-PR",
+            "ENME 155",
+            "ENME 253"
         ],
         "availability": {
             "Monday": [
@@ -4361,18 +3629,9 @@
         "id": "I90",
         "name": "PS (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENIE 325-334",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Practical"
-            }
+            "ENIE 325-334-PR",
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
         ],
         "availability": {
             "Monday": [
@@ -4411,18 +3670,9 @@
         "id": "I91",
         "name": "Purusottam Khatiwada",
         "courses": [
-            {
-                "coursecode": "ENME 152",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Theory"
-            }
+            "ENME 152",
+            "ENME 158-PR",
+            "ENME 158"
         ],
         "availability": {
             "Monday": [
@@ -4461,22 +3711,10 @@
         "id": "I92",
         "name": "Raj Kumar Chaulagain",
         "courses": [
-            {
-                "coursecode": "ENME 152",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 255",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 255",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 152",
-                "coursetype": "Practical"
-            }
+            "ENME 152",
+            "ENME 255",
+            "ENME 255-PR",
+            "ENME 152-PR"
         ],
         "availability": {
             "Monday": [
@@ -4515,10 +3753,7 @@
         "id": "I93",
         "name": "Rajan Dahal",
         "courses": [
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            }
+            "ENME 158-PR"
         ],
         "availability": {
             "Monday": [
@@ -4557,14 +3792,8 @@
         "id": "I94",
         "name": "Rajan Sharma",
         "courses": [
-            {
-                "coursecode": "ENIE 352",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 352",
-                "coursetype": "Practical"
-            }
+            "ENIE 352",
+            "ENIE 352-PR"
         ],
         "availability": {
             "Monday": [
@@ -4603,10 +3832,7 @@
         "id": "I95",
         "name": "Ram Kumar Joshi",
         "courses": [
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Practical"
-            }
+            "ENME 155-PR"
         ],
         "availability": {
             "Monday": [
@@ -4645,26 +3871,11 @@
         "id": "I96",
         "name": "Sajendra Man Bajracharya",
         "courses": [
-            {
-                "coursecode": "ENME 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 256",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 303",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 152",
-                "coursetype": "Practical"
-            }
+            "ENME 153",
+            "ENME 158-PR",
+            "ENME 256",
+            "ENME 303",
+            "ENME 152-PR"
         ],
         "availability": {
             "Monday": [
@@ -4703,10 +3914,7 @@
         "id": "I97",
         "name": "Shambhu Krishna Mastara",
         "courses": [
-            {
-                "coursecode": "ENME 155",
-                "coursetype": "Practical"
-            }
+            "ENME 155-PR"
         ],
         "availability": {
             "Monday": [
@@ -4745,10 +3953,7 @@
         "id": "I98",
         "name": "SM (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENEE 307",
-                "coursetype": "Practical"
-            }
+            "ENEE 307-PR"
         ],
         "availability": {
             "Monday": [
@@ -4787,14 +3992,8 @@
         "id": "I99",
         "name": "SP (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 435-444",
-                "coursetype": "Practical"
-            }
+            "ENIE 435-444",
+            "ENIE 435-444-PR"
         ],
         "availability": {
             "Monday": [
@@ -4833,10 +4032,7 @@
         "id": "I100",
         "name": "SRG (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENIE 301",
-                "coursetype": "Theory"
-            }
+            "ENIE 301"
         ],
         "availability": {
             "Monday": [
@@ -4875,14 +4071,8 @@
         "id": "I101",
         "name": "SRG (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENIE 352",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 352",
-                "coursetype": "Practical"
-            }
+            "ENIE 352",
+            "ENIE 352-PR"
         ],
         "availability": {
             "Monday": [
@@ -4921,18 +4111,9 @@
         "id": "I102",
         "name": "Sudan Neupane",
         "courses": [
-            {
-                "coursecode": "ENME 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 151",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENSH 252",
-                "coursetype": "Practical"
-            }
+            "ENME 151",
+            "ENME 151-PR",
+            "ENSH 252-PR"
         ],
         "availability": {
             "Monday": [
@@ -4971,14 +4152,8 @@
         "id": "I103",
         "name": "Sudhan Neupane",
         "courses": [
-            {
-                "coursecode": "ENIE 325-334",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 325-334",
-                "coursetype": "Practical"
-            }
+            "ENIE 325-334",
+            "ENIE 325-334-PR"
         ],
         "availability": {
             "Monday": [
@@ -5017,14 +4192,8 @@
         "id": "I104",
         "name": "Sudhan Neupane",
         "courses": [
-            {
-                "coursecode": "ENIE 445-449",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENIE 445-449",
-                "coursetype": "Practical"
-            }
+            "ENIE 445-449",
+            "ENIE 445-449-PR"
         ],
         "availability": {
             "Monday": [
@@ -5063,10 +4232,7 @@
         "id": "I105",
         "name": "Sugam Maharjan",
         "courses": [
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            }
+            "ENME 158-PR"
         ],
         "availability": {
             "Monday": [
@@ -5105,10 +4271,7 @@
         "id": "I106",
         "name": "Sujit Regmi",
         "courses": [
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            }
+            "ENME 158-PR"
         ],
         "availability": {
             "Monday": [
@@ -5147,14 +4310,8 @@
         "id": "I107",
         "name": "Suman Acharya",
         "courses": [
-            {
-                "coursecode": "ENME 255",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 255",
-                "coursetype": "Practical"
-            }
+            "ENME 255",
+            "ENME 255-PR"
         ],
         "availability": {
             "Monday": [
@@ -5193,14 +4350,8 @@
         "id": "I108",
         "name": "Suman Acharya",
         "courses": [
-            {
-                "coursecode": "ENME 414",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 414",
-                "coursetype": "Practical"
-            }
+            "ENME 414-PR",
+            "ENME 414-PR"
         ],
         "availability": {
             "Monday": [
@@ -5239,26 +4390,11 @@
         "id": "I109",
         "name": "Sunil Adhikari",
         "courses": [
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 158",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 256",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENAM 352",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENAM 352",
-                "coursetype": "Practical"
-            }
+            "ENME 158-PR",
+            "ENME 158",
+            "ENCE 256",
+            "ENAM 352",
+            "ENAM 352-PR"
         ],
         "availability": {
             "Monday": [
@@ -5297,14 +4433,8 @@
         "id": "I110",
         "name": "Sunny Pradhan",
         "courses": [
-            {
-                "coursecode": "ENAM 351",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENAM 351",
-                "coursetype": "Practical"
-            }
+            "ENAM 351",
+            "ENAM 351-PR"
         ],
         "availability": {
             "Monday": [
@@ -5343,10 +4473,7 @@
         "id": "I111",
         "name": "Sushant Raj Giri",
         "courses": [
-            {
-                "coursecode": "ENME 356",
-                "coursetype": "Theory"
-            }
+            "ENME 356"
         ],
         "availability": {
             "Monday": [
@@ -5385,10 +4512,7 @@
         "id": "I112",
         "name": "UA (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENIE 301",
-                "coursetype": "Theory"
-            }
+            "ENIE 301"
         ],
         "availability": {
             "Monday": [
@@ -5427,14 +4551,8 @@
         "id": "I113",
         "name": "UKG (Full name not provided)",
         "courses": [
-            {
-                "coursecode": "ENEE 307",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENEE 307",
-                "coursetype": "Practical"
-            }
+            "ENEE 307",
+            "ENEE 307-PR"
         ],
         "availability": {
             "Monday": [
@@ -5473,22 +4591,10 @@
         "id": "I114",
         "name": "Abinesh Khatri",
         "courses": [
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 202",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 202",
-                "coursetype": "Practical"
-            }
+            "ENCE 252",
+            "ENCE 252-PR",
+            "ENCE 202",
+            "ENCE 202-PR"
         ],
         "availability": {
             "Monday": [
@@ -5527,14 +4633,8 @@
         "id": "I115",
         "name": "Atul Bhandari",
         "courses": [
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Theory"
-            }
+            "ENCE 254-PR",
+            "ENCE 254"
         ],
         "availability": {
             "Monday": [
@@ -5573,30 +4673,12 @@
         "id": "I116",
         "name": "Bhes Kumar Karki",
         "courses": [
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Theory"
-            }
+            "ENCE 153-PR",
+            "ENCE 153",
+            "ENCE 254",
+            "ENCE 153",
+            "ENCE 153-PR",
+            "ENCE 254"
         ],
         "availability": {
             "Monday": [
@@ -5635,22 +4717,10 @@
         "id": "I117",
         "name": "Bibek Babu Lamichhanie",
         "courses": [
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Practical"
-            }
+            "ENCE 253",
+            "ENCE 253-PR",
+            "ENCE 253",
+            "ENCE 253-PR"
         ],
         "availability": {
             "Monday": [
@@ -5689,14 +4759,8 @@
         "id": "I118",
         "name": "Bibek Pudasaini",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            }
+            "ENME 101",
+            "ENME 101-PR"
         ],
         "availability": {
             "Monday": [
@@ -5735,10 +4799,7 @@
         "id": "I119",
         "name": "Bijaya Kumar Tuladhar",
         "courses": [
-            {
-                "coursecode": "ENCE 255",
-                "coursetype": "Theory"
-            }
+            "ENCE 255"
         ],
         "availability": {
             "Monday": [
@@ -5777,18 +4838,9 @@
         "id": "I120",
         "name": "Bimal Ojha",
         "courses": [
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 352",
-                "coursetype": "Theory"
-            }
+            "ENCE 252",
+            "ENCE 252-PR",
+            "ENCE 352"
         ],
         "availability": {
             "Monday": [
@@ -5827,26 +4879,11 @@
         "id": "I121",
         "name": "Biraj Pandey",
         "courses": [
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 352",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            }
+            "ENCE 205",
+            "ENCE 205-PR",
+            "ENCE 352-PR",
+            "ENME 101",
+            "ENME 101-PR"
         ],
         "availability": {
             "Monday": [
@@ -5885,14 +4922,8 @@
         "id": "I122",
         "name": "Bishal Kumar",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            }
+            "ENME 101",
+            "ENME 101-PR"
         ],
         "availability": {
             "Monday": [
@@ -5931,18 +4962,9 @@
         "id": "I123",
         "name": "Charchit Nagila",
         "courses": [
-            {
-                "coursecode": "ENCE 151",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 205",
-                "coursetype": "Theory"
-            }
+            "ENCE 151-PR",
+            "ENCE 151",
+            "ENME 205"
         ],
         "availability": {
             "Monday": [
@@ -5981,42 +5003,15 @@
         "id": "I124",
         "name": "ChiniKaji Maharjan",
         "courses": [
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 203",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 203",
-                "coursetype": "Theory"
-            }
+            "ENCE 153-PR",
+            "ENCE 253",
+            "ENCE 253-PR",
+            "ENCE 205",
+            "ENCE 205-PR",
+            "ENCE 153",
+            "ENCE 153-PR",
+            "ENCE 203-PR",
+            "ENCE 203"
         ],
         "availability": {
             "Monday": [
@@ -6055,14 +5050,8 @@
         "id": "I125",
         "name": "Deepak Gautam",
         "courses": [
-            {
-                "coursecode": "ENCE 152",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 152",
-                "coursetype": "Practical"
-            }
+            "ENCE 152",
+            "ENCE 152-PR"
         ],
         "availability": {
             "Monday": [
@@ -6101,18 +5090,9 @@
         "id": "I126",
         "name": "Alin Chandra Shakya",
         "courses": [
-            {
-                "coursecode": "ENCE 260",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Practical"
-            }
+            "ENCE 260",
+            "ENCE 252",
+            "ENCE 252-PR"
         ],
         "availability": {
             "Monday": [
@@ -6151,14 +5131,8 @@
         "id": "I127",
         "name": "Indra Narayan Yadav",
         "courses": [
-            {
-                "coursecode": "ENCE 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 151",
-                "coursetype": "Practical"
-            }
+            "ENCE 151",
+            "ENCE 151-PR"
         ],
         "availability": {
             "Monday": [
@@ -6197,14 +5171,8 @@
         "id": "I128",
         "name": "Sanjeema Bajracharya",
         "courses": [
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 156",
-                "coursetype": "Theory"
-            }
+            "ENCE 205",
+            "ENCE 156"
         ],
         "availability": {
             "Monday": [
@@ -6243,22 +5211,10 @@
         "id": "I129",
         "name": "Sujan Tripathi",
         "courses": [
-            {
-                "coursecode": "ENCE 352",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 352",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Practical"
-            }
+            "ENCE 352",
+            "ENCE 352-PR",
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
         ],
         "availability": {
             "Monday": [
@@ -6297,18 +5253,9 @@
         "id": "I130",
         "name": "Om Shanti Maharjan",
         "courses": [
-            {
-                "coursecode": "ENCE 261",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 261",
-                "coursetype": "Practical"
-            }
+            "ENCE 261-PR",
+            "ENCE 153-PR",
+            "ENCE 261-PR"
         ],
         "availability": {
             "Monday": [
@@ -6347,14 +5294,8 @@
         "id": "I131",
         "name": "Pradeep Prasad Bhatta",
         "courses": [
-            {
-                "coursecode": "ENCE 261",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 261",
-                "coursetype": "Theory"
-            }
+            "ENCE 261-PR",
+            "ENCE 261"
         ],
         "availability": {
             "Monday": [
@@ -6393,14 +5334,8 @@
         "id": "I132",
         "name": "Gobinda Prasad Paudel",
         "courses": [
-            {
-                "coursecode": "ENCE 306",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 306",
-                "coursetype": "Practical"
-            }
+            "ENCE 306",
+            "ENCE 306-PR"
         ],
         "availability": {
             "Monday": [
@@ -6439,14 +5374,8 @@
         "id": "I133",
         "name": "Gopal Bhattarai",
         "courses": [
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Theory"
-            }
+            "ENCE 251-PR",
+            "ENCE 251"
         ],
         "availability": {
             "Monday": [
@@ -6485,14 +5414,8 @@
         "id": "I134",
         "name": "Gopal Gautam",
         "courses": [
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Theory"
-            }
+            "ENCE 251-PR",
+            "ENCE 251"
         ],
         "availability": {
             "Monday": [
@@ -6531,14 +5454,8 @@
         "id": "I135",
         "name": "Harshikesh Karna",
         "courses": [
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Practical"
-            }
+            "ENCE 252",
+            "ENCE 252-PR"
         ],
         "availability": {
             "Monday": [
@@ -6577,10 +5494,7 @@
         "id": "I136",
         "name": "Himal Karki Katuwal",
         "courses": [
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Theory"
-            }
+            "ENCE 252"
         ],
         "availability": {
             "Monday": [
@@ -6619,14 +5533,8 @@
         "id": "I137",
         "name": "Jenish Maharjan",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            }
+            "ENME 101",
+            "ENME 101-PR"
         ],
         "availability": {
             "Monday": [
@@ -6665,14 +5573,8 @@
         "id": "I138",
         "name": "Khem Raj Regmi",
         "courses": [
-            {
-                "coursecode": "ENCE 352",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 352",
-                "coursetype": "Practical"
-            }
+            "ENCE 352",
+            "ENCE 352-PR"
         ],
         "availability": {
             "Monday": [
@@ -6711,30 +5613,12 @@
         "id": "I139",
         "name": "Kiran Lal Maharjan",
         "courses": [
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 304",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 304",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 302",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 302",
-                "coursetype": "Practical"
-            }
+            "ENCE 253",
+            "ENCE 253-PR",
+            "ENCE 304",
+            "ENCE 304-PR",
+            "ENCE 302",
+            "ENCE 302-PR"
         ],
         "availability": {
             "Monday": [
@@ -6773,26 +5657,11 @@
         "id": "I140",
         "name": "Krishna Bahadur Baniya",
         "courses": [
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 352",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            }
+            "ENCE 205",
+            "ENCE 205-PR",
+            "ENCE 352-PR",
+            "ENME 101",
+            "ENME 101-PR"
         ],
         "availability": {
             "Monday": [
@@ -6831,22 +5700,10 @@
         "id": "I141",
         "name": "Krishna Bhattarai",
         "courses": [
-            {
-                "coursecode": "ENCE 353",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 353",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Practical"
-            }
+            "ENCE 353",
+            "ENCE 353-PR",
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
         ],
         "availability": {
             "Monday": [
@@ -6885,10 +5742,7 @@
         "id": "I142",
         "name": "Manoj Adhikari",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            }
+            "ENME 101"
         ],
         "availability": {
             "Monday": [
@@ -6927,10 +5781,7 @@
         "id": "I143",
         "name": "Narad Narad Kumar Rai",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            }
+            "ENME 101"
         ],
         "availability": {
             "Monday": [
@@ -6969,22 +5820,10 @@
         "id": "I144",
         "name": "Nirajan Devkota",
         "courses": [
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 403",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 403",
-                "coursetype": "Practical"
-            }
+            "ENCE 251-PR",
+            "ENCE 251",
+            "ENCE 403",
+            "ENCE 403-PR"
         ],
         "availability": {
             "Monday": [
@@ -7023,10 +5862,7 @@
         "id": "I145",
         "name": "Oscar Gautam",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            }
+            "ENME 101-PR"
         ],
         "availability": {
             "Monday": [
@@ -7065,18 +5901,9 @@
         "id": "I146",
         "name": "Piyush Pradhan",
         "courses": [
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 352",
-                "coursetype": "Theory"
-            }
+            "ENCE 205",
+            "ENCE 205-PR",
+            "ENCE 352"
         ],
         "availability": {
             "Monday": [
@@ -7115,14 +5942,8 @@
         "id": "I147",
         "name": "Pradeep Pr. Bhatta",
         "courses": [
-            {
-                "coursecode": "ENCE 351",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 261",
-                "coursetype": "Practical"
-            }
+            "ENCE 351",
+            "ENCE 261-PR"
         ],
         "availability": {
             "Monday": [
@@ -7161,10 +5982,7 @@
         "id": "I148",
         "name": "Prajwal Singh Thapa",
         "courses": [
-            {
-                "coursecode": "ENSH 251",
-                "coursetype": "Theory"
-            }
+            "ENSH 251"
         ],
         "availability": {
             "Monday": [
@@ -7203,26 +6021,11 @@
         "id": "I149",
         "name": "Pramod Shrestha",
         "courses": [
-            {
-                "coursecode": "ENCE 306",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 403",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 252",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENME 205",
-                "coursetype": "Practical"
-            }
+            "ENCE 306-PR",
+            "ENCE 403-PR",
+            "ENCE 251-PR",
+            "ENCE 252-PR",
+            "ENME 205-PR"
         ],
         "availability": {
             "Monday": [
@@ -7261,14 +6064,8 @@
         "id": "I150",
         "name": "Purushottam Khatiwada",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 205",
-                "coursetype": "Practical"
-            }
+            "ENME 101",
+            "ENME 205-PR"
         ],
         "availability": {
             "Monday": [
@@ -7307,10 +6104,7 @@
         "id": "I151",
         "name": "Rajan Dahal",
         "courses": [
-            {
-                "coursecode": "ENME 205",
-                "coursetype": "Practical"
-            }
+            "ENME 205-PR"
         ],
         "availability": {
             "Monday": [
@@ -7349,34 +6143,13 @@
         "id": "I152",
         "name": "Rajendra Bahadur Chhetri",
         "courses": [
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 403",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 403",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 251",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "",
-                "coursetype": "Theory"
-            }
+            "ENCE 251-PR",
+            "ENCE 251",
+            "ENCE 403",
+            "ENCE 403-PR",
+            "ENCE 251",
+            "ENCE 251-PR",
+            ""
         ],
         "availability": {
             "Monday": [
@@ -7415,14 +6188,8 @@
         "id": "I153",
         "name": "Rajesh Khadka",
         "courses": [
-            {
-                "coursecode": "ENCE 402",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 402",
-                "coursetype": "Practical"
-            }
+            "ENCE 402",
+            "ENCE 402-PR"
         ],
         "availability": {
             "Monday": [
@@ -7461,10 +6228,7 @@
         "id": "I154",
         "name": "Ram Prasad Neupane",
         "courses": [
-            {
-                "coursecode": "ENCE 255",
-                "coursetype": "Theory"
-            }
+            "ENCE 255"
         ],
         "availability": {
             "Monday": [
@@ -7503,50 +6267,17 @@
         "id": "I155",
         "name": "Ramesh Karki",
         "courses": [
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 302",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 203",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 203",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 153",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 261",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 261",
-                "coursetype": "Theory"
-            }
+            "ENCE 153-PR",
+            "ENCE 153",
+            "ENCE 253",
+            "ENCE 302",
+            "ENCE 203",
+            "ENCE 203-PR",
+            "ENCE 153",
+            "ENCE 153-PR",
+            "ENCE 253",
+            "ENCE 261-PR",
+            "ENCE 261"
         ],
         "availability": {
             "Monday": [
@@ -7585,10 +6316,7 @@
         "id": "I156",
         "name": "Sajendra Man Bajracharya",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            }
+            "ENME 101"
         ],
         "availability": {
             "Monday": [
@@ -7627,14 +6355,8 @@
         "id": "I157",
         "name": "Sanjima Bajracharya",
         "courses": [
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 205",
-                "coursetype": "Practical"
-            }
+            "ENCE 205",
+            "ENCE 205-PR"
         ],
         "availability": {
             "Monday": [
@@ -7673,26 +6395,11 @@
         "id": "I158",
         "name": "Shailendra Raj Khanal",
         "courses": [
-            {
-                "coursecode": "ENCE 152",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 402",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 102",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 102",
-                "coursetype": "Practical"
-            }
+            "ENCE 152-PR",
+            "ENCE 402",
+            "ENME 101-PR",
+            "ENCE 102-PR",
+            "ENCE 102-PR"
         ],
         "availability": {
             "Monday": [
@@ -7731,18 +6438,9 @@
         "id": "I159",
         "name": "Shambhu Kumar Thakur",
         "courses": [
-            {
-                "coursecode": "ENCE 151",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 253",
-                "coursetype": "Practical"
-            }
+            "ENCE 151",
+            "ENCE 253",
+            "ENCE 253-PR"
         ],
         "availability": {
             "Monday": [
@@ -7781,14 +6479,8 @@
         "id": "I160",
         "name": "Shes Raj Kafle",
         "courses": [
-            {
-                "coursecode": "ENCE 302",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 302",
-                "coursetype": "Practical"
-            }
+            "ENCE 302",
+            "ENCE 302-PR"
         ],
         "availability": {
             "Monday": [
@@ -7827,22 +6519,10 @@
         "id": "I161",
         "name": "Subha Laxmi Ranjitkar",
         "courses": [
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Practical"
-            }
+            "ENCE 254-PR",
+            "ENCE 254",
+            "ENCE 254",
+            "ENCE 254-PR"
         ],
         "availability": {
             "Monday": [
@@ -7881,14 +6561,8 @@
         "id": "I162",
         "name": "Sugam Maharjan",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            }
+            "ENME 101",
+            "ENME 101-PR"
         ],
         "availability": {
             "Monday": [
@@ -7927,14 +6601,8 @@
         "id": "I163",
         "name": "Sujit Regmi",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            }
+            "ENME 101",
+            "ENME 101-PR"
         ],
         "availability": {
             "Monday": [
@@ -7973,26 +6641,11 @@
         "id": "I164",
         "name": "Sukriti Suvedi",
         "courses": [
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 254",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 351",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Practical"
-            }
+            "ENCE 254",
+            "ENCE 254-PR",
+            "ENCE 351",
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
         ],
         "availability": {
             "Monday": [
@@ -8031,14 +6684,8 @@
         "id": "I165",
         "name": "Sunil Adhikari",
         "courses": [
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENME 101",
-                "coursetype": "Practical"
-            }
+            "ENME 101",
+            "ENME 101-PR"
         ],
         "availability": {
             "Monday": [
@@ -8077,14 +6724,8 @@
         "id": "I166",
         "name": "Surakshya Kafle",
         "courses": [
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 365-389",
-                "coursetype": "Practical"
-            }
+            "ENCE 365-389",
+            "ENCE 365-389-PR"
         ],
         "availability": {
             "Monday": [
@@ -8123,14 +6764,8 @@
         "id": "I167",
         "name": "Sushant Sapkota",
         "courses": [
-            {
-                "coursecode": "ENCE 152",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 152",
-                "coursetype": "Practical"
-            }
+            "ENCE 152",
+            "ENCE 152-PR"
         ],
         "availability": {
             "Monday": [
@@ -8169,10 +6804,7 @@
         "id": "I168",
         "name": "Extra Professor 1",
         "courses": [
-            {
-                "coursecode": "ENCE 301",
-                "coursetype": "Theory"
-            }
+            "ENCE 301"
         ],
         "availability": {
             "Monday": [
@@ -8211,18 +6843,9 @@
         "id": "I169",
         "name": "Mimang Hang Kirat",
         "courses": [
-            {
-                "coursecode": "ENAR 255",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 351",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 301",
-                "coursetype": "Practical"
-            }
+            "ENAR 255-PR",
+            "ENAR 351-PR",
+            "ENAR 301-PR"
         ],
         "availability": {
             "Monday": [
@@ -8261,10 +6884,7 @@
         "id": "I170",
         "name": "Amrit Jeev Tamrakar",
         "courses": [
-            {
-                "coursecode": "ENAR 304",
-                "coursetype": "Practical"
-            }
+            "ENAR 304-PR"
         ],
         "availability": {
             "Monday": [
@@ -8303,14 +6923,8 @@
         "id": "I171",
         "name": "Bibek Karki",
         "courses": [
-            {
-                "coursecode": "ENAR 304",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 255",
-                "coursetype": "Practical"
-            }
+            "ENAR 304-PR",
+            "ENAR 255-PR"
         ],
         "availability": {
             "Monday": [
@@ -8349,14 +6963,8 @@
         "id": "I172",
         "name": "Bidita Shakya",
         "courses": [
-            {
-                "coursecode": "ENAR 351",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 301",
-                "coursetype": "Practical"
-            }
+            "ENAR 351-PR",
+            "ENAR 301-PR"
         ],
         "availability": {
             "Monday": [
@@ -8395,10 +7003,7 @@
         "id": "I173",
         "name": "Bimala Tuladhar",
         "courses": [
-            {
-                "coursecode": "ENAR 561",
-                "coursetype": "Theory"
-            }
+            "ENAR 561"
         ],
         "availability": {
             "Monday": [
@@ -8437,10 +7042,7 @@
         "id": "I174",
         "name": "Chhanya Nidal",
         "courses": [
-            {
-                "coursecode": "ENAR 501",
-                "coursetype": "Theory"
-            }
+            "ENAR 501"
         ],
         "availability": {
             "Monday": [
@@ -8479,10 +7081,7 @@
         "id": "I175",
         "name": "Niranjan Shrestha",
         "courses": [
-            {
-                "coursecode": "ENAR 254",
-                "coursetype": "Practical"
-            }
+            "ENAR 254-PR"
         ],
         "availability": {
             "Monday": [
@@ -8521,14 +7120,8 @@
         "id": "I176",
         "name": "Pradeep Adhikari",
         "courses": [
-            {
-                "coursecode": "ENAR 462",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 302",
-                "coursetype": "Theory"
-            }
+            "ENAR 462-PR",
+            "ENAR 302"
         ],
         "availability": {
             "Monday": [
@@ -8567,14 +7160,8 @@
         "id": "I177",
         "name": "Prajal Pradhan",
         "courses": [
-            {
-                "coursecode": "ENAR 254",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENAR 254",
-                "coursetype": "Practical"
-            }
+            "ENAR 254",
+            "ENAR 254-PR"
         ],
         "availability": {
             "Monday": [
@@ -8613,10 +7200,7 @@
         "id": "I178",
         "name": "Ranjan C. Prajapati",
         "courses": [
-            {
-                "coursecode": "ENAR 352",
-                "coursetype": "Theory"
-            }
+            "ENAR 352"
         ],
         "availability": {
             "Monday": [
@@ -8655,10 +7239,7 @@
         "id": "I179",
         "name": "Rashmi Shakya",
         "courses": [
-            {
-                "coursecode": "ENAR 255",
-                "coursetype": "Practical"
-            }
+            "ENAR 255-PR"
         ],
         "availability": {
             "Monday": [
@@ -8697,10 +7278,7 @@
         "id": "I180",
         "name": "Ravindra Gautam",
         "courses": [
-            {
-                "coursecode": "ENAR 465-484",
-                "coursetype": "Practical"
-            }
+            "ENAR 465-484-PR"
         ],
         "availability": {
             "Monday": [
@@ -8739,10 +7317,7 @@
         "id": "I181",
         "name": "Renu Maharjan",
         "courses": [
-            {
-                "coursecode": "ENAR 462",
-                "coursetype": "Practical"
-            }
+            "ENAR 462-PR"
         ],
         "availability": {
             "Monday": [
@@ -8781,14 +7356,8 @@
         "id": "I182",
         "name": "Richa Dhungana",
         "courses": [
-            {
-                "coursecode": "ENAR 301",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 351",
-                "coursetype": "Practical"
-            }
+            "ENAR 301-PR",
+            "ENAR 351-PR"
         ],
         "availability": {
             "Monday": [
@@ -8827,10 +7396,7 @@
         "id": "I183",
         "name": "Sanjaya Kumar Rokka",
         "courses": [
-            {
-                "coursecode": "ENAR 465-484",
-                "coursetype": "Practical"
-            }
+            "ENAR 465-484-PR"
         ],
         "availability": {
             "Monday": [
@@ -8869,26 +7435,11 @@
         "id": "I184",
         "name": "Sanjaya Maharjan",
         "courses": [
-            {
-                "coursecode": "ENEE 356",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 358",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 358",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 352",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 358",
-                "coursetype": "Practical"
-            }
+            "ENEE 356-PR",
+            "ENCE 358",
+            "ENCE 358-PR",
+            "ENAR 352",
+            "ENCE 358-PR"
         ],
         "availability": {
             "Monday": [
@@ -8927,18 +7478,9 @@
         "id": "I185",
         "name": "Shova Thapa",
         "courses": [
-            {
-                "coursecode": "ENAR 462",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 561",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENAR 501",
-                "coursetype": "Theory"
-            }
+            "ENAR 462-PR",
+            "ENAR 561",
+            "ENAR 501"
         ],
         "availability": {
             "Monday": [
@@ -8977,14 +7519,8 @@
         "id": "I186",
         "name": "Shreeejana Maharjan",
         "courses": [
-            {
-                "coursecode": "ENAR 304",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 255",
-                "coursetype": "Practical"
-            }
+            "ENAR 304-PR",
+            "ENAR 255-PR"
         ],
         "availability": {
             "Monday": [
@@ -9023,14 +7559,8 @@
         "id": "I187",
         "name": "Sudeep Sharma Poudyal",
         "courses": [
-            {
-                "coursecode": "ENAR 462",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 503",
-                "coursetype": "Theory"
-            }
+            "ENAR 462-PR",
+            "ENAR 503"
         ],
         "availability": {
             "Monday": [
@@ -9069,14 +7599,8 @@
         "id": "I188",
         "name": "Suman Joshi",
         "courses": [
-            {
-                "coursecode": "ENAR 301",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENAR 351",
-                "coursetype": "Practical"
-            }
+            "ENAR 301-PR",
+            "ENAR 351-PR"
         ],
         "availability": {
             "Monday": [
@@ -9115,10 +7639,7 @@
         "id": "I189",
         "name": "Subik Kumar Shrestha",
         "courses": [
-            {
-                "coursecode": "ENAR 501",
-                "coursetype": "Theory"
-            }
+            "ENAR 501"
         ],
         "availability": {
             "Monday": [
@@ -9157,10 +7678,7 @@
         "id": "I190",
         "name": "Bijay K. Tuladhar",
         "courses": [
-            {
-                "coursecode": "ENAR 352",
-                "coursetype": "Theory"
-            }
+            "ENAR 352"
         ],
         "availability": {
             "Monday": [
@@ -9199,10 +7717,7 @@
         "id": "I191",
         "name": "Madhusudhan Nyaupane",
         "courses": [
-            {
-                "coursecode": "ENAR 356",
-                "coursetype": "Theory"
-            }
+            "ENAR 356"
         ],
         "availability": {
             "Monday": [
@@ -9241,10 +7756,7 @@
         "id": "I192",
         "name": "Pradip Sah",
         "courses": [
-            {
-                "coursecode": "ENEE 356",
-                "coursetype": "Practical"
-            }
+            "ENEE 356-PR"
         ],
         "availability": {
             "Monday": [
@@ -9283,18 +7795,9 @@
         "id": "I193",
         "name": "Pramesh Malla",
         "courses": [
-            {
-                "coursecode": "ENAR 465-484",
-                "coursetype": "Practical"
-            },
-            {
-                "coursecode": "ENCE 358",
-                "coursetype": "Theory"
-            },
-            {
-                "coursecode": "ENCE 358",
-                "coursetype": "Practical"
-            }
+            "ENAR 465-484-PR",
+            "ENCE 358",
+            "ENCE 358-PR"
         ],
         "availability": {
             "Monday": [

@@ -12,79 +12,94 @@ from src.entities.group import Group
 
 
 def generate_course_group_pairs(
-    courses: Dict[str, Course], groups: Dict[str, Group], hierarchy: Dict
-) -> List[Tuple[str, List[str], str, int]]:
+    courses: Dict[tuple, Course], groups: Dict[str, Group], hierarchy: Dict
+) -> List[Tuple[tuple, List[str], str, int]]:
     """
     Generates (course_id, group_ids, session_type, num_quanta) tuples.
 
     Rules:
-    - Theory sessions: Assign to parent group (subgroups attend together)
+    - Theory sessions: Group sibling subgroups together (e.g., BAE2A + BAE2B attend together)
     - Practical sessions: Assign to each subgroup separately
     - Standalone groups: Get both theory and practical
 
     Args:
-        courses: Dictionary of course_id -> Course
+        courses: Dictionary keyed by (course_code, course_type) tuple -> Course
         groups: Dictionary of group_id -> Group
         hierarchy: Output from analyze_group_hierarchy()
 
     Returns:
-        List of tuples: (course_id, group_ids, session_type, num_quanta)
+        List of tuples: (course_key, group_ids, session_type, num_quanta)
+        where course_key is (course_code, course_type) tuple
 
     Example:
         [
-            ("ENME 151", ["BAE2"], "theory", 5),           # Theory for parent
-            ("ENME 151-PR", ["BAE2A"], "practical", 3),    # Practical for subgroup A
-            ("ENME 151-PR", ["BAE2B"], "practical", 3),    # Practical for subgroup B
+            (("ENME 151", "theory"), ["BAE2A", "BAE2B"], "theory", 5),     # Theory: all subgroups together
+            (("ENME 151", "practical"), ["BAE2A"], "practical", 3),        # Practical for subgroup A
+            (("ENME 151", "practical"), ["BAE2B"], "practical", 3),        # Practical for subgroup B
         ]
+
+    Note: course_id is now tuple key (course_code, course_type) from courses dict.
     """
     pairs = []
+    processed_theory_courses = (
+        set()
+    )  # Track (course_code, parent_prefix) to avoid duplicates
 
-    # Get all parent and standalone groups (these are the ones we iterate)
-    scheduling_groups = hierarchy["parents"] + hierarchy["standalone"]
+    # Group all subgroups by their parent prefix (e.g., BAE2A, BAE2B -> BAE2)
+    # This allows us to find siblings that should attend theory together
+    from collections import defaultdict
 
-    for group_id in scheduling_groups:
-        group = groups.get(group_id)
-        if not group:
-            continue
+    parent_to_subgroups = defaultdict(list)
 
-        enrolled_courses = group.enrolled_courses
-        has_subs = group_id in hierarchy.get("subgroups", {})
-        subgroup_list = hierarchy["subgroups"].get(group_id, []) if has_subs else []
+    for group_id in groups.keys():
+        # Check if this is a subgroup (ends with letter)
+        if len(group_id) > 1 and group_id[-1].isalpha():
+            parent_prefix = group_id[:-1]
+            parent_to_subgroups[parent_prefix].append(group_id)
+        else:
+            # Standalone group (no siblings)
+            parent_to_subgroups[group_id] = [group_id]
 
-        for course_id in enrolled_courses:
-            course = courses.get(course_id)
-            if not course:
-                print(f"⚠️  Warning: Course {course_id} not found for group {group_id}")
+    # Process each group of siblings
+    for parent_prefix, sibling_ids in parent_to_subgroups.items():
+        # Get enrolled courses from first sibling (they should all have same courses)
+        first_sibling = groups[sibling_ids[0]]
+        enrolled_courses = first_sibling.enrolled_courses
+
+        for course_code in enrolled_courses:
+            # Find all courses matching this course_code (theory and/or practical)
+            theory_key = (course_code, "theory")
+            practical_key = (course_code, "practical")
+
+            matching_courses = []
+            if theory_key in courses:
+                matching_courses.append((theory_key, courses[theory_key]))
+            if practical_key in courses:
+                matching_courses.append((practical_key, courses[practical_key]))
+
+            if not matching_courses:
+                print(
+                    f"⚠️  Warning: Course {course_code} not found for group {parent_prefix}"
+                )
                 continue
 
-            # Get L, T, P values
-            L = getattr(course, "L", getattr(course, "lecture_hours", 0))
-            T = getattr(course, "T", getattr(course, "tutorial_hours", 0))
-            P = getattr(course, "P", getattr(course, "practical_hours", 0))
+            # Process theory and practical courses separately
+            for course_key, course in matching_courses:
+                if course.course_type == "theory":
+                    # Theory: ALL siblings attend together
+                    # List all sibling IDs explicitly (e.g., ["BAE2A", "BAE2B"])
+                    theory_quanta = course.quanta_per_week
+                    pairs.append(
+                        (course_key, sorted(sibling_ids), "theory", theory_quanta)
+                    )
 
-            # Theory sessions (L+T)
-            if L + T > 0:
-                theory_quanta = L + T
-
-                # Theory always uses parent group (whole class together)
-                # Even if subgroups exist, they attend theory together
-                pairs.append((course_id, [group_id], "theory", theory_quanta))
-
-            # Practical sessions (P)
-            if P > 0:
-                practical_course_id = (
-                    course_id + "-PR" if not course_id.endswith("-PR") else course_id
-                )
-
-                if has_subs:
-                    # Split practical across subgroups
-                    for subgroup_id in subgroup_list:
+                elif course.course_type == "practical":
+                    # Practical: Each sibling gets separate session
+                    practical_quanta = course.quanta_per_week
+                    for sibling_id in sibling_ids:
                         pairs.append(
-                            (practical_course_id, [subgroup_id], "practical", P)
+                            (course_key, [sibling_id], "practical", practical_quanta)
                         )
-                else:
-                    # No subgroups, assign practical to parent/standalone group
-                    pairs.append((practical_course_id, [group_id], "practical", P))
 
     return pairs
 
@@ -94,14 +109,14 @@ def count_total_genes(pairs: List[Tuple]) -> int:
     return sum(num_quanta for _, _, _, num_quanta in pairs)
 
 
-def group_pairs_by_course(pairs: List[Tuple]) -> Dict[str, List[Tuple]]:
+def group_pairs_by_course(pairs: List[Tuple]) -> Dict[tuple, List[Tuple]]:
     """Group pairs by course for analysis."""
     from collections import defaultdict
 
     course_pairs = defaultdict(list)
     for pair in pairs:
-        course_id = pair[0]
-        course_pairs[course_id].append(pair)
+        course_key = pair[0]  # (course_code, course_type) tuple
+        course_pairs[course_key].append(pair)
     return dict(course_pairs)
 
 
@@ -121,21 +136,21 @@ if __name__ == "__main__":
     print("=" * 70)
     print("Course-Group Pair Generation")
     print("=" * 70)
-    print(f"\n📊 Total pairs: {len(pairs)}")
+    print(f"\n[...]Total pairs: {len(pairs)}")
     print(f"🧬 Total genes to create: {count_total_genes(pairs)}")
     print()
 
     # Show some examples
     print("Example Theory Pairs (Parent Group):")
     theory_pairs = [p for p in pairs if p[2] == "theory"][:5]
-    for course_id, group_ids, session_type, num_quanta in theory_pairs:
-        print(f"  {course_id} → {group_ids} ({num_quanta} quanta)")
+    for course_key, group_ids, session_type, num_quanta in theory_pairs:
+        print(f"  {course_key} → {group_ids} ({num_quanta} quanta)")
     print()
 
     print("Example Practical Pairs (Subgroups):")
     practical_pairs = [p for p in pairs if p[2] == "practical"][:5]
-    for course_id, group_ids, session_type, num_quanta in practical_pairs:
-        print(f"  {course_id} → {group_ids} ({num_quanta} quanta)")
+    for course_key, group_ids, session_type, num_quanta in practical_pairs:
+        print(f"  {course_key} → {group_ids} ({num_quanta} quanta)")
     print()
 
     # Analyze one course
@@ -143,7 +158,7 @@ if __name__ == "__main__":
     if course_groups:
         sample_course = list(course_groups.keys())[0]
         print(f"Detailed breakdown for {sample_course}:")
-        for course_id, group_ids, session_type, num_quanta in course_groups[
+        for course_key, group_ids, session_type, num_quanta in course_groups[
             sample_course
         ]:
             print(f"  {session_type.upper()}: {group_ids} ({num_quanta} quanta)")

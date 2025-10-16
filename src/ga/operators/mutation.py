@@ -1,9 +1,10 @@
 import random
 from src.ga.sessiongene import SessionGene
+from src.core.types import SchedulingContext
 from typing import List
 
 
-def mutate_gene(gene: SessionGene, context) -> SessionGene:
+def mutate_gene(gene: SessionGene, context: SchedulingContext) -> SessionGene:
     """
     Performs constraint-aware mutation on a single gene.
 
@@ -14,7 +15,9 @@ def mutate_gene(gene: SessionGene, context) -> SessionGene:
     and prevents incomplete_or_extra_sessions violations.
     """
     # Get course info for constraint-aware mutation
-    course = context["courses"].get(gene.course_id)
+    # Look up using tuple key (course_id, course_type)
+    course_key = (gene.course_id, gene.course_type)
+    course = context.courses.get(course_key)
 
     # ========================================
     # COURSE & GROUP: NEVER MUTATED
@@ -24,10 +27,11 @@ def mutate_gene(gene: SessionGene, context) -> SessionGene:
     new_group_ids = gene.group_ids
 
     # Find qualified instructors for this course
+    # instructor.qualified_courses now contains tuples (course_code, course_type)
     qualified_instructors = [
         inst_id
-        for inst_id, inst in context["instructors"].items()
-        if gene.course_id in getattr(inst, "qualified_courses", [gene.course_id])
+        for inst_id, inst in context.instructors.items()
+        if course_key in getattr(inst, "qualified_courses", [])
     ]
 
     # If current instructor is qualified, keep with high probability (70%)
@@ -51,7 +55,7 @@ def mutate_gene(gene: SessionGene, context) -> SessionGene:
         new_room = gene.room_id  # Keep current room if suitable
     else:
         new_room = random.choice(
-            suitable_rooms if suitable_rooms else list(context["rooms"].keys())
+            suitable_rooms if suitable_rooms else list(context.rooms.keys())
         )
 
     # ========================================
@@ -62,6 +66,7 @@ def mutate_gene(gene: SessionGene, context) -> SessionGene:
 
     return SessionGene(
         course_id=new_course_id,  # NEVER MUTATED
+        course_type=gene.course_type,  # NEVER MUTATED
         instructor_id=new_instructor,  # Mutated
         group_ids=new_group_ids,  # NEVER MUTATED
         room_id=new_room,  # Mutated
@@ -89,7 +94,7 @@ def mutate_time_quanta(gene: SessionGene, course, context) -> List[int]:
             num_quanta = expected_quanta
 
     # Ensure we don't exceed available quanta
-    num_quanta = min(num_quanta, len(context["available_quanta"]))
+    num_quanta = min(num_quanta, len(context.available_quanta))
     num_quanta = max(1, num_quanta)  # At least 1 quantum
 
     # 30% chance to keep current time slots completely unchanged
@@ -97,7 +102,7 @@ def mutate_time_quanta(gene: SessionGene, course, context) -> List[int]:
         return gene.quanta
 
     # Try to assign consecutive quanta for better scheduling
-    available_quanta = list(context["available_quanta"])
+    available_quanta = list(context.available_quanta)
 
     # Attempt to find consecutive slots
     for attempt in range(5):  # Try 5 times to find consecutive slots
@@ -116,16 +121,18 @@ def mutate_time_quanta(gene: SessionGene, course, context) -> List[int]:
     return random.sample(available_quanta, min(num_quanta, len(available_quanta)))
 
 
-def find_suitable_rooms_for_course(course_id: str, group_id: str, context) -> List[str]:
+def find_suitable_rooms_for_course(
+    course_id: str, group_id: str, context: SchedulingContext
+) -> List[str]:
     """
     Find rooms suitable for a specific course and group combination.
     Takes into account group size, course requirements, and room features.
     """
-    course = context["courses"].get(course_id)
-    group = context["groups"].get(group_id)
+    course = context.courses.get(course_id)
+    group = context.groups.get(group_id)
 
     if not course:
-        return list(context["rooms"].keys())
+        return list(context.rooms.keys())
 
     # Get course requirements
     required_features = getattr(course, "required_room_features", [])
@@ -136,7 +143,7 @@ def find_suitable_rooms_for_course(course_id: str, group_id: str, context) -> Li
 
     suitable_room_ids = []
 
-    for room_id, room in context["rooms"].items():
+    for room_id, room in context.rooms.items():
         room_features = getattr(room, "room_features", [])
         room_capacity = getattr(room, "capacity", 50)
         room_type = getattr(room, "type", "Classroom")
@@ -182,7 +189,7 @@ def find_suitable_rooms_for_course(course_id: str, group_id: str, context) -> Li
             # No specific requirements, any room with adequate capacity
             suitable_room_ids.append(room_id)
 
-    return suitable_room_ids if suitable_room_ids else list(context["rooms"].keys())
+    return suitable_room_ids if suitable_room_ids else list(context.rooms.keys())
 
 
 def mutate_individual(individual, context, mut_prob=0.2):

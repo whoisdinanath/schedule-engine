@@ -108,7 +108,7 @@ if __name__ == "__main__":
     print("=" * 70)
     print("Group Hierarchy Analysis")
     print("=" * 70)
-    print(f"\n📊 Total groups: {len(groups)}")
+    print(f"\n[...]Total groups: {len(groups)}")
     print(f"👥 Parent groups: {len(hierarchy['parents'])}")
     print(f"👤 Standalone groups: {len(hierarchy['standalone'])}")
     print(f"📋 Total subgroups: {len(hierarchy['parent_map'])}")
