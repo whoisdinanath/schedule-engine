@@ -1,12 +1,14 @@
 from typing import List, Tuple
 import random
-from tqdm import tqdm
+from rich.console import Console
 
 from src.ga.sessiongene import SessionGene
 from src.ga.individual import create_individual
 from src.ga.group_hierarchy import analyze_group_hierarchy
 from src.ga.course_group_pairs import generate_course_group_pairs
 from src.core.types import SchedulingContext
+
+console = Console()
 
 
 def generate_course_group_aware_population(n: int, context: SchedulingContext) -> List:
@@ -69,9 +71,9 @@ def generate_course_group_aware_population(n: int, context: SchedulingContext) -
 
     print(f"Found {len(course_group_pairs)} course-group pairs to schedule")
 
-    for individual_idx in tqdm(
-        range(n), desc="Generating population", unit="ind", disable=n < 20
-    ):
+    # Generate population without progress bar for simplicity
+    # Progress is already shown at higher level in ga_scheduler
+    for individual_idx in range(n):
         genes = []
         used_quanta = set()  # Track used quanta for this individual to avoid conflicts
         instructor_schedule = {}  # Track instructor schedules to avoid conflicts

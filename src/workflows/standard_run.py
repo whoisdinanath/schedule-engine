@@ -9,7 +9,14 @@ import os
 import random
 from datetime import datetime
 from typing import Dict, Optional
-from tqdm import tqdm
+from rich.console import Console
+from rich.progress import (
+    Progress,
+    SpinnerColumn,
+    BarColumn,
+    TextColumn,
+    TimeElapsedColumn,
+)
 
 from src.encoder.input_encoder import (
     load_courses,
@@ -25,8 +32,9 @@ from src.core.types import SchedulingContext
 from src.core.ga_scheduler import GAScheduler, GAConfig
 from src.validation import validate_input
 from src.workflows.reporting import generate_reports
-from src.utils.console import write_header, write_separator, write_info
 from config.constraints import HARD_CONSTRAINTS_CONFIG, SOFT_CONSTRAINTS_CONFIG
+
+console = Console()
 
 
 def run_standard_workflow(
@@ -77,55 +85,66 @@ def run_standard_workflow(
     # ========================================
     # Step 1: Initialize
     # ========================================
-    write_header("SCHEDULE ENGINE - Standard Workflow")
-    tqdm.write("")
+    console.rule(
+        "[bold cyan]SCHEDULE ENGINE - Standard Workflow[/bold cyan]", style="cyan"
+    )
+    console.print()
 
     # Set random seed
     random.seed(seed)
-    write_info(f"Random seed: {seed}")
+    console.print(f"[dim]Random seed: {seed}[/dim]")
 
     # Create output directory
     if output_dir is None:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_dir = os.path.join("output", f"evaluation_{timestamp}")
     os.makedirs(output_dir, exist_ok=True)
-    write_info(f"Output directory: {output_dir}")
-    tqdm.write("")
+    console.print(f"[dim]Output directory: {output_dir}[/dim]")
+    console.print()
 
     # ========================================
     # Step 2: Load Data
     # ========================================
-    with tqdm(
-        total=5,
-        desc="[>>] Loading Input Data",
-        bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
-    ) as pbar:
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[bold cyan]{task.description}"),
+        BarColumn(),
+        TextColumn("[cyan]{task.percentage:>3.0f}%"),
+        console=console,
+        transient=True,
+    ) as progress:
+        task = progress.add_task("Loading Input Data...", total=5)
         qts, context = load_input_data(data_dir)
-        pbar.update(5)
+        progress.update(task, completed=5)
 
-    write_info(f"   Courses: {len(context.courses)}")
-    write_info(f"   Groups: {len(context.groups)}")
-    write_info(f"   Instructors: {len(context.instructors)}")
-    write_info(f"   Rooms: {len(context.rooms)}")
-    write_info(f"   Time quanta: {len(context.available_quanta)}")
-    tqdm.write("")
+    console.print(f"   [cyan]Courses:[/cyan] {len(context.courses)}")
+    console.print(f"   [cyan]Groups:[/cyan] {len(context.groups)}")
+    console.print(f"   [cyan]Instructors:[/cyan] {len(context.instructors)}")
+    console.print(f"   [cyan]Rooms:[/cyan] {len(context.rooms)}")
+    console.print(f"   [cyan]Time quanta:[/cyan] {len(context.available_quanta)}")
+    console.print()
 
     # ========================================
     # Step 3: Validate (Optional)
     # ========================================
     if validate:
-        with tqdm(
-            total=1, desc="[OK] Validating Input", bar_format="{l_bar}{bar}| {elapsed}"
-        ) as pbar:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[bold green]{task.description}"),
+            TimeElapsedColumn(),
+            console=console,
+            transient=True,
+        ) as progress:
+            task = progress.add_task("Validating Input...", total=None)
             validation_result = validate_input(context, strict=False)
-            pbar.update(1)
+            progress.update(task, completed=1)
 
         if not validation_result:
             raise ValueError(
                 "[X] Input validation failed with ERRORS! Fix errors and try again."
             )
 
-        tqdm.write("   [OK] Input validation passed\n")
+        console.print("   [bold green]✓[/bold green] Input validation passed\n")
 
     # ========================================
     # Step 4: Configure GA
@@ -145,19 +164,21 @@ def run_standard_workflow(
         name for name, cfg in SOFT_CONSTRAINTS_CONFIG.items() if cfg["enabled"]
     ]
 
-    tqdm.write("[GA] Genetic Algorithm Configuration:")
-    tqdm.write(
-        f"   Population: {ga_config.pop_size} | Generations: {ga_config.generations}"
+    console.print("[bold]Genetic Algorithm Configuration:[/bold]")
+    console.print(
+        f"   Population: [cyan]{ga_config.pop_size}[/cyan] | Generations: [cyan]{ga_config.generations}[/cyan]"
     )
-    tqdm.write(
-        f"   Crossover: {ga_config.crossover_prob:.1%} | Mutation: {ga_config.mutation_prob:.1%}"
+    console.print(
+        f"   Crossover: [cyan]{ga_config.crossover_prob:.1%}[/cyan] | Mutation: [cyan]{ga_config.mutation_prob:.1%}[/cyan]"
     )
-    tqdm.write(f"   Constraints: {len(hard_names)} hard, {len(soft_names)} soft\n")
+    console.print(
+        f"   Constraints: [yellow]{len(hard_names)} hard[/yellow], [blue]{len(soft_names)} soft[/blue]\n"
+    )
 
     # ========================================
     # Step 5: Run GA
     # ========================================
-    tqdm.write("[GA] Running Genetic Algorithm...\n")
+    console.print("[bold green]Running Genetic Algorithm...[/bold green]\n")
 
     scheduler = GAScheduler(ga_config, context, hard_names, soft_names, pool=pool)
     scheduler.setup_toolbox()
@@ -167,8 +188,8 @@ def run_standard_workflow(
     # ========================================
     # Step 6: Decode Best Solution
     # ========================================
-    tqdm.write("")
-    tqdm.write("Processing Results...")
+    console.print()
+    console.print("[bold]Processing Results...[/bold]")
 
     best_individual = scheduler.get_best_solution()
     decoded_schedule = decode_individual(
@@ -179,17 +200,26 @@ def run_standard_workflow(
         context.rooms,
     )
 
-    write_info(f"   Hard Violations: {best_individual.fitness.values[0]:.0f}")
-    write_info(f"   Soft Penalty: {best_individual.fitness.values[1]:.2f}")
-    write_info(f"   Schedule sessions: {len(decoded_schedule)}")
-    tqdm.write("")
+    console.print(
+        f"   Hard Violations: [yellow]{best_individual.fitness.values[0]:.0f}[/yellow]"
+    )
+    console.print(
+        f"   Soft Penalty: [blue]{best_individual.fitness.values[1]:.2f}[/blue]"
+    )
+    console.print(f"   Schedule sessions: [cyan]{len(decoded_schedule)}[/cyan]")
+    console.print()
 
     # ========================================
     # Step 7: Generate Reports
     # ========================================
-    with tqdm(
-        total=1, desc="📊 Generating Reports", bar_format="{l_bar}{bar}| {elapsed}"
-    ) as pbar:
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[bold magenta]{task.description}"),
+        TimeElapsedColumn(),
+        console=console,
+        transient=True,
+    ) as progress:
+        task = progress.add_task("📊 Generating Reports...", total=None)
         generate_reports(
             decoded_schedule=decoded_schedule,
             metrics=scheduler.metrics,
@@ -198,18 +228,21 @@ def run_standard_workflow(
             output_dir=output_dir,
             course_map=context.courses,
         )
-        pbar.update(1)
+        progress.update(task, completed=1)
 
     # ========================================
     # Done!
     # ========================================
-    write_header("WORKFLOW COMPLETE")
-    write_info(f"Results saved to: {output_dir}")
-    write_info(f"   - schedule.json: Schedule data")
-    write_info(f"   - schedule.pdf: Visual calendar")
-    write_info(f"   - plots/: Evolution charts")
-    write_separator()
-    tqdm.write("")
+    console.print()
+    console.rule("[bold green]WORKFLOW COMPLETE[/bold green]", style="green")
+    console.print()
+    console.print(f"[bold]Results saved to:[/bold] [cyan]{output_dir}[/cyan]")
+    console.print(f"   • [dim]schedule.json[/dim]: Schedule data")
+    console.print(f"   • [dim]schedule.pdf[/dim]: Visual calendar")
+    console.print(f"   • [dim]plots/[/dim]: Evolution charts")
+    console.print()
+    console.rule(style="green")
+    console.print()
 
     return {
         "best_individual": best_individual,

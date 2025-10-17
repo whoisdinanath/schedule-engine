@@ -5,9 +5,9 @@ Runs standard GA-based course scheduling workflow.
 Refactored for clarity and testability - see docs/refactoring/ for details.
 """
 
-from tqdm import tqdm
+from rich.console import Console
+from rich.panel import Panel
 from src.workflows import run_standard_workflow
-from src.utils.console import write_header, write_separator, write_info
 from config.ga_params import (
     POP_SIZE,
     NGEN,
@@ -16,6 +16,8 @@ from config.ga_params import (
     USE_MULTIPROCESSING,
     NUM_WORKERS,
 )
+
+console = Console()
 
 
 def main():
@@ -44,9 +46,13 @@ def main():
         import multiprocessing
 
         pool = multiprocessing.Pool(processes=NUM_WORKERS)
-        write_info(f"Multiprocessing enabled: {pool._processes} workers")
+        console.print(
+            f"[cyan]Multiprocessing enabled: {pool._processes} workers[/cyan]"
+        )
     else:
-        write_info("Running in single-threaded mode (USE_MULTIPROCESSING=False)")
+        console.print(
+            "[yellow]Running in single-threaded mode (USE_MULTIPROCESSING=False)[/yellow]"
+        )
 
     try:
         result = run_standard_workflow(
@@ -58,20 +64,30 @@ def main():
             pool=pool,  # Pass pool for parallel evaluation
         )
 
-        # Print final summary with clean formatting
-        write_header("FINAL RESULTS")
+        # Print final summary with beautiful rich formatting
+        console.print()
+        console.rule("[bold green]FINAL RESULTS[/bold green]", style="green")
+        console.print()
+
         hard_viol = result["best_individual"].fitness.values[0]
         soft_pen = result["best_individual"].fitness.values[1]
 
         if hard_viol == 0:
-            write_info("Perfect schedule found (no hard constraint violations)!")
+            console.print(
+                "✓ [bold green]Perfect schedule found (no hard constraint violations)![/bold green]"
+            )
         else:
-            write_info(f"Hard constraint violations: {hard_viol:.0f}")
+            console.print(
+                f"⚠ [yellow]Hard constraint violations: {hard_viol:.0f}[/yellow]"
+            )
 
-        write_info(f"Soft constraint penalty: {soft_pen:.2f}")
-        write_info(f"Schedule sessions: {len(result['decoded_schedule'])}")
-        write_info(f"Output location: {result['output_path']}")
-        write_separator()
+        console.print(f"[cyan]Soft constraint penalty: {soft_pen:.2f}[/cyan]")
+        console.print(
+            f"[cyan]Schedule sessions: {len(result['decoded_schedule'])}[/cyan]"
+        )
+        console.print(f"[cyan]Output location: {result['output_path']}[/cyan]")
+        console.print()
+        console.rule(style="green")
 
     finally:
         # Clean up multiprocessing pool

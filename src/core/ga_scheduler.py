@@ -9,7 +9,16 @@ from typing import List, Dict, Tuple
 from dataclasses import dataclass, field
 from deap import base, tools
 import random
-from tqdm import tqdm
+import time
+from rich.console import Console
+from rich.progress import (
+    Progress,
+    SpinnerColumn,
+    BarColumn,
+    TextColumn,
+    TimeElapsedColumn,
+    TimeRemainingColumn,
+)
 
 from src.ga.population import generate_course_group_aware_population
 from src.ga.operators.crossover import crossover_course_group_aware
@@ -18,6 +27,8 @@ from src.ga.evaluator.fitness import evaluate
 from src.ga.evaluator.detailed_fitness import evaluate_detailed
 from src.metrics.diversity import average_pairwise_diversity
 from src.core.types import SchedulingContext
+
+console = Console()
 
 
 @dataclass
@@ -154,51 +165,98 @@ class GAScheduler:
 
     def initialize_population(self):
         """Create and evaluate initial population."""
-        with tqdm(
-            total=2,
-            desc="   Initializing Population",
-            leave=False,
-            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
-        ) as pbar:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+            console=console,
+            transient=True,
+        ) as progress:
+            task = progress.add_task("[cyan]Initializing Population...", total=2)
+
             self.population = self.toolbox.population(n=self.config.pop_size)
-            pbar.update(1)
+            progress.advance(task)
 
             # Validate gene alignment
             self._validate_population_structure()
-            pbar.update(1)
+            progress.advance(task)
 
         # Evaluate initial population
-        fitness_values = list(
-            map(
-                self.toolbox.evaluate,
-                tqdm(
-                    self.population,
-                    desc="   Evaluating Initial Pop",
-                    leave=False,
-                    bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
-                ),
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            TextColumn("[cyan]{task.completed}/{task.total}"),
+            console=console,
+            transient=True,
+        ) as progress:
+            task = progress.add_task(
+                "[cyan]Evaluating Initial Population...", total=len(self.population)
             )
-        )
+
+            fitness_values = []
+            for ind in self.population:
+                fitness_values.append(self.toolbox.evaluate(ind))
+                progress.advance(task)
+
         for ind, fit in zip(self.population, fitness_values):
             ind.fitness.values = fit
 
     def evolve(self):
         """Run genetic algorithm evolution loop."""
-        for gen in tqdm(
-            range(self.config.generations),
-            desc="   [>>] Evolution Progress",
-            unit="gen",
-            bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]",
-        ):
-            self._evolve_generation(gen)
+        gen_times = []
 
-            # Early stopping if perfect solution found
-            best = tools.selBest(self.population, 1)[0]
-            if best.fitness.values[0] == 0:
-                tqdm.write(f"\n   ✓ Perfect solution found at generation {gen + 1}!")
-                break
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            TextColumn("[cyan]{task.completed}/{task.total}"),
+            TextColumn("•"),
+            TextColumn("[dim]Elapsed:[/dim]"),
+            TimeElapsedColumn(),  # Auto-updates every refresh
+            TextColumn("[dim]Remaining:[/dim]"),
+            TimeRemainingColumn(),  # Auto-updates based on progress
+            TextColumn("•"),
+            TextColumn("[magenta]{task.fields[speed_display]}[/magenta]"),
+            console=console,
+            refresh_per_second=10,  # Update display 10 times per second
+        ) as progress:
+            task = progress.add_task(
+                "[bold green]Evolution Progress",
+                total=self.config.generations,
+                speed_display="--s/gen",
+            )
 
-    def _evolve_generation(self, gen: int):
+            for gen in range(self.config.generations):
+                gen_start = time.time()
+                self._evolve_generation(gen, progress)
+                gen_time = time.time() - gen_start
+                gen_times.append(gen_time)
+
+                progress.advance(task)
+
+                # Calculate speed display
+                if gen_times:
+                    avg_gen_time = sum(gen_times) / len(gen_times)
+                    if avg_gen_time < 1.0:
+                        speed_display = f"{avg_gen_time*1000:.0f}ms/gen"
+                    else:
+                        speed_display = f"{avg_gen_time:.1f}s/gen"
+                else:
+                    speed_display = "--s/gen"
+
+                progress.update(task, speed_display=speed_display)
+
+                # Early stopping if perfect solution found
+                best = tools.selBest(self.population, 1)[0]
+                if best.fitness.values[0] == 0:
+                    console.print(
+                        f"\n✓ [bold green]Perfect solution found at generation {gen + 1}![/bold green]"
+                    )
+                    break
+
+    def _evolve_generation(self, gen: int, progress=None):
         """Execute one generation of evolution."""
         # Selection
         offspring = self.toolbox.select(self.population, len(self.population))
@@ -219,20 +277,10 @@ class GAScheduler:
 
         # Evaluate invalid individuals
         invalid = [ind for ind in offspring if not ind.fitness.valid]
-        fitness_values = list(
-            map(
-                self.toolbox.evaluate,
-                tqdm(
-                    invalid,
-                    desc=f"      Gen {gen+1} Eval",
-                    leave=False,
-                    disable=len(invalid) == 0,
-                    bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}",
-                ),
-            )
-        )
-        for ind, fit in zip(invalid, fitness_values):
-            ind.fitness.values = fit
+        if invalid:
+            fitness_values = list(map(self.toolbox.evaluate, invalid))
+            for ind, fit in zip(invalid, fitness_values):
+                ind.fitness.values = fit
 
         # Replacement: combine parents and offspring, select next generation
         combined = self.population + offspring
@@ -276,22 +324,24 @@ class GAScheduler:
         self, gen: int, best, hard_details: Dict, soft_details: Dict
     ):
         """Print detailed constraint breakdown."""
-        tqdm.write(
-            f"\n   [GEN {gen+1}] Hard={best.fitness.values[0]:.0f}, "
-            f"Soft={best.fitness.values[1]:.2f}"
+        console.print(
+            f"\n[cyan]GEN {gen+1}[/cyan] Hard=[yellow]{best.fitness.values[0]:.0f}[/yellow], "
+            f"Soft=[blue]{best.fitness.values[1]:.2f}[/blue]"
         )
 
         if best.fitness.values[0] > 0:
-            tqdm.write(f"      [HARD] Total: {best.fitness.values[0]:.0f}")
+            console.print(
+                f"   [yellow]HARD Total: {best.fitness.values[0]:.0f}[/yellow]"
+            )
             for name, value in hard_details.items():
                 if value > 0:
-                    tqdm.write(f"         • {name}: {value}")
+                    console.print(f"      • {name}: {value}")
 
         if best.fitness.values[1] > 0:
-            tqdm.write(f"      [SOFT] Total: {best.fitness.values[1]:.2f}")
+            console.print(f"   [blue]SOFT Total: {best.fitness.values[1]:.2f}[/blue]")
             for name, value in soft_details.items():
                 if value > 0:
-                    tqdm.write(f"         • {name}: {value:.2f}")
+                    console.print(f"      • {name}: {value:.2f}")
 
     def get_best_solution(self):
         """

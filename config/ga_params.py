@@ -1,13 +1,13 @@
 # This File Contains Genetic Algorithm Parameters
 
 # Population size - smaller population for faster convergence with constraint-aware initialization
-POP_SIZE = 100
+POP_SIZE = 50
 
 # Number of generations - reduced since constraint-aware init should converge faster
-NGEN = 1000
+NGEN = 1500
 
 # Crossover and mutation probabilities optimized for constraint-aware population
-CXPB, MUTPB = 0.5, 0.3  # Reduced mutation to preserve good constraint relationships
+CXPB, MUTPB = 0.8, 0.3  # Reduced mutation to preserve good constraint relationships
 
 # Parallelization Settings
 USE_MULTIPROCESSING = True  # Set to False for debugging (single-threaded execution)

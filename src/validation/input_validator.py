@@ -6,12 +6,15 @@ Fails fast with clear error messages to prevent cryptic runtime failures.
 """
 
 from typing import List, Dict
+from rich.console import Console
+from rich.panel import Panel
 from src.entities.course import Course
 from src.entities.group import Group
 from src.entities.instructor import Instructor
 from src.entities.room import Room
 from src.core.types import SchedulingContext
-from src.utils.console import write_header, write_separator, write_info
+
+console = Console()
 
 
 class ValidationError:
@@ -444,28 +447,39 @@ class InputValidator:
         all_issues = self.errors + self.warnings
 
         if not all_issues:
-            write_info("[OK] Validation passed! No issues found.")
+            console.print(
+                "[bold green]✓[/bold green] Validation passed! No issues found."
+            )
             return
 
-        write_header("VALIDATION REPORT")
+        console.print()
+        console.rule("[bold]VALIDATION REPORT[/bold]")
+        console.print()
 
         if self.errors:
-            write_info(f"[ERROR] Found {len(self.errors)} ERRORS:")
+            console.print(f"[bold red]✗ Found {len(self.errors)} ERRORS:[/bold red]")
             for error in self.errors:
-                write_info(f"  {error}")
+                console.print(f"  {error}")
+            console.print()
 
         if self.warnings:
-            write_info(f"[WARNING] Found {len(self.warnings)} WARNINGS:")
+            console.print(
+                f"[bold yellow]⚠ Found {len(self.warnings)} WARNINGS:[/bold yellow]"
+            )
             for warning in self.warnings:
-                write_info(f"  {warning}")
+                console.print(f"  {warning}")
+            console.print()
 
-        write_separator()
+        console.rule()
+        console.print()
 
         if self.errors:
-            write_info("[X] Validation FAILED! Fix errors before running GA.")
+            console.print(
+                "[bold red]✗ Validation FAILED![/bold red] Fix errors before running GA."
+            )
         else:
-            write_info(
-                "[OK] Validation passed with warnings. Review before running GA."
+            console.print(
+                "[bold yellow]⚠[/bold yellow] Validation passed with warnings. Review before running GA."
             )
 
 

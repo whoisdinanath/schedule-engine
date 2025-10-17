@@ -1,8 +1,8 @@
 # Core GA Framework
 deap>=1.4.1
 
-# Progress Bars
-tqdm>=4.66.0
+# Console UI & Progress Bars
+rich>=13.0.0
 
 # Data Visualization
 matplotlib>=3.7.0
