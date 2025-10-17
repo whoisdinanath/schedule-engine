@@ -617,75 +617,109 @@ def find_suitable_rooms(
     require_special_room: bool = False,
 ) -> List:
     """
-    Find rooms suitable for this course component.
-    Takes into account special room requirements and capacity.
+    Find rooms suitable for this course component with intelligent prioritization.
+
+    Strategy:
+    1. Exact match: room.room_features matches course.required_room_features
+    2. Flexible match: compatible room types (using Room.is_suitable_for_course_type)
+    3. Capacity check: room must accommodate largest enrolled group
+
+    Returns rooms in priority order: exact matches first, then flexible matches.
     """
-    suitable = []
+    exact_matches = []
+    flexible_matches = []
 
     # Get required room features from course
-    required_features = getattr(course, "required_room_features", [])
+    required_features = getattr(course, "required_room_features", "classroom")
     course_id = getattr(course, "course_id", "")
 
     # Find the group size for capacity matching
-    # Look through all groups to find ones enrolled in this course
-    max_group_size = 30  # default
+    max_group_size = 0  # Start at 0, will use min capacity if no groups found
     for group in context.groups.values():
         if course_id in getattr(group, "enrolled_courses", []):
             group_size = getattr(group, "student_count", 30)
             max_group_size = max(max_group_size, group_size)
 
-    for room in context.rooms.values():
-        room_features = getattr(room, "room_features", [])
-        room_capacity = getattr(room, "capacity", 50)
-        room_type = getattr(room, "type", "Classroom")
+    # If no enrolled groups found, use a minimal default (don't filter out small rooms)
+    if max_group_size == 0:
+        max_group_size = 1  # Accept any room with capacity >= 1
 
-        # Check capacity requirement
+    # Evaluate each room
+    for room in context.rooms.values():
+        room_capacity = getattr(room, "capacity", 50)
+
+        # Check capacity requirement (hard constraint)
         if room_capacity < max_group_size:
             continue
 
-        if require_special_room and required_features:
-            # For practicals, check if room has required features
-            # Normalize to list
-            req_list = (
+        room_features = getattr(room, "room_features", "classroom")
+
+        # Handle required_features as string (normalized during data loading)
+        required_str = (
+            (
                 required_features
-                if isinstance(required_features, list)
-                else [required_features]
+                if isinstance(required_features, str)
+                else str(required_features)
             )
-            room_list = (
-                room_features if isinstance(room_features, list) else [room_features]
-            )
+            .lower()
+            .strip()
+        )
 
-            # Check if ALL required features match ANY room feature (substring matching)
-            # This handles cases where course needs "computer" and room has "computer graphics"
-            all_matched = True
-            for req in req_list:
-                req_lower = req.lower().strip()
-                if not req_lower:  # Skip empty requirements
-                    continue
-                # Check if this requirement matches any room feature
-                matched = any(req_lower in room_feat.lower() for room_feat in room_list)
-                if not matched:
-                    all_matched = False
-                    break
+        room_str = (
+            (room_features if isinstance(room_features, str) else str(room_features))
+            .lower()
+            .strip()
+        )
 
-            if (
-                all_matched and req_list
-            ):  # Only add if there were requirements and all matched
-                suitable.append(room)
-        elif component_type == "practical" and room_type.lower() in [
-            "lab",
-            "laboratory",
-        ]:
-            # For practicals without specific requirements, prefer labs
-            suitable.append(room)
-        elif component_type in ["lecture", "tutorial"]:
-            # For lectures/tutorials, prefer classrooms but any room with capacity works
-            suitable.append(room)
-        else:
-            # Fallback - any room with adequate capacity
-            suitable.append(room)
+        # PRIORITY 1: Exact match
+        if room_str == required_str:
+            exact_matches.append(room)
+            continue
 
-    return suitable
+        # PRIORITY 2: Flexible match using Room's built-in method
+        if hasattr(room, "is_suitable_for_course_type"):
+            if room.is_suitable_for_course_type(required_str):
+                flexible_matches.append(room)
+                continue
+
+        # PRIORITY 3: Fallback compatibility rules
+        # Lab courses can use any lab variant
+        if required_str in ["lab", "laboratory"]:
+            if any(lab_type in room_str for lab_type in ["lab", "computer", "science"]):
+                flexible_matches.append(room)
+                continue
+
+        # Lecture/theory courses have flexibility
+        if required_str in ["lecture", "classroom", "theory"]:
+            if room_str in ["lecture", "classroom", "auditorium", "seminar"]:
+                flexible_matches.append(room)
+                continue
+
+    # Return prioritized list: exact matches first, then flexible
+    result = exact_matches + flexible_matches
+
+    # If no suitable rooms found, fallback to capacity-only check
+    # BUT still try to match room type if possible
+    if not result:
+        # Last resort: any room with adequate capacity
+        # But prefer rooms that match the course type
+        fallback_exact = []
+        fallback_any = []
+
+        for r in context.rooms.values():
+            if getattr(r, "capacity", 50) >= max_group_size:
+                room_str = getattr(r, "room_features", "").lower().strip()
+                # Try to match course_type at least
+                if (component_type == "practical" and "practical" in room_str) or (
+                    component_type in ["theory", "lecture"] and "lecture" in room_str
+                ):
+                    fallback_exact.append(r)
+                else:
+                    fallback_any.append(r)
+
+        result = fallback_exact + fallback_any
+
+    return result
 
 
 def assign_intelligent_quanta(quanta_needed: int, available_quanta: List) -> List:

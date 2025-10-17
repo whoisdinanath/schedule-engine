@@ -35,7 +35,6 @@ class Group:
 
     def is_enrolled_in_course(self, course_id: str) -> bool:
         """Check if group is enrolled in a specific course."""
-        """Check if group is enrolled in a specific course."""
         return course_id in self.enrolled_courses
 
     def get_enrolled_courses_set(self) -> Set[str]:

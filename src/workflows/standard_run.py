@@ -33,6 +33,7 @@ from src.core.ga_scheduler import GAScheduler, GAConfig
 from src.validation import validate_input
 from src.workflows.reporting import generate_reports
 from config.constraints import HARD_CONSTRAINTS_CONFIG, SOFT_CONSTRAINTS_CONFIG
+from config.ga_params import REPAIR_HEURISTICS_CONFIG
 
 console = Console()
 
@@ -154,6 +155,7 @@ def run_standard_workflow(
         generations=generations,
         crossover_prob=crossover_prob,
         mutation_prob=mutation_prob,
+        repair_config=REPAIR_HEURISTICS_CONFIG,
     )
 
     # Get enabled constraint names
@@ -172,8 +174,29 @@ def run_standard_workflow(
         f"   Crossover: [cyan]{ga_config.crossover_prob:.1%}[/cyan] | Mutation: [cyan]{ga_config.mutation_prob:.1%}[/cyan]"
     )
     console.print(
-        f"   Constraints: [yellow]{len(hard_names)} hard[/yellow], [blue]{len(soft_names)} soft[/blue]\n"
+        f"   Constraints: [yellow]{len(hard_names)} hard[/yellow], [blue]{len(soft_names)} soft[/blue]"
     )
+
+    # Display repair configuration status
+    if REPAIR_HEURISTICS_CONFIG.get("enabled", False):
+        repair_modes = []
+        if REPAIR_HEURISTICS_CONFIG.get("apply_after_mutation", False):
+            repair_modes.append("mutation")
+        if REPAIR_HEURISTICS_CONFIG.get("apply_after_crossover", False):
+            repair_modes.append("crossover")
+        if REPAIR_HEURISTICS_CONFIG.get("memetic_mode", False):
+            repair_modes.append(
+                f"memetic({REPAIR_HEURISTICS_CONFIG.get('elite_percentage', 0.2):.0%} elite)"
+            )
+
+        modes_str = ", ".join(repair_modes) if repair_modes else "none"
+        console.print(
+            f"   Repair Heuristics: [green]✓ enabled[/green] (after {modes_str}, max {REPAIR_HEURISTICS_CONFIG.get('max_iterations', 3)} iter)"
+        )
+    else:
+        console.print(f"   Repair Heuristics: [dim]✗ disabled[/dim]")
+
+    console.print()
 
     # ========================================
     # Step 5: Run GA

@@ -183,7 +183,7 @@ def load_courses(path: str) -> Dict[tuple, Course]:
                 course_id=course_code,  # Plain course code, no suffix!
                 name=f"{name} (Theory)",
                 quanta_per_week=int(L + T),
-                required_room_features=["lecture room"],
+                required_room_features="lecture",  # Simple string, not list
                 enrolled_group_ids=[],
                 qualified_instructor_ids=[],
                 course_type="theory",
@@ -203,7 +203,7 @@ def load_courses(path: str) -> Dict[tuple, Course]:
                 course_id=course_code,  # Same course_id as theory!
                 name=f"{name} (Practical)",
                 quanta_per_week=int(P),
-                required_room_features=practical_features or ["lab"],
+                required_room_features="practical",  # Simple string, not list
                 enrolled_group_ids=[],
                 qualified_instructor_ids=[],
                 course_type="practical",
@@ -290,6 +290,10 @@ def load_rooms(path: str, qts: QuantumTimeSystem) -> Dict[str, Room]:
     """
     Loads room data from JSON and encodes availability.
 
+    Uses 'type' field for room_features (e.g., "Practical", "Lecture") to match
+    course requirements. The 'features' array contains specific capabilities but
+    isn't used for general room type matching.
+
     Args:
         path (str): Path to room JSON file.
         qts (QuantumTimeSystem): Time conversion system.
@@ -310,14 +314,16 @@ def load_rooms(path: str, qts: QuantumTimeSystem) -> Dict[str, Room]:
             else qts.get_all_operating_quanta()
         )
 
-        # Use 'features' field directly, lowercased for consistency
-        features = [f.strip().lower() for f in item.get("features", [])]
+        # Use 'type' field for room_features (normalized to lowercase)
+        # This matches course.required_room_features format
+        # "Practical" -> "practical", "Lecture" -> "lecture"
+        room_type = item.get("type", "Lecture").strip().lower()
 
         rooms[room_id] = Room(
             room_id=room_id,
             name=item.get("name", room_id),
             capacity=item["capacity"],
-            room_features=features,
+            room_features=room_type,  # Use type field, not features array
             available_quanta=available_quanta,
         )
     return rooms

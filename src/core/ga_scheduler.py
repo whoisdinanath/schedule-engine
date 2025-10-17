@@ -41,12 +41,14 @@ class GAConfig:
         generations: Number of generations to evolve
         crossover_prob: Probability of crossover operation
         mutation_prob: Probability of mutation operation
+        repair_config: Repair heuristics configuration dict (from ga_params.REPAIR_HEURISTICS_CONFIG)
     """
 
     pop_size: int
     generations: int
     crossover_prob: float
     mutation_prob: float
+    repair_config: Dict = field(default_factory=dict)
 
 
 @dataclass
@@ -60,6 +62,7 @@ class GAMetrics:
         diversity: Population diversity per generation
         detailed_hard: Per-constraint hard violation tracking
         detailed_soft: Per-constraint soft penalty tracking
+        repair_stats: Repair statistics per generation
     """
 
     hard_violations: List[float] = field(default_factory=list)
@@ -67,6 +70,9 @@ class GAMetrics:
     diversity: List[float] = field(default_factory=list)
     detailed_hard: Dict[str, List[float]] = field(default_factory=dict)
     detailed_soft: Dict[str, List[float]] = field(default_factory=dict)
+    repair_stats: List[Dict] = field(
+        default_factory=list
+    )  # NEW: Track repairs per generation
 
 
 class GAScheduler:
@@ -258,6 +264,18 @@ class GAScheduler:
 
     def _evolve_generation(self, gen: int, progress=None):
         """Execute one generation of evolution."""
+        repair_config = self.config.repair_config
+        generation_repair_stats = {
+            "availability_fixes": 0,
+            "overlap_fixes": 0,
+            "room_fixes": 0,
+            "instructor_conflict_fixes": 0,
+            "qualification_fixes": 0,
+            "room_type_fixes": 0,
+            "session_count_fixes": 0,
+            "total_fixes": 0,
+        }
+
         # Selection
         offspring = self.toolbox.select(self.population, len(self.population))
         offspring = list(map(self.toolbox.clone, offspring))
@@ -269,11 +287,58 @@ class GAScheduler:
                 del offspring[i - 1].fitness.values
                 del offspring[i].fitness.values
 
+                # Apply repairs after crossover if enabled
+                if repair_config.get("enabled", False) and repair_config.get(
+                    "apply_after_crossover", False
+                ):
+                    from src.ga.operators.repair import repair_individual
+
+                    stats1 = repair_individual(
+                        offspring[i - 1],
+                        self.context,
+                        max_iterations=repair_config.get("max_iterations", 3),
+                    )
+                    stats2 = repair_individual(
+                        offspring[i],
+                        self.context,
+                        max_iterations=repair_config.get("max_iterations", 3),
+                    )
+
+                    # Aggregate all repair stats
+                    for key in generation_repair_stats.keys():
+                        if key in stats1 and key in stats2:
+                            generation_repair_stats[key] += stats1[key] + stats2[key]
+
         # Mutation
         for mutant in offspring:
             if random.random() < self.config.mutation_prob:
                 self.toolbox.mutate(mutant)
                 del mutant.fitness.values
+
+                # Apply repairs after mutation if enabled
+                if repair_config.get("enabled", False) and repair_config.get(
+                    "apply_after_mutation", False
+                ):
+                    from src.ga.operators.repair import repair_individual
+
+                    # Check violation threshold if specified
+                    threshold = repair_config.get("violation_threshold")
+                    should_repair = True
+
+                    if threshold is not None and mutant.fitness.valid:
+                        should_repair = mutant.fitness.values[0] > threshold
+
+                    if should_repair:
+                        stats = repair_individual(
+                            mutant,
+                            self.context,
+                            max_iterations=repair_config.get("max_iterations", 3),
+                        )
+
+                        # Aggregate all repair stats
+                        for key in generation_repair_stats.keys():
+                            if key in stats:
+                                generation_repair_stats[key] += stats[key]
 
         # Evaluate invalid individuals
         invalid = [ind for ind in offspring if not ind.fitness.valid]
@@ -285,6 +350,39 @@ class GAScheduler:
         # Replacement: combine parents and offspring, select next generation
         combined = self.population + offspring
         self.population[:] = self.toolbox.select(combined, len(self.population))
+
+        # Memetic mode: Apply intensive local search to elite individuals
+        if repair_config.get("enabled", False) and repair_config.get(
+            "memetic_mode", False
+        ):
+            from src.ga.operators.repair import repair_individual
+
+            elite_percentage = repair_config.get("elite_percentage", 0.2)
+            elite_count = max(1, int(elite_percentage * len(self.population)))
+            elite_individuals = tools.selBest(self.population, elite_count)
+
+            for individual in elite_individuals:
+                stats = repair_individual(
+                    individual,
+                    self.context,
+                    max_iterations=repair_config.get("memetic_iterations", 5),
+                )
+
+                # Invalidate fitness after repair
+                del individual.fitness.values
+
+                # Aggregate all memetic stats
+                for key in generation_repair_stats.keys():
+                    if key in stats:
+                        generation_repair_stats[key] += stats[key]
+
+            # Re-evaluate elite after memetic repair
+            fitness_values = list(map(self.toolbox.evaluate, elite_individuals))
+            for ind, fit in zip(elite_individuals, fitness_values):
+                ind.fitness.values = fit
+
+        # Store generation repair stats
+        self.metrics.repair_stats.append(generation_repair_stats)
 
         # Track metrics
         self._track_metrics(gen)
@@ -328,6 +426,36 @@ class GAScheduler:
             f"\n[cyan]GEN {gen+1}[/cyan] Hard=[yellow]{best.fitness.values[0]:.0f}[/yellow], "
             f"Soft=[blue]{best.fitness.values[1]:.2f}[/blue]"
         )
+
+        # Display repair statistics if enabled
+        if self.config.repair_config.get("enabled", False) and gen < len(
+            self.metrics.repair_stats
+        ):
+            repair_stats = self.metrics.repair_stats[gen]
+            if repair_stats["total_fixes"] > 0:
+                # Build repair summary with all non-zero categories
+                repair_parts = []
+                if repair_stats.get("availability_fixes", 0) > 0:
+                    repair_parts.append(f"avail:{repair_stats['availability_fixes']}")
+                if repair_stats.get("overlap_fixes", 0) > 0:
+                    repair_parts.append(f"group:{repair_stats['overlap_fixes']}")
+                if repair_stats.get("room_fixes", 0) > 0:
+                    repair_parts.append(f"room:{repair_stats['room_fixes']}")
+                if repair_stats.get("instructor_conflict_fixes", 0) > 0:
+                    repair_parts.append(
+                        f"instr:{repair_stats['instructor_conflict_fixes']}"
+                    )
+                if repair_stats.get("qualification_fixes", 0) > 0:
+                    repair_parts.append(f"qual:{repair_stats['qualification_fixes']}")
+                if repair_stats.get("room_type_fixes", 0) > 0:
+                    repair_parts.append(f"type:{repair_stats['room_type_fixes']}")
+                if repair_stats.get("session_count_fixes", 0) > 0:
+                    repair_parts.append(f"count:{repair_stats['session_count_fixes']}")
+
+                repair_summary = ", ".join(repair_parts) if repair_parts else "misc"
+                console.print(
+                    f"   [green]Repairs: {repair_stats['total_fixes']} fixes[/green] ({repair_summary})"
+                )
 
         if best.fitness.values[0] > 0:
             console.print(

@@ -74,29 +74,75 @@ def instructor_not_qualified(
 
 def room_type_mismatch(sessions: List[CourseSession]) -> int:
     """
-    Counts how many sessions are scheduled in rooms that don't match required features.
-    Checks if required features are a subset of available room features.
+    Counts how many sessions are scheduled in rooms that don't match required type.
+
+    Simple string matching with flexible compatibility rules:
+    - Exact match: required == room_type
+    - Compatible: "lecture" courses can use lecture/classroom/auditorium rooms
+    - Compatible: "practical" courses can use practical/lab rooms
+
+    Args:
+        sessions: List of decoded course sessions
+
+    Returns:
+        Number of room type mismatches
     """
     violations = 0
 
     for session in sessions:
-        # Convert both to sets for subset comparison
-        required_features = (
-            set(session.required_room_features)
-            if isinstance(session.required_room_features, list)
-            else {session.required_room_features}
+        # Both should be simple strings now (not lists)
+        required = getattr(session, "required_room_features", "lecture")
+        room_type = getattr(session.room, "room_features", "lecture")
+
+        # Normalize to lowercase strings
+        required_str = (
+            (required if isinstance(required, str) else str(required)).lower().strip()
         )
-        room_features = (
-            set(session.room.room_features)
-            if isinstance(session.room.room_features, list)
-            else {session.room.room_features}
+        room_str = (
+            (room_type if isinstance(room_type, str) else str(room_type))
+            .lower()
+            .strip()
         )
 
-        # Check if all required features are present in room features
-        if not required_features.issubset(room_features):
+        # Check if room type matches (with flexibility)
+        if not _room_type_matches(required_str, room_str):
             violations += 1
 
     return violations
+
+
+def _room_type_matches(required: str, room_type: str) -> bool:
+    """
+    Check if room type satisfies requirement with flexible compatibility.
+
+    Args:
+        required: Required room type (e.g., "lecture", "practical")
+        room_type: Actual room type (e.g., "lecture", "practical")
+
+    Returns:
+        True if compatible, False otherwise
+    """
+    # Exact match
+    if required == room_type:
+        return True
+
+    # Lecture/theory courses: Accept lecture, classroom, auditorium
+    if required in ["lecture", "classroom", "theory"]:
+        if room_type in ["lecture", "classroom", "auditorium", "seminar", "tutorial"]:
+            return True
+
+    # Practical/lab courses: Accept practical, lab variants
+    if required in ["practical", "lab", "laboratory"]:
+        if room_type in [
+            "practical",
+            "lab",
+            "laboratory",
+            "computer_lab",
+            "science_lab",
+        ]:
+            return True
+
+    return False
 
 
 def availability_violations(sessions: List[CourseSession]) -> int:

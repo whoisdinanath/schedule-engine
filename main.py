@@ -36,7 +36,7 @@ def main():
 
     Parallelization:
         - If USE_MULTIPROCESSING=True, uses multiprocessing.Pool for parallel fitness evaluation
-        - Provides 3-6× speedup on multi-core systems
+        - Provides 3-6x speedup on multi-core systems
         - Set USE_MULTIPROCESSING=False for debugging or single-threaded execution
     """
     pool = None

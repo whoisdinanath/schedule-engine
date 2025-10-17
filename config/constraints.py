@@ -33,7 +33,7 @@ SOFT_CONSTRAINTS_CONFIG = {
     "group_midday_break_violation": {"enabled": False, "weight": 1.0},
     # "early_or_late_session_penalty": {"enabled": False, "weight": 1.0},
     # Session structure constraints
-    "course_split_penalty": {"enabled": True, "weight": 1.0},
+    "course_split_penalty": {"enabled": False, "weight": 1.0},
 }
 
 # ============================================================================
