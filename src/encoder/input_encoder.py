@@ -103,7 +103,8 @@ def load_instructors(path: str, qts: QuantumTimeSystem) -> Dict[str, Instructor]
     Returns:
         Dict[str, Instructor]: Dictionary mapping instructor IDs to Instructor instances.
     """
-    data = json.load(open(path))
+    with open(path) as f:
+        data = json.load(f)
     instructors = {}
     for item in data:
         availability = item.get("availability", {})
@@ -157,7 +158,8 @@ def load_courses(path: str) -> Dict[tuple, Course]:
     Returns:
         Dict[tuple, Course]: Dictionary keyed by (course_code, course_type) tuples.
     """
-    data = json.load(open(path))
+    with open(path) as f:
+        data = json.load(f)
     courses = {}
 
     for item in data:
@@ -236,7 +238,8 @@ def load_groups(path: str, qts: QuantumTimeSystem) -> Dict[str, Group]:
     Returns:
         Dict[str, Group]: Dictionary of group IDs to Group instances.
     """
-    data = json.load(open(path))
+    with open(path) as f:
+        data = json.load(f)
     groups = {}
 
     for item in data:
@@ -301,7 +304,8 @@ def load_rooms(path: str, qts: QuantumTimeSystem) -> Dict[str, Room]:
     Returns:
         Dict[str, Room]: Dictionary of room IDs to Room objects.
     """
-    data = json.load(open(path))
+    with open(path) as f:
+        data = json.load(f)
     rooms = {}
     for item in data:
         room_id = item["room_id"]
