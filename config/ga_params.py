@@ -3,11 +3,11 @@
 # Population size - INCREASED for better multiprocessing utilization
 # Larger populations keep all CPU cores busy during parallel fitness evaluation
 # Use POP_SIZE=10 for quick testing, 100+ for production runs
-POP_SIZE = 100  # Optimized for multiprocessing (was 10)
+POP_SIZE = 10  # Optimized for multiprocessing (was 10)
 
 # Number of generations - adjust based on population size
 # Larger populations often need fewer generations to converge
-NGEN = 100  # Optimized for multiprocessing (was 50)
+NGEN = 50  # Optimized for multiprocessing (was 50)
 
 # Crossover and mutation probabilities optimized for constraint-aware population
 CXPB, MUTPB = 0.8, 0.3  # Reduced mutation to preserve good constraint relationships
@@ -44,10 +44,10 @@ REPAIR_HEURISTICS_CONFIG = {
     # Priority: Lower number = higher priority (executed first)
     # Set enabled=False to disable specific repairs
     "heuristics": {
-        "repair_availability_violations": {
+        "repair_instructor_availability": {
             "enabled": True,
             "priority": 1,
-            "description": "Fix instructor/group/room availability violations",
+            "description": "Fix instructor availability violations",
         },
         "repair_group_overlaps": {
             "enabled": True,

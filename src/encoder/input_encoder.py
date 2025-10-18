@@ -346,6 +346,9 @@ def link_courses_and_groups(
     for course in courses.values():
         course.enrolled_group_ids = []
 
+    # Collect missing courses for batch display
+    missing_courses = []
+
     # Link groups to ALL courses with matching course_code (theory AND practical)
     for group_id, group in groups.items():
         for course_code in group.enrolled_courses:
@@ -365,9 +368,37 @@ def link_courses_and_groups(
                 found_any = True
 
             if not found_any:
-                print(
-                    f"[!] Warning: No courses found for '{course_code}' in group {group_id}"
-                )
+                missing_courses.append((course_code, group_id))
+
+    # Display missing courses in a table if any found
+    if missing_courses:
+        from rich.console import Console
+        from rich.table import Table
+
+        console = Console()
+
+        console.print()
+        table = Table(
+            title="⚠️  Courses Not Found (Groups Enrolled but Course Missing)",
+            show_header=True,
+            header_style="bold yellow",
+            border_style="yellow",
+            padding=(0, 1),
+        )
+        table.add_column("Course Code", style="cyan", width=20)
+        table.add_column("Group ID", style="yellow", width=15)
+        table.add_column("Reason", style="dim white", width=50)
+
+        for course_code, group_id in missing_courses:
+            table.add_row(
+                course_code, group_id, "Likely has L=T=P=0 (doesn't need scheduling)"
+            )
+
+        console.print(table)
+        console.print(
+            f"[dim yellow]ℹ️  {len(missing_courses)} course enrollments skipped (courses not in filtered dataset)[/dim yellow]"
+        )
+        console.print()
 
     # Note: We no longer warn about unassigned courses here since filtering
     # happens in load_input_data() before this function is called

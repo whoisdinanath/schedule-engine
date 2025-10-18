@@ -6,13 +6,18 @@ violations in GA individuals. Repairs are applied after mutation/crossover to
 project invalid solutions back onto the feasible region.
 
 Repair Strategies (Complete Set):
-1. Availability Violations: Shift genes to valid quanta for instructor/room/group
+1. Instructor Availability: Shift sessions away from instructor unavailable times
 2. Group Overlaps: Detect time conflicts for same group, reassign to free slots
 3. Room Conflicts: Fix room double-bookings by shifting times or changing rooms
 4. Instructor Conflicts: Fix instructor double-bookings by shifting times
 5. Instructor Qualification: Reassign unqualified instructors to qualified ones
 6. Room Type Mismatch: Reassign rooms to match course requirements (lab vs classroom)
 7. Incomplete/Extra Sessions: Add missing or remove extra session genes
+
+Note: Room and group availability are NOT checked because:
+- Rooms are always available during operating hours
+- Groups default to all operating hours (QuantumTimeSystem guarantees this)
+- Schedules are only generated within operating hours
 
 Architecture:
 - Individual repairs target specific constraint types
@@ -39,21 +44,25 @@ from src.encoder.quantum_time_system import QuantumTimeSystem
 
 
 # ============================================================================
-# 1. AVAILABILITY REPAIRS (Priority 1: ~70 violations)
+# 1. INSTRUCTOR AVAILABILITY REPAIR (Priority 1)
 # ============================================================================
 
 
-def repair_availability_violations(
+def repair_instructor_availability(
     individual: List[SessionGene], context: SchedulingContext
 ) -> int:
     """
-    Fix instructor/room/group availability conflicts by shifting genes to valid quanta.
+    Fix instructor availability violations by shifting genes to valid time slots.
 
-    For each gene with availability violations:
-    1. Check if instructor is available at current quanta
-    2. Check if room is available at current quanta
-    3. Check if all groups are available at current quanta
-    4. If ANY unavailable, search for valid time slot and shift
+    Checks ONLY instructor availability. Room and group availability are not checked because:
+    - Rooms are always available during operating hours
+    - Groups default to all operating hours (implicit in QuantumTimeSystem)
+    - Schedules are only generated within operating hours
+
+    For each gene:
+    1. Check if instructor is available at all current quanta
+    2. If ANY quantum violates instructor availability, find new time slot
+    3. Shift gene to new slot that respects instructor availability
 
     Args:
         individual: List of SessionGene objects (GA chromosome)
@@ -63,60 +72,35 @@ def repair_availability_violations(
         Number of genes repaired
 
     Note:
-        Full-time instructors are always available (except booked slots).
-        Groups default to all operating quanta if no availability specified.
+        Full-time instructors have full operating hours availability.
+        Part-time instructors may have restricted availability.
     """
     fixes = 0
 
     for gene in individual:
-        # Get entity objects
-        course_key = (gene.course_id, gene.course_type)
-        course = context.courses.get(course_key)
+        # Get instructor object
         instructor = context.instructors.get(gene.instructor_id)
-        room = context.rooms.get(gene.room_id)
-        groups = [context.groups.get(gid) for gid in gene.group_ids]
 
-        if not course or not instructor or not room or not all(groups):
+        if not instructor:
             continue  # Skip invalid genes
 
-        # Check if current quanta violate availability
+        # Check if current quanta violate instructor availability
         needs_repair = False
-
-        # Check instructor availability
         for q in gene.quanta:
             if q not in instructor.available_quanta:
                 needs_repair = True
                 break
 
-        # Check room availability
-        if not needs_repair:
-            for q in gene.quanta:
-                if q not in room.available_quanta:
-                    needs_repair = True
-                    break
-
-        # Check all groups' availability
-        if not needs_repair:
-            for group in groups:
-                for q in gene.quanta:
-                    if q not in group.available_quanta:
-                        needs_repair = True
-                        break
-                if needs_repair:
-                    break
-
         if not needs_repair:
             continue
 
-        # Find valid replacement quanta
+        # Find valid replacement quanta (only checking instructor availability)
         required_duration = len(gene.quanta)
-        new_quanta = _find_available_slot(
+        new_quanta = _find_instructor_available_slot(
             individual,
             gene,
             required_duration,
             instructor,
-            room,
-            groups,
             context.available_quanta,
         )
 
@@ -125,6 +109,84 @@ def repair_availability_violations(
             fixes += 1
 
     return fixes
+
+
+def _find_instructor_available_slot(
+    individual: List[SessionGene],
+    current_gene: SessionGene,
+    duration: int,
+    instructor,
+    available_quanta: List[int],
+) -> List[int]:
+    """
+    Find a valid time slot where instructor is available and no conflicts exist.
+
+    Only checks:
+    - Instructor availability (primary check)
+    - No conflicts with other genes (group/room/instructor overlaps)
+
+    Does NOT check room or group availability (not needed - see module docstring).
+
+    Args:
+        individual: Full chromosome (to check for conflicts)
+        current_gene: Gene being repaired
+        duration: Required number of consecutive quanta
+        instructor: Instructor entity
+        available_quanta: List of all operating quanta
+
+    Returns:
+        List of quanta if valid slot found, None otherwise
+    """
+    # Build conflict map from other genes
+    occupied = _build_occupied_quanta_map(individual, current_gene)
+
+    # Get room and group IDs from current gene
+    room_id = current_gene.room_id
+    group_ids = current_gene.group_ids
+
+    # Try to find consecutive available quanta
+    for start_q in available_quanta:
+        candidate_quanta = list(range(start_q, start_q + duration))
+
+        # Check if all quanta in range are valid operating times
+        if not all(q in available_quanta for q in candidate_quanta):
+            continue
+
+        # Check instructor availability (PRIMARY CHECK)
+        if not all(q in instructor.available_quanta for q in candidate_quanta):
+            continue
+
+        # Check no conflicts with other genes
+        conflict_free = True
+        for q in candidate_quanta:
+            # Instructor conflict check
+            if instructor.instructor_id in occupied["instructors"].get(q, set()):
+                conflict_free = False
+                break
+
+            # Room conflict check
+            if room_id in occupied["rooms"].get(q, set()):
+                conflict_free = False
+                break
+
+            # Group conflict check
+            for group_id in group_ids:
+                if group_id in occupied["groups"].get(q, set()):
+                    conflict_free = False
+                    break
+
+            if not conflict_free:
+                break
+
+        if conflict_free:
+            return candidate_quanta
+
+    return None  # No valid slot found
+
+
+# ============================================================================
+# Helper Functions
+# ============================================================================
 
 
 def _find_available_slot(

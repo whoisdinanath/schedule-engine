@@ -55,19 +55,55 @@ def instructor_not_qualified(
     sessions: List[CourseSession], course_map: Dict[tuple, Course]
 ) -> int:
     """
-    Checks how many sessions are assigned to unqualified instructors.
+    Counts sessions assigned to unqualified instructors.
+
+    Treats missing course definitions and empty qualification lists as violations
+    (stricter than silently skipping).
+
+    Args:
+        sessions: List of decoded course sessions
+        course_map: Mapping from (course_id, course_type) to Course entity
+
+    Returns:
+        Number of unqualified instructor assignments
     """
     violations = 0
+    missing_courses = set()
+    empty_qualifications = set()
 
     for session in sessions:
-        # Construct tuple key from course_id and course_type
         course_key = (session.course_id, session.course_type)
-        if course_key not in course_map:
-            continue  # Skip if course not found
 
-        qualified = course_map[course_key].qualified_instructor_ids
+        # Missing course definition = violation (stricter policy)
+        if course_key not in course_map:
+            violations += 1
+            missing_courses.add(course_key)
+            continue
+
+        course = course_map[course_key]
+        qualified = getattr(course, "qualified_instructor_ids", None)
+
+        # Empty/None qualification list = violation (no one qualified)
+        if not qualified:
+            violations += 1
+            empty_qualifications.add(course_key)
+            continue
+
+        # Instructor not in qualified list = violation
         if session.instructor_id not in qualified:
             violations += 1
+
+    # Warn about data issues (helps debugging)
+    if missing_courses:
+        print(
+            f"⚠ WARNING: {len(missing_courses)} course(s) missing from course_map: "
+            f"{list(missing_courses)[:3]}{'...' if len(missing_courses) > 3 else ''}"
+        )
+    if empty_qualifications:
+        print(
+            f"⚠ WARNING: {len(empty_qualifications)} course(s) have no qualified instructors: "
+            f"{list(empty_qualifications)[:3]}{'...' if len(empty_qualifications) > 3 else ''}"
+        )
 
     return violations
 

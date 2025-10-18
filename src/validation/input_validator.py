@@ -76,6 +76,7 @@ class InputValidator:
         self._validate_instructors()
         self._validate_rooms()
         self._validate_relationships()
+        self._validate_enrolled_courses_without_instructors()
         self._validate_availability()
         self._validate_room_features_for_enrolled_courses()
 
@@ -274,13 +275,89 @@ class InputValidator:
         for group in self.context.groups.values():
             enrolled_courses.update(group.enrolled_courses)
 
-        for course_id in self.context.courses.keys():
-            if course_id not in enrolled_courses:
-                self.warnings.append(
+        # Note: Removed warning for courses with no groups enrolled
+        # (this is valid for elective courses or courses offered to specific groups only)
+
+    def _validate_enrolled_courses_without_instructors(self):
+        """
+        Check if any enrolled courses have no qualified instructors.
+        This is a CRITICAL error - courses that groups are enrolled in MUST have instructors.
+        """
+        # Get all courses that groups are enrolled in
+        enrolled_courses = set()
+        for group in self.context.groups.values():
+            enrolled_courses.update(group.enrolled_courses)
+
+        # Track courses without instructors
+        courses_without_instructors = []
+
+        for course_code in enrolled_courses:
+            # Find matching courses in context.courses
+            matching_courses = [
+                (course_id, course)
+                for course_id, course in self.context.courses.items()
+                if hasattr(course, "course_code") and course.course_code == course_code
+            ]
+
+            # Also check if course_code matches course_id directly
+            if course_code in self.context.courses:
+                matching_courses.append(
+                    (course_code, self.context.courses[course_code])
+                )
+
+            # Check each matching course for qualified instructors
+            for course_id, course in matching_courses:
+                qualified_instructors = getattr(course, "qualified_instructor_ids", [])
+                if not qualified_instructors or len(qualified_instructors) == 0:
+                    # Convert course_id to string (it might be a tuple like ('CE707', 'practical'))
+                    course_id_str = (
+                        str(course_id) if isinstance(course_id, tuple) else course_id
+                    )
+                    courses_without_instructors.append(
+                        (
+                            course_id_str,
+                            course.name if hasattr(course, "name") else "Unknown",
+                        )
+                    )
+
+        # Report errors if found
+        if courses_without_instructors:
+            from rich.table import Table
+            from rich.panel import Panel
+
+            # Create table for better visualization
+            table = Table(
+                title="⚠️  CRITICAL: Enrolled Courses Without Qualified Instructors",
+                show_header=True,
+                header_style="bold red",
+            )
+            table.add_column("Course ID", style="yellow", width=20)
+            table.add_column("Course Name", style="cyan", width=40)
+            table.add_column("Issue", style="red")
+
+            for course_id, course_name in courses_without_instructors:
+                table.add_row(course_id, course_name, "No qualified instructors")
+
+            console.print()
+            console.print(table)
+            console.print()
+            console.print(
+                Panel(
+                    f"[bold red]Found {len(courses_without_instructors)} enrolled course(s) without any qualified instructors![/bold red]\n\n"
+                    f"[yellow]These courses have groups enrolled but no instructors can teach them.[/yellow]\n"
+                    f"[cyan]Action required: Add qualified instructors in Course.json and Instructors.json[/cyan]",
+                    title="❌ VALIDATION ERROR",
+                    border_style="red",
+                )
+            )
+            console.print()
+
+            # Add error for each course
+            for course_id, course_name in courses_without_instructors:
+                self.errors.append(
                     ValidationError(
-                        "RELATIONSHIP",
-                        f"Course {course_id} has no groups enrolled",
-                        "WARNING",
+                        "INSTRUCTOR_QUALIFICATION",
+                        f"Enrolled course '{course_id}' ({course_name}) has NO qualified instructors - cannot be scheduled!",
                     )
                 )
 
@@ -444,43 +521,27 @@ class InputValidator:
 
     def print_report(self):
         """Print validation report to console."""
-        all_issues = self.errors + self.warnings
-
-        if not all_issues:
-            console.print(
-                "[bold green]✓[/bold green] Validation passed! No issues found."
-            )
-            return
-
-        console.print()
-        console.rule("[bold]VALIDATION REPORT[/bold]")
-        console.print()
-
+        # Don't print anything here - errors/warnings are already shown
+        # in detailed tables during validation (e.g., enrolled courses without instructors)
+        # Just show final status
         if self.errors:
-            console.print(f"[bold red]✗ Found {len(self.errors)} ERRORS:[/bold red]")
-            for error in self.errors:
-                console.print(f"  {error}")
             console.print()
-
-        if self.warnings:
-            console.print(
-                f"[bold yellow]⚠ Found {len(self.warnings)} WARNINGS:[/bold yellow]"
-            )
-            for warning in self.warnings:
-                console.print(f"  {warning}")
-            console.print()
-
-        console.rule()
-        console.print()
-
-        if self.errors:
             console.print(
                 "[bold red]✗ Validation FAILED![/bold red] Fix errors before running GA."
             )
-        else:
+            console.print()
+        elif self.warnings:
+            console.print()
             console.print(
                 "[bold yellow]⚠[/bold yellow] Validation passed with warnings. Review before running GA."
             )
+            console.print()
+        else:
+            console.print()
+            console.print(
+                "[bold green]✓[/bold green] Validation passed! No issues found."
+            )
+            console.print()
 
 
 def validate_input(context: SchedulingContext, strict: bool = False) -> bool:

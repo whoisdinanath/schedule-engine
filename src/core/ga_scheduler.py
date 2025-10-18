@@ -275,7 +275,7 @@ class GAScheduler:
         """Execute one generation of evolution."""
         repair_config = self.config.repair_config
         generation_repair_stats = {
-            "availability_fixes": 0,
+            "instructor_availability_fixes": 0,
             "overlap_fixes": 0,
             "room_fixes": 0,
             "instructor_conflict_fixes": 0,
@@ -448,8 +448,10 @@ class GAScheduler:
             if repair_stats["total_fixes"] > 0:
                 # Build repair summary with all non-zero categories
                 repair_parts = []
-                if repair_stats.get("availability_fixes", 0) > 0:
-                    repair_parts.append(f"avail:{repair_stats['availability_fixes']}")
+                if repair_stats.get("instructor_availability_fixes", 0) > 0:
+                    repair_parts.append(
+                        f"instr_avail:{repair_stats['instructor_availability_fixes']}"
+                    )
                 if repair_stats.get("overlap_fixes", 0) > 0:
                     repair_parts.append(f"group:{repair_stats['overlap_fixes']}")
                 if repair_stats.get("room_fixes", 0) > 0:

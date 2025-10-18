@@ -36,7 +36,7 @@ def get_all_repair_heuristics() -> Dict[str, Dict]:
     """
     # Import here to avoid circular dependencies
     from src.ga.operators.repair import (
-        repair_availability_violations,
+        repair_instructor_availability,
         repair_group_overlaps,
         repair_room_conflicts,
         repair_instructor_conflicts,
@@ -46,10 +46,10 @@ def get_all_repair_heuristics() -> Dict[str, Dict]:
     )
 
     return {
-        "repair_availability_violations": {
-            "function": repair_availability_violations,
+        "repair_instructor_availability": {
+            "function": repair_instructor_availability,
             "priority": 1,
-            "description": "Fix instructor/group/room availability violations",
+            "description": "Fix instructor availability violations (shift sessions to instructor-available times)",
             "modifies_length": False,
         },
         "repair_group_overlaps": {
