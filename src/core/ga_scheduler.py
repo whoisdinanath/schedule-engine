@@ -19,6 +19,8 @@ from rich.progress import (
     TimeElapsedColumn,
     TimeRemainingColumn,
 )
+from rich.table import Table
+from rich.live import Live
 
 from src.ga.population import generate_course_group_aware_population
 from src.ga.operators.crossover import crossover_course_group_aware
@@ -189,22 +191,10 @@ class GAScheduler:
             progress.advance(task)
 
         # Evaluate initial population
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            BarColumn(),
-            TextColumn("[cyan]{task.completed}/{task.total}"),
-            console=console,
-            transient=True,
-        ) as progress:
-            task = progress.add_task(
-                "[cyan]Evaluating Initial Population...", total=len(self.population)
-            )
+        console.print("[cyan]Evaluating Initial Population...[/cyan]")
 
-            fitness_values = []
-            for ind in self.population:
-                fitness_values.append(self.toolbox.evaluate(ind))
-                progress.advance(task)
+        # Use toolbox.map for parallel evaluation when pool is available
+        fitness_values = list(self.toolbox.map(self.toolbox.evaluate, self.population))
 
         for ind, fit in zip(self.population, fitness_values):
             ind.fitness.values = fit
@@ -213,34 +203,53 @@ class GAScheduler:
         """Run genetic algorithm evolution loop."""
         gen_times = []
 
-        with Progress(
+        # Create progress bar (first line)
+        progress_bar = Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
             BarColumn(),
             TextColumn("[cyan]{task.completed}/{task.total}"),
-            TextColumn("•"),
-            TextColumn("[dim]Elapsed:[/dim]"),
-            TimeElapsedColumn(),  # Auto-updates every refresh
-            TextColumn("[dim]Remaining:[/dim]"),
-            TimeRemainingColumn(),  # Auto-updates based on progress
-            TextColumn("•"),
-            TextColumn("[magenta]{task.fields[speed_display]}[/magenta]"),
             console=console,
-            refresh_per_second=10,  # Update display 10 times per second
-        ) as progress:
-            task = progress.add_task(
+            refresh_per_second=10,
+        )
+
+        # Create time info bar (second line)
+        time_bar = Progress(
+            TextColumn("[dim]Elapsed:[/dim]"),
+            TimeElapsedColumn(),
+            TextColumn("•"),
+            TextColumn("[dim]Remaining:[/dim]"),
+            TimeRemainingColumn(),
+            TextColumn("•"),
+            TextColumn("[dark_red]{task.fields[speed_display]}[/dark_red]"),
+            console=console,
+            refresh_per_second=10,
+        )
+
+        # Combine both into a table for multi-line display
+        progress_table = Table.grid()
+        progress_table.add_row(progress_bar)
+        progress_table.add_row(time_bar)
+
+        with Live(progress_table, console=console, refresh_per_second=10):
+            task1 = progress_bar.add_task(
                 "[bold green]Evolution Progress",
+                total=self.config.generations,
+            )
+            task2 = time_bar.add_task(
+                "",
                 total=self.config.generations,
                 speed_display="--s/gen",
             )
 
             for gen in range(self.config.generations):
                 gen_start = time.time()
-                self._evolve_generation(gen, progress)
+                self._evolve_generation(gen, progress_bar)
                 gen_time = time.time() - gen_start
                 gen_times.append(gen_time)
 
-                progress.advance(task)
+                progress_bar.advance(task1)
+                time_bar.advance(task2)
 
                 # Calculate speed display
                 if gen_times:
@@ -252,7 +261,7 @@ class GAScheduler:
                 else:
                     speed_display = "--s/gen"
 
-                progress.update(task, speed_display=speed_display)
+                time_bar.update(task2, speed_display=speed_display)
 
                 # Early stopping if perfect solution found
                 best = tools.selBest(self.population, 1)[0]
@@ -266,12 +275,13 @@ class GAScheduler:
         """Execute one generation of evolution."""
         repair_config = self.config.repair_config
         generation_repair_stats = {
-            "availability_fixes": 0,
+            "instructor_availability_fixes": 0,
             "overlap_fixes": 0,
             "room_fixes": 0,
             "instructor_conflict_fixes": 0,
             "qualification_fixes": 0,
             "room_type_fixes": 0,
+            "clustering_fixes": 0,
             "session_count_fixes": 0,
             "total_fixes": 0,
         }
@@ -343,7 +353,8 @@ class GAScheduler:
         # Evaluate invalid individuals
         invalid = [ind for ind in offspring if not ind.fitness.valid]
         if invalid:
-            fitness_values = list(map(self.toolbox.evaluate, invalid))
+            # Use toolbox.map for parallel evaluation when pool is available
+            fitness_values = list(self.toolbox.map(self.toolbox.evaluate, invalid))
             for ind, fit in zip(invalid, fitness_values):
                 ind.fitness.values = fit
 
@@ -377,7 +388,10 @@ class GAScheduler:
                         generation_repair_stats[key] += stats[key]
 
             # Re-evaluate elite after memetic repair
-            fitness_values = list(map(self.toolbox.evaluate, elite_individuals))
+            # Use toolbox.map for parallel evaluation when pool is available
+            fitness_values = list(
+                self.toolbox.map(self.toolbox.evaluate, elite_individuals)
+            )
             for ind, fit in zip(elite_individuals, fitness_values):
                 ind.fitness.values = fit
 
@@ -435,8 +449,10 @@ class GAScheduler:
             if repair_stats["total_fixes"] > 0:
                 # Build repair summary with all non-zero categories
                 repair_parts = []
-                if repair_stats.get("availability_fixes", 0) > 0:
-                    repair_parts.append(f"avail:{repair_stats['availability_fixes']}")
+                if repair_stats.get("instructor_availability_fixes", 0) > 0:
+                    repair_parts.append(
+                        f"instr_avail:{repair_stats['instructor_availability_fixes']}"
+                    )
                 if repair_stats.get("overlap_fixes", 0) > 0:
                     repair_parts.append(f"group:{repair_stats['overlap_fixes']}")
                 if repair_stats.get("room_fixes", 0) > 0:
@@ -449,6 +465,8 @@ class GAScheduler:
                     repair_parts.append(f"qual:{repair_stats['qualification_fixes']}")
                 if repair_stats.get("room_type_fixes", 0) > 0:
                     repair_parts.append(f"type:{repair_stats['room_type_fixes']}")
+                if repair_stats.get("clustering_fixes", 0) > 0:
+                    repair_parts.append(f"cluster:{repair_stats['clustering_fixes']}")
                 if repair_stats.get("session_count_fixes", 0) > 0:
                     repair_parts.append(f"count:{repair_stats['session_count_fixes']}")
 

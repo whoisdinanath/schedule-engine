@@ -74,11 +74,11 @@ def main():
 
         if hard_viol == 0:
             console.print(
-                "✓ [bold green]Perfect schedule found (no hard constraint violations)![/bold green]"
+                "[OK] [bold green]Perfect schedule found (no hard constraint violations)![/bold green]"
             )
         else:
             console.print(
-                f"⚠ [yellow]Hard constraint violations: {hard_viol:.0f}[/yellow]"
+                f"[!] [yellow]Hard constraint violations: {hard_viol:.0f}[/yellow]"
             )
 
         console.print(f"[cyan]Soft constraint penalty: {soft_pen:.2f}[/cyan]")

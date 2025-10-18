@@ -6,13 +6,18 @@ violations in GA individuals. Repairs are applied after mutation/crossover to
 project invalid solutions back onto the feasible region.
 
 Repair Strategies (Complete Set):
-1. Availability Violations: Shift genes to valid quanta for instructor/room/group
+1. Instructor Availability: Shift sessions away from instructor unavailable times
 2. Group Overlaps: Detect time conflicts for same group, reassign to free slots
 3. Room Conflicts: Fix room double-bookings by shifting times or changing rooms
 4. Instructor Conflicts: Fix instructor double-bookings by shifting times
 5. Instructor Qualification: Reassign unqualified instructors to qualified ones
 6. Room Type Mismatch: Reassign rooms to match course requirements (lab vs classroom)
 7. Incomplete/Extra Sessions: Add missing or remove extra session genes
+
+Note: Room and group availability are NOT checked because:
+- Rooms are always available during operating hours
+- Groups default to all operating hours (QuantumTimeSystem guarantees this)
+- Schedules are only generated within operating hours
 
 Architecture:
 - Individual repairs target specific constraint types
@@ -39,21 +44,25 @@ from src.encoder.quantum_time_system import QuantumTimeSystem
 
 
 # ============================================================================
-# 1. AVAILABILITY REPAIRS (Priority 1: ~70 violations)
+# 1. INSTRUCTOR AVAILABILITY REPAIR (Priority 1)
 # ============================================================================
 
 
-def repair_availability_violations(
+def repair_instructor_availability(
     individual: List[SessionGene], context: SchedulingContext
 ) -> int:
     """
-    Fix instructor/room/group availability conflicts by shifting genes to valid quanta.
+    Fix instructor availability violations by shifting genes to valid time slots.
 
-    For each gene with availability violations:
-    1. Check if instructor is available at current quanta
-    2. Check if room is available at current quanta
-    3. Check if all groups are available at current quanta
-    4. If ANY unavailable, search for valid time slot and shift
+    Checks ONLY instructor availability. Room and group availability are not checked because:
+    - Rooms are always available during operating hours
+    - Groups default to all operating hours (implicit in QuantumTimeSystem)
+    - Schedules are only generated within operating hours
+
+    For each gene:
+    1. Check if instructor is available at all current quanta
+    2. If ANY quantum violates instructor availability, find new time slot
+    3. Shift gene to new slot that respects instructor availability
 
     Args:
         individual: List of SessionGene objects (GA chromosome)
@@ -63,60 +72,35 @@ def repair_availability_violations(
         Number of genes repaired
 
     Note:
-        Full-time instructors are always available (except booked slots).
-        Groups default to all operating quanta if no availability specified.
+        Full-time instructors have full operating hours availability.
+        Part-time instructors may have restricted availability.
     """
     fixes = 0
 
     for gene in individual:
-        # Get entity objects
-        course_key = (gene.course_id, gene.course_type)
-        course = context.courses.get(course_key)
+        # Get instructor object
         instructor = context.instructors.get(gene.instructor_id)
-        room = context.rooms.get(gene.room_id)
-        groups = [context.groups.get(gid) for gid in gene.group_ids]
 
-        if not course or not instructor or not room or not all(groups):
+        if not instructor:
             continue  # Skip invalid genes
 
-        # Check if current quanta violate availability
+        # Check if current quanta violate instructor availability
         needs_repair = False
-
-        # Check instructor availability
         for q in gene.quanta:
             if q not in instructor.available_quanta:
                 needs_repair = True
                 break
 
-        # Check room availability
-        if not needs_repair:
-            for q in gene.quanta:
-                if q not in room.available_quanta:
-                    needs_repair = True
-                    break
-
-        # Check all groups' availability
-        if not needs_repair:
-            for group in groups:
-                for q in gene.quanta:
-                    if q not in group.available_quanta:
-                        needs_repair = True
-                        break
-                if needs_repair:
-                    break
-
         if not needs_repair:
             continue
 
-        # Find valid replacement quanta
+        # Find valid replacement quanta (only checking instructor availability)
         required_duration = len(gene.quanta)
-        new_quanta = _find_available_slot(
+        new_quanta = _find_instructor_available_slot(
             individual,
             gene,
             required_duration,
             instructor,
-            room,
-            groups,
             context.available_quanta,
         )
 
@@ -125,6 +109,259 @@ def repair_availability_violations(
             fixes += 1
 
     return fixes
+
+
+def _find_instructor_available_slot(
+    individual: List[SessionGene],
+    current_gene: SessionGene,
+    duration: int,
+    instructor,
+    available_quanta: List[int],
+) -> List[int]:
+    """
+    Find a valid time slot where instructor is available and no conflicts exist.
+
+    Only checks:
+    - Instructor availability (primary check)
+    - No conflicts with other genes (group/room/instructor overlaps)
+
+    Does NOT check room or group availability (not needed - see module docstring).
+
+    Args:
+        individual: Full chromosome (to check for conflicts)
+        current_gene: Gene being repaired
+        duration: Required number of consecutive quanta
+        instructor: Instructor entity
+        available_quanta: List of all operating quanta
+
+    Returns:
+        List of quanta if valid slot found, None otherwise
+    """
+    # Build conflict map from other genes
+    occupied = _build_occupied_quanta_map(individual, current_gene)
+
+    # Get room and group IDs from current gene
+    room_id = current_gene.room_id
+    group_ids = current_gene.group_ids
+
+    # Try to find consecutive available quanta
+    for start_q in available_quanta:
+        candidate_quanta = list(range(start_q, start_q + duration))
+
+        # Check if all quanta in range are valid operating times
+        if not all(q in available_quanta for q in candidate_quanta):
+            continue
+
+        # Check instructor availability (PRIMARY CHECK)
+        if not all(q in instructor.available_quanta for q in candidate_quanta):
+            continue
+
+        # Check no conflicts with other genes
+        conflict_free = True
+        for q in candidate_quanta:
+            # Instructor conflict check
+            if instructor.instructor_id in occupied["instructors"].get(q, set()):
+                conflict_free = False
+                break
+
+            # Room conflict check
+            if room_id in occupied["rooms"].get(q, set()):
+                conflict_free = False
+                break
+
+            # Group conflict check
+            for group_id in group_ids:
+                if group_id in occupied["groups"].get(q, set()):
+                    conflict_free = False
+                    break
+
+            if not conflict_free:
+                break
+
+        if conflict_free:
+            return candidate_quanta
+
+    return None  # No valid slot found
+
+
+# ============================================================================
+# Helper Functions
+# ============================================================================
+
+
+def _find_available_slot_smart(
+    individual: List[SessionGene],
+    current_gene: SessionGene,
+    duration: int,
+    course,
+    instructor,
+    room,
+    groups: List,
+    available_quanta: List[int],
+    context: SchedulingContext,
+    prefer_clustering: bool = True,
+) -> Tuple[List[int], str, str]:
+    """
+    SMART slot finder that considers alternative qualified instructors and clustering.
+
+    Enhanced strategy:
+    1. Check course subject to find ALL qualified instructors
+    2. For each qualified instructor, find available slots
+    3. Prioritize slots that maintain/improve clustering (adjacent to existing sessions)
+    4. Return best slot + potentially better instructor + potentially better room
+
+    Args:
+        individual: Full chromosome
+        current_gene: Gene being repaired
+        duration: Required consecutive quanta
+        course: Course entity
+        instructor: Current instructor
+        room: Current room
+        groups: List of Group entities
+        available_quanta: All operating quanta
+        context: Scheduling context
+        prefer_clustering: If True, prefer slots adjacent to existing sessions
+
+    Returns:
+        Tuple of (quanta_list, instructor_id, room_id) or (None, None, None)
+    """
+    from config.time_config import quantum_to_day_and_within_day
+
+    qts = QuantumTimeSystem()
+
+    # Build conflict map
+    occupied = _build_occupied_quanta_map(individual, current_gene)
+
+    # Get all qualified instructors for this course
+    course_key = (course.course_id, course.course_type)
+    qualified_instructors = []
+
+    for inst_id, inst in context.instructors.items():
+        if hasattr(inst, "qualifications") and inst.qualifications:
+            if course.subject in inst.qualifications:
+                qualified_instructors.append(inst)
+
+    # If no qualified instructors found, use current instructor
+    if not qualified_instructors:
+        qualified_instructors = [instructor]
+
+    # Get existing sessions for this course-group to understand current clustering
+    existing_sessions = []
+    for gene in individual:
+        if gene is current_gene:
+            continue
+        if (gene.course_id, gene.course_type) == course_key:
+            # Check if same groups
+            if any(gid in gene.group_ids for gid in current_gene.group_ids):
+                existing_sessions.extend(gene.quanta)
+
+    # Try each qualified instructor
+    best_slot = None
+    best_instructor = None
+    best_room = None
+    best_score = -1
+
+    for inst in qualified_instructors:
+        # Try to find slots with this instructor
+        for start_q in available_quanta:
+            candidate_quanta = list(range(start_q, start_q + duration))
+
+            # Validate candidate
+            if not _validate_candidate_slot(
+                candidate_quanta, available_quanta, inst, room, groups, occupied
+            ):
+                continue
+
+            # Score this slot based on clustering
+            score = 0
+            if prefer_clustering and existing_sessions:
+                score = _score_clustering(candidate_quanta, existing_sessions, qts)
+
+            if score > best_score:
+                best_score = score
+                best_slot = candidate_quanta
+                best_instructor = inst.instructor_id
+                best_room = room.room_id
+
+    return (best_slot, best_instructor, best_room) if best_slot else (None, None, None)
+
+
+def _validate_candidate_slot(
+    candidate_quanta: List[int],
+    available_quanta: List[int],
+    instructor,
+    room,
+    groups: List,
+    occupied: Dict,
+) -> bool:
+    """Validate that a candidate slot is free from conflicts."""
+    # Check if all quanta are valid operating times
+    if not all(q in available_quanta for q in candidate_quanta):
+        return False
+
+    # Check instructor availability
+    if not all(q in instructor.available_quanta for q in candidate_quanta):
+        return False
+
+    # Check room availability
+    if not all(q in room.available_quanta for q in candidate_quanta):
+        return False
+
+    # Check all groups' availability
+    for group in groups:
+        if not all(q in group.available_quanta for q in candidate_quanta):
+            return False
+
+    # Check no conflicts with other genes
+    for q in candidate_quanta:
+        # Instructor conflict
+        if instructor.instructor_id in occupied["instructors"].get(q, set()):
+            return False
+        # Room conflict
+        if room.room_id in occupied["rooms"].get(q, set()):
+            return False
+        # Group conflicts
+        for group in groups:
+            if group.group_id in occupied["groups"].get(q, set()):
+                return False
+
+    return True
+
+
+def _score_clustering(
+    candidate_quanta: List[int],
+    existing_sessions: List[int],
+    qts: QuantumTimeSystem,
+) -> int:
+    """
+    Score how well candidate quanta cluster with existing sessions.
+
+    Higher score = better clustering (adjacent or same day).
+
+    Returns:
+        Score: 100 for adjacent, 10 for same day, 0 otherwise
+    """
+    from config.time_config import quantum_to_day_and_within_day
+
+    if not existing_sessions:
+        return 0
+
+    max_score = 0
+
+    for cand_q in candidate_quanta:
+        cand_day, cand_within = quantum_to_day_and_within_day(cand_q, qts)
+
+        for exist_q in existing_sessions:
+            exist_day, exist_within = quantum_to_day_and_within_day(exist_q, qts)
+
+            # Adjacent quantum (best)
+            if cand_day == exist_day and abs(cand_within - exist_within) == 1:
+                max_score = max(max_score, 100)
+            # Same day (good)
+            elif cand_day == exist_day:
+                max_score = max(max_score, 10)
+
+    return max_score
 
 
 def _find_available_slot(
@@ -257,18 +494,27 @@ def repair_group_overlaps(
                         continue
 
                     required_duration = len(gene.quanta)
-                    new_quanta = _find_available_slot(
+
+                    # Use SMART slot finder (considers alternative instructors + clustering)
+                    new_quanta, new_instructor, new_room = _find_available_slot_smart(
                         individual,
                         gene,
                         required_duration,
+                        course,
                         instructor,
                         room,
                         groups,
                         context.available_quanta,
+                        context,
+                        prefer_clustering=True,
                     )
 
                     if new_quanta:
                         gene.quanta = new_quanta
+                        if new_instructor and new_instructor != gene.instructor_id:
+                            gene.instructor_id = new_instructor
+                        if new_room and new_room != gene.room_id:
+                            gene.room_id = new_room
                         fixes += 1
 
     return fixes
@@ -540,18 +786,27 @@ def repair_instructor_conflicts(
                         continue
 
                     required_duration = len(gene.quanta)
-                    new_quanta = _find_available_slot(
+
+                    # Use SMART slot finder (considers alternative instructors + clustering)
+                    new_quanta, new_instructor, new_room = _find_available_slot_smart(
                         individual,
                         gene,
                         required_duration,
+                        course,
                         instructor,
                         room,
                         groups,
                         context.available_quanta,
+                        context,
+                        prefer_clustering=True,
                     )
 
                     if new_quanta:
                         gene.quanta = new_quanta
+                        if new_instructor and new_instructor != gene.instructor_id:
+                            gene.instructor_id = new_instructor
+                        if new_room and new_room != gene.room_id:
+                            gene.room_id = new_room
                         fixes += 1
 
     return fixes
@@ -895,7 +1150,235 @@ def _try_time_shift_for_better_room(
 
 
 # ============================================================================
-# 7. INCOMPLETE/EXTRA SESSIONS REPAIRS (Priority 7 - Complex)
+# 7. SESSION BLOCK CLUSTERING REPAIR (Priority 7 - Soft Constraint)
+# ============================================================================
+
+
+def repair_session_clustering(
+    individual: List[SessionGene], context: SchedulingContext
+) -> int:
+    """
+    Improve session block clustering by REARRANGING quanta to form 2-3 quantum blocks.
+
+    CRITICAL: This repair ONLY rearranges existing quanta - it NEVER adds or removes quanta.
+    This preserves the population invariant that each course-group pair has exactly the
+    required number of quanta.
+
+    Strategy:
+    1. For each gene with multiple isolated 1-quantum sessions:
+       - Try to move isolated quanta to adjacent free slots to form blocks
+       - Only rearrange within the same gene (same course-group-instructor-room)
+    2. Never change the total quanta count per gene
+
+    Args:
+        individual: List of SessionGene objects to repair
+        context: Scheduling context with courses, groups, instructors, rooms
+
+    Returns:
+        Number of clustering improvements made
+    """
+    from config.time_config import quantum_to_day_and_within_day
+
+    qts = QuantumTimeSystem()
+    fixes = 0
+
+    # Process each gene individually
+    for gene in individual:
+        if len(gene.quanta) < 2:
+            # Can't cluster single-quantum courses
+            continue
+
+        # Analyze blocks in this gene
+        day_quanta_map = defaultdict(
+            list
+        )  # day -> list of (within_day, global_quantum)
+
+        for q in gene.quanta:
+            day, within_day = quantum_to_day_and_within_day(q, qts)
+            day_quanta_map[day].append((within_day, q))
+
+        # Find isolated 1-quantum blocks on each day
+        for day, quanta_pairs in day_quanta_map.items():
+            if len(quanta_pairs) < 2:
+                continue
+
+            sorted_pairs = sorted(quanta_pairs, key=lambda x: x[0])
+            within_day_quanta = [w for w, _ in sorted_pairs]
+            global_quanta = [g for _, g in sorted_pairs]
+
+            # Identify blocks
+            blocks = []
+            current_block = [0]  # indices into sorted_pairs
+
+            for i in range(1, len(within_day_quanta)):
+                if within_day_quanta[i] == within_day_quanta[i - 1] + 1:
+                    current_block.append(i)
+                else:
+                    blocks.append(current_block)
+                    current_block = [i]
+            blocks.append(current_block)
+
+            # Try to rearrange isolated blocks
+            for block_indices in blocks:
+                if len(block_indices) == 1:  # Isolated 1-quantum block
+                    isolated_idx = block_indices[0]
+                    isolated_within = within_day_quanta[isolated_idx]
+                    isolated_global = global_quanta[isolated_idx]
+
+                    # Try to move this quantum to adjacent position of another block
+                    success = _try_rearrange_isolated_quantum(
+                        gene,
+                        isolated_global,
+                        isolated_within,
+                        day,
+                        within_day_quanta,
+                        global_quanta,
+                        isolated_idx,
+                        individual,
+                        context,
+                        qts,
+                    )
+
+                    if success:
+                        fixes += 1
+                        break  # Re-analyze after modification
+
+    return fixes
+
+
+def _try_rearrange_isolated_quantum(
+    gene: SessionGene,
+    isolated_global: int,
+    isolated_within: int,
+    day: str,
+    all_within_day: List[int],
+    all_global: List[int],
+    isolated_idx: int,
+    individual: List[SessionGene],
+    context: SchedulingContext,
+    qts: QuantumTimeSystem,
+) -> bool:
+    """
+    Try to rearrange an isolated quantum to form a better block WITHOUT changing total quanta.
+
+    Strategy: Move the isolated quantum to a position adjacent to an existing block
+    on the same day, if that position is free.
+
+    CRITICAL: This only MOVES quanta, never adds or removes them.
+
+    Args:
+        gene: The gene containing the isolated quantum
+        isolated_global: Global quantum index of isolated session
+        isolated_within: Within-day quantum index
+        day: Day name where isolated quantum exists
+        all_within_day: All within-day quanta for this gene on this day
+        all_global: All global quanta for this gene on this day
+        isolated_idx: Index of isolated quantum in the sorted lists
+        individual: Full individual to check conflicts
+        context: Scheduling context
+        qts: QuantumTimeSystem instance
+
+    Returns:
+        True if successfully rearranged, False otherwise
+    """
+    day_offset = qts.day_quanta_offset[day]
+
+    # Find positions adjacent to existing blocks that would form a better cluster
+    target_positions = []
+
+    # Look for existing blocks to attach to
+    for i, within in enumerate(all_within_day):
+        if i == isolated_idx:
+            continue
+
+        # Check if adjacent positions are free
+        for adj_offset in [-1, +1]:
+            adj_within = within + adj_offset
+
+            if adj_within < 0 or adj_within >= qts.day_quanta_count[day]:
+                continue
+
+            # Skip if this position is already occupied by this gene
+            if adj_within in all_within_day:
+                continue
+
+            adj_global = day_offset + adj_within
+
+            # Check if this position is free (no conflicts with other genes)
+            if _is_quantum_free_for_gene(adj_global, gene, individual, context):
+                target_positions.append(adj_global)
+
+    if not target_positions:
+        return False
+
+    # Move isolated quantum to the first available target position
+    target_global = target_positions[0]
+
+    # Simply replace the isolated quantum with the target quantum
+    new_quanta = list(gene.quanta)
+    new_quanta.remove(isolated_global)
+    new_quanta.append(target_global)
+
+    gene.quanta = sorted(new_quanta)
+    return True
+
+
+def _is_quantum_free_for_gene(
+    quantum: int,
+    gene: SessionGene,
+    individual: List[SessionGene],
+    context: SchedulingContext,
+) -> bool:
+    """
+    Check if a quantum is free for all resources needed by a gene.
+
+    Checks:
+    - No group conflicts
+    - No instructor conflicts
+    - No room conflicts
+    - Instructor availability
+
+    Args:
+        quantum: Global quantum index to check
+        gene: Gene that wants to use this quantum
+        individual: Full individual to check conflicts
+        context: Scheduling context
+
+    Returns:
+        True if quantum is free for all gene's resources
+    """
+    instructor = context.instructors.get(gene.instructor_id)
+
+    # Check instructor availability
+    if instructor and hasattr(instructor, "available_quanta"):
+        if quantum not in instructor.available_quanta:
+            return False
+
+    # Check for conflicts with other genes
+    for other_gene in individual:
+        if other_gene is gene:
+            continue
+
+        if quantum not in other_gene.quanta:
+            continue
+
+        # Check group overlap
+        if any(gid in other_gene.group_ids for gid in gene.group_ids):
+            return False
+
+        # Check instructor conflict
+        if other_gene.instructor_id == gene.instructor_id:
+            return False
+
+        # Check room conflict
+        if other_gene.room_id == gene.room_id:
+            return False
+
+    return True
+
+
+# ============================================================================
+# 8. INCOMPLETE/EXTRA SESSIONS REPAIRS (Priority 8 - Complex)
 # ============================================================================
 
 

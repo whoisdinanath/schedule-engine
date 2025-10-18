@@ -9,4 +9,4 @@ TEMPFILESWORKING/
 logs/
 test*.py
 product-design/
-prompts/
+prompts/config/ga_params_optimized.py

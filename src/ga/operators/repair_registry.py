@@ -36,20 +36,21 @@ def get_all_repair_heuristics() -> Dict[str, Dict]:
     """
     # Import here to avoid circular dependencies
     from src.ga.operators.repair import (
-        repair_availability_violations,
+        repair_instructor_availability,
         repair_group_overlaps,
         repair_room_conflicts,
         repair_instructor_conflicts,
         repair_instructor_qualifications,
         repair_room_type_mismatches,
+        repair_session_clustering,
         repair_incomplete_or_extra_sessions,
     )
 
     return {
-        "repair_availability_violations": {
-            "function": repair_availability_violations,
+        "repair_instructor_availability": {
+            "function": repair_instructor_availability,
             "priority": 1,
-            "description": "Fix instructor/group/room availability violations",
+            "description": "Fix instructor availability violations (shift sessions to instructor-available times)",
             "modifies_length": False,
         },
         "repair_group_overlaps": {
@@ -82,9 +83,15 @@ def get_all_repair_heuristics() -> Dict[str, Dict]:
             "description": "Fix room type mismatches (lab/lecture/seminar)",
             "modifies_length": False,
         },
+        "repair_session_clustering": {
+            "function": repair_session_clustering,
+            "priority": 7,
+            "description": "Improve session clustering (merge isolated 1-quantum sessions into 2-3 quantum blocks)",
+            "modifies_length": False,
+        },
         "repair_incomplete_or_extra_sessions": {
             "function": repair_incomplete_or_extra_sessions,
-            "priority": 7,
+            "priority": 8,
             "description": "Add missing sessions or remove extra sessions",
             "modifies_length": True,  # WARNING: Can change individual length!
         },
