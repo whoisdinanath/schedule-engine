@@ -24,16 +24,17 @@ HARD_CONSTRAINTS_CONFIG = {
 # SOFT CONSTRAINTS CONFIGURATION
 # ============================================================================
 # Enable/disable individual soft constraints and set their weights
+# Four soft constraints are used:
+# 1. group_gaps_penalty - Minimize gaps in group schedules
+# 2. instructor_gaps_penalty - Minimize gaps in instructor schedules
+# 3. group_midday_break_violation - Avoid scheduling during midday break
+# 4. session_block_clustering_penalty - Encourage 2-3 quantum session blocks
 SOFT_CONSTRAINTS_CONFIG = {
     # Format: "constraint_name": {"enabled": bool, "weight": float}
-    # Compactness constraints (minimize gaps in schedules)
     "group_gaps_penalty": {"enabled": True, "weight": 1.0},
-    "instructor_gaps_penalty": {"enabled": False, "weight": 1.0},
-    # Time preference constraints (see config/time_config.py for time parameters)
-    "group_midday_break_violation": {"enabled": False, "weight": 1.0},
-    # "early_or_late_session_penalty": {"enabled": False, "weight": 1.0},
-    # Session structure constraints
-    "course_split_penalty": {"enabled": False, "weight": 1.0},
+    "instructor_gaps_penalty": {"enabled": True, "weight": 1.0},
+    "group_midday_break_violation": {"enabled": True, "weight": 1.0},
+    "session_block_clustering_penalty": {"enabled": True, "weight": 1.0},
 }
 
 # ============================================================================

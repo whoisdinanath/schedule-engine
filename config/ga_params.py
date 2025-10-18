@@ -3,11 +3,11 @@
 # Population size - INCREASED for better multiprocessing utilization
 # Larger populations keep all CPU cores busy during parallel fitness evaluation
 # Use POP_SIZE=10 for quick testing, 100+ for production runs
-POP_SIZE = 10  # Optimized for multiprocessing (was 10)
+POP_SIZE = 1000  # Optimized for multiprocessing
 
 # Number of generations - adjust based on population size
 # Larger populations often need fewer generations to converge
-NGEN = 50  # Optimized for multiprocessing (was 50)
+NGEN = 100  # Optimized for multiprocessing (was 50)
 
 # Crossover and mutation probabilities optimized for constraint-aware population
 CXPB, MUTPB = 0.8, 0.3  # Reduced mutation to preserve good constraint relationships
@@ -15,6 +15,15 @@ CXPB, MUTPB = 0.8, 0.3  # Reduced mutation to preserve good constraint relations
 # Parallelization Settings
 USE_MULTIPROCESSING = True  # Set to False for debugging (single-threaded execution)
 NUM_WORKERS = None  # None = use all available CPU cores, or specify manually (e.g., 4)
+
+# ============================================================================
+# POPULATION INTEGRITY VALIDATION
+# ============================================================================
+# Enable strict validation that checks if individuals maintain the same course-group pairs
+# during crossover. This catches population corruption bugs but may be disabled for performance
+# or to allow experimental operators that intentionally modify population structure.
+
+VALIDATE_POPULATION_INTEGRITY = False  # Set to True to enable strict validation checks
 
 # ============================================================================
 # REPAIR HEURISTICS CONFIGURATION
@@ -30,7 +39,7 @@ REPAIR_HEURISTICS_CONFIG = {
     "max_iterations": 3,  # Global iteration limit (1-5 recommended)
     # When to apply repairs
     "apply_after_mutation": True,  # Fix violations after mutation (recommended)
-    "apply_after_crossover": False,  # Fix violations after crossover (optional)
+    "apply_after_crossover": True,  # Fix violations after crossover (optional)
     # Memetic mode - apply intensive local search to elite solutions
     "memetic_mode": False,  # Enable for elite-only iterative refinement
     "elite_percentage": 0.2,  # Top 20% get extra repair passes
@@ -74,9 +83,14 @@ REPAIR_HEURISTICS_CONFIG = {
             "priority": 6,
             "description": "Fix room type mismatches (lab/lecture)",
         },
+        "repair_session_clustering": {
+            "enabled": True,  # Rearranges quanta to form blocks (preserves total count)
+            "priority": 7,
+            "description": "Improve session block clustering (move isolated sessions)",
+        },
         "repair_incomplete_or_extra_sessions": {
             "enabled": True,
-            "priority": 7,
+            "priority": 8,
             "description": "Add missing or remove extra sessions",
             "warning": "Can modify individual length - use with caution",
         },

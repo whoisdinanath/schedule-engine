@@ -281,6 +281,7 @@ class GAScheduler:
             "instructor_conflict_fixes": 0,
             "qualification_fixes": 0,
             "room_type_fixes": 0,
+            "clustering_fixes": 0,
             "session_count_fixes": 0,
             "total_fixes": 0,
         }
@@ -464,6 +465,8 @@ class GAScheduler:
                     repair_parts.append(f"qual:{repair_stats['qualification_fixes']}")
                 if repair_stats.get("room_type_fixes", 0) > 0:
                     repair_parts.append(f"type:{repair_stats['room_type_fixes']}")
+                if repair_stats.get("clustering_fixes", 0) > 0:
+                    repair_parts.append(f"cluster:{repair_stats['clustering_fixes']}")
                 if repair_stats.get("session_count_fixes", 0) > 0:
                     repair_parts.append(f"count:{repair_stats['session_count_fixes']}")
 

@@ -31,19 +31,30 @@ MAX_SESSION_COALESCENCE = 3  # Max preferred quanta per continuous session block
 # Preferred Operating Hours (Wall-Clock Time)
 # -------------------------------------------
 # Sessions outside these hours incur penalties (early_or_late_session_penalty)
-EARLIEST_PREFERRED_TIME = "08:00"  # Earliest preferred start time
-LATEST_PREFERRED_TIME = "19:00"  # Latest preferred end time
+EARLIEST_PREFERRED_TIME = "10:00"  # Earliest preferred start time
+LATEST_PREFERRED_TIME = "17:00"  # Latest preferred end time
 
 # Midday Break Settings (Wall-Clock Time)
 # ----------------------------------------
 # Expected break period for groups (group_midday_break_violation)
 MIDDAY_BREAK_START_TIME = "12:00"  # Start of preferred lunch break
-MIDDAY_BREAK_END_TIME = "13:00"  # End of preferred lunch break
+MIDDAY_BREAK_END_TIME = "14:00"  # End of preferred lunch break
 
 # Session Distribution Limits
 # ----------------------------
 # Maximum number of sessions a group/instructor should have per day
 MAX_SESSIONS_PER_DAY = 5  # Threshold for excessive daily load
+
+# Session Block Clustering Settings
+# ----------------------------------
+# Encourage sessions to be clustered into preferred block sizes
+# Example: 6 quanta course → [3,3] or [2,2,2] preferred over [1,1,1,1,1,1]
+PREFERRED_BLOCK_SIZE_MIN = 2  # Minimum preferred block size (quanta)
+PREFERRED_BLOCK_SIZE_MAX = 3  # Maximum preferred block size (quanta)
+ISOLATED_SESSION_PENALTY = 5  # Heavy penalty for isolated 1-quantum sessions
+OVERSIZED_BLOCK_PENALTY_PER_QUANTUM = (
+    1  # Penalty per quantum beyond max (for 4+ blocks)
+)
 
 # ============================================================================
 # HELPER FUNCTIONS FOR SOFT CONSTRAINTS

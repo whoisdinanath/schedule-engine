@@ -28,8 +28,8 @@ def crossover_course_group_aware(
         tuple: (ind1, ind2) with swapped attributes (not swapped genes)
 
     Raises:
-        ValueError: If individuals have mismatched (course, group) pairs,
-                   indicating structural corruption in the population.
+        ValueError: If validation is enabled and individuals have mismatched
+                   (course, group) pairs, indicating structural corruption.
 
     Example:
         Parent 1: Gene(MATH101, GroupA, Instructor=I1, Room=R1, Time=[10,11,12])
@@ -41,6 +41,8 @@ def crossover_course_group_aware(
 
         Note: MATH101-GroupA still exists in both (no duplication/loss)
     """
+    from config.ga_params import VALIDATE_POPULATION_INTEGRITY
+
     # Build lookup tables: (course_id, tuple(sorted(group_ids))) -> gene
     # We sort group_ids to ensure consistent key regardless of list order
     gene_map1 = {(gene.course_id, tuple(sorted(gene.group_ids))): gene for gene in ind1}
@@ -48,23 +50,32 @@ def crossover_course_group_aware(
 
     # Verify both individuals have same (course, group) pairs
     # This catches any corruption early with a clear error message
-    keys1 = set(gene_map1.keys())
-    keys2 = set(gene_map2.keys())
+    # Can be disabled via config for performance or experimental operators
+    if VALIDATE_POPULATION_INTEGRITY:
+        keys1 = set(gene_map1.keys())
+        keys2 = set(gene_map2.keys())
 
-    if keys1 != keys2:
-        missing_in_ind1 = keys2 - keys1
-        missing_in_ind2 = keys1 - keys2
-        raise ValueError(
-            f"[X] CROSSOVER ERROR: Individuals have mismatched (course, group) pairs!\n"
-            f"   Individual 1 has {len(keys1)} pairs, Individual 2 has {len(keys2)} pairs.\n"
-            f"   Missing in Individual 1: {missing_in_ind1}\n"
-            f"   Missing in Individual 2: {missing_in_ind2}\n"
-            f"   This indicates population corruption or invalid mutation."
-        )
+        if keys1 != keys2:
+            missing_in_ind1 = keys2 - keys1
+            missing_in_ind2 = keys1 - keys2
+            raise ValueError(
+                f"[X] CROSSOVER ERROR: Individuals have mismatched (course, group) pairs!\n"
+                f"   Individual 1 has {len(keys1)} pairs, Individual 2 has {len(keys2)} pairs.\n"
+                f"   Missing in Individual 1: {missing_in_ind1}\n"
+                f"   Missing in Individual 2: {missing_in_ind2}\n"
+                f"   This indicates population corruption or invalid mutation.\n"
+                f"   To disable this check, set VALIDATE_POPULATION_INTEGRITY=False in config/ga_params.py"
+            )
 
     # For each (course, group) pair, probabilistically swap ATTRIBUTES
-    # Note: We iterate over keys1, but could use keys2 (they're identical)
-    for key in gene_map1.keys():
+    # If validation is disabled, only swap for common keys (intersection)
+    keys_to_process = (
+        gene_map1.keys()
+        if VALIDATE_POPULATION_INTEGRITY
+        else (set(gene_map1.keys()) & set(gene_map2.keys()))
+    )
+
+    for key in keys_to_process:
         if random.random() < cx_prob:
             gene1 = gene_map1[key]
             gene2 = gene_map2[key]
